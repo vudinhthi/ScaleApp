@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator2 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbShift = new System.Windows.Forms.ComboBox();
             this.mixRawBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -371,7 +371,7 @@
             this.btnSendToMaterial.Name = "btnSendToMaterial";
             this.btnSendToMaterial.Size = new System.Drawing.Size(208, 40);
             this.btnSendToMaterial.TabIndex = 24;
-            this.btnSendToMaterial.Text = "Send to Raw material";
+            this.btnSendToMaterial.Text = "Get weight RM";
             this.btnSendToMaterial.UseVisualStyleBackColor = true;
             this.btnSendToMaterial.Click += new System.EventHandler(this.btnSendToMaterial_Click);
             // 
@@ -391,7 +391,7 @@
             this.btnSendToRecycled.Name = "btnSendToRecycled";
             this.btnSendToRecycled.Size = new System.Drawing.Size(208, 40);
             this.btnSendToRecycled.TabIndex = 26;
-            this.btnSendToRecycled.Text = "Send to Recycled";
+            this.btnSendToRecycled.Text = "Get weight Recycled";
             this.btnSendToRecycled.UseVisualStyleBackColor = true;
             this.btnSendToRecycled.Click += new System.EventHandler(this.btnSendToRecycled_Click);
             // 
@@ -419,8 +419,8 @@
             this.qrMixLotID.Name = "qrMixLotID";
             this.qrMixLotID.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrMixLotID.Size = new System.Drawing.Size(296, 206);
-            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
-            this.qrMixLotID.Symbology = qrCodeGenerator1;
+            qrCodeGenerator2.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
+            this.qrMixLotID.Symbology = qrCodeGenerator2;
             this.qrMixLotID.TabIndex = 32;
             // 
             // cmbLabelType

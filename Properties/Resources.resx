@@ -124,10 +124,16 @@
   <data name="Cancel_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cancel_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="GenerateData_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\GenerateData_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="36327663_1527068020730825_495444513616035840_o" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\36327663_1527068020730825_495444513616035840_o.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Print_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Print_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="62975balancescale_109356" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\62975balancescale_109356.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

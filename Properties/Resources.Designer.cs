@@ -73,9 +73,29 @@ namespace ScaleApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _62975balancescale_109356 {
+            get {
+                object obj = ResourceManager.GetObject("62975balancescale_109356", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Cancel_32x32 {
             get {
                 object obj = ResourceManager.GetObject("Cancel_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap GenerateData_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("GenerateData_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

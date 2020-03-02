@@ -216,6 +216,7 @@
     <Content Include="icon\View_16x16.png" />
     <Content Include="icon\View_32x32.png" />
     <Content Include="images\background.jpg" />
+    <None Include="Resources\62975balancescale_109356.png" />
     <None Include="Resources\Print_32x32.png" />
     <None Include="Resources\Cancel_32x32.png" />
     <None Include="Resources\Save_32x32.png" />

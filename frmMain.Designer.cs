@@ -33,10 +33,6 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mixingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mixedOutStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.runnerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.defectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.blackDotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contaminatedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recycledStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cookiesStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,38 +69,10 @@
             // 
             // mixedOutStationToolStripMenuItem
             // 
-            this.mixedOutStationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.runnerToolStripMenuItem,
-            this.defectToolStripMenuItem,
-            this.blackDotToolStripMenuItem,
-            this.contaminatedToolStripMenuItem});
             this.mixedOutStationToolStripMenuItem.Name = "mixedOutStationToolStripMenuItem";
             this.mixedOutStationToolStripMenuItem.Size = new System.Drawing.Size(115, 20);
             this.mixedOutStationToolStripMenuItem.Text = "Mixed Out Station";
-            // 
-            // runnerToolStripMenuItem
-            // 
-            this.runnerToolStripMenuItem.Name = "runnerToolStripMenuItem";
-            this.runnerToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.runnerToolStripMenuItem.Text = "Runner";
-            // 
-            // defectToolStripMenuItem
-            // 
-            this.defectToolStripMenuItem.Name = "defectToolStripMenuItem";
-            this.defectToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.defectToolStripMenuItem.Text = "Defect";
-            // 
-            // blackDotToolStripMenuItem
-            // 
-            this.blackDotToolStripMenuItem.Name = "blackDotToolStripMenuItem";
-            this.blackDotToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.blackDotToolStripMenuItem.Text = "Black Dot";
-            // 
-            // contaminatedToolStripMenuItem
-            // 
-            this.contaminatedToolStripMenuItem.Name = "contaminatedToolStripMenuItem";
-            this.contaminatedToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.contaminatedToolStripMenuItem.Text = "Contaminated";
+            this.mixedOutStationToolStripMenuItem.Click += new System.EventHandler(this.mixedOutStationToolStripMenuItem_Click);
             // 
             // recycledStationToolStripMenuItem
             // 
@@ -150,10 +118,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mixingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mixedOutStationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem runnerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem defectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem blackDotToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem contaminatedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recycledStationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cookiesStationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;

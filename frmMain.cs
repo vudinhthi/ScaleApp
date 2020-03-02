@@ -39,5 +39,15 @@ namespace ScaleApp
             crushing.Parent = this;
             crushing.Show();
         }
+
+        private void mixedOutStationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.IsMdiContainer = true;
+
+            frmMixedOut mixing = new frmMixedOut();
+            mixing.TopLevel = false;
+            mixing.Parent = this;
+            mixing.Show();
+        }
     }
 }

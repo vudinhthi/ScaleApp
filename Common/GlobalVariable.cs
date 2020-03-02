@@ -16,5 +16,6 @@ namespace ScaleApp.Common
         public static int DBVNT86         = 9;
         public static int DBVNL86         = 10;
         public static int DBSCI           = 10;
+        public static int MixColor        = 20;
     }
 }

@@ -137,6 +137,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="App.config" />
     <None Include="ColorMixDataSet.xsc">
       <DependentUpon>ColorMixDataSet.xsd</DependentUpon>
     </None>

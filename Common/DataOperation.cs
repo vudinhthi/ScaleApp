@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 using System.Data;
 using System.Configuration;
+using System.Windows.Forms;
 
 namespace ScaleApp.Common
 {
@@ -28,14 +29,28 @@ namespace ScaleApp.Common
 
         }
 
+        public static void ConnectToDB()
+        {
+            conn = new SqlConnection();   //Khởi tạo đối tượng
+            conn.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ColorMix;Persist Security Info=True;User ID=sa;Password=12345678;Connect Timeout=30;User Instance=True";
+            conn.Open();                  //Mở kết nối
+            //Kiểm tra kết nối
+            if (conn.State == ConnectionState.Open)
+                MessageBox.Show("Kết nối thành công");
+            else MessageBox.Show("Không thể kết nối với dữ liệu");
+
+        }
+
         // close connection
         public static void disconnect()
         {
 
             if ((conn != null) && (conn.State == ConnectionState.Open))
-
-                conn.Close();
-
+            {
+                conn.Close();    //Đóng kết nối
+                conn.Dispose();  //Giải phóng tài nguyên
+                conn = null;
+            }
         }
 
         // return DataTable .

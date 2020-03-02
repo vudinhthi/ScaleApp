@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using ScaleApp.Common;
 
 namespace ScaleApp
 {
@@ -48,6 +49,11 @@ namespace ScaleApp
             mixing.TopLevel = false;
             mixing.Parent = this;
             mixing.Show();
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            ScaleApp.Common.DataOperation.ConnectToDB();
         }
     }
 }

@@ -212,6 +212,22 @@ namespace ScaleApp.Common
             return 1;
         }
 
+        public static string GenerateTextQRCode(String codeType, DateTime dteNgay)
+        {
+            string textQrCode;
+            string sDay;
+            string sMonth;
+            string sYear;
+
+            sDay = dteNgay.Day.ToString();
+            sMonth = dteNgay.Month.ToString();
+            sYear = dteNgay.Year.ToString();
+
+            textQrCode = codeType +  sYear + sMonth + sDay;
+
+            return textQrCode;
+        }
+
         public static string getFactorName(int? dtFactor)
         {
             if (dtFactor == 0)

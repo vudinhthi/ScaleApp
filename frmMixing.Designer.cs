@@ -29,29 +29,24 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator2 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator3 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery3 = new DevExpress.DataAccess.Sql.StoredProcQuery();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMixing));
             this.label1 = new System.Windows.Forms.Label();
             this.cmbShift = new System.Windows.Forms.ComboBox();
-            this.mixRawBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.colorMixDataSet = new ScaleApp.ColorMixDataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbOperator = new System.Windows.Forms.ComboBox();
-            this.operatorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.cmbStep = new System.Windows.Forms.ComboBox();
-            this.stepBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbMaterial = new System.Windows.Forms.ComboBox();
-            this.materialsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this.cmbColor = new System.Windows.Forms.ComboBox();
-            this.colorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtWeightRM = new System.Windows.Forms.TextBox();
             this.cmbRecycled = new System.Windows.Forms.ComboBox();
-            this.recycleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label9 = new System.Windows.Forms.Label();
             this.txtWeightRecycled = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -67,26 +62,25 @@
             this.button5 = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.operatorTableAdapter = new ScaleApp.ColorMixDataSetTableAdapters.OperatorTableAdapter();
             this.cmbProduct = new System.Windows.Forms.ComboBox();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.stepTableAdapter = new ScaleApp.ColorMixDataSetTableAdapters.StepTableAdapter();
-            this.mixRawTableAdapter = new ScaleApp.ColorMixDataSetTableAdapters.MixRawTableAdapter();
-            this.productTableAdapter = new ScaleApp.ColorMixDataSetTableAdapters.ProductTableAdapter();
-            this.colorTableAdapter = new ScaleApp.ColorMixDataSetTableAdapters.ColorTableAdapter();
-            this.materialsTableAdapter = new ScaleApp.ColorMixDataSetTableAdapters.MaterialsTableAdapter();
-            this.recycleTableAdapter = new ScaleApp.ColorMixDataSetTableAdapters.RecycleTableAdapter();
-            this.productColorBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productColorTableAdapter = new ScaleApp.ColorMixDataSetTableAdapters.ProductColorTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.mixRawBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorMixDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.operatorBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stepBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.recycleBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productColorBindingSource)).BeginInit();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colMixRawId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colShiftName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOperatorName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colStepName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colProductName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colColorName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMixBacode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMaterialName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colWeightMaterial = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colWeightRecycle = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTotalMaterial = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCrushRawID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMachineName = new DevExpress.XtraGrid.Columns.GridColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -102,8 +96,6 @@
             // 
             // cmbShift
             // 
-            this.cmbShift.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.mixRawBindingSource, "ShiftName", true));
-            this.cmbShift.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbShift.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbShift.FormattingEnabled = true;
             this.cmbShift.Items.AddRange(new object[] {
@@ -114,16 +106,6 @@
             this.cmbShift.Name = "cmbShift";
             this.cmbShift.Size = new System.Drawing.Size(262, 28);
             this.cmbShift.TabIndex = 1;
-            // 
-            // mixRawBindingSource
-            // 
-            this.mixRawBindingSource.DataMember = "MixRaw";
-            this.mixRawBindingSource.DataSource = this.colorMixDataSet;
-            // 
-            // colorMixDataSet
-            // 
-            this.colorMixDataSet.DataSetName = "ColorMixDataSet";
-            this.colorMixDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label2
             // 
@@ -138,9 +120,6 @@
             // 
             // cmbOperator
             // 
-            this.cmbOperator.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.operatorBindingSource, "OperatorCode", true));
-            this.cmbOperator.DataSource = this.operatorBindingSource;
-            this.cmbOperator.DisplayMember = "OperatorName";
             this.cmbOperator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOperator.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbOperator.FormattingEnabled = true;
@@ -148,12 +127,8 @@
             this.cmbOperator.Name = "cmbOperator";
             this.cmbOperator.Size = new System.Drawing.Size(262, 28);
             this.cmbOperator.TabIndex = 3;
-            this.cmbOperator.ValueMember = "OperatorCode";
-            // 
-            // operatorBindingSource
-            // 
-            this.operatorBindingSource.DataMember = "Operator";
-            this.operatorBindingSource.DataSource = this.colorMixDataSet;
+            this.cmbOperator.SelectedIndexChanged += new System.EventHandler(this.cmbOperator_SelectedIndexChanged);
+            this.cmbOperator.Click += new System.EventHandler(this.cmbOperator_Click);
             // 
             // label3
             // 
@@ -168,9 +143,6 @@
             // 
             // cmbStep
             // 
-            this.cmbStep.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.mixRawBindingSource, "StepName", true));
-            this.cmbStep.DataSource = this.stepBindingSource;
-            this.cmbStep.DisplayMember = "StepName";
             this.cmbStep.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStep.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStep.FormattingEnabled = true;
@@ -178,12 +150,6 @@
             this.cmbStep.Name = "cmbStep";
             this.cmbStep.Size = new System.Drawing.Size(262, 28);
             this.cmbStep.TabIndex = 5;
-            this.cmbStep.ValueMember = "StepCode";
-            // 
-            // stepBindingSource
-            // 
-            this.stepBindingSource.DataMember = "Step";
-            this.stepBindingSource.DataSource = this.colorMixDataSet;
             // 
             // label4
             // 
@@ -209,21 +175,12 @@
             // 
             // cmbMaterial
             // 
-            this.cmbMaterial.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.mixRawBindingSource, "MaterialName", true));
-            this.cmbMaterial.DataSource = this.materialsBindingSource;
-            this.cmbMaterial.DisplayMember = "MaterialName";
             this.cmbMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMaterial.FormattingEnabled = true;
             this.cmbMaterial.Location = new System.Drawing.Point(526, 12);
             this.cmbMaterial.Name = "cmbMaterial";
             this.cmbMaterial.Size = new System.Drawing.Size(296, 28);
             this.cmbMaterial.TabIndex = 13;
-            this.cmbMaterial.ValueMember = "MaterialCode";
-            // 
-            // materialsBindingSource
-            // 
-            this.materialsBindingSource.DataMember = "Materials";
-            this.materialsBindingSource.DataSource = this.colorMixDataSet;
             // 
             // label6
             // 
@@ -238,9 +195,6 @@
             // 
             // cmbColor
             // 
-            this.cmbColor.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.mixRawBindingSource, "ColorName", true));
-            this.cmbColor.DataSource = this.colorBindingSource;
-            this.cmbColor.DisplayMember = "ColorName";
             this.cmbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbColor.FormattingEnabled = true;
@@ -248,12 +202,6 @@
             this.cmbColor.Name = "cmbColor";
             this.cmbColor.Size = new System.Drawing.Size(262, 28);
             this.cmbColor.TabIndex = 11;
-            this.cmbColor.ValueMember = "ColorName";
-            // 
-            // colorBindingSource
-            // 
-            this.colorBindingSource.DataMember = "Color";
-            this.colorBindingSource.DataSource = this.colorMixDataSet;
             // 
             // label7
             // 
@@ -279,29 +227,21 @@
             // 
             // txtWeightRM
             // 
-            this.txtWeightRM.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mixRawBindingSource, "WeightMaterial", true));
             this.txtWeightRM.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtWeightRM.Location = new System.Drawing.Point(526, 55);
             this.txtWeightRM.Name = "txtWeightRM";
             this.txtWeightRM.Size = new System.Drawing.Size(296, 38);
             this.txtWeightRM.TabIndex = 15;
+            this.txtWeightRM.TextChanged += new System.EventHandler(this.txtWeightRM_TextChanged);
             // 
             // cmbRecycled
             // 
-            this.cmbRecycled.DataSource = this.recycleBindingSource;
-            this.cmbRecycled.DisplayMember = "RecycleCode";
             this.cmbRecycled.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbRecycled.FormattingEnabled = true;
             this.cmbRecycled.Location = new System.Drawing.Point(526, 108);
             this.cmbRecycled.Name = "cmbRecycled";
             this.cmbRecycled.Size = new System.Drawing.Size(296, 28);
             this.cmbRecycled.TabIndex = 17;
-            this.cmbRecycled.ValueMember = "RecycleCode";
-            // 
-            // recycleBindingSource
-            // 
-            this.recycleBindingSource.DataMember = "Recycle";
-            this.recycleBindingSource.DataSource = this.colorMixDataSet;
             // 
             // label9
             // 
@@ -316,12 +256,12 @@
             // 
             // txtWeightRecycled
             // 
-            this.txtWeightRecycled.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mixRawBindingSource, "WeightRecycle", true));
             this.txtWeightRecycled.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtWeightRecycled.Location = new System.Drawing.Point(526, 150);
             this.txtWeightRecycled.Name = "txtWeightRecycled";
             this.txtWeightRecycled.Size = new System.Drawing.Size(296, 38);
             this.txtWeightRecycled.TabIndex = 19;
+            this.txtWeightRecycled.TextChanged += new System.EventHandler(this.txtWeightRecycled_TextChanged);
             // 
             // label10
             // 
@@ -336,7 +276,6 @@
             // 
             // txtTotal
             // 
-            this.txtTotal.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mixRawBindingSource, "TotalMaterial", true));
             this.txtTotal.Enabled = false;
             this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotal.Location = new System.Drawing.Point(526, 221);
@@ -357,7 +296,6 @@
             // 
             // txtMachine
             // 
-            this.txtMachine.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mixRawBindingSource, "MachineName", true));
             this.txtMachine.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMachine.Location = new System.Drawing.Point(112, 150);
             this.txtMachine.Name = "txtMachine";
@@ -411,16 +349,14 @@
             this.qrMixLotID.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.qrMixLotID.Appearance.Options.UseFont = true;
             this.qrMixLotID.AutoModule = true;
-            this.qrMixLotID.DataBindings.Add(new System.Windows.Forms.Binding("BinaryData", this.mixRawBindingSource, "MixBacode", true));
-            this.qrMixLotID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mixRawBindingSource, "MixBacode", true));
             this.qrMixLotID.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.qrMixLotID.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.qrMixLotID.Location = new System.Drawing.Point(851, 53);
             this.qrMixLotID.Name = "qrMixLotID";
             this.qrMixLotID.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrMixLotID.Size = new System.Drawing.Size(296, 206);
-            qrCodeGenerator2.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
-            this.qrMixLotID.Symbology = qrCodeGenerator2;
+            qrCodeGenerator3.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
+            this.qrMixLotID.Symbology = qrCodeGenerator3;
             this.qrMixLotID.TabIndex = 32;
             // 
             // cmbLabelType
@@ -465,16 +401,10 @@
             this.btnSave.Size = new System.Drawing.Size(167, 40);
             this.btnSave.TabIndex = 27;
             this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // operatorTableAdapter
-            // 
-            this.operatorTableAdapter.ClearBeforeFill = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // cmbProduct
             // 
-            this.cmbProduct.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.mixRawBindingSource, "ProductName", true));
-            this.cmbProduct.DataSource = this.productBindingSource;
-            this.cmbProduct.DisplayMember = "ProductName";
             this.cmbProduct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProduct.FormattingEnabled = true;
@@ -482,52 +412,173 @@
             this.cmbProduct.Name = "cmbProduct";
             this.cmbProduct.Size = new System.Drawing.Size(261, 28);
             this.cmbProduct.TabIndex = 34;
-            this.cmbProduct.ValueMember = "ProductCode";
             this.cmbProduct.SelectedIndexChanged += new System.EventHandler(this.cmbProduct_SelectedIndexChanged);
             // 
-            // productBindingSource
+            // gridControl1
             // 
-            this.productBindingSource.DataMember = "Product";
-            this.productBindingSource.DataSource = this.colorMixDataSet;
+            this.gridControl1.DataMember = "sp_getMixRaws";
+            this.gridControl1.DataSource = this.sqlDataSource1;
+            this.gridControl1.Location = new System.Drawing.Point(12, 389);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(1135, 421);
+            this.gridControl1.TabIndex = 35;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            this.gridControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridControl1_MouseClick);
             // 
-            // stepTableAdapter
+            // sqlDataSource1
             // 
-            this.stepTableAdapter.ClearBeforeFill = true;
+            this.sqlDataSource1.ConnectionName = "ScaleApp.Properties.Settings.ColorMixConnectionString";
+            this.sqlDataSource1.Name = "sqlDataSource1";
+            storedProcQuery3.Name = "sp_getMixRaws";
+            storedProcQuery3.StoredProcName = "sp_getMixRaws";
+            this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
+            storedProcQuery3});
+            this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
-            // mixRawTableAdapter
+            // gridView1
             // 
-            this.mixRawTableAdapter.ClearBeforeFill = true;
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colMixRawId,
+            this.colShiftName,
+            this.colOperatorName,
+            this.colStepName,
+            this.colProductName,
+            this.colColorName,
+            this.colMixBacode,
+            this.colMaterialName,
+            this.colWeightMaterial,
+            this.colWeightRecycle,
+            this.colTotalMaterial,
+            this.colCrushRawID,
+            this.colMachineName});
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
             // 
-            // productTableAdapter
+            // colMixRawId
             // 
-            this.productTableAdapter.ClearBeforeFill = true;
+            this.colMixRawId.Caption = "ID";
+            this.colMixRawId.FieldName = "MixRawId";
+            this.colMixRawId.Name = "colMixRawId";
+            this.colMixRawId.Visible = true;
+            this.colMixRawId.VisibleIndex = 0;
+            this.colMixRawId.Width = 43;
             // 
-            // colorTableAdapter
+            // colShiftName
             // 
-            this.colorTableAdapter.ClearBeforeFill = true;
+            this.colShiftName.Caption = "Shift";
+            this.colShiftName.FieldName = "ShiftName";
+            this.colShiftName.Name = "colShiftName";
+            this.colShiftName.Visible = true;
+            this.colShiftName.VisibleIndex = 1;
+            this.colShiftName.Width = 43;
             // 
-            // materialsTableAdapter
+            // colOperatorName
             // 
-            this.materialsTableAdapter.ClearBeforeFill = true;
+            this.colOperatorName.Caption = "Operator";
+            this.colOperatorName.FieldName = "OperatorName";
+            this.colOperatorName.Name = "colOperatorName";
+            this.colOperatorName.Visible = true;
+            this.colOperatorName.VisibleIndex = 3;
+            this.colOperatorName.Width = 76;
             // 
-            // recycleTableAdapter
+            // colStepName
             // 
-            this.recycleTableAdapter.ClearBeforeFill = true;
+            this.colStepName.Caption = "Step";
+            this.colStepName.FieldName = "StepName";
+            this.colStepName.Name = "colStepName";
+            this.colStepName.Visible = true;
+            this.colStepName.VisibleIndex = 4;
+            this.colStepName.Width = 71;
             // 
-            // productColorBindingSource
+            // colProductName
             // 
-            this.productColorBindingSource.DataMember = "ProductColor";
-            this.productColorBindingSource.DataSource = this.colorMixDataSet;
+            this.colProductName.Caption = "Item";
+            this.colProductName.FieldName = "ProductName";
+            this.colProductName.Name = "colProductName";
+            this.colProductName.Visible = true;
+            this.colProductName.VisibleIndex = 5;
+            this.colProductName.Width = 166;
             // 
-            // productColorTableAdapter
+            // colColorName
             // 
-            this.productColorTableAdapter.ClearBeforeFill = true;
+            this.colColorName.Caption = "Color";
+            this.colColorName.FieldName = "ColorName";
+            this.colColorName.Name = "colColorName";
+            this.colColorName.Visible = true;
+            this.colColorName.VisibleIndex = 6;
+            this.colColorName.Width = 138;
+            // 
+            // colMixBacode
+            // 
+            this.colMixBacode.Caption = "Mix ID";
+            this.colMixBacode.FieldName = "MixBacode";
+            this.colMixBacode.Name = "colMixBacode";
+            this.colMixBacode.Visible = true;
+            this.colMixBacode.VisibleIndex = 2;
+            this.colMixBacode.Width = 97;
+            // 
+            // colMaterialName
+            // 
+            this.colMaterialName.Caption = "Material";
+            this.colMaterialName.FieldName = "MaterialName";
+            this.colMaterialName.Name = "colMaterialName";
+            this.colMaterialName.Visible = true;
+            this.colMaterialName.VisibleIndex = 7;
+            this.colMaterialName.Width = 177;
+            // 
+            // colWeightMaterial
+            // 
+            this.colWeightMaterial.Caption = "Weight";
+            this.colWeightMaterial.FieldName = "WeightMaterial";
+            this.colWeightMaterial.Name = "colWeightMaterial";
+            this.colWeightMaterial.Visible = true;
+            this.colWeightMaterial.VisibleIndex = 8;
+            this.colWeightMaterial.Width = 67;
+            // 
+            // colWeightRecycle
+            // 
+            this.colWeightRecycle.Caption = "Recycled Amount";
+            this.colWeightRecycle.FieldName = "WeightRecycle";
+            this.colWeightRecycle.Name = "colWeightRecycle";
+            this.colWeightRecycle.Visible = true;
+            this.colWeightRecycle.VisibleIndex = 9;
+            this.colWeightRecycle.Width = 66;
+            // 
+            // colTotalMaterial
+            // 
+            this.colTotalMaterial.Caption = "Total";
+            this.colTotalMaterial.FieldName = "TotalMaterial";
+            this.colTotalMaterial.Name = "colTotalMaterial";
+            this.colTotalMaterial.Visible = true;
+            this.colTotalMaterial.VisibleIndex = 10;
+            this.colTotalMaterial.Width = 54;
+            // 
+            // colCrushRawID
+            // 
+            this.colCrushRawID.Caption = "Recyled ID";
+            this.colCrushRawID.FieldName = "CrushRawID";
+            this.colCrushRawID.Name = "colCrushRawID";
+            this.colCrushRawID.Visible = true;
+            this.colCrushRawID.VisibleIndex = 12;
+            this.colCrushRawID.Width = 52;
+            // 
+            // colMachineName
+            // 
+            this.colMachineName.Caption = "Machine";
+            this.colMachineName.FieldName = "MachineName";
+            this.colMachineName.Name = "colMachineName";
+            this.colMachineName.Visible = true;
+            this.colMachineName.VisibleIndex = 11;
+            this.colMachineName.Width = 60;
             // 
             // frmMixing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1165, 749);
+            this.ClientSize = new System.Drawing.Size(1162, 822);
+            this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.cmbProduct);
             this.Controls.Add(this.cmbLabelType);
             this.Controls.Add(this.qrMixLotID);
@@ -564,15 +615,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Mixing Station";
             this.Load += new System.EventHandler(this.frmMixing_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.mixRawBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorMixDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.operatorBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stepBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.recycleBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productColorBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -610,23 +654,22 @@
         private System.Windows.Forms.Label label12;
         private DevExpress.XtraEditors.BarCodeControl qrMixLotID;
         private System.Windows.Forms.ComboBox cmbLabelType;
-        private ColorMixDataSet colorMixDataSet;
-        private System.Windows.Forms.BindingSource operatorBindingSource;
-        private ColorMixDataSetTableAdapters.OperatorTableAdapter operatorTableAdapter;
         private System.Windows.Forms.ComboBox cmbProduct;
-        private System.Windows.Forms.BindingSource stepBindingSource;
-        private ColorMixDataSetTableAdapters.StepTableAdapter stepTableAdapter;
-        private System.Windows.Forms.BindingSource mixRawBindingSource;
-        private ColorMixDataSetTableAdapters.MixRawTableAdapter mixRawTableAdapter;
-        private System.Windows.Forms.BindingSource productBindingSource;
-        private ColorMixDataSetTableAdapters.ProductTableAdapter productTableAdapter;
-        private System.Windows.Forms.BindingSource colorBindingSource;
-        private ColorMixDataSetTableAdapters.ColorTableAdapter colorTableAdapter;
-        private System.Windows.Forms.BindingSource materialsBindingSource;
-        private ColorMixDataSetTableAdapters.MaterialsTableAdapter materialsTableAdapter;
-        private System.Windows.Forms.BindingSource recycleBindingSource;
-        private ColorMixDataSetTableAdapters.RecycleTableAdapter recycleTableAdapter;
-        private System.Windows.Forms.BindingSource productColorBindingSource;
-        private ColorMixDataSetTableAdapters.ProductColorTableAdapter productColorTableAdapter;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
+        private DevExpress.XtraGrid.Columns.GridColumn colMixRawId;
+        private DevExpress.XtraGrid.Columns.GridColumn colShiftName;
+        private DevExpress.XtraGrid.Columns.GridColumn colOperatorName;
+        private DevExpress.XtraGrid.Columns.GridColumn colProductName;
+        private DevExpress.XtraGrid.Columns.GridColumn colMaterialName;
+        private DevExpress.XtraGrid.Columns.GridColumn colColorName;
+        private DevExpress.XtraGrid.Columns.GridColumn colStepName;
+        private DevExpress.XtraGrid.Columns.GridColumn colWeightRecycle;
+        private DevExpress.XtraGrid.Columns.GridColumn colWeightMaterial;
+        private DevExpress.XtraGrid.Columns.GridColumn colTotalMaterial;
+        private DevExpress.XtraGrid.Columns.GridColumn colMachineName;
+        private DevExpress.XtraGrid.Columns.GridColumn colMixBacode;
+        private DevExpress.XtraGrid.Columns.GridColumn colCrushRawID;
     }
 }

@@ -32,13 +32,18 @@ namespace ScaleApp.Common
         public static void ConnectToDB()
         {
             conn = new SqlConnection();   //Khởi tạo đối tượng
-            conn.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ColorMix;Persist Security Info=True;User ID=sa;Password=12345678;Connect Timeout=30;User Instance=True";
+            conn.ConnectionString = @"Data Source=FVN-PC-IT-09\SQLEXPRESS;Initial Catalog=ColorMix;Persist Security Info=True;User ID=sa;Password=12345678;Connect Timeout=30";
             conn.Open();                  //Mở kết nối
             //Kiểm tra kết nối
-            if (conn.State == ConnectionState.Open)
-                MessageBox.Show("Kết nối thành công");
-            else MessageBox.Show("Không thể kết nối với dữ liệu");
+            if (conn.State == ConnectionState.Closed)
+                MessageBox.Show("Opps. Fail to connect to database!");           
 
+        }
+
+        public static string GetConnectionString()
+        {
+            var connection = System.Configuration.ConfigurationManager.ConnectionStrings["ScaleApp.Properties.Settings.ColorMixConnectionString"].ConnectionString;
+            return connection;
         }
 
         // close connection

@@ -30,31 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator2 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
-            this.cmbShift = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.cmbLostType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.cmbOperator = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.cmbStep = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.cmbMixID = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtMachine = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.cmbProduct = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
-            this.cmbColor = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.cmbMaterial = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.txtWeightRM = new DevExpress.XtraEditors.TextEdit();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
-            this.txtWeightCrushed = new DevExpress.XtraEditors.TextEdit();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.txtTotal = new DevExpress.XtraEditors.TextEdit();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
-            this.barCodeControl1 = new DevExpress.XtraEditors.BarCodeControl();
+            this.qrCodeCrush = new DevExpress.XtraEditors.BarCodeControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
@@ -65,36 +55,20 @@
             this.txtNow = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbShift.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLostType.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbOperator.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbStep.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbMixID.Properties)).BeginInit();
+            this.cmbOperator = new System.Windows.Forms.ComboBox();
+            this.cmbShift = new System.Windows.Forms.ComboBox();
+            this.cmbLostType = new System.Windows.Forms.ComboBox();
+            this.cmbStep = new System.Windows.Forms.ComboBox();
+            this.cmbProduct = new System.Windows.Forms.ComboBox();
+            this.cmbColor = new System.Windows.Forms.ComboBox();
+            this.cmbMixId = new System.Windows.Forms.ComboBox();
+            this.cmbMaterial = new System.Windows.Forms.ComboBox();
+            this.txtWeightRM = new System.Windows.Forms.TextBox();
+            this.txtWeightCrushed = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbProduct.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbColor.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbMaterial.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightRM.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightCrushed.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // cmbShift
-            // 
-            this.cmbShift.EditValue = "";
-            this.cmbShift.Location = new System.Drawing.Point(148, 12);
-            this.cmbShift.Name = "cmbShift";
-            this.cmbShift.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbShift.Properties.Appearance.Options.UseFont = true;
-            this.cmbShift.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbShift.Properties.Items.AddRange(new object[] {
-            "X",
-            "Y",
-            "Z"});
-            this.cmbShift.Size = new System.Drawing.Size(199, 30);
-            this.cmbShift.TabIndex = 0;
             // 
             // labelControl1
             // 
@@ -114,22 +88,11 @@
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Appearance.Options.UseForeColor = true;
-            this.labelControl2.Location = new System.Drawing.Point(12, 54);
+            this.labelControl2.Location = new System.Drawing.Point(12, 53);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(78, 20);
             this.labelControl2.TabIndex = 3;
             this.labelControl2.Text = "Lost Type";
-            // 
-            // cmbLostType
-            // 
-            this.cmbLostType.Location = new System.Drawing.Point(148, 54);
-            this.cmbLostType.Name = "cmbLostType";
-            this.cmbLostType.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbLostType.Properties.Appearance.Options.UseFont = true;
-            this.cmbLostType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbLostType.Size = new System.Drawing.Size(199, 30);
-            this.cmbLostType.TabIndex = 2;
             // 
             // labelControl3
             // 
@@ -142,17 +105,6 @@
             this.labelControl3.Size = new System.Drawing.Size(72, 20);
             this.labelControl3.TabIndex = 5;
             this.labelControl3.Text = "Operator";
-            // 
-            // cmbOperator
-            // 
-            this.cmbOperator.Location = new System.Drawing.Point(148, 97);
-            this.cmbOperator.Name = "cmbOperator";
-            this.cmbOperator.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbOperator.Properties.Appearance.Options.UseFont = true;
-            this.cmbOperator.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbOperator.Size = new System.Drawing.Size(199, 30);
-            this.cmbOperator.TabIndex = 4;
             // 
             // labelControl4
             // 
@@ -178,17 +130,6 @@
             this.labelControl5.TabIndex = 9;
             this.labelControl5.Text = "Step";
             // 
-            // cmbStep
-            // 
-            this.cmbStep.Location = new System.Drawing.Point(148, 180);
-            this.cmbStep.Name = "cmbStep";
-            this.cmbStep.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbStep.Properties.Appearance.Options.UseFont = true;
-            this.cmbStep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbStep.Size = new System.Drawing.Size(199, 30);
-            this.cmbStep.TabIndex = 8;
-            // 
             // labelControl6
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -200,17 +141,6 @@
             this.labelControl6.Size = new System.Drawing.Size(81, 20);
             this.labelControl6.TabIndex = 11;
             this.labelControl6.Text = "Mix Lot ID";
-            // 
-            // cmbMixID
-            // 
-            this.cmbMixID.Location = new System.Drawing.Point(512, 12);
-            this.cmbMixID.Name = "cmbMixID";
-            this.cmbMixID.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbMixID.Properties.Appearance.Options.UseFont = true;
-            this.cmbMixID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbMixID.Size = new System.Drawing.Size(276, 30);
-            this.cmbMixID.TabIndex = 10;
             // 
             // txtMachine
             // 
@@ -227,22 +157,11 @@
             this.labelControl7.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.labelControl7.Appearance.Options.UseFont = true;
             this.labelControl7.Appearance.Options.UseForeColor = true;
-            this.labelControl7.Location = new System.Drawing.Point(12, 227);
+            this.labelControl7.Location = new System.Drawing.Point(12, 225);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(62, 20);
             this.labelControl7.TabIndex = 14;
             this.labelControl7.Text = "Product";
-            // 
-            // cmbProduct
-            // 
-            this.cmbProduct.Location = new System.Drawing.Point(148, 221);
-            this.cmbProduct.Name = "cmbProduct";
-            this.cmbProduct.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbProduct.Properties.Appearance.Options.UseFont = true;
-            this.cmbProduct.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbProduct.Size = new System.Drawing.Size(199, 30);
-            this.cmbProduct.TabIndex = 13;
             // 
             // labelControl8
             // 
@@ -256,48 +175,17 @@
             this.labelControl8.TabIndex = 16;
             this.labelControl8.Text = "Color";
             // 
-            // cmbColor
-            // 
-            this.cmbColor.Location = new System.Drawing.Point(148, 261);
-            this.cmbColor.Name = "cmbColor";
-            this.cmbColor.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbColor.Properties.Appearance.Options.UseFont = true;
-            this.cmbColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbColor.Size = new System.Drawing.Size(199, 30);
-            this.cmbColor.TabIndex = 15;
-            // 
             // labelControl9
             // 
             this.labelControl9.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl9.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.labelControl9.Appearance.Options.UseFont = true;
             this.labelControl9.Appearance.Options.UseForeColor = true;
-            this.labelControl9.Location = new System.Drawing.Point(376, 54);
+            this.labelControl9.Location = new System.Drawing.Point(376, 53);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(64, 20);
             this.labelControl9.TabIndex = 18;
             this.labelControl9.Text = "Material";
-            // 
-            // cmbMaterial
-            // 
-            this.cmbMaterial.Location = new System.Drawing.Point(512, 54);
-            this.cmbMaterial.Name = "cmbMaterial";
-            this.cmbMaterial.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbMaterial.Properties.Appearance.Options.UseFont = true;
-            this.cmbMaterial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbMaterial.Size = new System.Drawing.Size(276, 30);
-            this.cmbMaterial.TabIndex = 17;
-            // 
-            // txtWeightRM
-            // 
-            this.txtWeightRM.Location = new System.Drawing.Point(512, 95);
-            this.txtWeightRM.Name = "txtWeightRM";
-            this.txtWeightRM.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWeightRM.Properties.Appearance.Options.UseFont = true;
-            this.txtWeightRM.Size = new System.Drawing.Size(276, 30);
-            this.txtWeightRM.TabIndex = 20;
             // 
             // labelControl10
             // 
@@ -310,15 +198,6 @@
             this.labelControl10.Size = new System.Drawing.Size(56, 20);
             this.labelControl10.TabIndex = 19;
             this.labelControl10.Text = "Weight";
-            // 
-            // txtWeightCrushed
-            // 
-            this.txtWeightCrushed.Location = new System.Drawing.Point(512, 139);
-            this.txtWeightCrushed.Name = "txtWeightCrushed";
-            this.txtWeightCrushed.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWeightCrushed.Properties.Appearance.Options.UseFont = true;
-            this.txtWeightCrushed.Size = new System.Drawing.Size(276, 30);
-            this.txtWeightCrushed.TabIndex = 22;
             // 
             // labelControl11
             // 
@@ -359,18 +238,18 @@
             this.labelControl12.TabIndex = 23;
             this.labelControl12.Text = "Total";
             // 
-            // barCodeControl1
+            // qrCodeCrush
             // 
-            this.barCodeControl1.AutoModule = true;
-            this.barCodeControl1.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.barCodeControl1.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.barCodeControl1.Location = new System.Drawing.Point(512, 231);
-            this.barCodeControl1.Name = "barCodeControl1";
-            this.barCodeControl1.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
-            this.barCodeControl1.Size = new System.Drawing.Size(276, 128);
+            this.qrCodeCrush.AutoModule = true;
+            this.qrCodeCrush.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.qrCodeCrush.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.qrCodeCrush.Location = new System.Drawing.Point(512, 231);
+            this.qrCodeCrush.Name = "qrCodeCrush";
+            this.qrCodeCrush.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
+            this.qrCodeCrush.Size = new System.Drawing.Size(276, 128);
             qrCodeGenerator2.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
-            this.barCodeControl1.Symbology = qrCodeGenerator2;
-            this.barCodeControl1.TabIndex = 25;
+            this.qrCodeCrush.Symbology = qrCodeGenerator2;
+            this.qrCodeCrush.TabIndex = 25;
             // 
             // labelControl13
             // 
@@ -392,6 +271,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(335, 81);
             this.textBox1.TabIndex = 27;
+            this.textBox1.Text = "25";
             // 
             // button4
             // 
@@ -429,6 +309,7 @@
             this.button1.Size = new System.Drawing.Size(121, 81);
             this.button1.TabIndex = 28;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // timer1
             // 
@@ -463,11 +344,110 @@
             this.dataGridView1.Size = new System.Drawing.Size(936, 264);
             this.dataGridView1.TabIndex = 34;
             // 
+            // cmbOperator
+            // 
+            this.cmbOperator.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbOperator.FormattingEnabled = true;
+            this.cmbOperator.Location = new System.Drawing.Point(148, 95);
+            this.cmbOperator.Name = "cmbOperator";
+            this.cmbOperator.Size = new System.Drawing.Size(199, 31);
+            this.cmbOperator.TabIndex = 35;
+            // 
+            // cmbShift
+            // 
+            this.cmbShift.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbShift.FormattingEnabled = true;
+            this.cmbShift.Location = new System.Drawing.Point(148, 10);
+            this.cmbShift.Name = "cmbShift";
+            this.cmbShift.Size = new System.Drawing.Size(199, 31);
+            this.cmbShift.TabIndex = 36;
+            // 
+            // cmbLostType
+            // 
+            this.cmbLostType.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbLostType.FormattingEnabled = true;
+            this.cmbLostType.Location = new System.Drawing.Point(148, 53);
+            this.cmbLostType.Name = "cmbLostType";
+            this.cmbLostType.Size = new System.Drawing.Size(199, 31);
+            this.cmbLostType.TabIndex = 37;
+            // 
+            // cmbStep
+            // 
+            this.cmbStep.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStep.FormattingEnabled = true;
+            this.cmbStep.Location = new System.Drawing.Point(148, 180);
+            this.cmbStep.Name = "cmbStep";
+            this.cmbStep.Size = new System.Drawing.Size(199, 31);
+            this.cmbStep.TabIndex = 38;
+            // 
+            // cmbProduct
+            // 
+            this.cmbProduct.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbProduct.FormattingEnabled = true;
+            this.cmbProduct.Location = new System.Drawing.Point(148, 225);
+            this.cmbProduct.Name = "cmbProduct";
+            this.cmbProduct.Size = new System.Drawing.Size(199, 31);
+            this.cmbProduct.TabIndex = 39;
+            this.cmbProduct.SelectedIndexChanged += new System.EventHandler(this.cmbProduct_SelectedIndexChanged);
+            // 
+            // cmbColor
+            // 
+            this.cmbColor.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbColor.FormattingEnabled = true;
+            this.cmbColor.Location = new System.Drawing.Point(148, 267);
+            this.cmbColor.Name = "cmbColor";
+            this.cmbColor.Size = new System.Drawing.Size(199, 31);
+            this.cmbColor.TabIndex = 40;
+            // 
+            // cmbMixId
+            // 
+            this.cmbMixId.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMixId.FormattingEnabled = true;
+            this.cmbMixId.Location = new System.Drawing.Point(512, 12);
+            this.cmbMixId.Name = "cmbMixId";
+            this.cmbMixId.Size = new System.Drawing.Size(276, 32);
+            this.cmbMixId.TabIndex = 41;
+            // 
+            // cmbMaterial
+            // 
+            this.cmbMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMaterial.FormattingEnabled = true;
+            this.cmbMaterial.Location = new System.Drawing.Point(512, 53);
+            this.cmbMaterial.Name = "cmbMaterial";
+            this.cmbMaterial.Size = new System.Drawing.Size(276, 32);
+            this.cmbMaterial.TabIndex = 42;
+            // 
+            // txtWeightRM
+            // 
+            this.txtWeightRM.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWeightRM.Location = new System.Drawing.Point(512, 97);
+            this.txtWeightRM.Name = "txtWeightRM";
+            this.txtWeightRM.Size = new System.Drawing.Size(276, 29);
+            this.txtWeightRM.TabIndex = 43;
+            // 
+            // txtWeightCrushed
+            // 
+            this.txtWeightCrushed.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWeightCrushed.Location = new System.Drawing.Point(512, 139);
+            this.txtWeightCrushed.Name = "txtWeightCrushed";
+            this.txtWeightCrushed.Size = new System.Drawing.Size(276, 29);
+            this.txtWeightCrushed.TabIndex = 44;
+            // 
             // frmCrushing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(961, 686);
+            this.ClientSize = new System.Drawing.Size(980, 686);
+            this.Controls.Add(this.txtWeightCrushed);
+            this.Controls.Add(this.txtWeightRM);
+            this.Controls.Add(this.cmbMaterial);
+            this.Controls.Add(this.cmbMixId);
+            this.Controls.Add(this.cmbColor);
+            this.Controls.Add(this.cmbProduct);
+            this.Controls.Add(this.cmbStep);
+            this.Controls.Add(this.cmbLostType);
+            this.Controls.Add(this.cmbShift);
+            this.Controls.Add(this.cmbOperator);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.txtNow);
@@ -477,47 +457,27 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.labelControl13);
-            this.Controls.Add(this.barCodeControl1);
+            this.Controls.Add(this.qrCodeCrush);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.labelControl12);
-            this.Controls.Add(this.txtWeightCrushed);
             this.Controls.Add(this.labelControl11);
-            this.Controls.Add(this.txtWeightRM);
             this.Controls.Add(this.labelControl10);
             this.Controls.Add(this.labelControl9);
-            this.Controls.Add(this.cmbMaterial);
             this.Controls.Add(this.labelControl8);
-            this.Controls.Add(this.cmbColor);
             this.Controls.Add(this.labelControl7);
-            this.Controls.Add(this.cmbProduct);
             this.Controls.Add(this.txtMachine);
             this.Controls.Add(this.labelControl6);
-            this.Controls.Add(this.cmbMixID);
             this.Controls.Add(this.labelControl5);
-            this.Controls.Add(this.cmbStep);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl3);
-            this.Controls.Add(this.cmbOperator);
             this.Controls.Add(this.labelControl2);
-            this.Controls.Add(this.cmbLostType);
             this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.cmbShift);
             this.Location = new System.Drawing.Point(50, 50);
             this.Name = "frmCrushing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Crushing Station";
             this.Load += new System.EventHandler(this.frmCrushing_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.cmbShift.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbLostType.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbOperator.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbStep.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbMixID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbProduct.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbColor.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbMaterial.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightRM.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightCrushed.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -526,32 +486,21 @@
         }
 
         #endregion
-
-        private DevExpress.XtraEditors.ComboBoxEdit cmbShift;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbLostType;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbOperator;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbStep;
         private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbMixID;
         private DevExpress.XtraEditors.TextEdit txtMachine;
         private DevExpress.XtraEditors.LabelControl labelControl7;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbProduct;
         private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbColor;
         private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbMaterial;
-        private DevExpress.XtraEditors.TextEdit txtWeightRM;
         private DevExpress.XtraEditors.LabelControl labelControl10;
-        private DevExpress.XtraEditors.TextEdit txtWeightCrushed;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.TextEdit txtTotal;
         private DevExpress.XtraEditors.LabelControl labelControl12;
-        private DevExpress.XtraEditors.BarCodeControl barCodeControl1;
+        private DevExpress.XtraEditors.BarCodeControl qrCodeCrush;
         private DevExpress.XtraEditors.LabelControl labelControl13;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
@@ -562,5 +511,15 @@
         private System.Windows.Forms.TextBox txtNow;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox cmbOperator;
+        private System.Windows.Forms.ComboBox cmbShift;
+        private System.Windows.Forms.ComboBox cmbLostType;
+        private System.Windows.Forms.ComboBox cmbStep;
+        private System.Windows.Forms.ComboBox cmbProduct;
+        private System.Windows.Forms.ComboBox cmbColor;
+        private System.Windows.Forms.ComboBox cmbMixId;
+        private System.Windows.Forms.ComboBox cmbMaterial;
+        private System.Windows.Forms.TextBox txtWeightRM;
+        private System.Windows.Forms.TextBox txtWeightCrushed;
     }
 }

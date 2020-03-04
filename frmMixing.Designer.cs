@@ -59,9 +59,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.qrMixLotID = new DevExpress.XtraEditors.BarCodeControl();
             this.cmbLabelType = new System.Windows.Forms.ComboBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.cmbProduct = new System.Windows.Forms.ComboBox();
             this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.gridView1 = new System.Windows.Forms.DataGridView();
@@ -69,6 +66,9 @@
             this.lblDateTime = new System.Windows.Forms.Label();
             this.txtMixDate = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button5 = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -357,40 +357,12 @@
             "Mixed",
             "Runner",
             "Defect",
-            "Black Dot",
+            "BlackDot",
             "Contaminated"});
             this.cmbLabelType.Location = new System.Drawing.Point(851, 288);
             this.cmbLabelType.Name = "cmbLabelType";
             this.cmbLabelType.Size = new System.Drawing.Size(191, 37);
             this.cmbLabelType.TabIndex = 33;
-            // 
-            // button5
-            // 
-            this.button5.Image = global::ScaleApp.Properties.Resources.Print_32x32;
-            this.button5.Location = new System.Drawing.Point(1048, 285);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(99, 40);
-            this.button5.TabIndex = 29;
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // btnReset
-            // 
-            this.btnReset.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
-            this.btnReset.Location = new System.Drawing.Point(655, 334);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(167, 40);
-            this.btnReset.TabIndex = 28;
-            this.btnReset.UseVisualStyleBackColor = true;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Image = global::ScaleApp.Properties.Resources.Save_32x32;
-            this.btnSave.Location = new System.Drawing.Point(655, 288);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(167, 40);
-            this.btnSave.TabIndex = 27;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // cmbProduct
             // 
@@ -458,6 +430,35 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
+            // button5
+            // 
+            this.button5.Image = global::ScaleApp.Properties.Resources.Print_32x32;
+            this.button5.Location = new System.Drawing.Point(1048, 285);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(99, 40);
+            this.button5.TabIndex = 29;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // btnReset
+            // 
+            this.btnReset.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
+            this.btnReset.Location = new System.Drawing.Point(655, 334);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(167, 40);
+            this.btnReset.TabIndex = 28;
+            this.btnReset.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Image = global::ScaleApp.Properties.Resources.Save_32x32;
+            this.btnSave.Location = new System.Drawing.Point(655, 288);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(167, 40);
+            this.btnSave.TabIndex = 27;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // frmMixing
             // 

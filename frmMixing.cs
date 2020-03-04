@@ -441,6 +441,24 @@ namespace ScaleApp
         private void Timer1_Tick(object sender, EventArgs e)
         {
             lblDateTime.Text = DateTime.Now.ToString();
-        }        
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //string labelType = cmbLabelType.SelectedValue.ToString();
+
+            //switch (labelType)
+            //{
+            //    case "Mixed":
+            //    case "Runner":
+            //    case "Defect":
+            //    case "BlackDot":
+            //    case "Contaminated":
+            //    default:
+            //}
+
+            frmReportMixed report = new frmReportMixed();
+            report.ShowDialog();
+        }
     }
 }

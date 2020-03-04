@@ -19,7 +19,20 @@ namespace ScaleApp
 
         private void frmCrushing_Load(object sender, EventArgs e)
         {
+            Start_Timer();
+        }
 
+        private void Start_Timer()
+        {
+            timer1 = new System.Windows.Forms.Timer();
+            timer1.Interval = 1000;
+            timer1.Tick += new EventHandler(timer1_Tick);
+            timer1.Enabled = true;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+           txtNow.Text = DateTime.Now.ToString();
         }
     }
 }

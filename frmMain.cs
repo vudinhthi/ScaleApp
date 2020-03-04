@@ -53,7 +53,7 @@ namespace ScaleApp
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            ScaleApp.Common.DataOperation.ConnectToDB();
+            //ScaleApp.Common.DataOperation.ConnectToDB();
         }
     }
 }

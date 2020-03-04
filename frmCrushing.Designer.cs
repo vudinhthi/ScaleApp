@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
-            this.cmbEdit = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.components = new System.ComponentModel.Container();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator2 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            this.cmbShift = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.cmbLostType = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -40,11 +41,11 @@
             this.cmbStep = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.cmbMixID = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.txtMachine = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.cmbProduct = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
-            this.cmbColorCode = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cmbColor = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.cmbMaterial = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtWeightRM = new DevExpress.XtraEditors.TextEdit();
@@ -60,35 +61,40 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbEdit.Properties)).BeginInit();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.txtNow = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbShift.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbLostType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbOperator.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbStep.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMixID.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbProduct.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbColorCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbColor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMaterial.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightRM.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightCrushed.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // cmbEdit
+            // cmbShift
             // 
-            this.cmbEdit.EditValue = "X";
-            this.cmbEdit.Location = new System.Drawing.Point(148, 12);
-            this.cmbEdit.Name = "cmbEdit";
-            this.cmbEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbEdit.Properties.Appearance.Options.UseFont = true;
-            this.cmbEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cmbShift.EditValue = "";
+            this.cmbShift.Location = new System.Drawing.Point(148, 12);
+            this.cmbShift.Name = "cmbShift";
+            this.cmbShift.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbShift.Properties.Appearance.Options.UseFont = true;
+            this.cmbShift.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbEdit.Properties.Items.AddRange(new object[] {
+            this.cmbShift.Properties.Items.AddRange(new object[] {
             "X",
             "Y",
             "Z"});
-            this.cmbEdit.Size = new System.Drawing.Size(199, 30);
-            this.cmbEdit.TabIndex = 0;
+            this.cmbShift.Size = new System.Drawing.Size(199, 30);
+            this.cmbShift.TabIndex = 0;
             // 
             // labelControl1
             // 
@@ -122,10 +128,6 @@
             this.cmbLostType.Properties.Appearance.Options.UseFont = true;
             this.cmbLostType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbLostType.Properties.Items.AddRange(new object[] {
-            "X",
-            "Y",
-            "Z"});
             this.cmbLostType.Size = new System.Drawing.Size(199, 30);
             this.cmbLostType.TabIndex = 2;
             // 
@@ -149,10 +151,6 @@
             this.cmbOperator.Properties.Appearance.Options.UseFont = true;
             this.cmbOperator.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbOperator.Properties.Items.AddRange(new object[] {
-            "X",
-            "Y",
-            "Z"});
             this.cmbOperator.Size = new System.Drawing.Size(199, 30);
             this.cmbOperator.TabIndex = 4;
             // 
@@ -188,10 +186,6 @@
             this.cmbStep.Properties.Appearance.Options.UseFont = true;
             this.cmbStep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbStep.Properties.Items.AddRange(new object[] {
-            "X",
-            "Y",
-            "Z"});
             this.cmbStep.Size = new System.Drawing.Size(199, 30);
             this.cmbStep.TabIndex = 8;
             // 
@@ -215,21 +209,17 @@
             this.cmbMixID.Properties.Appearance.Options.UseFont = true;
             this.cmbMixID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbMixID.Properties.Items.AddRange(new object[] {
-            "X",
-            "Y",
-            "Z"});
             this.cmbMixID.Size = new System.Drawing.Size(276, 30);
             this.cmbMixID.TabIndex = 10;
             // 
-            // textEdit1
+            // txtMachine
             // 
-            this.textEdit1.Location = new System.Drawing.Point(148, 139);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textEdit1.Properties.Appearance.Options.UseFont = true;
-            this.textEdit1.Size = new System.Drawing.Size(199, 30);
-            this.textEdit1.TabIndex = 12;
+            this.txtMachine.Location = new System.Drawing.Point(148, 139);
+            this.txtMachine.Name = "txtMachine";
+            this.txtMachine.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMachine.Properties.Appearance.Options.UseFont = true;
+            this.txtMachine.Size = new System.Drawing.Size(199, 30);
+            this.txtMachine.TabIndex = 12;
             // 
             // labelControl7
             // 
@@ -251,10 +241,6 @@
             this.cmbProduct.Properties.Appearance.Options.UseFont = true;
             this.cmbProduct.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbProduct.Properties.Items.AddRange(new object[] {
-            "X",
-            "Y",
-            "Z"});
             this.cmbProduct.Size = new System.Drawing.Size(199, 30);
             this.cmbProduct.TabIndex = 13;
             // 
@@ -270,20 +256,16 @@
             this.labelControl8.TabIndex = 16;
             this.labelControl8.Text = "Color";
             // 
-            // cmbColorCode
+            // cmbColor
             // 
-            this.cmbColorCode.Location = new System.Drawing.Point(148, 261);
-            this.cmbColorCode.Name = "cmbColorCode";
-            this.cmbColorCode.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbColorCode.Properties.Appearance.Options.UseFont = true;
-            this.cmbColorCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cmbColor.Location = new System.Drawing.Point(148, 261);
+            this.cmbColor.Name = "cmbColor";
+            this.cmbColor.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbColor.Properties.Appearance.Options.UseFont = true;
+            this.cmbColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbColorCode.Properties.Items.AddRange(new object[] {
-            "X",
-            "Y",
-            "Z"});
-            this.cmbColorCode.Size = new System.Drawing.Size(199, 30);
-            this.cmbColorCode.TabIndex = 15;
+            this.cmbColor.Size = new System.Drawing.Size(199, 30);
+            this.cmbColor.TabIndex = 15;
             // 
             // labelControl9
             // 
@@ -305,10 +287,6 @@
             this.cmbMaterial.Properties.Appearance.Options.UseFont = true;
             this.cmbMaterial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbMaterial.Properties.Items.AddRange(new object[] {
-            "X",
-            "Y",
-            "Z"});
             this.cmbMaterial.Size = new System.Drawing.Size(276, 30);
             this.cmbMaterial.TabIndex = 17;
             // 
@@ -359,9 +337,14 @@
             this.txtTotal.Enabled = false;
             this.txtTotal.Location = new System.Drawing.Point(512, 187);
             this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.txtTotal.Properties.Appearance.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.txtTotal.Properties.Appearance.Options.UseFont = true;
-            this.txtTotal.Size = new System.Drawing.Size(276, 30);
+            this.txtTotal.Properties.Appearance.Options.UseForeColor = true;
+            this.txtTotal.Properties.NullText = "0";
+            this.txtTotal.Properties.ReadOnly = true;
+            this.txtTotal.Size = new System.Drawing.Size(276, 28);
             this.txtTotal.TabIndex = 24;
             // 
             // labelControl12
@@ -379,12 +362,14 @@
             // barCodeControl1
             // 
             this.barCodeControl1.AutoModule = true;
-            this.barCodeControl1.Location = new System.Drawing.Point(812, 54);
+            this.barCodeControl1.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.barCodeControl1.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.barCodeControl1.Location = new System.Drawing.Point(512, 231);
             this.barCodeControl1.Name = "barCodeControl1";
             this.barCodeControl1.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
-            this.barCodeControl1.Size = new System.Drawing.Size(177, 163);
-            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
-            this.barCodeControl1.Symbology = qrCodeGenerator1;
+            this.barCodeControl1.Size = new System.Drawing.Size(276, 128);
+            qrCodeGenerator2.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
+            this.barCodeControl1.Symbology = qrCodeGenerator2;
             this.barCodeControl1.TabIndex = 25;
             // 
             // labelControl13
@@ -393,7 +378,7 @@
             this.labelControl13.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.labelControl13.Appearance.Options.UseFont = true;
             this.labelControl13.Appearance.Options.UseForeColor = true;
-            this.labelControl13.Location = new System.Drawing.Point(812, 12);
+            this.labelControl13.Location = new System.Drawing.Point(376, 231);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(128, 20);
             this.labelControl13.TabIndex = 26;
@@ -402,24 +387,25 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(376, 236);
+            this.textBox1.Location = new System.Drawing.Point(12, 313);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(235, 81);
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(335, 81);
             this.textBox1.TabIndex = 27;
             // 
             // button4
             // 
             this.button4.Image = global::ScaleApp.Properties.Resources.Print_32x32;
-            this.button4.Location = new System.Drawing.Point(667, 335);
+            this.button4.Location = new System.Drawing.Point(819, 334);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(128, 60);
+            this.button4.Size = new System.Drawing.Size(129, 60);
             this.button4.TabIndex = 31;
             this.button4.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
             this.button3.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
-            this.button3.Location = new System.Drawing.Point(523, 335);
+            this.button3.Location = new System.Drawing.Point(820, 264);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(128, 60);
             this.button3.TabIndex = 30;
@@ -428,9 +414,9 @@
             // button2
             // 
             this.button2.Image = global::ScaleApp.Properties.Resources.Save_32x32;
-            this.button2.Location = new System.Drawing.Point(376, 335);
+            this.button2.Location = new System.Drawing.Point(820, 190);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(128, 60);
+            this.button2.Size = new System.Drawing.Size(129, 60);
             this.button2.TabIndex = 29;
             this.button2.UseVisualStyleBackColor = true;
             // 
@@ -438,17 +424,53 @@
             // 
             this.button1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Image = global::ScaleApp.Properties.Resources.GenerateData_32x32;
-            this.button1.Location = new System.Drawing.Point(630, 236);
+            this.button1.Location = new System.Drawing.Point(367, 313);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(163, 81);
+            this.button1.Size = new System.Drawing.Size(121, 81);
             this.button1.TabIndex = 28;
             this.button1.UseVisualStyleBackColor = true;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // txtNow
+            // 
+            this.txtNow.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.txtNow.Location = new System.Drawing.Point(795, 12);
+            this.txtNow.Name = "txtNow";
+            this.txtNow.ReadOnly = true;
+            this.txtNow.Size = new System.Drawing.Size(173, 26);
+            this.txtNow.TabIndex = 32;
+            this.txtNow.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(512, 365);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(276, 29);
+            this.textBox2.TabIndex = 33;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 413);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(936, 264);
+            this.dataGridView1.TabIndex = 34;
             // 
             // frmCrushing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1010, 419);
+            this.ClientSize = new System.Drawing.Size(961, 686);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtNow);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -465,10 +487,10 @@
             this.Controls.Add(this.labelControl9);
             this.Controls.Add(this.cmbMaterial);
             this.Controls.Add(this.labelControl8);
-            this.Controls.Add(this.cmbColorCode);
+            this.Controls.Add(this.cmbColor);
             this.Controls.Add(this.labelControl7);
             this.Controls.Add(this.cmbProduct);
-            this.Controls.Add(this.textEdit1);
+            this.Controls.Add(this.txtMachine);
             this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.cmbMixID);
             this.Controls.Add(this.labelControl5);
@@ -479,24 +501,25 @@
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.cmbLostType);
             this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.cmbEdit);
-            this.Location = new System.Drawing.Point(40, 0);
+            this.Controls.Add(this.cmbShift);
+            this.Location = new System.Drawing.Point(50, 50);
             this.Name = "frmCrushing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Crushing Station";
             this.Load += new System.EventHandler(this.frmCrushing_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.cmbEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbShift.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbLostType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbOperator.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbStep.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMixID.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbProduct.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbColorCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbColor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMaterial.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightRM.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightCrushed.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -504,7 +527,7 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.ComboBoxEdit cmbEdit;
+        private DevExpress.XtraEditors.ComboBoxEdit cmbShift;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.ComboBoxEdit cmbLostType;
@@ -515,11 +538,11 @@
         private DevExpress.XtraEditors.ComboBoxEdit cmbStep;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.ComboBoxEdit cmbMixID;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.TextEdit txtMachine;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.ComboBoxEdit cmbProduct;
         private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbColorCode;
+        private DevExpress.XtraEditors.ComboBoxEdit cmbColor;
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.ComboBoxEdit cmbMaterial;
         private DevExpress.XtraEditors.TextEdit txtWeightRM;
@@ -535,5 +558,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TextBox txtNow;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

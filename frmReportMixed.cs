@@ -1,4 +1,8 @@
-﻿using System;
+﻿using DevExpress.DataAccess.ConnectionParameters;
+using DevExpress.DataAccess.Sql;
+using DevExpress.XtraReports.Configuration;
+using DevExpress.XtraReports.UI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +23,59 @@ namespace ScaleApp
         }
 
         private void frmReport_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private SqlDataSource BindToData()
+        {
+            // Create a data source with the required connection parameters.  
+            MsSqlConnectionParameters connectionParameters = new MsSqlConnectionParameters(
+                "(localdb)\MSSQLLocalDB", "ColorMix", "sa", "12345678", MsSqlAuthorizationType.SqlServer);
+            SqlDataSource ds = new SqlDataSource(connectionParameters);
+
+            // Create an SQL query to access the Products table.
+            CustomSqlQuery query = new CustomSqlQuery();
+            query.Name = "customQuery";
+            query.Sql = "SELECT * FROM CrushRaw";
+
+            // Add the query to the collection. 
+            ds.Queries.Add(query);
+
+            // Make the data source structure displayed  
+            // in the Field List of an End-User Report Designer. 
+            ds.RebuildResultSchema();
+
+            return ds;
+        }
+
+        private XtraReport CreateReport()
+        {
+            // Create a new report instance.
+            XtraReport report = new XtraReport();
+
+            // Assign the data source to the report.
+            report.DataSource = BindToData();
+            report.DataMember = "customQuery";
+
+            // Add a detail band to the report.
+            DetailBand detailBand = new DetailBand();
+            detailBand.Height = 50;
+            report.Bands.Add(detailBand);
+
+            // Create a new label.
+            XRLabel label = new XRLabel { WidthF = 300 };
+            // Specify the label's binding depending on the data binding mode.
+            if (Settings.Default.UserDesignerOptions.DataBindingMode == DataBindingMode.Bindings)
+                label.DataBindings.Add("Text", null, "customQuery.ProductName");
+            else label.ExpressionBindings.Add(new ExpressionBinding("BeforePrint", "Text", "[ProductName]"));
+            // Add a label to the detail band. 
+            detailBand.Controls.Add(label);
+
+            return report;
+        }
+
+        private void LoadDataByDataSet()
         {
             DataSet ds = new DataSet();
             String connStr = ScaleApp.Common.DataOperation.GetConnectionString();

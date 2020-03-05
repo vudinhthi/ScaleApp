@@ -164,6 +164,20 @@ namespace ScaleApp.Common
             return sDay + cSplit + sMonth + cSplit + System.Convert.ToString(dteNgay.ToString().Split(cSplit).GetValue(2));  // trả về ngày theo định dạng dd/MM/YY
         }
 
+        public static string ToYYMMdd(DateTime dteNgay)
+        {
+            string sDay;
+            string sMonth;
+            string sYear;
+            char cSplit = System.Convert.ToChar("/");
+
+            sDay = dteNgay.Day.ToString();
+            sMonth = dteNgay.Month.ToString();
+            sYear = dteNgay.Year.ToString();
+
+            return sDay + cSplit + sMonth + cSplit + System.Convert.ToString(dteNgay.ToString().Split(cSplit).GetValue(2));  // trả về ngày theo định dạng dd/MM/YY
+        }
+
         // lấy ngày cuối tháng của một ngày bất kỳ
         public static DateTime ToNgayCuoiThang(DateTime dteTime)
         {
@@ -223,7 +237,7 @@ namespace ScaleApp.Common
             sMonth = dteNgay.Month.ToString();
             sYear = dteNgay.Year.ToString();
 
-            textQrCode = codeType +  sYear + sMonth + sDay;
+            textQrCode = codeType + "." +  sYear + sMonth + sDay;
 
             return textQrCode;
         }

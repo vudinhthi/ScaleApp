@@ -305,11 +305,14 @@
             // txtScaleWeight
             // 
             this.txtScaleWeight.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtScaleWeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtScaleWeight.Location = new System.Drawing.Point(16, 288);
             this.txtScaleWeight.Name = "txtScaleWeight";
             this.txtScaleWeight.ReadOnly = true;
             this.txtScaleWeight.Size = new System.Drawing.Size(357, 81);
             this.txtScaleWeight.TabIndex = 25;
+            this.txtScaleWeight.Text = "25";
+            this.txtScaleWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnSendToRecycled
             // 
@@ -395,7 +398,7 @@
             this.gridView1.ReadOnly = true;
             this.gridView1.Size = new System.Drawing.Size(1131, 414);
             this.gridView1.TabIndex = 35;
-            this.gridView1.SelectionChanged += new System.EventHandler(this.gridView1_SelectionChanged);
+            this.gridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView1_CellClick);
             // 
             // txtMixID
             // 

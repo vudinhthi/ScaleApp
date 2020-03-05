@@ -383,16 +383,7 @@ namespace ScaleApp
                 MessageBox.Show(ex.Message);
             }
             ScaleApp.Common.DataOperation.disconnect();
-        }
-
-        private void gridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            int rowindex = gridView1.CurrentCell.RowIndex;
-            int columnindex = gridView1.CurrentCell.ColumnIndex;
-                        
-            txtMixID.Text = gridView1.Rows[rowindex].Cells[0].Value.ToString();
-            loadMixRaw(int.Parse(txtMixID.Text.ToString()));
-        }
+        }        
 
         private void loadMixRaw(int mixId)
         {
@@ -459,6 +450,19 @@ namespace ScaleApp
 
             frmReportMixed report = new frmReportMixed();
             report.ShowDialog();
+        }        
+
+        private void gridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (gridView1.CurrentCell.RowIndex != -1)
+            {
+                //do you staff.
+                int rowindex = gridView1.CurrentCell.RowIndex;
+                int columnindex = gridView1.CurrentCell.ColumnIndex;
+
+                txtMixID.Text = gridView1.Rows[rowindex].Cells[0].Value.ToString();
+                loadMixRaw(int.Parse(txtMixID.Text.ToString()));
+            }
         }
     }
 }

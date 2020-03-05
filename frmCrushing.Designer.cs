@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator2 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator3 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -40,21 +40,30 @@
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
-            this.txtTotal = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
-            this.qrCodeCrush = new DevExpress.XtraEditors.BarCodeControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.cmdPrint = new System.Windows.Forms.Button();
+            this.cmdReset = new System.Windows.Forms.Button();
+            this.cmdSave = new System.Windows.Forms.Button();
+            this.cmdGetWeight = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.txtNow = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.txtCrushDate = new System.Windows.Forms.TextBox();
+            this.gridCrushed = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RecycledID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MixID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Shift = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Operator = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Material = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Color = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Step = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LostType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Machine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbOperator = new System.Windows.Forms.ComboBox();
             this.cmbShift = new System.Windows.Forms.ComboBox();
             this.cmbLostType = new System.Windows.Forms.ComboBox();
@@ -63,11 +72,11 @@
             this.cmbColor = new System.Windows.Forms.ComboBox();
             this.cmbMixId = new System.Windows.Forms.ComboBox();
             this.cmbMaterial = new System.Windows.Forms.ComboBox();
-            this.txtWeightRM = new System.Windows.Forms.TextBox();
             this.txtWeightCrushed = new System.Windows.Forms.TextBox();
+            this.txtCrushID = new System.Windows.Forms.TextBox();
+            this.qrCodeCrush = new DevExpress.XtraEditors.BarCodeControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTotal.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCrushed)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -146,9 +155,9 @@
             // 
             this.txtMachine.Location = new System.Drawing.Point(148, 139);
             this.txtMachine.Name = "txtMachine";
-            this.txtMachine.Properties.Appearance.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMachine.Properties.Appearance.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMachine.Properties.Appearance.Options.UseFont = true;
-            this.txtMachine.Size = new System.Drawing.Size(199, 30);
+            this.txtMachine.Size = new System.Drawing.Size(199, 28);
             this.txtMachine.TabIndex = 12;
             // 
             // labelControl7
@@ -187,69 +196,17 @@
             this.labelControl9.TabIndex = 18;
             this.labelControl9.Text = "Material";
             // 
-            // labelControl10
-            // 
-            this.labelControl10.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl10.Appearance.ForeColor = System.Drawing.Color.Navy;
-            this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Appearance.Options.UseForeColor = true;
-            this.labelControl10.Location = new System.Drawing.Point(376, 95);
-            this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(56, 20);
-            this.labelControl10.TabIndex = 19;
-            this.labelControl10.Text = "Weight";
-            // 
             // labelControl11
             // 
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl11.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.labelControl11.Appearance.Options.UseFont = true;
             this.labelControl11.Appearance.Options.UseForeColor = true;
-            this.labelControl11.Location = new System.Drawing.Point(376, 139);
+            this.labelControl11.Location = new System.Drawing.Point(376, 97);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(128, 20);
             this.labelControl11.TabIndex = 21;
             this.labelControl11.Text = "Weight Crushed";
-            // 
-            // txtTotal
-            // 
-            this.txtTotal.Enabled = false;
-            this.txtTotal.Location = new System.Drawing.Point(512, 187);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
-            this.txtTotal.Properties.Appearance.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.txtTotal.Properties.Appearance.Options.UseFont = true;
-            this.txtTotal.Properties.Appearance.Options.UseForeColor = true;
-            this.txtTotal.Properties.NullText = "0";
-            this.txtTotal.Properties.ReadOnly = true;
-            this.txtTotal.Size = new System.Drawing.Size(276, 28);
-            this.txtTotal.TabIndex = 24;
-            // 
-            // labelControl12
-            // 
-            this.labelControl12.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl12.Appearance.ForeColor = System.Drawing.Color.Navy;
-            this.labelControl12.Appearance.Options.UseFont = true;
-            this.labelControl12.Appearance.Options.UseForeColor = true;
-            this.labelControl12.Location = new System.Drawing.Point(376, 187);
-            this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(40, 20);
-            this.labelControl12.TabIndex = 23;
-            this.labelControl12.Text = "Total";
-            // 
-            // qrCodeCrush
-            // 
-            this.qrCodeCrush.AutoModule = true;
-            this.qrCodeCrush.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.qrCodeCrush.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.qrCodeCrush.Location = new System.Drawing.Point(512, 231);
-            this.qrCodeCrush.Name = "qrCodeCrush";
-            this.qrCodeCrush.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
-            this.qrCodeCrush.Size = new System.Drawing.Size(276, 128);
-            qrCodeGenerator2.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
-            this.qrCodeCrush.Symbology = qrCodeGenerator2;
-            this.qrCodeCrush.TabIndex = 25;
             // 
             // labelControl13
             // 
@@ -257,7 +214,7 @@
             this.labelControl13.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.labelControl13.Appearance.Options.UseFont = true;
             this.labelControl13.Appearance.Options.UseForeColor = true;
-            this.labelControl13.Location = new System.Drawing.Point(376, 231);
+            this.labelControl13.Location = new System.Drawing.Point(378, 139);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(128, 20);
             this.labelControl13.TabIndex = 26;
@@ -266,50 +223,54 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.textBox1.Location = new System.Drawing.Point(12, 313);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(335, 81);
             this.textBox1.TabIndex = 27;
             this.textBox1.Text = "25";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // button4
+            // cmdPrint
             // 
-            this.button4.Image = global::ScaleApp.Properties.Resources.Print_32x32;
-            this.button4.Location = new System.Drawing.Point(819, 334);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(129, 60);
-            this.button4.TabIndex = 31;
-            this.button4.UseVisualStyleBackColor = true;
+            this.cmdPrint.Image = global::ScaleApp.Properties.Resources.Print_32x32;
+            this.cmdPrint.Location = new System.Drawing.Point(819, 334);
+            this.cmdPrint.Name = "cmdPrint";
+            this.cmdPrint.Size = new System.Drawing.Size(129, 60);
+            this.cmdPrint.TabIndex = 31;
+            this.cmdPrint.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // cmdReset
             // 
-            this.button3.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
-            this.button3.Location = new System.Drawing.Point(820, 264);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(128, 60);
-            this.button3.TabIndex = 30;
-            this.button3.UseVisualStyleBackColor = true;
+            this.cmdReset.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
+            this.cmdReset.Location = new System.Drawing.Point(820, 264);
+            this.cmdReset.Name = "cmdReset";
+            this.cmdReset.Size = new System.Drawing.Size(128, 60);
+            this.cmdReset.TabIndex = 30;
+            this.cmdReset.UseVisualStyleBackColor = true;
+            this.cmdReset.Click += new System.EventHandler(this.cmdReset_Click);
             // 
-            // button2
+            // cmdSave
             // 
-            this.button2.Image = global::ScaleApp.Properties.Resources.Save_32x32;
-            this.button2.Location = new System.Drawing.Point(820, 190);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(129, 60);
-            this.button2.TabIndex = 29;
-            this.button2.UseVisualStyleBackColor = true;
+            this.cmdSave.Image = global::ScaleApp.Properties.Resources.Save_32x32;
+            this.cmdSave.Location = new System.Drawing.Point(820, 190);
+            this.cmdSave.Name = "cmdSave";
+            this.cmdSave.Size = new System.Drawing.Size(129, 60);
+            this.cmdSave.TabIndex = 29;
+            this.cmdSave.UseVisualStyleBackColor = true;
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
-            // button1
+            // cmdGetWeight
             // 
-            this.button1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::ScaleApp.Properties.Resources.GenerateData_32x32;
-            this.button1.Location = new System.Drawing.Point(367, 313);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 81);
-            this.button1.TabIndex = 28;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.cmdGetWeight.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdGetWeight.Image = global::ScaleApp.Properties.Resources.GenerateData_32x32;
+            this.cmdGetWeight.Location = new System.Drawing.Point(353, 313);
+            this.cmdGetWeight.Name = "cmdGetWeight";
+            this.cmdGetWeight.Size = new System.Drawing.Size(151, 81);
+            this.cmdGetWeight.TabIndex = 28;
+            this.cmdGetWeight.UseVisualStyleBackColor = true;
+            this.cmdGetWeight.Click += new System.EventHandler(this.cmdGetWeight_Click);
             // 
             // timer1
             // 
@@ -326,120 +287,247 @@
             this.txtNow.TabIndex = 32;
             this.txtNow.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox2
+            // txtCrushDate
             // 
-            this.textBox2.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(512, 365);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(276, 29);
-            this.textBox2.TabIndex = 33;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCrushDate.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCrushDate.Location = new System.Drawing.Point(512, 365);
+            this.txtCrushDate.Name = "txtCrushDate";
+            this.txtCrushDate.ReadOnly = true;
+            this.txtCrushDate.Size = new System.Drawing.Size(276, 29);
+            this.txtCrushDate.TabIndex = 33;
+            this.txtCrushDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // dataGridView1
+            // gridCrushed
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 413);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(936, 264);
-            this.dataGridView1.TabIndex = 34;
+            this.gridCrushed.AllowUserToAddRows = false;
+            this.gridCrushed.AllowUserToDeleteRows = false;
+            this.gridCrushed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridCrushed.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
+            this.Date,
+            this.RecycledID,
+            this.MixID,
+            this.Shift,
+            this.Operator,
+            this.Item,
+            this.Material,
+            this.Color,
+            this.Step,
+            this.LostType,
+            this.Weight,
+            this.Machine});
+            this.gridCrushed.Location = new System.Drawing.Point(12, 413);
+            this.gridCrushed.Name = "gridCrushed";
+            this.gridCrushed.ReadOnly = true;
+            this.gridCrushed.Size = new System.Drawing.Size(936, 264);
+            this.gridCrushed.TabIndex = 34;
+            this.gridCrushed.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCrushed_CellClick);
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // Date
+            // 
+            this.Date.HeaderText = "Date";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            // 
+            // RecycledID
+            // 
+            this.RecycledID.HeaderText = "Recycled ID";
+            this.RecycledID.Name = "RecycledID";
+            this.RecycledID.ReadOnly = true;
+            // 
+            // MixID
+            // 
+            this.MixID.HeaderText = "Mix ID";
+            this.MixID.Name = "MixID";
+            this.MixID.ReadOnly = true;
+            // 
+            // Shift
+            // 
+            this.Shift.HeaderText = "Shift";
+            this.Shift.Name = "Shift";
+            this.Shift.ReadOnly = true;
+            // 
+            // Operator
+            // 
+            this.Operator.HeaderText = "Operator";
+            this.Operator.Name = "Operator";
+            this.Operator.ReadOnly = true;
+            // 
+            // Item
+            // 
+            this.Item.HeaderText = "Item";
+            this.Item.Name = "Item";
+            this.Item.ReadOnly = true;
+            // 
+            // Material
+            // 
+            this.Material.HeaderText = "Material";
+            this.Material.Name = "Material";
+            this.Material.ReadOnly = true;
+            // 
+            // Color
+            // 
+            this.Color.HeaderText = "Color";
+            this.Color.Name = "Color";
+            this.Color.ReadOnly = true;
+            // 
+            // Step
+            // 
+            this.Step.HeaderText = "Step";
+            this.Step.Name = "Step";
+            this.Step.ReadOnly = true;
+            // 
+            // LostType
+            // 
+            this.LostType.HeaderText = "LostType";
+            this.LostType.Name = "LostType";
+            this.LostType.ReadOnly = true;
+            // 
+            // Weight
+            // 
+            this.Weight.HeaderText = "Weight";
+            this.Weight.Name = "Weight";
+            this.Weight.ReadOnly = true;
+            // 
+            // Machine
+            // 
+            this.Machine.HeaderText = "Machine";
+            this.Machine.Name = "Machine";
+            this.Machine.ReadOnly = true;
             // 
             // cmbOperator
             // 
-            this.cmbOperator.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbOperator.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbOperator.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbOperator.FormattingEnabled = true;
             this.cmbOperator.Location = new System.Drawing.Point(148, 95);
             this.cmbOperator.Name = "cmbOperator";
-            this.cmbOperator.Size = new System.Drawing.Size(199, 31);
+            this.cmbOperator.Size = new System.Drawing.Size(199, 30);
             this.cmbOperator.TabIndex = 35;
             // 
             // cmbShift
             // 
-            this.cmbShift.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbShift.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbShift.FormattingEnabled = true;
+            this.cmbShift.Items.AddRange(new object[] {
+            "",
+            "X",
+            "Y",
+            "Z"});
             this.cmbShift.Location = new System.Drawing.Point(148, 10);
             this.cmbShift.Name = "cmbShift";
-            this.cmbShift.Size = new System.Drawing.Size(199, 31);
+            this.cmbShift.Size = new System.Drawing.Size(199, 30);
             this.cmbShift.TabIndex = 36;
             // 
             // cmbLostType
             // 
-            this.cmbLostType.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbLostType.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbLostType.FormattingEnabled = true;
+            this.cmbLostType.Items.AddRange(new object[] {
+            "",
+            "Recycle",
+            "Framapur",
+            "Framaprene",
+            "Mix Material/Contaminated"});
             this.cmbLostType.Location = new System.Drawing.Point(148, 53);
             this.cmbLostType.Name = "cmbLostType";
-            this.cmbLostType.Size = new System.Drawing.Size(199, 31);
+            this.cmbLostType.Size = new System.Drawing.Size(199, 30);
             this.cmbLostType.TabIndex = 37;
             // 
             // cmbStep
             // 
-            this.cmbStep.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStep.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStep.FormattingEnabled = true;
             this.cmbStep.Location = new System.Drawing.Point(148, 180);
             this.cmbStep.Name = "cmbStep";
-            this.cmbStep.Size = new System.Drawing.Size(199, 31);
+            this.cmbStep.Size = new System.Drawing.Size(199, 30);
             this.cmbStep.TabIndex = 38;
             // 
             // cmbProduct
             // 
-            this.cmbProduct.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbProduct.DropDownWidth = 400;
+            this.cmbProduct.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProduct.FormattingEnabled = true;
             this.cmbProduct.Location = new System.Drawing.Point(148, 225);
             this.cmbProduct.Name = "cmbProduct";
-            this.cmbProduct.Size = new System.Drawing.Size(199, 31);
+            this.cmbProduct.Size = new System.Drawing.Size(199, 30);
             this.cmbProduct.TabIndex = 39;
             this.cmbProduct.SelectedIndexChanged += new System.EventHandler(this.cmbProduct_SelectedIndexChanged);
             // 
             // cmbColor
             // 
-            this.cmbColor.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbColor.DropDownWidth = 250;
+            this.cmbColor.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbColor.FormattingEnabled = true;
             this.cmbColor.Location = new System.Drawing.Point(148, 267);
             this.cmbColor.Name = "cmbColor";
-            this.cmbColor.Size = new System.Drawing.Size(199, 31);
+            this.cmbColor.Size = new System.Drawing.Size(199, 30);
             this.cmbColor.TabIndex = 40;
+            this.cmbColor.SelectedIndexChanged += new System.EventHandler(this.cmbColor_SelectedIndexChanged);
             // 
             // cmbMixId
             // 
-            this.cmbMixId.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMixId.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMixId.FormattingEnabled = true;
             this.cmbMixId.Location = new System.Drawing.Point(512, 12);
             this.cmbMixId.Name = "cmbMixId";
-            this.cmbMixId.Size = new System.Drawing.Size(276, 32);
+            this.cmbMixId.Size = new System.Drawing.Size(276, 30);
             this.cmbMixId.TabIndex = 41;
             // 
             // cmbMaterial
             // 
-            this.cmbMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMaterial.DropDownWidth = 300;
+            this.cmbMaterial.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMaterial.FormattingEnabled = true;
             this.cmbMaterial.Location = new System.Drawing.Point(512, 53);
             this.cmbMaterial.Name = "cmbMaterial";
-            this.cmbMaterial.Size = new System.Drawing.Size(276, 32);
+            this.cmbMaterial.Size = new System.Drawing.Size(276, 30);
             this.cmbMaterial.TabIndex = 42;
-            // 
-            // txtWeightRM
-            // 
-            this.txtWeightRM.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWeightRM.Location = new System.Drawing.Point(512, 97);
-            this.txtWeightRM.Name = "txtWeightRM";
-            this.txtWeightRM.Size = new System.Drawing.Size(276, 29);
-            this.txtWeightRM.TabIndex = 43;
             // 
             // txtWeightCrushed
             // 
-            this.txtWeightCrushed.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWeightCrushed.Location = new System.Drawing.Point(512, 139);
+            this.txtWeightCrushed.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWeightCrushed.Location = new System.Drawing.Point(512, 97);
             this.txtWeightCrushed.Name = "txtWeightCrushed";
             this.txtWeightCrushed.Size = new System.Drawing.Size(276, 29);
             this.txtWeightCrushed.TabIndex = 44;
+            // 
+            // txtCrushID
+            // 
+            this.txtCrushID.Location = new System.Drawing.Point(795, 53);
+            this.txtCrushID.Name = "txtCrushID";
+            this.txtCrushID.ReadOnly = true;
+            this.txtCrushID.Size = new System.Drawing.Size(173, 20);
+            this.txtCrushID.TabIndex = 45;
+            // 
+            // qrCodeCrush
+            // 
+            this.qrCodeCrush.Appearance.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qrCodeCrush.Appearance.Options.UseFont = true;
+            this.qrCodeCrush.AutoModule = true;
+            this.qrCodeCrush.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.qrCodeCrush.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.qrCodeCrush.Location = new System.Drawing.Point(512, 139);
+            this.qrCodeCrush.Name = "qrCodeCrush";
+            this.qrCodeCrush.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
+            this.qrCodeCrush.Size = new System.Drawing.Size(276, 210);
+            qrCodeGenerator3.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
+            this.qrCodeCrush.Symbology = qrCodeGenerator3;
+            this.qrCodeCrush.TabIndex = 25;
             // 
             // frmCrushing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(980, 686);
+            this.Controls.Add(this.txtCrushID);
             this.Controls.Add(this.txtWeightCrushed);
-            this.Controls.Add(this.txtWeightRM);
             this.Controls.Add(this.cmbMaterial);
             this.Controls.Add(this.cmbMixId);
             this.Controls.Add(this.cmbColor);
@@ -448,20 +536,17 @@
             this.Controls.Add(this.cmbLostType);
             this.Controls.Add(this.cmbShift);
             this.Controls.Add(this.cmbOperator);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.gridCrushed);
+            this.Controls.Add(this.txtCrushDate);
             this.Controls.Add(this.txtNow);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cmdPrint);
+            this.Controls.Add(this.cmdReset);
+            this.Controls.Add(this.cmdSave);
+            this.Controls.Add(this.cmdGetWeight);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.labelControl13);
             this.Controls.Add(this.qrCodeCrush);
-            this.Controls.Add(this.txtTotal);
-            this.Controls.Add(this.labelControl12);
             this.Controls.Add(this.labelControl11);
-            this.Controls.Add(this.labelControl10);
             this.Controls.Add(this.labelControl9);
             this.Controls.Add(this.labelControl8);
             this.Controls.Add(this.labelControl7);
@@ -478,8 +563,7 @@
             this.Text = "Crushing Station";
             this.Load += new System.EventHandler(this.frmCrushing_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTotal.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCrushed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -496,21 +580,17 @@
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.LabelControl labelControl11;
-        private DevExpress.XtraEditors.TextEdit txtTotal;
-        private DevExpress.XtraEditors.LabelControl labelControl12;
-        private DevExpress.XtraEditors.BarCodeControl qrCodeCrush;
         private DevExpress.XtraEditors.LabelControl labelControl13;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button cmdGetWeight;
+        private System.Windows.Forms.Button cmdSave;
+        private System.Windows.Forms.Button cmdReset;
+        private System.Windows.Forms.Button cmdPrint;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TextBox txtNow;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox txtCrushDate;
+        private System.Windows.Forms.DataGridView gridCrushed;
         private System.Windows.Forms.ComboBox cmbOperator;
         private System.Windows.Forms.ComboBox cmbShift;
         private System.Windows.Forms.ComboBox cmbLostType;
@@ -519,7 +599,21 @@
         private System.Windows.Forms.ComboBox cmbColor;
         private System.Windows.Forms.ComboBox cmbMixId;
         private System.Windows.Forms.ComboBox cmbMaterial;
-        private System.Windows.Forms.TextBox txtWeightRM;
         private System.Windows.Forms.TextBox txtWeightCrushed;
+        private System.Windows.Forms.TextBox txtCrushID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RecycledID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MixID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Shift;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Operator;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Item;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Material;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Color;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Step;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LostType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Weight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Machine;
+        private DevExpress.XtraEditors.BarCodeControl qrCodeCrush;
     }
 }

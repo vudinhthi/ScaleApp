@@ -157,7 +157,6 @@
     <EmbeddedResource Include="rptMixing.resx">
       <DependentUpon>rptMixing.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="App - Copy.config" />
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

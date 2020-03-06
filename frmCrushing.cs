@@ -26,10 +26,10 @@ namespace ScaleApp
             Start_Timer();
             loadComboBoxOperator();
             loadComboBoxStep();
-            loadComboBoxProduct();
-            loadComboBoxColor();
+            loadComboBoxProduct();            
             loadComboBoxMaterial();
             loadComboBoxMixId();
+            cmdPost.Enabled = false;
             loadGridCrush();            
         }
 
@@ -63,6 +63,7 @@ namespace ScaleApp
                 blankRow["OperatorCode"] = "None";
                 blankRow["OperatorName"] = "";
                 ds.Tables[0].Rows.InsertAt(blankRow,0);
+
                 cmbOperator.DataSource = ds.Tables[0];
                 cmbOperator.DisplayMember = "OperatorName";
                 cmbOperator.ValueMember = "OperatorCode";
@@ -192,33 +193,35 @@ namespace ScaleApp
 
         private void loadColorsByProduct(string productId)
         {
-            DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
-            SqlConnection conn = new SqlConnection(connStr);
-            SqlDataAdapter SqlDa = new SqlDataAdapter();
-            SqlCommand sqlcmd = new SqlCommand("sp_getColorsProduct", conn);
-            try
+            if (cmbProduct.SelectedValue.ToString() == "None")
             {
-                sqlcmd.CommandType = CommandType.StoredProcedure;
-                sqlcmd.Parameters.AddWithValue("@ProductId", productId);
-                SqlDa.SelectCommand = sqlcmd;
-
-                SqlDa.Fill(ds);
-
-                DataRow blankRow = ds.Tables[0].NewRow();
-                blankRow["ColorCode"] = "None";
-                blankRow["ColorName"] = "";
-                ds.Tables[0].Rows.InsertAt(blankRow, 0);
-
-                cmbColor.DataSource = ds.Tables[0];
-                cmbColor.DisplayMember = "ColorCode";
-                cmbColor.ValueMember = "ColorCode";
+                return;
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                DataSet ds = new DataSet();
+                String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+                SqlConnection conn = new SqlConnection(connStr);
+                SqlDataAdapter SqlDa = new SqlDataAdapter();
+                SqlCommand sqlcmd = new SqlCommand("sp_getColorsProduct", conn);
+                try
+                {
+                    sqlcmd.CommandType = CommandType.StoredProcedure;
+                    sqlcmd.Parameters.AddWithValue("@ProductId", productId);
+                    SqlDa.SelectCommand = sqlcmd;
+
+                    SqlDa.Fill(ds);
+
+                    cmbColor.DataSource = ds.Tables[0];
+                    cmbColor.DisplayMember = "ColorCode";
+                    cmbColor.ValueMember = "ColorCode";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                ScaleApp.Common.DataOperation.disconnect();
             }
-            ScaleApp.Common.DataOperation.disconnect();
 
         }
 
@@ -257,9 +260,8 @@ namespace ScaleApp
             String qrCodeMfunction = ScaleApp.Common.mFunction.GenerateTextQRCode("RE", DateTime.Today);
             String ItemCode = cmbProduct.SelectedValue.ToString();
             String ColorCode = cmbColor.SelectedValue.ToString();
-
-            getLastCrushRawId();
-            qrCodeText = ScaleApp.Common.mFunction.GenerateTextQRCode("RE", DateTime.Today) + "." + cmbProduct.SelectedValue.ToString() + "." + cmbColor.SelectedValue.ToString() + "." + getLastCrushRawId().ToString();            
+            
+            qrCodeText = qrCodeMfunction + "." + cmbProduct.SelectedValue.ToString() + "." + cmbColor.SelectedValue.ToString() + "." + getLastCrushRawId().ToString();            
             qrCodeCrush.Text = qrCodeText;
         }
 
@@ -267,7 +269,7 @@ namespace ScaleApp
         {
             if (cmbProduct.SelectedItem.IsNull())
             {
-                loadComboBoxColor();
+                return;
             }
             else
             {
@@ -312,6 +314,7 @@ namespace ScaleApp
                 gridCrushed.Columns["Losttype"].DataPropertyName = "LossTypeName";
                 gridCrushed.Columns["Weight"].DataPropertyName = "WeightRecycle";
                 gridCrushed.Columns["Machine"].DataPropertyName = "MachineName";
+                gridCrushed.Columns["Posted"].DataPropertyName = "Posted";
 
                 gridCrushed.Columns["ID"].Width = 40;
                 gridCrushed.Columns["Date"].Width = 100;
@@ -326,6 +329,7 @@ namespace ScaleApp
                 gridCrushed.Columns["Losttype"].Width = 80;
                 gridCrushed.Columns["Weight"].Width = 80;
                 gridCrushed.Columns["Machine"].Width = 40;
+                gridCrushed.Columns["Posted"].Width = 40;
             }
             catch (Exception ex)
             {
@@ -386,7 +390,9 @@ namespace ScaleApp
                 int columnindex = gridCrushed.CurrentCell.ColumnIndex;
 
                 txtCrushID.Text = gridCrushed.Rows[rowindex].Cells[0].Value.ToString();
+                txtPosted.Text = gridCrushed.Rows[rowindex].Cells[13].Value.ToString();
                 loadCrushRaw(int.Parse(txtCrushID.Text.ToString()));
+                SetcmdPost();
             }
         }
 
@@ -473,12 +479,60 @@ namespace ScaleApp
 
         private void cmbColor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            generateTextQRCode();
+            if (cmbColor.SelectedValue != null)
+            {
+                generateTextQRCode();
+            }
+            else
+            {
+                qrCodeCrush.Text = "framas.com";
+            }
         }
 
         private void cmdGetWeight_Click(object sender, EventArgs e)
         {
             getLastCrushRawId();
+        }
+
+        private void SetcmdPost()
+        {
+            if (txtPosted.Text.ToString() == "0")
+            {
+                cmdPost.Enabled = true;
+            }
+            else
+            {
+                cmdPost.Enabled = false;
+            }
+        }
+
+        private void UpdatePosted()
+        {
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+            SqlCommand cmd = new SqlCommand("sp_setCrushPosted", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@crushRawId", txtCrushID.Text);
+
+            conn.Open();
+
+            int i = cmd.ExecuteNonQuery();
+
+            ScaleApp.Common.DataOperation.disconnect();            
+
+            if (i != 0)
+            {
+                MessageBox.Show("Data posted !");
+                loadGridCrush();
+                cmdSave.Enabled = false;
+                cmdPost.Enabled = false;
+            }
+        }
+
+        private void cmdPost_Click(object sender, EventArgs e)
+        {
+            UpdatePosted();
         }
     }
 }

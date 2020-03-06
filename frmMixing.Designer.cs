@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
-            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery1 = new DevExpress.DataAccess.Sql.StoredProcQuery();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator2 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery2 = new DevExpress.DataAccess.Sql.StoredProcQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMixing));
             this.label1 = new System.Windows.Forms.Label();
             this.cmbShift = new System.Windows.Forms.ComboBox();
@@ -66,9 +66,26 @@
             this.lblDateTime = new System.Windows.Forms.Label();
             this.txtMixDate = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.cmdPost = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.txtPosted = new System.Windows.Forms.TextBox();
+            this.MixID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MixDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MixLotID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReLotID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Shift = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Operator = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Material = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Color = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Step = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WRaw = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WRe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Machine = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Posted = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -191,6 +208,7 @@
             this.cmbColor.Name = "cmbColor";
             this.cmbColor.Size = new System.Drawing.Size(262, 28);
             this.cmbColor.TabIndex = 11;
+            this.cmbColor.SelectedIndexChanged += new System.EventHandler(this.cmbColor_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -294,9 +312,9 @@
             // btnSendToMaterial
             // 
             this.btnSendToMaterial.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendToMaterial.Location = new System.Drawing.Point(395, 288);
+            this.btnSendToMaterial.Location = new System.Drawing.Point(379, 288);
             this.btnSendToMaterial.Name = "btnSendToMaterial";
-            this.btnSendToMaterial.Size = new System.Drawing.Size(208, 40);
+            this.btnSendToMaterial.Size = new System.Drawing.Size(206, 40);
             this.btnSendToMaterial.TabIndex = 24;
             this.btnSendToMaterial.Text = "Get weight RM";
             this.btnSendToMaterial.UseVisualStyleBackColor = true;
@@ -317,9 +335,9 @@
             // btnSendToRecycled
             // 
             this.btnSendToRecycled.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendToRecycled.Location = new System.Drawing.Point(395, 334);
+            this.btnSendToRecycled.Location = new System.Drawing.Point(379, 329);
             this.btnSendToRecycled.Name = "btnSendToRecycled";
-            this.btnSendToRecycled.Size = new System.Drawing.Size(208, 40);
+            this.btnSendToRecycled.Size = new System.Drawing.Size(206, 40);
             this.btnSendToRecycled.TabIndex = 26;
             this.btnSendToRecycled.Text = "Get weight Recycled";
             this.btnSendToRecycled.UseVisualStyleBackColor = true;
@@ -347,8 +365,8 @@
             this.qrMixLotID.Name = "qrMixLotID";
             this.qrMixLotID.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrMixLotID.Size = new System.Drawing.Size(296, 172);
-            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
-            this.qrMixLotID.Symbology = qrCodeGenerator1;
+            qrCodeGenerator2.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
+            this.qrMixLotID.Symbology = qrCodeGenerator2;
             this.qrMixLotID.TabIndex = 32;
             // 
             // cmbLabelType
@@ -382,10 +400,10 @@
             // 
             this.sqlDataSource1.ConnectionName = "ScaleApp.Properties.Settings.ColorMixConnectionString";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            storedProcQuery1.Name = "sp_getMixRaws";
-            storedProcQuery1.StoredProcName = "sp_getMixRaws";
+            storedProcQuery2.Name = "sp_getMixRaws";
+            storedProcQuery2.StoredProcName = "sp_getMixRaws";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            storedProcQuery1});
+            storedProcQuery2});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // gridView1
@@ -393,6 +411,22 @@
             this.gridView1.AllowUserToAddRows = false;
             this.gridView1.AllowUserToDeleteRows = false;
             this.gridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MixID,
+            this.MixDate,
+            this.MixLotID,
+            this.ReLotID,
+            this.Shift,
+            this.Operator,
+            this.Item,
+            this.Material,
+            this.Color,
+            this.Step,
+            this.WRaw,
+            this.WRe,
+            this.Total,
+            this.Machine,
+            this.Posted});
             this.gridView1.Location = new System.Drawing.Point(16, 385);
             this.gridView1.Name = "gridView1";
             this.gridView1.ReadOnly = true;
@@ -406,7 +440,7 @@
             this.txtMixID.Location = new System.Drawing.Point(851, 334);
             this.txtMixID.Name = "txtMixID";
             this.txtMixID.ReadOnly = true;
-            this.txtMixID.Size = new System.Drawing.Size(191, 29);
+            this.txtMixID.Size = new System.Drawing.Size(64, 29);
             this.txtMixID.TabIndex = 36;
             // 
             // lblDateTime
@@ -434,6 +468,17 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
+            // cmdPost
+            // 
+            this.cmdPost.Enabled = false;
+            this.cmdPost.Image = global::ScaleApp.Properties.Resources.Mark_32x32;
+            this.cmdPost.Location = new System.Drawing.Point(668, 288);
+            this.cmdPost.Name = "cmdPost";
+            this.cmdPost.Size = new System.Drawing.Size(74, 81);
+            this.cmdPost.TabIndex = 39;
+            this.cmdPost.UseVisualStyleBackColor = true;
+            this.cmdPost.Click += new System.EventHandler(this.cmdPost_Click);
+            // 
             // button5
             // 
             this.button5.Image = global::ScaleApp.Properties.Resources.Print_32x32;
@@ -447,27 +492,129 @@
             // btnReset
             // 
             this.btnReset.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
-            this.btnReset.Location = new System.Drawing.Point(655, 334);
+            this.btnReset.Location = new System.Drawing.Point(748, 288);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(167, 40);
+            this.btnReset.Size = new System.Drawing.Size(74, 80);
             this.btnReset.TabIndex = 28;
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnSave
             // 
             this.btnSave.Image = global::ScaleApp.Properties.Resources.Save_32x32;
-            this.btnSave.Location = new System.Drawing.Point(655, 288);
+            this.btnSave.Location = new System.Drawing.Point(591, 289);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(167, 40);
+            this.btnSave.Size = new System.Drawing.Size(71, 80);
             this.btnSave.TabIndex = 27;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // txtPosted
+            // 
+            this.txtPosted.Location = new System.Drawing.Point(921, 334);
+            this.txtPosted.Name = "txtPosted";
+            this.txtPosted.Size = new System.Drawing.Size(100, 20);
+            this.txtPosted.TabIndex = 40;
+            // 
+            // MixID
+            // 
+            this.MixID.HeaderText = "ID";
+            this.MixID.Name = "MixID";
+            this.MixID.ReadOnly = true;
+            this.MixID.Width = 40;
+            // 
+            // MixDate
+            // 
+            this.MixDate.HeaderText = "Date";
+            this.MixDate.Name = "MixDate";
+            this.MixDate.ReadOnly = true;
+            this.MixDate.Width = 80;
+            // 
+            // MixLotID
+            // 
+            this.MixLotID.HeaderText = "Mix Lot ID";
+            this.MixLotID.Name = "MixLotID";
+            this.MixLotID.ReadOnly = true;
+            // 
+            // ReLotID
+            // 
+            this.ReLotID.HeaderText = "Recycled Lot";
+            this.ReLotID.Name = "ReLotID";
+            this.ReLotID.ReadOnly = true;
+            // 
+            // Shift
+            // 
+            this.Shift.HeaderText = "Shift";
+            this.Shift.Name = "Shift";
+            this.Shift.ReadOnly = true;
+            // 
+            // Operator
+            // 
+            this.Operator.HeaderText = "Operator";
+            this.Operator.Name = "Operator";
+            this.Operator.ReadOnly = true;
+            // 
+            // Item
+            // 
+            this.Item.HeaderText = "Item";
+            this.Item.Name = "Item";
+            this.Item.ReadOnly = true;
+            // 
+            // Material
+            // 
+            this.Material.HeaderText = "Material";
+            this.Material.Name = "Material";
+            this.Material.ReadOnly = true;
+            // 
+            // Color
+            // 
+            this.Color.HeaderText = "Color";
+            this.Color.Name = "Color";
+            this.Color.ReadOnly = true;
+            // 
+            // Step
+            // 
+            this.Step.HeaderText = "Step";
+            this.Step.Name = "Step";
+            this.Step.ReadOnly = true;
+            // 
+            // WRaw
+            // 
+            this.WRaw.HeaderText = "Weight Raw";
+            this.WRaw.Name = "WRaw";
+            this.WRaw.ReadOnly = true;
+            // 
+            // WRe
+            // 
+            this.WRe.HeaderText = "Weight Recycled";
+            this.WRe.Name = "WRe";
+            this.WRe.ReadOnly = true;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            // 
+            // Machine
+            // 
+            this.Machine.HeaderText = "Machine";
+            this.Machine.Name = "Machine";
+            this.Machine.ReadOnly = true;
+            // 
+            // Posted
+            // 
+            this.Posted.HeaderText = "Posted";
+            this.Posted.Name = "Posted";
+            this.Posted.ReadOnly = true;
             // 
             // frmMixing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1162, 822);
+            this.Controls.Add(this.txtPosted);
+            this.Controls.Add(this.cmdPost);
             this.Controls.Add(this.txtMixDate);
             this.Controls.Add(this.lblDateTime);
             this.Controls.Add(this.txtMixID);
@@ -553,5 +700,22 @@
         private System.Windows.Forms.Label lblDateTime;
         private System.Windows.Forms.TextBox txtMixDate;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button cmdPost;
+        private System.Windows.Forms.TextBox txtPosted;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MixID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MixDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MixLotID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReLotID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Shift;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Operator;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Item;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Material;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Color;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Step;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WRaw;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WRe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Machine;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Posted;
     }
 }

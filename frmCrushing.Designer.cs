@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator3 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator2 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -75,6 +75,9 @@
             this.txtWeightCrushed = new System.Windows.Forms.TextBox();
             this.txtCrushID = new System.Windows.Forms.TextBox();
             this.qrCodeCrush = new DevExpress.XtraEditors.BarCodeControl();
+            this.Posted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtPosted = new System.Windows.Forms.TextBox();
+            this.cmdPost = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrushed)).BeginInit();
             this.SuspendLayout();
@@ -254,7 +257,7 @@
             // cmdSave
             // 
             this.cmdSave.Image = global::ScaleApp.Properties.Resources.Save_32x32;
-            this.cmdSave.Location = new System.Drawing.Point(820, 190);
+            this.cmdSave.Location = new System.Drawing.Point(820, 125);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(129, 60);
             this.cmdSave.TabIndex = 29;
@@ -315,7 +318,8 @@
             this.Step,
             this.LostType,
             this.Weight,
-            this.Machine});
+            this.Machine,
+            this.Posted});
             this.gridCrushed.Location = new System.Drawing.Point(12, 413);
             this.gridCrushed.Name = "gridCrushed";
             this.gridCrushed.ReadOnly = true;
@@ -517,15 +521,40 @@
             this.qrCodeCrush.Name = "qrCodeCrush";
             this.qrCodeCrush.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrCodeCrush.Size = new System.Drawing.Size(276, 210);
-            qrCodeGenerator3.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
-            this.qrCodeCrush.Symbology = qrCodeGenerator3;
+            qrCodeGenerator2.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
+            this.qrCodeCrush.Symbology = qrCodeGenerator2;
             this.qrCodeCrush.TabIndex = 25;
+            // 
+            // Posted
+            // 
+            this.Posted.HeaderText = "Posted";
+            this.Posted.Name = "Posted";
+            this.Posted.ReadOnly = true;
+            // 
+            // txtPosted
+            // 
+            this.txtPosted.Location = new System.Drawing.Point(795, 80);
+            this.txtPosted.Name = "txtPosted";
+            this.txtPosted.Size = new System.Drawing.Size(173, 20);
+            this.txtPosted.TabIndex = 46;
+            // 
+            // cmdPost
+            // 
+            this.cmdPost.Image = global::ScaleApp.Properties.Resources.Mark_32x32;
+            this.cmdPost.Location = new System.Drawing.Point(819, 195);
+            this.cmdPost.Name = "cmdPost";
+            this.cmdPost.Size = new System.Drawing.Size(129, 60);
+            this.cmdPost.TabIndex = 47;
+            this.cmdPost.UseVisualStyleBackColor = true;
+            this.cmdPost.Click += new System.EventHandler(this.cmdPost_Click);
             // 
             // frmCrushing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(980, 686);
+            this.Controls.Add(this.cmdPost);
+            this.Controls.Add(this.txtPosted);
             this.Controls.Add(this.txtCrushID);
             this.Controls.Add(this.txtWeightCrushed);
             this.Controls.Add(this.cmbMaterial);
@@ -615,5 +644,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Weight;
         private System.Windows.Forms.DataGridViewTextBoxColumn Machine;
         private DevExpress.XtraEditors.BarCodeControl qrCodeCrush;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Posted;
+        private System.Windows.Forms.TextBox txtPosted;
+        private System.Windows.Forms.Button cmdPost;
     }
 }

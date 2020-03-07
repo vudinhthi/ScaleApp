@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator2 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
-            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery2 = new DevExpress.DataAccess.Sql.StoredProcQuery();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator3 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery3 = new DevExpress.DataAccess.Sql.StoredProcQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMixing));
             this.label1 = new System.Windows.Forms.Label();
             this.cmbShift = new System.Windows.Forms.ComboBox();
@@ -62,15 +62,6 @@
             this.cmbProduct = new System.Windows.Forms.ComboBox();
             this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.gridView1 = new System.Windows.Forms.DataGridView();
-            this.txtMixID = new System.Windows.Forms.TextBox();
-            this.lblDateTime = new System.Windows.Forms.Label();
-            this.txtMixDate = new System.Windows.Forms.TextBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.cmdPost = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.txtPosted = new System.Windows.Forms.TextBox();
             this.MixID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MixDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MixLotID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,6 +77,15 @@
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Machine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Posted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtMixID = new System.Windows.Forms.TextBox();
+            this.lblDateTime = new System.Windows.Forms.Label();
+            this.txtMixDate = new System.Windows.Forms.TextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.cmdPost = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.txtPosted = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -365,8 +365,8 @@
             this.qrMixLotID.Name = "qrMixLotID";
             this.qrMixLotID.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrMixLotID.Size = new System.Drawing.Size(296, 172);
-            qrCodeGenerator2.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
-            this.qrMixLotID.Symbology = qrCodeGenerator2;
+            qrCodeGenerator3.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
+            this.qrMixLotID.Symbology = qrCodeGenerator3;
             this.qrMixLotID.TabIndex = 32;
             // 
             // cmbLabelType
@@ -387,7 +387,9 @@
             // 
             // cmbProduct
             // 
-            this.cmbProduct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProduct.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbProduct.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
+            this.cmbProduct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
             this.cmbProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProduct.FormattingEnabled = true;
             this.cmbProduct.Location = new System.Drawing.Point(112, 191);
@@ -400,10 +402,10 @@
             // 
             this.sqlDataSource1.ConnectionName = "ScaleApp.Properties.Settings.ColorMixConnectionString";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            storedProcQuery2.Name = "sp_getMixRaws";
-            storedProcQuery2.StoredProcName = "sp_getMixRaws";
+            storedProcQuery3.Name = "sp_getMixRaws";
+            storedProcQuery3.StoredProcName = "sp_getMixRaws";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            storedProcQuery2});
+            storedProcQuery3});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // gridView1
@@ -433,88 +435,6 @@
             this.gridView1.Size = new System.Drawing.Size(1131, 414);
             this.gridView1.TabIndex = 35;
             this.gridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView1_CellClick);
-            // 
-            // txtMixID
-            // 
-            this.txtMixID.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMixID.Location = new System.Drawing.Point(851, 334);
-            this.txtMixID.Name = "txtMixID";
-            this.txtMixID.ReadOnly = true;
-            this.txtMixID.Size = new System.Drawing.Size(64, 29);
-            this.txtMixID.TabIndex = 36;
-            // 
-            // lblDateTime
-            // 
-            this.lblDateTime.AutoSize = true;
-            this.lblDateTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblDateTime.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblDateTime.Location = new System.Drawing.Point(943, 10);
-            this.lblDateTime.Name = "lblDateTime";
-            this.lblDateTime.Size = new System.Drawing.Size(2, 24);
-            this.lblDateTime.TabIndex = 37;
-            // 
-            // txtMixDate
-            // 
-            this.txtMixDate.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMixDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtMixDate.Location = new System.Drawing.Point(851, 231);
-            this.txtMixDate.Name = "txtMixDate";
-            this.txtMixDate.Size = new System.Drawing.Size(296, 29);
-            this.txtMixDate.TabIndex = 38;
-            this.txtMixDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
-            // 
-            // cmdPost
-            // 
-            this.cmdPost.Enabled = false;
-            this.cmdPost.Image = global::ScaleApp.Properties.Resources.Mark_32x32;
-            this.cmdPost.Location = new System.Drawing.Point(668, 288);
-            this.cmdPost.Name = "cmdPost";
-            this.cmdPost.Size = new System.Drawing.Size(74, 81);
-            this.cmdPost.TabIndex = 39;
-            this.cmdPost.UseVisualStyleBackColor = true;
-            this.cmdPost.Click += new System.EventHandler(this.cmdPost_Click);
-            // 
-            // button5
-            // 
-            this.button5.Image = global::ScaleApp.Properties.Resources.Print_32x32;
-            this.button5.Location = new System.Drawing.Point(1048, 285);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(99, 40);
-            this.button5.TabIndex = 29;
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // btnReset
-            // 
-            this.btnReset.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
-            this.btnReset.Location = new System.Drawing.Point(748, 288);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(74, 80);
-            this.btnReset.TabIndex = 28;
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Image = global::ScaleApp.Properties.Resources.Save_32x32;
-            this.btnSave.Location = new System.Drawing.Point(591, 289);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(71, 80);
-            this.btnSave.TabIndex = 27;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // txtPosted
-            // 
-            this.txtPosted.Location = new System.Drawing.Point(921, 334);
-            this.txtPosted.Name = "txtPosted";
-            this.txtPosted.Size = new System.Drawing.Size(100, 20);
-            this.txtPosted.TabIndex = 40;
             // 
             // MixID
             // 
@@ -607,6 +527,88 @@
             this.Posted.HeaderText = "Posted";
             this.Posted.Name = "Posted";
             this.Posted.ReadOnly = true;
+            // 
+            // txtMixID
+            // 
+            this.txtMixID.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMixID.Location = new System.Drawing.Point(851, 334);
+            this.txtMixID.Name = "txtMixID";
+            this.txtMixID.ReadOnly = true;
+            this.txtMixID.Size = new System.Drawing.Size(64, 29);
+            this.txtMixID.TabIndex = 36;
+            // 
+            // lblDateTime
+            // 
+            this.lblDateTime.AutoSize = true;
+            this.lblDateTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblDateTime.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblDateTime.Location = new System.Drawing.Point(943, 10);
+            this.lblDateTime.Name = "lblDateTime";
+            this.lblDateTime.Size = new System.Drawing.Size(2, 24);
+            this.lblDateTime.TabIndex = 37;
+            // 
+            // txtMixDate
+            // 
+            this.txtMixDate.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMixDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtMixDate.Location = new System.Drawing.Point(851, 231);
+            this.txtMixDate.Name = "txtMixDate";
+            this.txtMixDate.Size = new System.Drawing.Size(296, 29);
+            this.txtMixDate.TabIndex = 38;
+            this.txtMixDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
+            // cmdPost
+            // 
+            this.cmdPost.Enabled = false;
+            this.cmdPost.Image = global::ScaleApp.Properties.Resources.Mark_32x32;
+            this.cmdPost.Location = new System.Drawing.Point(668, 288);
+            this.cmdPost.Name = "cmdPost";
+            this.cmdPost.Size = new System.Drawing.Size(74, 81);
+            this.cmdPost.TabIndex = 39;
+            this.cmdPost.UseVisualStyleBackColor = true;
+            this.cmdPost.Click += new System.EventHandler(this.cmdPost_Click);
+            // 
+            // button5
+            // 
+            this.button5.Image = global::ScaleApp.Properties.Resources.Print_32x32;
+            this.button5.Location = new System.Drawing.Point(1048, 285);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(99, 40);
+            this.button5.TabIndex = 29;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // btnReset
+            // 
+            this.btnReset.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
+            this.btnReset.Location = new System.Drawing.Point(748, 288);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(74, 80);
+            this.btnReset.TabIndex = 28;
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Image = global::ScaleApp.Properties.Resources.Save_32x32;
+            this.btnSave.Location = new System.Drawing.Point(591, 289);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(71, 80);
+            this.btnSave.TabIndex = 27;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // txtPosted
+            // 
+            this.txtPosted.Location = new System.Drawing.Point(921, 334);
+            this.txtPosted.Name = "txtPosted";
+            this.txtPosted.Size = new System.Drawing.Size(100, 20);
+            this.txtPosted.TabIndex = 40;
             // 
             // frmMixing
             // 

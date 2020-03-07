@@ -241,9 +241,9 @@ namespace ScaleApp
                     SqlDa.Fill(ds);
                 }
                 DataRow blankRow = ds.Tables[0].NewRow();
-                blankRow["ProductCode"] = "None";
-                blankRow["ProductName"] = "";
-                ds.Tables[0].Rows.InsertAt(blankRow, 0);
+                //blankRow["ProductCode"] = "None";
+                //blankRow["ProductName"] = "";
+                //ds.Tables[0].Rows.InsertAt(blankRow, 0);
 
                 cmbProduct.DataSource = ds.Tables[0];
                 cmbProduct.DisplayMember = "ProductName";

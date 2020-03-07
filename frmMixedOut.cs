@@ -114,6 +114,8 @@ namespace ScaleApp
 
         private void UpdateMixOut()
         {
+            //Lay 1 record ra va luu cac Weight da ton tai, chi cap nhat Weight theo form
+
             String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
             SqlConnection conn = new SqlConnection(connStr);
             

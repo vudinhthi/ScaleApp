@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator2 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -64,6 +64,7 @@
             this.LostType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Machine = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Posted = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbOperator = new System.Windows.Forms.ComboBox();
             this.cmbShift = new System.Windows.Forms.ComboBox();
             this.cmbLostType = new System.Windows.Forms.ComboBox();
@@ -75,7 +76,6 @@
             this.txtWeightCrushed = new System.Windows.Forms.TextBox();
             this.txtCrushID = new System.Windows.Forms.TextBox();
             this.qrCodeCrush = new DevExpress.XtraEditors.BarCodeControl();
-            this.Posted = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtPosted = new System.Windows.Forms.TextBox();
             this.cmdPost = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).BeginInit();
@@ -243,6 +243,7 @@
             this.cmdPrint.Size = new System.Drawing.Size(129, 60);
             this.cmdPrint.TabIndex = 31;
             this.cmdPrint.UseVisualStyleBackColor = true;
+            this.cmdPrint.Click += new System.EventHandler(this.cmdPrint_Click);
             // 
             // cmdReset
             // 
@@ -405,6 +406,12 @@
             this.Machine.Name = "Machine";
             this.Machine.ReadOnly = true;
             // 
+            // Posted
+            // 
+            this.Posted.HeaderText = "Posted";
+            this.Posted.Name = "Posted";
+            this.Posted.ReadOnly = true;
+            // 
             // cmbOperator
             // 
             this.cmbOperator.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
@@ -521,15 +528,9 @@
             this.qrCodeCrush.Name = "qrCodeCrush";
             this.qrCodeCrush.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrCodeCrush.Size = new System.Drawing.Size(276, 210);
-            qrCodeGenerator2.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
-            this.qrCodeCrush.Symbology = qrCodeGenerator2;
+            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
+            this.qrCodeCrush.Symbology = qrCodeGenerator1;
             this.qrCodeCrush.TabIndex = 25;
-            // 
-            // Posted
-            // 
-            this.Posted.HeaderText = "Posted";
-            this.Posted.Name = "Posted";
-            this.Posted.ReadOnly = true;
             // 
             // txtPosted
             // 

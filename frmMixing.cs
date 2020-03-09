@@ -16,6 +16,8 @@ namespace ScaleApp
 {
     public partial class frmMixing : Form
     {
+        public static string labelType = "";
+
         public frmMixing()
         {
             InitializeComponent();
@@ -416,7 +418,7 @@ namespace ScaleApp
             String ItemCode = cmbProduct.SelectedValue.ToString();
             String ColorCode = cmbColor.SelectedValue.ToString();
 
-            qrCodeText = qrCodeMfunction + "." + cmbProduct.SelectedValue.ToString() + "." + cmbColor.SelectedValue.ToString() + "." + cmbMaterial.SelectedValue.ToString() + "." + getLastMixRawId().ToString();
+            qrCodeText = qrCodeMfunction + "." + cmbProduct.SelectedValue.ToString() + "|" + cmbColor.SelectedValue.ToString() + "|" + cmbMaterial.SelectedValue.ToString() + "|" + getLastMixRawId().ToString();
             qrMixLotID.Text = qrCodeText;
         }
 
@@ -554,20 +556,28 @@ namespace ScaleApp
 
         private void button5_Click(object sender, EventArgs e)
         {
-            //string labelType = cmbLabelType.SelectedValue.ToString();
-
-            //switch (labelType)
-            //{
-            //    case "Mixed":
-            //    case "Runner":
-            //    case "Defect":
-            //    case "BlackDot":
-            //    case "Contaminated":
-            //    default:
-            //}
+            //string labelType = cmbLabelType.SelectedItem.ToString();
 
             frmReportMixed report = new frmReportMixed();
-            report.ShowDialog();
+
+            if (cmbLabelType.SelectedItem == null)
+            {
+                report.LableTypeReport = "Mixed";
+            }
+            else
+            {
+                report.LableTypeReport = cmbLabelType.SelectedItem.ToString();
+            }
+
+            if (txtMixID.Text.IsNullOrEmpty())
+            {
+                MessageBox.Show("Select a Mix Lot Id to print !");
+            }
+            else
+            {
+                report.MixID = int.Parse(txtMixID.Text.ToString());
+                report.Show();
+            }            
         }        
 
         private void gridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -617,6 +627,7 @@ namespace ScaleApp
         private void btnReset_Click(object sender, EventArgs e)
         {
             resetForm();
+            btnSave.Enabled = true;
         }
 
         private void cmdPost_Click(object sender, EventArgs e)
@@ -629,10 +640,12 @@ namespace ScaleApp
             if (txtPosted.Text.ToString() == "0")
             {
                 cmdPost.Enabled = true;
+                btnSave.Enabled = true;
             }
             else
             {
                 cmdPost.Enabled = false;
+                btnSave.Enabled = false;
             }
         }
 

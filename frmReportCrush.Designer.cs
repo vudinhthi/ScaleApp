@@ -1,6 +1,6 @@
 ﻿namespace ScaleApp
 {
-    partial class frmReportMixed
+    partial class frmReportCrush
     {
         /// <summary>
         /// Required designer variable.
@@ -28,15 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.documentViewerRibbonController1 = new DevExpress.XtraPrinting.Preview.DocumentViewerRibbonController(this.components);
             this.documentViewer1 = new DevExpress.XtraPrinting.Preview.DocumentViewer();
-            ((System.ComponentModel.ISupportInitialize)(this.documentViewerRibbonController1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // documentViewerRibbonController1
-            // 
-            this.documentViewerRibbonController1.DocumentViewer = this.documentViewer1;
             // 
             // documentViewer1
             // 
@@ -44,25 +37,24 @@
             this.documentViewer1.IsMetric = false;
             this.documentViewer1.Location = new System.Drawing.Point(0, 0);
             this.documentViewer1.Name = "documentViewer1";
-            this.documentViewer1.Size = new System.Drawing.Size(706, 727);
+            this.documentViewer1.Size = new System.Drawing.Size(727, 450);
             this.documentViewer1.TabIndex = 0;
             // 
-            // frmReportMixed
+            // frmReportCrush
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(706, 727);
+            this.ClientSize = new System.Drawing.Size(727, 450);
             this.Controls.Add(this.documentViewer1);
-            this.Name = "frmReportMixed";
-            this.Text = "Mixed Label";
-            this.Load += new System.EventHandler(this.frmReport_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.documentViewerRibbonController1)).EndInit();
+            this.Name = "frmReportCrush";
+            this.Text = "Crush Label";
+            this.Load += new System.EventHandler(this.frmReportCrush_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private DevExpress.XtraPrinting.Preview.DocumentViewerRibbonController documentViewerRibbonController1;
+
         private DevExpress.XtraPrinting.Preview.DocumentViewer documentViewer1;
     }
 }

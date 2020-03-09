@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -45,12 +60,17 @@
     <Reference Include="DevExpress.Printing.v19.2.Core, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.RichEdit.v19.2.Core, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v19.2.Export, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Snap.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Snap.v19.2.Core, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Snap.v19.2.Extensions, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Sparkline.v19.2.Core, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v19.2.UI, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpo.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v19.2.UI, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v19.2.Wizard, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraEditors.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGauges.v19.2.Core, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -58,6 +78,8 @@
     <Reference Include="DevExpress.XtraPrinting.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v19.2.Extensions, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -105,6 +127,12 @@
     <Compile Include="frmMixing.Designer.cs">
       <DependentUpon>frmMixing.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReportCrush.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportCrush.Designer.cs">
+      <DependentUpon>frmReportCrush.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReportMixed.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,11 +141,41 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rptBlackDot.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptBlackDot.Designer.cs">
+      <DependentUpon>rptBlackDot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="rptContaminated.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptContaminated.Designer.cs">
+      <DependentUpon>rptContaminated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="rptCrushed.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptCrushed.Designer.cs">
+      <DependentUpon>rptCrushed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="rptDefect.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptDefect.Designer.cs">
+      <DependentUpon>rptDefect.cs</DependentUpon>
+    </Compile>
     <Compile Include="rptMixed.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="rptMixed.Designer.cs">
       <DependentUpon>rptMixed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="rptMixedOut.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptMixedOut.Designer.cs">
+      <DependentUpon>rptMixedOut.cs</DependentUpon>
     </Compile>
     <Compile Include="rptMixing.cs">
       <SubType>Component</SubType>
@@ -137,6 +195,9 @@
     <EmbeddedResource Include="frmMixing.resx">
       <DependentUpon>frmMixing.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReportCrush.resx">
+      <DependentUpon>frmReportCrush.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmReportMixed.resx">
       <DependentUpon>frmReportMixed.cs</DependentUpon>
     </EmbeddedResource>
@@ -151,8 +212,23 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="rptBlackDot.resx">
+      <DependentUpon>rptBlackDot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptContaminated.resx">
+      <DependentUpon>rptContaminated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptCrushed.resx">
+      <DependentUpon>rptCrushed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptDefect.resx">
+      <DependentUpon>rptDefect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="rptMixed.resx">
       <DependentUpon>rptMixed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptMixedOut.resx">
+      <DependentUpon>rptMixedOut.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="rptMixing.resx">
       <DependentUpon>rptMixing.cs</DependentUpon>
@@ -258,6 +334,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Reports\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

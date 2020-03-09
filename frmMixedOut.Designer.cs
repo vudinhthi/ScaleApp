@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator5 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbMixId = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -54,7 +54,7 @@
             this.WeightRunner = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WeightDefect = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WeightBlackDot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WeightContaminated = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WeighContamination = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WeightRecycle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WeightCookie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Posted = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -190,6 +190,7 @@
             this.cmdPosted.Size = new System.Drawing.Size(109, 70);
             this.cmdPosted.TabIndex = 7;
             this.cmdPosted.UseVisualStyleBackColor = true;
+            this.cmdPosted.Click += new System.EventHandler(this.cmdPosted_Click);
             // 
             // qrCodeMixId
             // 
@@ -200,8 +201,8 @@
             this.qrCodeMixId.Name = "qrCodeMixId";
             this.qrCodeMixId.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrCodeMixId.Size = new System.Drawing.Size(309, 152);
-            qrCodeGenerator5.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
-            this.qrCodeMixId.Symbology = qrCodeGenerator5;
+            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
+            this.qrCodeMixId.Symbology = qrCodeGenerator1;
             this.qrCodeMixId.TabIndex = 8;
             // 
             // txtMixOutId
@@ -244,7 +245,7 @@
             this.WeightRunner,
             this.WeightDefect,
             this.WeightBlackDot,
-            this.WeightContaminated,
+            this.WeighContamination,
             this.WeightRecycle,
             this.WeightCookie,
             this.Posted});
@@ -297,12 +298,12 @@
             this.WeightBlackDot.ReadOnly = true;
             this.WeightBlackDot.Width = 80;
             // 
-            // WeightContaminated
+            // WeighContamination
             // 
-            this.WeightContaminated.HeaderText = "Contaminated";
-            this.WeightContaminated.Name = "WeightContaminated";
-            this.WeightContaminated.ReadOnly = true;
-            this.WeightContaminated.Width = 80;
+            this.WeighContamination.HeaderText = "Contaminated";
+            this.WeighContamination.Name = "WeighContamination";
+            this.WeighContamination.ReadOnly = true;
+            this.WeighContamination.Width = 80;
             // 
             // WeightRecycle
             // 
@@ -382,7 +383,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn WeightRunner;
         private System.Windows.Forms.DataGridViewTextBoxColumn WeightDefect;
         private System.Windows.Forms.DataGridViewTextBoxColumn WeightBlackDot;
-        private System.Windows.Forms.DataGridViewTextBoxColumn WeightContaminated;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WeighContamination;
         private System.Windows.Forms.DataGridViewTextBoxColumn WeightRecycle;
         private System.Windows.Forms.DataGridViewTextBoxColumn WeightCookie;
         private System.Windows.Forms.DataGridViewTextBoxColumn Posted;

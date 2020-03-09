@@ -44,13 +44,88 @@ namespace ScaleApp
 
         private void cmdSave_Click(object sender, EventArgs e)
         {
+            Double _weightRunner;
+            Double _weightDefect;
+            Double _weightBlackDot;
+            Double _weightContaminated;
+            int i;
+
             if (CheckExistedMixOut() == 0)
             {
                 CreateMixOut();
             }
             else
-            {
-                UpdateMixOut();
+            {                
+                //Get data of fields weight
+                String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+                SqlConnection conn = new SqlConnection(connStr);
+                SqlDataAdapter SqlDa = new SqlDataAdapter();
+                SqlCommand sqlcmd = new SqlCommand("sp_getFullMixOut", conn);
+
+                DataSet ds = new DataSet();
+                try
+                {
+                    sqlcmd.CommandType = CommandType.StoredProcedure;
+                    sqlcmd.Parameters.AddWithValue("@mixOutId", int.Parse(txtMixOutId.Text.ToString()));
+                    SqlDa.SelectCommand = sqlcmd;
+                    SqlDa.Fill(ds);
+                    i = ds.Tables[0].Rows.Count;
+                    if (i > 0)
+                    {
+                        _weightRunner = double.Parse(ds.Tables[0].Rows[0][1].ToString());
+                        _weightDefect = double.Parse(ds.Tables[0].Rows[0][2].ToString());
+                        _weightBlackDot = double.Parse(ds.Tables[0].Rows[0][3].ToString());
+                        _weightContaminated = double.Parse(ds.Tables[0].Rows[0][4].ToString());
+
+                        //Update Mixing Out Record by ID
+                        SqlCommand cmdUpdate = new SqlCommand("sp_UpdateMixingOut", conn);
+                        cmdUpdate.CommandType = CommandType.StoredProcedure;
+
+                        switch (GetRadioChecked())
+                        {
+                            case "rdbRunner":
+                                _weightRunner = double.Parse(txtWeight.Text.ToString());
+                                break;
+                            case "rdbDefect":
+                                _weightDefect = double.Parse(txtWeight.Text.ToString());
+                                break;
+                            case "rdbBlackDot":
+                                _weightBlackDot = double.Parse(txtWeight.Text.ToString());
+                                break;
+                            case "rdbContaminated":
+                                _weightContaminated = double.Parse(txtWeight.Text.ToString());
+                                break;
+                        }
+
+                        cmdUpdate.Parameters.AddWithValue("@weightRunner", _weightRunner);
+                        cmdUpdate.Parameters.AddWithValue("@weightDefect", _weightDefect);
+                        cmdUpdate.Parameters.AddWithValue("@weightBlackDot", _weightBlackDot);
+                        cmdUpdate.Parameters.AddWithValue("@weightContaminated", _weightContaminated);
+                        cmdUpdate.Parameters.AddWithValue("@weightRecycle", 0);
+                        cmdUpdate.Parameters.AddWithValue("@weightCookie", 0);
+
+                        cmdUpdate.Parameters.AddWithValue("@mixRawId", cmbMixId.SelectedValue);
+                        cmdUpdate.Parameters.AddWithValue("@Id", txtMixOutId.Text);
+
+                        conn.Open();
+
+                        i = cmdUpdate.ExecuteNonQuery();
+
+                        LoaddataGridView1();
+
+                        if (i != 0)
+                        {
+                            MessageBox.Show(i + "Data Saved");
+                        }
+                        //End UpdateMixOut
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                ScaleApp.Common.DataOperation.disconnect();
+                //End get datas weight  
             }  
         }        
         
@@ -101,10 +176,9 @@ namespace ScaleApp
             conn.Open();
 
             int i = cmd.ExecuteNonQuery();
-
-            ScaleApp.Common.DataOperation.disconnect();
-
             LoaddataGridView1();
+
+            ScaleApp.Common.DataOperation.disconnect();           
 
             if (i != 0)
             {
@@ -115,7 +189,6 @@ namespace ScaleApp
         private void UpdateMixOut()
         {
             //Lay 1 record ra va luu cac Weight da ton tai, chi cap nhat Weight theo form
-
             String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
             SqlConnection conn = new SqlConnection(connStr);
             
@@ -183,7 +256,7 @@ namespace ScaleApp
                 if (rb.Checked)
                 {
                     rdicheckName = rb.Name;
-                    MessageBox.Show(rb.Name + "-" + txtWeight.Text.ToString());                    
+                    //MessageBox.Show(rb.Name + "-" + txtWeight.Text.ToString());                    
                 }
             }
             return rdicheckName;
@@ -314,7 +387,7 @@ namespace ScaleApp
                 gridView1.Columns["WeightRunner"].DataPropertyName = "WeightRunner";
                 gridView1.Columns["WeightDefect"].DataPropertyName = "WeightDefect";
                 gridView1.Columns["WeightBlackDot"].DataPropertyName = "WeightBlackDot";
-                gridView1.Columns["WeightContaminated"].DataPropertyName = "WeightContaminated";
+                gridView1.Columns["WeighContamination"].DataPropertyName = "WeighContamination";
                 gridView1.Columns["WeightRecycle"].DataPropertyName = "WeightRecycle";
                 gridView1.Columns["WeightCookie"].DataPropertyName = "WeightCookie";                
                 gridView1.Columns["Posted"].DataPropertyName = "Posted";
@@ -341,6 +414,7 @@ namespace ScaleApp
         {
             cmbMixId.SelectedValue = 0;
             txtWeight.Text = null;
+            cmdSave.Enabled = true;
         }
 
         private void gridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -355,7 +429,50 @@ namespace ScaleApp
                 txtPosted.Text = gridView1.Rows[rowindex].Cells[9].Value.ToString();
 
                 loadMixOut(int.Parse(txtMixOutId.Text.ToString()));
-                //SetcmdPost();
+                SetcmdPost();
+            }
+        }
+
+        private void cmdPosted_Click(object sender, EventArgs e)
+        {
+            UpdatePosted();
+        }
+
+        private void SetcmdPost()
+        {
+            if (txtPosted.Text.ToString() == "0")
+            {
+                cmdPosted.Enabled = true;
+                cmdSave.Enabled = true;
+            }
+            else
+            {
+                cmdPosted.Enabled = false;
+                cmdSave.Enabled = false;
+            }
+        }
+
+        private void UpdatePosted()
+        {
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+            SqlCommand cmd = new SqlCommand("sp_setMixOutPosted", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Id", txtMixOutId.Text);
+
+            conn.Open();
+
+            int i = cmd.ExecuteNonQuery();
+
+            ScaleApp.Common.DataOperation.disconnect();
+
+            if (i != 0)
+            {
+                MessageBox.Show("Data posted !");
+                LoaddataGridView1();
+                cmdSave.Enabled = false;
+                cmdPosted.Enabled = false;
             }
         }
     }

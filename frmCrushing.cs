@@ -534,5 +534,21 @@ namespace ScaleApp
         {
             UpdatePosted();
         }
+
+        private void cmdPrint_Click(object sender, EventArgs e)
+        {
+            frmReportCrush reportCrush = new frmReportCrush();
+
+            if (txtCrushID.Text.IsNullOrEmpty())
+            {
+                MessageBox.Show("Select a Mix Lot Id to print !");
+            }
+            else
+            {
+                reportCrush.MixID = int.Parse(txtCrushID.Text.ToString());
+                reportCrush.Show();
+            }
+            
+        }
     }
 }

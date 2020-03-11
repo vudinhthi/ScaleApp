@@ -58,8 +58,10 @@
             this.WeightRecycle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WeightCookie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Posted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtWeightSacle = new DevExpress.XtraEditors.TextEdit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightSacle.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -158,9 +160,10 @@
             this.txtWeight.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtWeight.Location = new System.Drawing.Point(124, 135);
             this.txtWeight.Name = "txtWeight";
-            this.txtWeight.Size = new System.Drawing.Size(293, 29);
+            this.txtWeight.Size = new System.Drawing.Size(32, 29);
             this.txtWeight.TabIndex = 4;
             this.txtWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtWeight.Visible = false;
             // 
             // cmdSave
             // 
@@ -326,11 +329,23 @@
             this.Posted.ReadOnly = true;
             this.Posted.Width = 40;
             // 
+            // txtWeightSacle
+            // 
+            this.txtWeightSacle.Location = new System.Drawing.Point(124, 135);
+            this.txtWeightSacle.Name = "txtWeightSacle";
+            this.txtWeightSacle.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWeightSacle.Properties.Appearance.Options.UseFont = true;
+            this.txtWeightSacle.Properties.Mask.EditMask = "d";
+            this.txtWeightSacle.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtWeightSacle.Size = new System.Drawing.Size(293, 30);
+            this.txtWeightSacle.TabIndex = 13;
+            // 
             // frmMixedOut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(758, 623);
+            this.Controls.Add(this.txtWeightSacle);
             this.Controls.Add(this.gridView1);
             this.Controls.Add(this.txtDateTime);
             this.Controls.Add(this.txtPosted);
@@ -352,6 +367,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightSacle.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -387,5 +403,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn WeightRecycle;
         private System.Windows.Forms.DataGridViewTextBoxColumn WeightCookie;
         private System.Windows.Forms.DataGridViewTextBoxColumn Posted;
+        private DevExpress.XtraEditors.TextEdit txtWeightSacle;
     }
 }

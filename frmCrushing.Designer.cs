@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator5 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -78,8 +78,18 @@
             this.qrCodeCrush = new DevExpress.XtraEditors.BarCodeControl();
             this.txtPosted = new System.Windows.Forms.TextBox();
             this.cmdPost = new System.Windows.Forms.Button();
+            this.txtWeightRe = new DevExpress.XtraEditors.TextEdit();
+            this.lueMaterial = new DevExpress.XtraEditors.LookUpEdit();
+            this.lueMixId = new DevExpress.XtraEditors.LookUpEdit();
+            this.lueProduct = new DevExpress.XtraEditors.LookUpEdit();
+            this.lueColor = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrushed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightRe.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueMaterial.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueMixId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueProduct.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueColor.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -150,9 +160,9 @@
             this.labelControl6.Appearance.Options.UseForeColor = true;
             this.labelControl6.Location = new System.Drawing.Point(376, 12);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(81, 20);
+            this.labelControl6.Size = new System.Drawing.Size(105, 20);
             this.labelControl6.TabIndex = 11;
-            this.labelControl6.Text = "Mix Lot ID";
+            this.labelControl6.Text = "Mix Lot ID (*)";
             // 
             // txtMachine
             // 
@@ -171,9 +181,9 @@
             this.labelControl7.Appearance.Options.UseForeColor = true;
             this.labelControl7.Location = new System.Drawing.Point(12, 225);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(62, 20);
+            this.labelControl7.Size = new System.Drawing.Size(86, 20);
             this.labelControl7.TabIndex = 14;
-            this.labelControl7.Text = "Product";
+            this.labelControl7.Text = "Product (*)";
             // 
             // labelControl8
             // 
@@ -183,9 +193,9 @@
             this.labelControl8.Appearance.Options.UseForeColor = true;
             this.labelControl8.Location = new System.Drawing.Point(12, 267);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(43, 20);
+            this.labelControl8.Size = new System.Drawing.Size(66, 20);
             this.labelControl8.TabIndex = 16;
-            this.labelControl8.Text = "Color";
+            this.labelControl8.Text = "Color (*)";
             // 
             // labelControl9
             // 
@@ -195,9 +205,9 @@
             this.labelControl9.Appearance.Options.UseForeColor = true;
             this.labelControl9.Location = new System.Drawing.Point(376, 53);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(64, 20);
+            this.labelControl9.Size = new System.Drawing.Size(88, 20);
             this.labelControl9.TabIndex = 18;
-            this.labelControl9.Text = "Material";
+            this.labelControl9.Text = "Material (*)";
             // 
             // labelControl11
             // 
@@ -324,7 +334,7 @@
             this.gridCrushed.Location = new System.Drawing.Point(12, 413);
             this.gridCrushed.Name = "gridCrushed";
             this.gridCrushed.ReadOnly = true;
-            this.gridCrushed.Size = new System.Drawing.Size(936, 264);
+            this.gridCrushed.Size = new System.Drawing.Size(936, 361);
             this.gridCrushed.TabIndex = 34;
             this.gridCrushed.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCrushed_CellClick);
             // 
@@ -443,6 +453,7 @@
             this.cmbLostType.Items.AddRange(new object[] {
             "",
             "Recycle",
+            "Defect",
             "Framapur",
             "Framaprene",
             "Mix Material/Contaminated"});
@@ -467,8 +478,9 @@
             this.cmbProduct.FormattingEnabled = true;
             this.cmbProduct.Location = new System.Drawing.Point(148, 225);
             this.cmbProduct.Name = "cmbProduct";
-            this.cmbProduct.Size = new System.Drawing.Size(199, 30);
+            this.cmbProduct.Size = new System.Drawing.Size(23, 30);
             this.cmbProduct.TabIndex = 39;
+            this.cmbProduct.Visible = false;
             this.cmbProduct.SelectedIndexChanged += new System.EventHandler(this.cmbProduct_SelectedIndexChanged);
             // 
             // cmbColor
@@ -478,8 +490,9 @@
             this.cmbColor.FormattingEnabled = true;
             this.cmbColor.Location = new System.Drawing.Point(148, 267);
             this.cmbColor.Name = "cmbColor";
-            this.cmbColor.Size = new System.Drawing.Size(199, 30);
+            this.cmbColor.Size = new System.Drawing.Size(23, 30);
             this.cmbColor.TabIndex = 40;
+            this.cmbColor.Visible = false;
             this.cmbColor.SelectedIndexChanged += new System.EventHandler(this.cmbColor_SelectedIndexChanged);
             // 
             // cmbMixId
@@ -488,8 +501,9 @@
             this.cmbMixId.FormattingEnabled = true;
             this.cmbMixId.Location = new System.Drawing.Point(512, 12);
             this.cmbMixId.Name = "cmbMixId";
-            this.cmbMixId.Size = new System.Drawing.Size(276, 30);
+            this.cmbMixId.Size = new System.Drawing.Size(28, 30);
             this.cmbMixId.TabIndex = 41;
+            this.cmbMixId.Visible = false;
             // 
             // cmbMaterial
             // 
@@ -498,16 +512,18 @@
             this.cmbMaterial.FormattingEnabled = true;
             this.cmbMaterial.Location = new System.Drawing.Point(512, 53);
             this.cmbMaterial.Name = "cmbMaterial";
-            this.cmbMaterial.Size = new System.Drawing.Size(276, 30);
+            this.cmbMaterial.Size = new System.Drawing.Size(28, 30);
             this.cmbMaterial.TabIndex = 42;
+            this.cmbMaterial.Visible = false;
             // 
             // txtWeightCrushed
             // 
             this.txtWeightCrushed.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtWeightCrushed.Location = new System.Drawing.Point(512, 97);
             this.txtWeightCrushed.Name = "txtWeightCrushed";
-            this.txtWeightCrushed.Size = new System.Drawing.Size(276, 29);
+            this.txtWeightCrushed.Size = new System.Drawing.Size(28, 29);
             this.txtWeightCrushed.TabIndex = 44;
+            this.txtWeightCrushed.Visible = false;
             // 
             // txtCrushID
             // 
@@ -528,8 +544,8 @@
             this.qrCodeCrush.Name = "qrCodeCrush";
             this.qrCodeCrush.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrCodeCrush.Size = new System.Drawing.Size(276, 210);
-            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
-            this.qrCodeCrush.Symbology = qrCodeGenerator1;
+            qrCodeGenerator5.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
+            this.qrCodeCrush.Symbology = qrCodeGenerator5;
             this.qrCodeCrush.TabIndex = 25;
             // 
             // txtPosted
@@ -549,11 +565,77 @@
             this.cmdPost.UseVisualStyleBackColor = true;
             this.cmdPost.Click += new System.EventHandler(this.cmdPost_Click);
             // 
+            // txtWeightRe
+            // 
+            this.txtWeightRe.Location = new System.Drawing.Point(512, 97);
+            this.txtWeightRe.Name = "txtWeightRe";
+            this.txtWeightRe.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWeightRe.Properties.Appearance.Options.UseFont = true;
+            this.txtWeightRe.Properties.Mask.EditMask = "n";
+            this.txtWeightRe.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtWeightRe.Size = new System.Drawing.Size(276, 30);
+            this.txtWeightRe.TabIndex = 48;
+            // 
+            // lueMaterial
+            // 
+            this.lueMaterial.Location = new System.Drawing.Point(512, 53);
+            this.lueMaterial.Name = "lueMaterial";
+            this.lueMaterial.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueMaterial.Properties.Appearance.Options.UseFont = true;
+            this.lueMaterial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueMaterial.Properties.NullText = "";
+            this.lueMaterial.Size = new System.Drawing.Size(275, 30);
+            this.lueMaterial.TabIndex = 49;
+            this.lueMaterial.EditValueChanged += new System.EventHandler(this.lueMaterial_EditValueChanged);
+            // 
+            // lueMixId
+            // 
+            this.lueMixId.Location = new System.Drawing.Point(512, 12);
+            this.lueMixId.Name = "lueMixId";
+            this.lueMixId.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueMixId.Properties.Appearance.Options.UseFont = true;
+            this.lueMixId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueMixId.Properties.NullText = "";
+            this.lueMixId.Size = new System.Drawing.Size(275, 30);
+            this.lueMixId.TabIndex = 50;
+            // 
+            // lueProduct
+            // 
+            this.lueProduct.Location = new System.Drawing.Point(148, 225);
+            this.lueProduct.Name = "lueProduct";
+            this.lueProduct.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueProduct.Properties.Appearance.Options.UseFont = true;
+            this.lueProduct.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueProduct.Properties.NullText = "";
+            this.lueProduct.Size = new System.Drawing.Size(199, 30);
+            this.lueProduct.TabIndex = 51;
+            this.lueProduct.EditValueChanged += new System.EventHandler(this.lueProduct_EditValueChanged);
+            // 
+            // lueColor
+            // 
+            this.lueColor.Location = new System.Drawing.Point(148, 267);
+            this.lueColor.Name = "lueColor";
+            this.lueColor.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueColor.Properties.Appearance.Options.UseFont = true;
+            this.lueColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueColor.Properties.NullText = "";
+            this.lueColor.Size = new System.Drawing.Size(199, 30);
+            this.lueColor.TabIndex = 52;
+            // 
             // frmCrushing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(980, 686);
+            this.ClientSize = new System.Drawing.Size(980, 786);
+            this.Controls.Add(this.lueColor);
+            this.Controls.Add(this.lueProduct);
+            this.Controls.Add(this.lueMixId);
+            this.Controls.Add(this.lueMaterial);
+            this.Controls.Add(this.txtWeightRe);
             this.Controls.Add(this.cmdPost);
             this.Controls.Add(this.txtPosted);
             this.Controls.Add(this.txtCrushID);
@@ -594,6 +676,11 @@
             this.Load += new System.EventHandler(this.frmCrushing_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrushed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightRe.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueMaterial.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueMixId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueProduct.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueColor.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -648,5 +735,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Posted;
         private System.Windows.Forms.TextBox txtPosted;
         private System.Windows.Forms.Button cmdPost;
+        private DevExpress.XtraEditors.TextEdit txtWeightRe;
+        private DevExpress.XtraEditors.LookUpEdit lueMaterial;
+        private DevExpress.XtraEditors.LookUpEdit lueMixId;
+        private DevExpress.XtraEditors.LookUpEdit lueProduct;
+        private DevExpress.XtraEditors.LookUpEdit lueColor;
     }
 }

@@ -51,9 +51,9 @@ namespace ScaleApp
         {
             var rpt = new rptMixing();
             ReportPrintTool printTool = new ReportPrintTool(rpt);
-            //printTool.PrintDialog();
+            printTool.PrintDialog();
             // Send the report to the specified printer.
-            printTool.Print("Canon B&W");
+            //printTool.Print("Canon B&W");
         }
 
         private void LoadDataToReport(string typeReport)

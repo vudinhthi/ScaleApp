@@ -1,4 +1,5 @@
-﻿using ScaleApp.Common;
+﻿using DevExpress.XtraEditors.Controls;
+using ScaleApp.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,9 +27,13 @@ namespace ScaleApp
             Start_Timer();
             loadComboBoxOperator();
             loadComboBoxStep();
-            loadComboBoxProduct();            
-            loadComboBoxMaterial();
-            loadComboBoxMixId();
+            //loadComboBoxProduct();
+            //loadComboBoxMaterial();
+            LoadLookUpMaterial();
+            LoadLookUpProduct();
+            LoadLookUpColor();
+            //loadComboBoxMixId();
+            LoadLookUpMixId();
             cmdPost.Enabled = false;
             loadGridCrush();            
         }
@@ -261,7 +266,7 @@ namespace ScaleApp
             String ItemCode = cmbProduct.SelectedValue.ToString();
             String ColorCode = cmbColor.SelectedValue.ToString();
             
-            qrCodeText = qrCodeMfunction + "." + cmbProduct.SelectedValue.ToString() + "." + cmbColor.SelectedValue.ToString() + "." + getLastCrushRawId().ToString();            
+            qrCodeText = qrCodeMfunction + "|" + lueProduct.Text + "|" + lueColor.Text + "|" + lueMaterial.Text + "|" + getLastCrushRawId().ToString();            
             qrCodeCrush.Text = qrCodeText;
         }
 
@@ -338,18 +343,36 @@ namespace ScaleApp
             ScaleApp.Common.DataOperation.disconnect();
         }
 
+        private int CheckValidForm()
+        {
+            if (lueColor.EditValue == null || lueMaterial.EditValue == null || lueMixId.EditValue == null || txtWeightRe.Text == null)
+            {
+                return 0;
+            }
+            return 1;
+        }
+
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            double weightCrush;
-            if (String.IsNullOrEmpty(txtWeightCrushed.Text))
+            if (txtCrushID.Text.IsNullOrEmpty())
             {
-                weightCrush = 0;
+                if (CheckValidForm() == 0)
+                {
+                    MessageBox.Show("Do you miss Item?");
+                }
+                else
+                {
+                    CreateCrushRaw();
+                }
             }
             else
             {
-                weightCrush = double.Parse(txtWeightCrushed.Text.ToString());
-            }
+                UpdateCrushRaw();
+            }                      
+        }
 
+        private void CreateCrushRaw()
+        {
             String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
             SqlConnection conn = new SqlConnection(connStr);
             SqlCommand cmd = new SqlCommand("sp_createCrushRaw", conn);
@@ -357,15 +380,47 @@ namespace ScaleApp
 
             cmd.Parameters.AddWithValue("@shiftID", cmbShift.SelectedItem);
             cmd.Parameters.AddWithValue("@operatorCode", cmbOperator.SelectedValue);
-            cmd.Parameters.AddWithValue("@productCode", cmbProduct.SelectedValue);
-            cmd.Parameters.AddWithValue("@materialCode", cmbMaterial.SelectedValue);
-            cmd.Parameters.AddWithValue("@colorCode", cmbColor.SelectedValue);
+            cmd.Parameters.AddWithValue("@productCode", lueProduct.EditValue);
+            cmd.Parameters.AddWithValue("@materialCode", lueMaterial.EditValue);
+            cmd.Parameters.AddWithValue("@colorCode", lueColor.EditValue);
             cmd.Parameters.AddWithValue("@stepId", cmbStep.SelectedValue);
-            cmd.Parameters.AddWithValue("@weightRecycle", weightCrush);
+            cmd.Parameters.AddWithValue("@weightRecycle", txtWeightRe.Text);
             cmd.Parameters.AddWithValue("@lostType", cmbLostType.SelectedItem);
-            cmd.Parameters.AddWithValue("@mixRawId", int.Parse(cmbMixId.SelectedValue.ToString()));
-            cmd.Parameters.AddWithValue("@machineID", txtMachine.Text);            
+            cmd.Parameters.AddWithValue("@mixRawId", lueMixId.EditValue);
+            cmd.Parameters.AddWithValue("@machineID", txtMachine.Text);
             cmd.Parameters.AddWithValue("@qrCode", qrCodeCrush.Text);
+
+            conn.Open();
+
+            int i = cmd.ExecuteNonQuery();
+
+            ScaleApp.Common.DataOperation.disconnect();            
+
+            if (i != 0)
+            {
+                MessageBox.Show(i + " Crushed Lot saved!");
+                loadGridCrush();
+            }
+        }
+
+        private void UpdateCrushRaw()
+        {
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+            SqlCommand cmd = new SqlCommand("sp_editCrushRaw", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@shiftID", cmbShift.SelectedItem);
+            cmd.Parameters.AddWithValue("@operatorCode", cmbOperator.SelectedValue);
+            cmd.Parameters.AddWithValue("@productCode", lueProduct.EditValue);
+            cmd.Parameters.AddWithValue("@materialCode", lueMaterial.EditValue);
+            cmd.Parameters.AddWithValue("@colorCode", lueColor.EditValue);
+            cmd.Parameters.AddWithValue("@stepId", cmbStep.SelectedValue);
+            cmd.Parameters.AddWithValue("@weightRecycle", txtWeightRe.Text);
+            cmd.Parameters.AddWithValue("@lostType", cmbLostType.SelectedItem);
+            cmd.Parameters.AddWithValue("@mixRawId", lueMixId.EditValue);
+            cmd.Parameters.AddWithValue("@machineID", txtMachine.Text);            
+            cmd.Parameters.AddWithValue("@crushRawId", txtCrushID.Text);
 
             conn.Open();
 
@@ -373,11 +428,10 @@ namespace ScaleApp
 
             ScaleApp.Common.DataOperation.disconnect();
 
-            loadGridCrush();
-
             if (i != 0)
             {
-                MessageBox.Show(i + " Crushed Lot saved!");
+                MessageBox.Show(i + "Data Saved");
+                loadGridCrush();
             }
         }
 
@@ -414,13 +468,13 @@ namespace ScaleApp
                 cmbShift.SelectedItem = ds.Tables[0].Rows[0][1]; //Get ShiftID
                 cmbLostType.SelectedItem = ds.Tables[0].Rows[0][12]; //Get Lost Type
                 cmbOperator.SelectedValue = ds.Tables[0].Rows[0][2]; //Get Operator
-                cmbProduct.SelectedValue = ds.Tables[0].Rows[0][4]; //Get Item
-                cmbMaterial.SelectedValue = ds.Tables[0].Rows[0][6]; //Get Material
-                cmbColor.SelectedValue = ds.Tables[0].Rows[0][8]; //Get Color
+                lueProduct.EditValue = ds.Tables[0].Rows[0][4]; //Get Item
+                lueMaterial.EditValue = ds.Tables[0].Rows[0][6]; //Get Material
+                lueColor.EditValue = ds.Tables[0].Rows[0][8]; //Get Color
                 cmbStep.SelectedValue = ds.Tables[0].Rows[0][10]; //Get Step
-                cmbMixId.SelectedValue = ds.Tables[0].Rows[0][13]; //Get Crush Lot ID
+                lueMixId.EditValue = ds.Tables[0].Rows[0][13]; //Get Crush Lot ID
 
-                txtWeightCrushed.Text = ds.Tables[0].Rows[0][11].ToString(); //Get Weight Recycled
+                txtWeightRe.Text = ds.Tables[0].Rows[0][11].ToString(); //Get Weight Recycled
                 txtMachine.Text = ds.Tables[0].Rows[0][15].ToString(); //Get Machine
                 
                 qrCodeCrush.Text = ds.Tables[0].Rows[0][18].ToString(); //Get Crush Lot ID
@@ -441,12 +495,19 @@ namespace ScaleApp
             cmbOperator.SelectedValue = "None";
             txtMachine.Text = null;
             cmbStep.SelectedValue = "None";
-            cmbProduct.SelectedValue = "None";
-            cmbColor.SelectedValue = "None";
-            cmbMaterial.SelectedValue = "None";
-            cmbMixId.SelectedValue = 0;
-            txtWeightCrushed.Text = null;
+            //cmbProduct.SelectedValue = "None";
+            //cmbColor.SelectedValue = "None";
+            lueProduct.EditValue = null;
+            lueColor.EditValue = null;
+            //cmbMaterial.SelectedValue = "None";
+            lueMaterial.EditValue = null;
+            lueMixId.EditValue = null;
+            //cmbMixId.SelectedValue = 0;
+            //txtWeightCrushed.Text = null;
+            txtWeightRe.Text = null;
             txtCrushDate.Text = null;
+            txtCrushID.Text = null;
+            txtPosted.Text = "0";
         }
 
         private int getLastCrushRawId()
@@ -475,18 +536,12 @@ namespace ScaleApp
         private void cmdReset_Click(object sender, EventArgs e)
         {
             resetForm();
+            cmdSave.Enabled = true;
         }
 
         private void cmbColor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbColor.SelectedValue != null)
-            {
-                generateTextQRCode();
-            }
-            else
-            {
-                qrCodeCrush.Text = "framas.com";
-            }
+            
         }
 
         private void cmdGetWeight_Click(object sender, EventArgs e)
@@ -499,10 +554,12 @@ namespace ScaleApp
             if (txtPosted.Text.ToString() == "0")
             {
                 cmdPost.Enabled = true;
+                cmdSave.Enabled = true;
             }
             else
             {
                 cmdPost.Enabled = false;
+                cmdSave.Enabled = false;
             }
         }
 
@@ -549,6 +606,145 @@ namespace ScaleApp
                 reportCrush.Show();
             }
             
+        }
+
+        private void LoadLookUpMaterial()
+        {
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            try
+            {
+                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getMaterials", conn))
+                {
+                    SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    SqlDa.Fill(ds);
+                }
+
+                lueMaterial.Properties.DataSource = ds.Tables[0];
+                lueMaterial.Properties.DisplayMember = "MaterialName";
+                lueMaterial.Properties.ValueMember = "MaterialCode";
+
+                lueMaterial.Properties.Columns.Add(new LookUpColumnInfo("MaterialCode", "MaterialCode", 60));
+                lueMaterial.Properties.Columns.Add(new LookUpColumnInfo("MaterialName", "MaterialName", 120));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            ScaleApp.Common.DataOperation.disconnect();
+        }
+
+        private void LoadLookUpMixId()
+        {
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            try
+            {
+                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getMixRaws", conn))
+                {
+                    SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    SqlDa.Fill(ds);
+                }
+
+                lueMixId.Properties.DataSource = ds.Tables[0];
+                lueMixId.Properties.DisplayMember = "MixBacode";
+                lueMixId.Properties.ValueMember = "MixRawId";
+
+                lueMixId.Properties.Columns.Add(new LookUpColumnInfo("MixRawId", "MixRawId", 60));
+                lueMixId.Properties.Columns.Add(new LookUpColumnInfo("MixBacode", "MixBacode", 120));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            ScaleApp.Common.DataOperation.disconnect();
+        }
+
+        private void LoadLookUpProduct()
+        {
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            try
+            {
+                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getProducts", conn))
+                {
+                    SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    SqlDa.Fill(ds);
+                }
+
+                lueProduct.Properties.DataSource = ds.Tables[0];
+                lueProduct.Properties.DisplayMember = "ProductName";
+                lueProduct.Properties.ValueMember = "ProductCode";
+                lueProduct.Properties.KeyMember = "ProductCode";
+
+                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("ProductCode", "ProductCode", 60));
+                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("ProductName", "ProductName", 120));
+                //enable text editing 
+                lueProduct.Properties.TextEditStyle = TextEditStyles.Standard;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            ScaleApp.Common.DataOperation.disconnect();
+        }
+
+        private void LoadLookUpColor()
+        {
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            try
+            {
+                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getColorsProducts", conn))
+                {
+                    SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    SqlDa.Fill(ds);
+                }
+
+
+                lueColor.Properties.DataSource = ds.Tables[0];
+                lueColor.Properties.DisplayMember = "ColorName";
+                lueColor.Properties.ValueMember = "ColorCode";
+
+                lueColor.Properties.Columns.Add(new LookUpColumnInfo("ColorCode", "ColorCode", 60));
+                lueColor.Properties.Columns.Add(new LookUpColumnInfo("ColorName", "ColorName", 120));
+                //lueColor.Properties.Columns.Add(new LookUpColumnInfo("ProductName", "ProductName", 120));
+
+                //enable text editing 
+                lueColor.Properties.TextEditStyle = TextEditStyles.Standard;
+                lueColor.CascadingOwner = lueProduct;
+                lueColor.Properties.CascadingMember = "ProductCode";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            ScaleApp.Common.DataOperation.disconnect();
+        }
+
+        private void lueMaterial_EditValueChanged(object sender, EventArgs e)
+        {
+            if (cmbColor.SelectedValue != null)
+            {
+                generateTextQRCode();
+            }
+            else
+            {
+                qrCodeCrush.Text = "framas.com";
+            }
+        }
+
+        private void lueProduct_EditValueChanged(object sender, EventArgs e)
+        {
+            lueColor.EditValue = null;
         }
     }
 }

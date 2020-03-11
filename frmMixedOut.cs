@@ -84,16 +84,16 @@ namespace ScaleApp
                         switch (GetRadioChecked())
                         {
                             case "rdbRunner":
-                                _weightRunner = double.Parse(txtWeight.Text.ToString());
+                                _weightRunner = double.Parse(txtWeightSacle.Text.ToString());
                                 break;
                             case "rdbDefect":
-                                _weightDefect = double.Parse(txtWeight.Text.ToString());
+                                _weightDefect = double.Parse(txtWeightSacle.Text.ToString());
                                 break;
                             case "rdbBlackDot":
-                                _weightBlackDot = double.Parse(txtWeight.Text.ToString());
+                                _weightBlackDot = double.Parse(txtWeightSacle.Text.ToString());
                                 break;
                             case "rdbContaminated":
-                                _weightContaminated = double.Parse(txtWeight.Text.ToString());
+                                _weightContaminated = double.Parse(txtWeightSacle.Text.ToString());
                                 break;
                         }
 
@@ -139,7 +139,7 @@ namespace ScaleApp
             switch (GetRadioChecked())
             {
                 case "rdbRunner":
-                    cmd.Parameters.AddWithValue("@weightRunner", txtWeight.Text);
+                    cmd.Parameters.AddWithValue("@weightRunner", txtWeightSacle.Text);
                     cmd.Parameters.AddWithValue("@weightDefect", 0);
                     cmd.Parameters.AddWithValue("@weightBlackDot", 0);
                     cmd.Parameters.AddWithValue("@weightContaminated", 0);
@@ -148,7 +148,7 @@ namespace ScaleApp
                     break;
                 case "rdbDefect":
                     cmd.Parameters.AddWithValue("@weightRunner", 0);
-                    cmd.Parameters.AddWithValue("@weightDefect", txtWeight.Text);
+                    cmd.Parameters.AddWithValue("@weightDefect", txtWeightSacle.Text);
                     cmd.Parameters.AddWithValue("@weightBlackDot", 0);
                     cmd.Parameters.AddWithValue("@weightContaminated", 0);
                     cmd.Parameters.AddWithValue("@weightRecycle", 0);
@@ -157,7 +157,7 @@ namespace ScaleApp
                 case "rdbBlackDot":
                     cmd.Parameters.AddWithValue("@weightRunner", 0);
                     cmd.Parameters.AddWithValue("@weightDefect", 0);
-                    cmd.Parameters.AddWithValue("@weightBlackDot", txtWeight.Text);
+                    cmd.Parameters.AddWithValue("@weightBlackDot", txtWeightSacle.Text);
                     cmd.Parameters.AddWithValue("@weightContaminated", 0);
                     cmd.Parameters.AddWithValue("@weightRecycle", 0);
                     cmd.Parameters.AddWithValue("@weightCookie", 0);
@@ -166,7 +166,7 @@ namespace ScaleApp
                     cmd.Parameters.AddWithValue("@weightRunner", 0);
                     cmd.Parameters.AddWithValue("@weightDefect", 0);
                     cmd.Parameters.AddWithValue("@weightBlackDot", 0);
-                    cmd.Parameters.AddWithValue("@weightContaminated", txtWeight.Text);
+                    cmd.Parameters.AddWithValue("@weightContaminated", txtWeightSacle.Text);
                     cmd.Parameters.AddWithValue("@weightRecycle", 0);
                     cmd.Parameters.AddWithValue("@weightCookie", 0);
                     break;

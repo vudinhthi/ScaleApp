@@ -55,12 +55,12 @@
             // 
             // TopMargin
             // 
-            this.TopMargin.HeightF = 46.875F;
+            this.TopMargin.HeightF = 16F;
             this.TopMargin.Name = "TopMargin";
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 12.5F;
+            this.BottomMargin.HeightF = 34F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // Detail
@@ -442,10 +442,11 @@
             this.BottomMargin,
             this.Detail});
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(100, 100, 47, 12);
-            this.PageHeight = 902;
-            this.PageWidth = 638;
-            this.PaperKind = System.Drawing.Printing.PaperKind.C5Envelope;
+            this.Margins = new System.Drawing.Printing.Margins(18, 32, 16, 34);
+            this.PageHeight = 866;
+            this.PageWidth = 433;
+            this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
+            this.RollPaper = true;
             this.Version = "19.2";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 

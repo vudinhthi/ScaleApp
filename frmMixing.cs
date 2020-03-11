@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -677,8 +678,25 @@ namespace ScaleApp
                 gridView2.Columns["StepName"].VisibleIndex = -1;
                 gridView2.Columns["CrushRawID"].VisibleIndex = -1;
 
+                //Reorder Columns of MasterGridView
+                gridView2.Columns["CreateTime"].VisibleIndex = 1;
+                gridView2.Columns["MixBacode"].VisibleIndex = 2;
+                gridView2.Columns["RecycledID"].VisibleIndex = 3;
+                gridView2.Columns["ShiftName"].VisibleIndex = 4;
+                gridView2.Columns["OperatorName"].VisibleIndex = 5;
+                gridView2.Columns["ProductName"].VisibleIndex = 6;
+                gridView2.Columns["MaterialName"].VisibleIndex = 7;
+                gridView2.Columns["ColorCode"].VisibleIndex = 8;
+                gridView2.Columns["ColorName"].VisibleIndex = 9;
+                gridView2.Columns["StepCode"].VisibleIndex = 10;
+                gridView2.Columns["WeightMaterial"].VisibleIndex = 11;
+                gridView2.Columns["WeightRecycle"].VisibleIndex = 12;
+                gridView2.Columns["TotalMaterial"].VisibleIndex = 13;
+                gridView2.Columns["MachineName"].VisibleIndex = 14;
+
                 //Set column's width of Master GridView
                 gridView2.Columns["MixRawId"].Width = 40;
+                gridView2.Columns["RecycledID"].Width = 150;
                 gridView2.Columns["CreateTime"].Width = 100;
                 gridView2.Columns["MixBacode"].Width = 150;                
                 gridView2.Columns["ShiftName"].Width = 40;
@@ -982,5 +1000,28 @@ namespace ScaleApp
         {
             txtTotal.Text = getTotalWeight();
         }
+
+        private void spWeightMaterial_Click(object sender, EventArgs e)
+        {
+            txtWeightMaterial.Text = txtScaleWeight.Text;
+        }
+
+        private void spWeightCrush_Click(object sender, EventArgs e)
+        {
+            txtWeightRe.Text = txtScaleWeight.Text;
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            LoadGridControl1();
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            string path = "D:\\ExportExcel\\Mixing.xlsx";
+            gridControl1.ExportToXlsx(path);
+            // Open the created XLSX file with the default application. 
+            Process.Start(path);
+        }        
     }
 }

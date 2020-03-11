@@ -43,10 +43,6 @@
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.cmdPrint = new System.Windows.Forms.Button();
-            this.cmdReset = new System.Windows.Forms.Button();
-            this.cmdSave = new System.Windows.Forms.Button();
-            this.cmdGetWeight = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.txtNow = new System.Windows.Forms.TextBox();
             this.txtCrushDate = new System.Windows.Forms.TextBox();
@@ -77,12 +73,21 @@
             this.txtCrushID = new System.Windows.Forms.TextBox();
             this.qrCodeCrush = new DevExpress.XtraEditors.BarCodeControl();
             this.txtPosted = new System.Windows.Forms.TextBox();
-            this.cmdPost = new System.Windows.Forms.Button();
             this.txtWeightRe = new DevExpress.XtraEditors.TextEdit();
             this.lueMaterial = new DevExpress.XtraEditors.LookUpEdit();
             this.lueMixId = new DevExpress.XtraEditors.LookUpEdit();
             this.lueProduct = new DevExpress.XtraEditors.LookUpEdit();
             this.lueColor = new DevExpress.XtraEditors.LookUpEdit();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.spGetWeight = new DevExpress.XtraEditors.SimpleButton();
+            this.cmdPost = new System.Windows.Forms.Button();
+            this.cmdPrint = new System.Windows.Forms.Button();
+            this.cmdReset = new System.Windows.Forms.Button();
+            this.cmdSave = new System.Windows.Forms.Button();
+            this.cmdGetWeight = new System.Windows.Forms.Button();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrushed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightRe.Properties)).BeginInit();
@@ -90,6 +95,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lueMixId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueProduct.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueColor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -245,47 +252,6 @@
             this.textBox1.Text = "25";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // cmdPrint
-            // 
-            this.cmdPrint.Image = global::ScaleApp.Properties.Resources.Print_32x32;
-            this.cmdPrint.Location = new System.Drawing.Point(819, 334);
-            this.cmdPrint.Name = "cmdPrint";
-            this.cmdPrint.Size = new System.Drawing.Size(129, 60);
-            this.cmdPrint.TabIndex = 31;
-            this.cmdPrint.UseVisualStyleBackColor = true;
-            this.cmdPrint.Click += new System.EventHandler(this.cmdPrint_Click);
-            // 
-            // cmdReset
-            // 
-            this.cmdReset.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
-            this.cmdReset.Location = new System.Drawing.Point(820, 264);
-            this.cmdReset.Name = "cmdReset";
-            this.cmdReset.Size = new System.Drawing.Size(128, 60);
-            this.cmdReset.TabIndex = 30;
-            this.cmdReset.UseVisualStyleBackColor = true;
-            this.cmdReset.Click += new System.EventHandler(this.cmdReset_Click);
-            // 
-            // cmdSave
-            // 
-            this.cmdSave.Image = global::ScaleApp.Properties.Resources.Save_32x32;
-            this.cmdSave.Location = new System.Drawing.Point(820, 125);
-            this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(129, 60);
-            this.cmdSave.TabIndex = 29;
-            this.cmdSave.UseVisualStyleBackColor = true;
-            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
-            // 
-            // cmdGetWeight
-            // 
-            this.cmdGetWeight.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdGetWeight.Image = global::ScaleApp.Properties.Resources.GenerateData_32x32;
-            this.cmdGetWeight.Location = new System.Drawing.Point(353, 313);
-            this.cmdGetWeight.Name = "cmdGetWeight";
-            this.cmdGetWeight.Size = new System.Drawing.Size(151, 81);
-            this.cmdGetWeight.TabIndex = 28;
-            this.cmdGetWeight.UseVisualStyleBackColor = true;
-            this.cmdGetWeight.Click += new System.EventHandler(this.cmdGetWeight_Click);
-            // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
@@ -294,20 +260,20 @@
             // 
             this.txtNow.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.txtNow.Location = new System.Drawing.Point(795, 12);
+            this.txtNow.Location = new System.Drawing.Point(803, 12);
             this.txtNow.Name = "txtNow";
             this.txtNow.ReadOnly = true;
-            this.txtNow.Size = new System.Drawing.Size(173, 26);
+            this.txtNow.Size = new System.Drawing.Size(145, 26);
             this.txtNow.TabIndex = 32;
             this.txtNow.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCrushDate
             // 
             this.txtCrushDate.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCrushDate.Location = new System.Drawing.Point(512, 365);
+            this.txtCrushDate.Location = new System.Drawing.Point(513, 278);
             this.txtCrushDate.Name = "txtCrushDate";
             this.txtCrushDate.ReadOnly = true;
-            this.txtCrushDate.Size = new System.Drawing.Size(276, 29);
+            this.txtCrushDate.Size = new System.Drawing.Size(284, 29);
             this.txtCrushDate.TabIndex = 33;
             this.txtCrushDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -334,7 +300,7 @@
             this.gridCrushed.Location = new System.Drawing.Point(12, 413);
             this.gridCrushed.Name = "gridCrushed";
             this.gridCrushed.ReadOnly = true;
-            this.gridCrushed.Size = new System.Drawing.Size(936, 361);
+            this.gridCrushed.Size = new System.Drawing.Size(977, 100);
             this.gridCrushed.TabIndex = 34;
             this.gridCrushed.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCrushed_CellClick);
             // 
@@ -527,11 +493,12 @@
             // 
             // txtCrushID
             // 
-            this.txtCrushID.Location = new System.Drawing.Point(795, 53);
+            this.txtCrushID.Location = new System.Drawing.Point(803, 53);
             this.txtCrushID.Name = "txtCrushID";
             this.txtCrushID.ReadOnly = true;
-            this.txtCrushID.Size = new System.Drawing.Size(173, 20);
+            this.txtCrushID.Size = new System.Drawing.Size(145, 20);
             this.txtCrushID.TabIndex = 45;
+            this.txtCrushID.Visible = false;
             // 
             // qrCodeCrush
             // 
@@ -543,27 +510,18 @@
             this.qrCodeCrush.Location = new System.Drawing.Point(512, 139);
             this.qrCodeCrush.Name = "qrCodeCrush";
             this.qrCodeCrush.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
-            this.qrCodeCrush.Size = new System.Drawing.Size(276, 210);
+            this.qrCodeCrush.Size = new System.Drawing.Size(285, 126);
             qrCodeGenerator5.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
             this.qrCodeCrush.Symbology = qrCodeGenerator5;
             this.qrCodeCrush.TabIndex = 25;
             // 
             // txtPosted
             // 
-            this.txtPosted.Location = new System.Drawing.Point(795, 80);
+            this.txtPosted.Location = new System.Drawing.Point(803, 80);
             this.txtPosted.Name = "txtPosted";
-            this.txtPosted.Size = new System.Drawing.Size(173, 20);
+            this.txtPosted.Size = new System.Drawing.Size(145, 20);
             this.txtPosted.TabIndex = 46;
-            // 
-            // cmdPost
-            // 
-            this.cmdPost.Image = global::ScaleApp.Properties.Resources.Mark_32x32;
-            this.cmdPost.Location = new System.Drawing.Point(819, 195);
-            this.cmdPost.Name = "cmdPost";
-            this.cmdPost.Size = new System.Drawing.Size(129, 60);
-            this.cmdPost.TabIndex = 47;
-            this.cmdPost.UseVisualStyleBackColor = true;
-            this.cmdPost.Click += new System.EventHandler(this.cmdPost_Click);
+            this.txtPosted.Visible = false;
             // 
             // txtWeightRe
             // 
@@ -573,7 +531,7 @@
             this.txtWeightRe.Properties.Appearance.Options.UseFont = true;
             this.txtWeightRe.Properties.Mask.EditMask = "n";
             this.txtWeightRe.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtWeightRe.Size = new System.Drawing.Size(276, 30);
+            this.txtWeightRe.Size = new System.Drawing.Size(285, 30);
             this.txtWeightRe.TabIndex = 48;
             // 
             // lueMaterial
@@ -585,7 +543,7 @@
             this.lueMaterial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lueMaterial.Properties.NullText = "";
-            this.lueMaterial.Size = new System.Drawing.Size(275, 30);
+            this.lueMaterial.Size = new System.Drawing.Size(285, 30);
             this.lueMaterial.TabIndex = 49;
             this.lueMaterial.EditValueChanged += new System.EventHandler(this.lueMaterial_EditValueChanged);
             // 
@@ -598,7 +556,7 @@
             this.lueMixId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lueMixId.Properties.NullText = "";
-            this.lueMixId.Size = new System.Drawing.Size(275, 30);
+            this.lueMixId.Size = new System.Drawing.Size(285, 30);
             this.lueMixId.TabIndex = 50;
             // 
             // lueProduct
@@ -626,11 +584,121 @@
             this.lueColor.Size = new System.Drawing.Size(199, 30);
             this.lueColor.TabIndex = 52;
             // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.ImageOptions.Image = global::ScaleApp.Properties.Resources.refresh_32x32;
+            this.simpleButton2.Location = new System.Drawing.Point(900, 313);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(89, 81);
+            this.simpleButton2.TabIndex = 55;
+            this.simpleButton2.Text = "Refesh";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.ImageOptions.Image = global::ScaleApp.Properties.Resources.exporttoxls_32x32;
+            this.simpleButton1.Location = new System.Drawing.Point(803, 313);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(89, 81);
+            this.simpleButton1.TabIndex = 54;
+            this.simpleButton1.Text = "Excel";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // spGetWeight
+            // 
+            this.spGetWeight.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spGetWeight.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.spGetWeight.Appearance.Options.UseFont = true;
+            this.spGetWeight.Appearance.Options.UseForeColor = true;
+            this.spGetWeight.ImageOptions.Image = global::ScaleApp.Properties.Resources.technology_32x322;
+            this.spGetWeight.Location = new System.Drawing.Point(354, 313);
+            this.spGetWeight.Name = "spGetWeight";
+            this.spGetWeight.Size = new System.Drawing.Size(150, 81);
+            this.spGetWeight.TabIndex = 53;
+            this.spGetWeight.Text = "Get Weight";
+            this.spGetWeight.Click += new System.EventHandler(this.spGetWeight_Click);
+            // 
+            // cmdPost
+            // 
+            this.cmdPost.Image = global::ScaleApp.Properties.Resources.Mark_32x32;
+            this.cmdPost.Location = new System.Drawing.Point(585, 313);
+            this.cmdPost.Name = "cmdPost";
+            this.cmdPost.Size = new System.Drawing.Size(67, 81);
+            this.cmdPost.TabIndex = 47;
+            this.cmdPost.UseVisualStyleBackColor = true;
+            this.cmdPost.Click += new System.EventHandler(this.cmdPost_Click);
+            // 
+            // cmdPrint
+            // 
+            this.cmdPrint.Image = global::ScaleApp.Properties.Resources.Print_32x32;
+            this.cmdPrint.Location = new System.Drawing.Point(731, 313);
+            this.cmdPrint.Name = "cmdPrint";
+            this.cmdPrint.Size = new System.Drawing.Size(66, 81);
+            this.cmdPrint.TabIndex = 31;
+            this.cmdPrint.UseVisualStyleBackColor = true;
+            this.cmdPrint.Click += new System.EventHandler(this.cmdPrint_Click);
+            // 
+            // cmdReset
+            // 
+            this.cmdReset.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
+            this.cmdReset.Location = new System.Drawing.Point(658, 313);
+            this.cmdReset.Name = "cmdReset";
+            this.cmdReset.Size = new System.Drawing.Size(67, 81);
+            this.cmdReset.TabIndex = 30;
+            this.cmdReset.UseVisualStyleBackColor = true;
+            this.cmdReset.Click += new System.EventHandler(this.cmdReset_Click);
+            // 
+            // cmdSave
+            // 
+            this.cmdSave.Image = global::ScaleApp.Properties.Resources.Save_32x32;
+            this.cmdSave.Location = new System.Drawing.Point(512, 313);
+            this.cmdSave.Name = "cmdSave";
+            this.cmdSave.Size = new System.Drawing.Size(67, 81);
+            this.cmdSave.TabIndex = 29;
+            this.cmdSave.UseVisualStyleBackColor = true;
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
+            // 
+            // cmdGetWeight
+            // 
+            this.cmdGetWeight.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdGetWeight.Image = global::ScaleApp.Properties.Resources.GenerateData_32x32;
+            this.cmdGetWeight.Location = new System.Drawing.Point(353, 313);
+            this.cmdGetWeight.Name = "cmdGetWeight";
+            this.cmdGetWeight.Size = new System.Drawing.Size(151, 36);
+            this.cmdGetWeight.TabIndex = 28;
+            this.cmdGetWeight.UseVisualStyleBackColor = true;
+            this.cmdGetWeight.Visible = false;
+            this.cmdGetWeight.Click += new System.EventHandler(this.cmdGetWeight_Click);
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Location = new System.Drawing.Point(12, 413);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(977, 361);
+            this.gridControl1.TabIndex = 56;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
+            // 
             // frmCrushing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(980, 786);
+            this.ClientSize = new System.Drawing.Size(1001, 786);
+            this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.simpleButton2);
+            this.Controls.Add(this.simpleButton1);
+            this.Controls.Add(this.spGetWeight);
             this.Controls.Add(this.lueColor);
             this.Controls.Add(this.lueProduct);
             this.Controls.Add(this.lueMixId);
@@ -681,6 +749,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lueMixId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueProduct.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueColor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -740,5 +810,10 @@
         private DevExpress.XtraEditors.LookUpEdit lueMixId;
         private DevExpress.XtraEditors.LookUpEdit lueProduct;
         private DevExpress.XtraEditors.LookUpEdit lueColor;
+        private DevExpress.XtraEditors.SimpleButton spGetWeight;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }

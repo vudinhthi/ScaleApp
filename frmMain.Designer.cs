@@ -63,22 +63,22 @@
             // mixingToolStripMenuItem
             // 
             this.mixingToolStripMenuItem.Name = "mixingToolStripMenuItem";
-            this.mixingToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.mixingToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.mixingToolStripMenuItem.Text = "Mixing Station";
             this.mixingToolStripMenuItem.Click += new System.EventHandler(this.mixingToolStripMenuItem_Click);
             // 
             // mixedOutStationToolStripMenuItem
             // 
             this.mixedOutStationToolStripMenuItem.Name = "mixedOutStationToolStripMenuItem";
-            this.mixedOutStationToolStripMenuItem.Size = new System.Drawing.Size(115, 20);
-            this.mixedOutStationToolStripMenuItem.Text = "Mixed Out Station";
+            this.mixedOutStationToolStripMenuItem.Size = new System.Drawing.Size(144, 20);
+            this.mixedOutStationToolStripMenuItem.Text = "Incoming Crush Station";
             this.mixedOutStationToolStripMenuItem.Click += new System.EventHandler(this.mixedOutStationToolStripMenuItem_Click);
             // 
             // recycledStationToolStripMenuItem
             // 
             this.recycledStationToolStripMenuItem.Name = "recycledStationToolStripMenuItem";
-            this.recycledStationToolStripMenuItem.Size = new System.Drawing.Size(106, 20);
-            this.recycledStationToolStripMenuItem.Text = "Recycled Station";
+            this.recycledStationToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
+            this.recycledStationToolStripMenuItem.Text = "Crush Station";
             this.recycledStationToolStripMenuItem.Click += new System.EventHandler(this.recycledStationToolStripMenuItem_Click);
             // 
             // cookiesStationToolStripMenuItem

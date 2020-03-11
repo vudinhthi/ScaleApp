@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
-            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery1 = new DevExpress.DataAccess.Sql.StoredProcQuery();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator3 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery3 = new DevExpress.DataAccess.Sql.StoredProcQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMixing));
             this.label1 = new System.Windows.Forms.Label();
             this.cmbShift = new System.Windows.Forms.ComboBox();
@@ -95,6 +95,10 @@
             this.txtWeightMaterial = new DevExpress.XtraEditors.TextEdit();
             this.txtWeightRe = new DevExpress.XtraEditors.TextEdit();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.spWeightMaterial = new DevExpress.XtraEditors.SimpleButton();
+            this.spWeightCrush = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueMaterial.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueProduct.Properties)).BeginInit();
@@ -337,10 +341,11 @@
             this.btnSendToMaterial.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSendToMaterial.Location = new System.Drawing.Point(379, 288);
             this.btnSendToMaterial.Name = "btnSendToMaterial";
-            this.btnSendToMaterial.Size = new System.Drawing.Size(206, 40);
+            this.btnSendToMaterial.Size = new System.Drawing.Size(187, 40);
             this.btnSendToMaterial.TabIndex = 24;
             this.btnSendToMaterial.Text = "Get weight RM";
             this.btnSendToMaterial.UseVisualStyleBackColor = true;
+            this.btnSendToMaterial.Visible = false;
             this.btnSendToMaterial.Click += new System.EventHandler(this.btnSendToMaterial_Click);
             // 
             // txtScaleWeight
@@ -360,10 +365,11 @@
             this.btnSendToRecycled.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSendToRecycled.Location = new System.Drawing.Point(379, 329);
             this.btnSendToRecycled.Name = "btnSendToRecycled";
-            this.btnSendToRecycled.Size = new System.Drawing.Size(206, 40);
+            this.btnSendToRecycled.Size = new System.Drawing.Size(187, 40);
             this.btnSendToRecycled.TabIndex = 26;
-            this.btnSendToRecycled.Text = "Get weight Recycled";
+            this.btnSendToRecycled.Text = "Get weight Crush";
             this.btnSendToRecycled.UseVisualStyleBackColor = true;
+            this.btnSendToRecycled.Visible = false;
             this.btnSendToRecycled.Click += new System.EventHandler(this.btnSendToRecycled_Click);
             // 
             // label12
@@ -388,9 +394,9 @@
             this.qrMixLotID.Name = "qrMixLotID";
             this.qrMixLotID.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrMixLotID.Size = new System.Drawing.Size(296, 172);
-            qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
-            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
-            this.qrMixLotID.Symbology = qrCodeGenerator1;
+            qrCodeGenerator3.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
+            qrCodeGenerator3.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
+            this.qrMixLotID.Symbology = qrCodeGenerator3;
             this.qrMixLotID.TabIndex = 32;
             // 
             // cmbLabelType
@@ -425,10 +431,10 @@
             // 
             this.sqlDataSource1.ConnectionName = "ScaleApp.Properties.Settings.ColorMixConnectionString";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            storedProcQuery1.Name = "sp_getMixRaws";
-            storedProcQuery1.StoredProcName = "sp_getMixRaws";
+            storedProcQuery3.Name = "sp_getMixRaws";
+            storedProcQuery3.StoredProcName = "sp_getMixRaws";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            storedProcQuery1});
+            storedProcQuery3});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // gridView1
@@ -560,6 +566,7 @@
             this.txtMixID.ReadOnly = true;
             this.txtMixID.Size = new System.Drawing.Size(64, 29);
             this.txtMixID.TabIndex = 36;
+            this.txtMixID.Visible = false;
             // 
             // lblDateTime
             // 
@@ -592,6 +599,7 @@
             this.txtPosted.Name = "txtPosted";
             this.txtPosted.Size = new System.Drawing.Size(100, 20);
             this.txtPosted.TabIndex = 40;
+            this.txtPosted.Visible = false;
             // 
             // cmdPost
             // 
@@ -690,7 +698,7 @@
             this.gridControl1.Location = new System.Drawing.Point(16, 385);
             this.gridControl1.MainView = this.gridView2;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1519, 425);
+            this.gridControl1.Size = new System.Drawing.Size(1131, 425);
             this.gridControl1.TabIndex = 45;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -725,11 +733,63 @@
             this.txtWeightRe.Size = new System.Drawing.Size(296, 38);
             this.txtWeightRe.TabIndex = 47;
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.simpleButton1.Location = new System.Drawing.Point(851, 329);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(94, 34);
+            this.simpleButton1.TabIndex = 48;
+            this.simpleButton1.Text = "Export";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
+            this.simpleButton2.Location = new System.Drawing.Point(948, 329);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(94, 34);
+            this.simpleButton2.TabIndex = 49;
+            this.simpleButton2.Text = "Refesh";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
+            // spWeightMaterial
+            // 
+            this.spWeightMaterial.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spWeightMaterial.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.spWeightMaterial.Appearance.Options.UseFont = true;
+            this.spWeightMaterial.Appearance.Options.UseForeColor = true;
+            this.spWeightMaterial.ImageOptions.Image = global::ScaleApp.Properties.Resources.viewsetting_32x32;
+            this.spWeightMaterial.Location = new System.Drawing.Point(379, 288);
+            this.spWeightMaterial.Name = "spWeightMaterial";
+            this.spWeightMaterial.Size = new System.Drawing.Size(187, 40);
+            this.spWeightMaterial.TabIndex = 50;
+            this.spWeightMaterial.Text = "Weight Material";
+            this.spWeightMaterial.Click += new System.EventHandler(this.spWeightMaterial_Click);
+            // 
+            // spWeightCrush
+            // 
+            this.spWeightCrush.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spWeightCrush.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.spWeightCrush.Appearance.Options.UseFont = true;
+            this.spWeightCrush.Appearance.Options.UseForeColor = true;
+            this.spWeightCrush.ImageOptions.Image = global::ScaleApp.Properties.Resources.technology_32x321;
+            this.spWeightCrush.Location = new System.Drawing.Point(379, 329);
+            this.spWeightCrush.Name = "spWeightCrush";
+            this.spWeightCrush.Size = new System.Drawing.Size(187, 39);
+            this.spWeightCrush.TabIndex = 51;
+            this.spWeightCrush.Text = "Weight Crush";
+            this.spWeightCrush.Click += new System.EventHandler(this.spWeightCrush_Click);
+            // 
             // frmMixing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1547, 822);
+            this.ClientSize = new System.Drawing.Size(1160, 822);
+            this.Controls.Add(this.spWeightCrush);
+            this.Controls.Add(this.spWeightMaterial);
+            this.Controls.Add(this.simpleButton2);
+            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.txtWeightRe);
             this.Controls.Add(this.txtWeightMaterial);
             this.Controls.Add(this.gridControl1);
@@ -859,5 +919,9 @@
         private DevExpress.XtraEditors.TextEdit txtWeightMaterial;
         private DevExpress.XtraEditors.TextEdit txtWeightRe;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton spWeightMaterial;
+        private DevExpress.XtraEditors.SimpleButton spWeightCrush;
     }
 }

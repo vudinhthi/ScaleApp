@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator2 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbMixId = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -39,9 +39,6 @@
             this.rdbRunner = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.txtWeight = new System.Windows.Forms.TextBox();
-            this.cmdSave = new System.Windows.Forms.Button();
-            this.cmdReset = new System.Windows.Forms.Button();
-            this.cmdPosted = new System.Windows.Forms.Button();
             this.qrCodeMixId = new DevExpress.XtraEditors.BarCodeControl();
             this.txtMixOutId = new System.Windows.Forms.TextBox();
             this.txtPosted = new System.Windows.Forms.TextBox();
@@ -59,9 +56,18 @@
             this.WeightCookie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Posted = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtWeightSacle = new DevExpress.XtraEditors.TextEdit();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.cmdPosted = new System.Windows.Forms.Button();
+            this.cmdReset = new System.Windows.Forms.Button();
+            this.cmdSave = new System.Windows.Forms.Button();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightSacle.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -98,7 +104,7 @@
             this.groupBox1.Size = new System.Drawing.Size(401, 69);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Output type";
+            this.groupBox1.Text = "Loss type";
             // 
             // rdbContaminated
             // 
@@ -165,36 +171,6 @@
             this.txtWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtWeight.Visible = false;
             // 
-            // cmdSave
-            // 
-            this.cmdSave.Image = global::ScaleApp.Properties.Resources.Save_32x32;
-            this.cmdSave.Location = new System.Drawing.Point(22, 190);
-            this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(109, 70);
-            this.cmdSave.TabIndex = 5;
-            this.cmdSave.UseVisualStyleBackColor = true;
-            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
-            // 
-            // cmdReset
-            // 
-            this.cmdReset.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
-            this.cmdReset.Location = new System.Drawing.Point(308, 190);
-            this.cmdReset.Name = "cmdReset";
-            this.cmdReset.Size = new System.Drawing.Size(109, 70);
-            this.cmdReset.TabIndex = 6;
-            this.cmdReset.UseVisualStyleBackColor = true;
-            this.cmdReset.Click += new System.EventHandler(this.cmdReset_Click);
-            // 
-            // cmdPosted
-            // 
-            this.cmdPosted.Image = global::ScaleApp.Properties.Resources.Mark_32x32;
-            this.cmdPosted.Location = new System.Drawing.Point(169, 190);
-            this.cmdPosted.Name = "cmdPosted";
-            this.cmdPosted.Size = new System.Drawing.Size(109, 70);
-            this.cmdPosted.TabIndex = 7;
-            this.cmdPosted.UseVisualStyleBackColor = true;
-            this.cmdPosted.Click += new System.EventHandler(this.cmdPosted_Click);
-            // 
             // qrCodeMixId
             // 
             this.qrCodeMixId.AutoModule = true;
@@ -204,8 +180,8 @@
             this.qrCodeMixId.Name = "qrCodeMixId";
             this.qrCodeMixId.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrCodeMixId.Size = new System.Drawing.Size(309, 152);
-            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
-            this.qrCodeMixId.Symbology = qrCodeGenerator1;
+            qrCodeGenerator2.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
+            this.qrCodeMixId.Symbology = qrCodeGenerator2;
             this.qrCodeMixId.TabIndex = 8;
             // 
             // txtMixOutId
@@ -255,8 +231,9 @@
             this.gridView1.Location = new System.Drawing.Point(16, 267);
             this.gridView1.Name = "gridView1";
             this.gridView1.ReadOnly = true;
-            this.gridView1.Size = new System.Drawing.Size(726, 344);
+            this.gridView1.Size = new System.Drawing.Size(835, 92);
             this.gridView1.TabIndex = 12;
+            this.gridView1.Visible = false;
             this.gridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView1_CellClick);
             // 
             // Id
@@ -340,11 +317,80 @@
             this.txtWeightSacle.Size = new System.Drawing.Size(293, 30);
             this.txtWeightSacle.TabIndex = 13;
             // 
+            // simpleButton2
+            // 
+            this.simpleButton2.ImageOptions.Image = global::ScaleApp.Properties.Resources.refresh_32x321;
+            this.simpleButton2.Location = new System.Drawing.Point(333, 188);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(84, 69);
+            this.simpleButton2.TabIndex = 15;
+            this.simpleButton2.Text = "Refresh";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.ImageOptions.Image = global::ScaleApp.Properties.Resources.exporttoxlsx_32x32;
+            this.simpleButton1.Location = new System.Drawing.Point(243, 188);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(84, 69);
+            this.simpleButton1.TabIndex = 14;
+            this.simpleButton1.Text = "Export";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // cmdPosted
+            // 
+            this.cmdPosted.Image = global::ScaleApp.Properties.Resources.Mark_32x32;
+            this.cmdPosted.Location = new System.Drawing.Point(84, 188);
+            this.cmdPosted.Name = "cmdPosted";
+            this.cmdPosted.Size = new System.Drawing.Size(62, 69);
+            this.cmdPosted.TabIndex = 7;
+            this.cmdPosted.UseVisualStyleBackColor = true;
+            this.cmdPosted.Click += new System.EventHandler(this.cmdPosted_Click);
+            // 
+            // cmdReset
+            // 
+            this.cmdReset.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
+            this.cmdReset.Location = new System.Drawing.Point(152, 188);
+            this.cmdReset.Name = "cmdReset";
+            this.cmdReset.Size = new System.Drawing.Size(62, 69);
+            this.cmdReset.TabIndex = 6;
+            this.cmdReset.UseVisualStyleBackColor = true;
+            this.cmdReset.Click += new System.EventHandler(this.cmdReset_Click);
+            // 
+            // cmdSave
+            // 
+            this.cmdSave.Image = global::ScaleApp.Properties.Resources.Save_32x32;
+            this.cmdSave.Location = new System.Drawing.Point(16, 188);
+            this.cmdSave.Name = "cmdSave";
+            this.cmdSave.Size = new System.Drawing.Size(62, 69);
+            this.cmdSave.TabIndex = 5;
+            this.cmdSave.UseVisualStyleBackColor = true;
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Location = new System.Drawing.Point(13, 267);
+            this.gridControl1.MainView = this.gridView2;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(838, 299);
+            this.gridControl1.TabIndex = 16;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            // 
+            // gridView2
+            // 
+            this.gridView2.GridControl = this.gridControl1;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView2_RowClick);
+            // 
             // frmMixedOut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(758, 623);
+            this.ClientSize = new System.Drawing.Size(863, 578);
+            this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.simpleButton2);
+            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.txtWeightSacle);
             this.Controls.Add(this.gridView1);
             this.Controls.Add(this.txtDateTime);
@@ -362,12 +408,14 @@
             this.Location = new System.Drawing.Point(50, 50);
             this.Name = "frmMixedOut";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FVN-Mixed out";
+            this.Text = "Incoming Crush Station";
             this.Load += new System.EventHandler(this.frmMixedOut_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightSacle.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,5 +452,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn WeightCookie;
         private System.Windows.Forms.DataGridViewTextBoxColumn Posted;
         private DevExpress.XtraEditors.TextEdit txtWeightSacle;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
     }
 }

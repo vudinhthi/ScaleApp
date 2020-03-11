@@ -1,8 +1,11 @@
-﻿using System;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraPrinting;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,7 +29,8 @@ namespace ScaleApp
             Start_Timer();
 
             LoadComboBoxMixId();
-            LoaddataGridView1();
+            //LoaddataGridView1();
+            LoadGridControl();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -474,6 +478,84 @@ namespace ScaleApp
                 cmdSave.Enabled = false;
                 cmdPosted.Enabled = false;
             }
+        }
+
+        private void LoadGridControl()
+        {
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            try
+            {
+                SqlDataAdapter SqlDaCrush = new SqlDataAdapter("sp_getFullMixOuts", conn);
+                SqlDaCrush.SelectCommand.CommandType = CommandType.StoredProcedure;
+                SqlDaCrush.Fill(ds, "IncomingCrush");
+
+                gridControl1.DataSource = ds.Tables["IncomingCrush"];
+                gridControl1.ForceInitialize();
+
+                gridView2.OptionsView.ColumnAutoWidth = false;
+
+                gridView2.Columns["MixRawId"].VisibleIndex = -1;
+                gridView2.Columns["WeightRecycle"].VisibleIndex = -1;
+                gridView2.Columns["WeightCookie"].VisibleIndex = -1;
+
+                gridView2.Columns["Id"].VisibleIndex = 0;
+                gridView2.Columns["CreateTime"].VisibleIndex = 1;
+                gridView2.Columns["MixBacode"].VisibleIndex = 2;
+                gridView2.Columns["WeightRunner"].VisibleIndex = 3;
+                gridView2.Columns["WeightDefect"].VisibleIndex = 4;
+                gridView2.Columns["WeightBlackDot"].VisibleIndex = 5;
+                gridView2.Columns["WeighContamination"].VisibleIndex = 6;                
+                gridView2.Columns["Posted"].VisibleIndex = 9;
+
+                gridView2.Columns["Id"].Width = 50;
+                gridView2.Columns["CreateTime"].Width = 80;
+                gridView2.Columns["MixBacode"].Width = 120;
+                gridView2.Columns["WeightRunner"].Width = 100;
+                gridView2.Columns["WeightDefect"].Width = 100;
+                gridView2.Columns["WeightBlackDot"].Width = 100;
+                gridView2.Columns["WeighContamination"].Width = 100;
+                gridView2.Columns["WeightRecycle"].Width = 100;
+                gridView2.Columns["WeightCookie"].Width = 100;
+                gridView2.Columns["Posted"].Width = 50;
+
+                gridView2.OptionsBehavior.Editable = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            ScaleApp.Common.DataOperation.disconnect();
+        }
+
+        private void gridView2_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            GridView gridView = sender as GridView;
+
+            txtMixOutId.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Id"]).ToString(); 
+            txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
+            cmbMixId.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]);
+
+            SetcmdPost();
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            LoadGridControl();
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            string path = "D:\\ExportExcel\\IncomingCrush.xlsx";
+
+            XlsxExportOptionsEx xlsxExport = new XlsxExportOptionsEx();
+            xlsxExport.ExportType = DevExpress.Export.ExportType.DataAware;
+
+            gridControl1.ExportToXlsx(path);
+            // Open the created XLSX file with the default application. 
+            Process.Start(path);
         }
     }
 }

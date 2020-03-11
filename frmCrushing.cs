@@ -1,10 +1,13 @@
 ﻿using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraPrinting;
 using ScaleApp.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -35,7 +38,8 @@ namespace ScaleApp
             //loadComboBoxMixId();
             LoadLookUpMixId();
             cmdPost.Enabled = false;
-            loadGridCrush();            
+            //loadGridCrush();
+            LoadGridControl1();
         }
 
         private void Start_Timer()
@@ -399,7 +403,8 @@ namespace ScaleApp
             if (i != 0)
             {
                 MessageBox.Show(i + " Crushed Lot saved!");
-                loadGridCrush();
+                //loadGridCrush();
+                LoadGridControl1();
             }
         }
 
@@ -431,7 +436,8 @@ namespace ScaleApp
             if (i != 0)
             {
                 MessageBox.Show(i + "Data Saved");
-                loadGridCrush();
+                //loadGridCrush();
+                LoadGridControl1();
             }
         }
 
@@ -745,6 +751,112 @@ namespace ScaleApp
         private void lueProduct_EditValueChanged(object sender, EventArgs e)
         {
             lueColor.EditValue = null;
+        }
+
+        private void spGetWeight_Click(object sender, EventArgs e)
+        {
+            txtWeightRe.Text = textBox1.Text;
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            //loadGridCrush();
+            LoadGridControl1();
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            string path = "D:\\ExportExcel\\Crush.xlsx";
+
+            XlsxExportOptionsEx xlsxExport = new XlsxExportOptionsEx();
+            xlsxExport.ExportType = DevExpress.Export.ExportType.DataAware;
+
+            gridControl1.ExportToXlsx(path);
+            // Open the created XLSX file with the default application. 
+            Process.Start(path);
+        }
+
+        private void LoadGridControl1()
+        {
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            try
+            {
+                SqlDataAdapter SqlDaCrush = new SqlDataAdapter("sp_getFullCrushRaws", conn);
+                SqlDaCrush.SelectCommand.CommandType = CommandType.StoredProcedure;
+                SqlDaCrush.Fill(ds, "CrushRaw");
+
+                gridControl1.DataSource = ds.Tables["CrushRaw"];
+                gridControl1.ForceInitialize();
+
+                gridView1.OptionsView.ColumnAutoWidth = false;
+
+                gridView1.Columns["OperatorCode"].VisibleIndex = -1;
+                gridView1.Columns["ProductCode"].VisibleIndex = -1;
+                gridView1.Columns["MaterialCode"].VisibleIndex = -1;                
+                gridView1.Columns["CreateBy"].VisibleIndex = -1;
+                gridView1.Columns["MixRawId"].VisibleIndex = -1;
+
+                gridView1.Columns["CrushRawId"].VisibleIndex = 0;
+                gridView1.Columns["CreateTime"].VisibleIndex = 1;                
+                gridView1.Columns["RecycledID"].VisibleIndex = 2;
+                gridView1.Columns["MixBacode"].VisibleIndex = 3;
+                gridView1.Columns["ShiftName"].VisibleIndex = 4;
+                gridView1.Columns["OperatorName"].VisibleIndex = 5;
+                gridView1.Columns["ProductName"].VisibleIndex = 6;
+                gridView1.Columns["MaterialName"].VisibleIndex = 7;
+                gridView1.Columns["ColorCode"].VisibleIndex = 8;
+                gridView1.Columns["ColorName"].VisibleIndex = 9;
+                gridView1.Columns["StepName"].VisibleIndex = 10;
+                gridView1.Columns["LossTypeName"].VisibleIndex = 11;
+                gridView1.Columns["WeightRecycle"].VisibleIndex = 12;
+                gridView1.Columns["MachineName"].VisibleIndex = 13;                                
+                gridView1.Columns["Posted"].VisibleIndex = 14;
+
+                gridView1.Columns["CrushRawId"].Width = 40;
+                gridView1.Columns["StepName"].Width = 60;
+                gridView1.Columns["OperatorName"].Width = 100;
+                gridView1.Columns["ProductName"].Width = 180;
+                gridView1.Columns["MaterialName"].Width = 180;
+                gridView1.Columns["ColorCode"].Width = 80;
+                gridView1.Columns["ColorName"].Width = 170;
+                gridView1.Columns["WeightRecycle"].Width = 80;
+                gridView1.Columns["LossTypeName"].Width = 60;
+                gridView1.Columns["MixBacode"].Width = 150;
+                gridView1.Columns["MachineName"].Width = 80;
+                gridView1.Columns["RecycledID"].Width = 150;
+                gridView1.Columns["MixBacode"].Width = 150;
+                gridView1.Columns["Posted"].Width = 40;
+
+                gridView1.OptionsBehavior.Editable = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            GridView gridView = sender as GridView;
+            cmbShift.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ShiftName"]);
+            cmbLostType.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["LossTypeName"]);
+            cmbOperator.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["OperatorCode"]);
+            txtMachine.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MachineName"]).ToString();
+            cmbStep.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["StepName"]);
+            lueProduct.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);
+            lueColor.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ColorCode"]);
+            lueMixId.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]);
+            lueMaterial.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MaterialCode"]);
+            txtWeightRe.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightRecycle"]).ToString();
+            qrCodeCrush.Text= gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["RecycledID"]).ToString();
+            txtCrushDate.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]).ToString();
+            txtCrushID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CrushRawId"]).ToString();
+            txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
+
+            SetcmdPost();
         }
     }
 }

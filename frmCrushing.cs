@@ -665,7 +665,7 @@ namespace ScaleApp
                 lueMixId.Properties.Columns.Add(new LookUpColumnInfo("MixRawId", "MixRawId", 60));
                 lueMixId.Properties.Columns.Add(new LookUpColumnInfo("MixBacode", "MixBacode", 120));
 
-                lueMixId.Properties.TextEditStyle.= TextEditStyles.Standard;
+                lueMixId.Properties.TextEditStyle= TextEditStyles.Standard;
             }
             catch (Exception ex)
             {

@@ -112,6 +112,12 @@
     <Compile Include="frmConnectDB.Designer.cs">
       <DependentUpon>frmConnectDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCookies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCookies.Designer.cs">
+      <DependentUpon>frmCookies.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCrushing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +201,9 @@
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="frmConnectDB.resx">
       <DependentUpon>frmConnectDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCookies.resx">
+      <DependentUpon>frmCookies.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCrushing.resx">
       <DependentUpon>frmCrushing.cs</DependentUpon>

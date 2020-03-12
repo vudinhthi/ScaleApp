@@ -69,5 +69,14 @@ namespace ScaleApp
             frmConnect.Parent = this;
             frmConnect.Show();
         }
+
+        private void cookiesStationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.IsMdiContainer = true;
+            frmCookies cookies = new frmCookies();
+            cookies.TopLevel = false;
+            cookies.Parent = this;
+            cookies.Show();
+        }
     }
 }

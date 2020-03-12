@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -46,6 +46,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Charts.v19.2.Core, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -103,6 +106,12 @@
     <Compile Include="Common\DataOperation.cs" />
     <Compile Include="Common\GlobalVariable.cs" />
     <Compile Include="Common\mFunction.cs" />
+    <Compile Include="frmConnectDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConnectDB.Designer.cs">
+      <DependentUpon>frmConnectDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCrushing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +192,10 @@
     <Compile Include="rptMixing.Designer.cs">
       <DependentUpon>rptMixing.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="frmConnectDB.resx">
+      <DependentUpon>frmConnectDB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCrushing.resx">
       <DependentUpon>frmCrushing.cs</DependentUpon>
     </EmbeddedResource>
@@ -323,6 +336,7 @@
     <Content Include="icon\View_16x16.png" />
     <Content Include="icon\View_32x32.png" />
     <Content Include="images\background.jpg" />
+    <None Include="Resources\delete_32x32.png" />
     <None Include="Resources\refresh_32x321.png" />
     <None Include="Resources\exporttoxlsx_32x32.png" />
     <None Include="Resources\refresh_32x32.png" />

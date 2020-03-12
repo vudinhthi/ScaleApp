@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator3 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
-            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery3 = new DevExpress.DataAccess.Sql.StoredProcQuery();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery1 = new DevExpress.DataAccess.Sql.StoredProcQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMixing));
             this.label1 = new System.Windows.Forms.Label();
             this.cmbShift = new System.Windows.Forms.ComboBox();
@@ -394,9 +394,9 @@
             this.qrMixLotID.Name = "qrMixLotID";
             this.qrMixLotID.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrMixLotID.Size = new System.Drawing.Size(296, 172);
-            qrCodeGenerator3.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
-            qrCodeGenerator3.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
-            this.qrMixLotID.Symbology = qrCodeGenerator3;
+            qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
+            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
+            this.qrMixLotID.Symbology = qrCodeGenerator1;
             this.qrMixLotID.TabIndex = 32;
             // 
             // cmbLabelType
@@ -431,10 +431,10 @@
             // 
             this.sqlDataSource1.ConnectionName = "ScaleApp.Properties.Settings.ColorMixConnectionString";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            storedProcQuery3.Name = "sp_getMixRaws";
-            storedProcQuery3.StoredProcName = "sp_getMixRaws";
+            storedProcQuery1.Name = "sp_getMixRaws";
+            storedProcQuery1.StoredProcName = "sp_getMixRaws";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            storedProcQuery3});
+            storedProcQuery1});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // gridView1
@@ -651,6 +651,7 @@
             this.lueMaterial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lueMaterial.Properties.NullText = "";
+            this.lueMaterial.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.lueMaterial.Size = new System.Drawing.Size(296, 26);
             this.lueMaterial.TabIndex = 41;
             this.lueMaterial.EditValueChanged += new System.EventHandler(this.lueMaterial_EditValueChanged);
@@ -685,13 +686,16 @@
             // 
             this.lueRecycled.Location = new System.Drawing.Point(526, 108);
             this.lueRecycled.Name = "lueRecycled";
+            this.lueRecycled.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.lueRecycled.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueRecycled.Properties.Appearance.Options.UseFont = true;
             this.lueRecycled.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lueRecycled.Properties.NullText = "";
+            this.lueRecycled.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.lueRecycled.Size = new System.Drawing.Size(296, 26);
             this.lueRecycled.TabIndex = 44;
+            this.lueRecycled.EditValueChanged += new System.EventHandler(this.lueRecycled_EditValueChanged);
             // 
             // gridControl1
             // 
@@ -834,6 +838,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbShift);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(40, 40);
             this.Name = "frmMixing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

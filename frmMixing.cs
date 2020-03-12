@@ -95,7 +95,7 @@ namespace ScaleApp
             cmd.Parameters.AddWithValue("@weightMaterial", txtWeightMaterial.Text);
             cmd.Parameters.AddWithValue("@totalMaterial", txtTotal.Text);
             cmd.Parameters.AddWithValue("@machineID", txtMachine.Text);
-            cmd.Parameters.AddWithValue("@crushRawId", cmbRecycled.Text);
+            cmd.Parameters.AddWithValue("@crushRawId", lueRecycled.EditValue);
             cmd.Parameters.AddWithValue("@qrCode", qrMixLotID.Text);
 
             conn.Open();
@@ -104,7 +104,7 @@ namespace ScaleApp
 
             ScaleApp.Common.DataOperation.disconnect();
 
-            loadGridView1();
+            LoadGridControl1();
 
             if (i != 0)
             {
@@ -132,7 +132,7 @@ namespace ScaleApp
             cmd.Parameters.AddWithValue("@weightMaterial", txtWeightMaterial.Text);
             cmd.Parameters.AddWithValue("@totalMaterial", txtTotal.Text);
             cmd.Parameters.AddWithValue("@machineID", txtMachine.Text);
-            cmd.Parameters.AddWithValue("@crushRawId", cmbRecycled.Text);
+            cmd.Parameters.AddWithValue("@crushRawId", lueRecycled.EditValue);
             cmd.Parameters.AddWithValue("@qrCode", qrMixLotID.Text);
             cmd.Parameters.AddWithValue("@mixRawId", txtMixID.Text);
 
@@ -145,7 +145,7 @@ namespace ScaleApp
             if (i != 0)
             {
                 MessageBox.Show(i + "Data Saved");
-                loadGridView1();
+                LoadGridControl1();
             }
         }        
 
@@ -175,7 +175,7 @@ namespace ScaleApp
                 return 0;
             }
             return 1;
-        }
+        }        
 
         private void cmbOperator_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -467,7 +467,7 @@ namespace ScaleApp
                 lueRecycled.Properties.DataSource = ds.Tables[0];
                 lueRecycled.Properties.DisplayMember = "RecycledID";
                 lueRecycled.Properties.ValueMember = "CrushRawId";
-
+                
                 lueRecycled.Properties.Columns.Add(new LookUpColumnInfo("CrushRawId", "CrushRawId", 60));
                 lueRecycled.Properties.Columns.Add(new LookUpColumnInfo("RecycledID", "RecycledID", 120));
             }
@@ -577,7 +577,7 @@ namespace ScaleApp
             conn.Open();
             sqlcmd.ExecuteNonQuery();
 
-            lastCrushRawId = (int)sqlcmd.Parameters["@LastIdentity"].Value;
+            lastCrushRawId = (int)sqlcmd.Parameters["@LastIdentity"].Value + 1;
             return lastCrushRawId;
 
             ScaleApp.Common.DataOperation.disconnect();
@@ -1022,6 +1022,11 @@ namespace ScaleApp
             gridControl1.ExportToXlsx(path);
             // Open the created XLSX file with the default application. 
             Process.Start(path);
-        }        
+        }
+
+        private void lueRecycled_EditValueChanged(object sender, EventArgs e)
+        {
+            //MessageBox.Show(lueRecycled.EditValue.ToString());
+        }
     }
 }

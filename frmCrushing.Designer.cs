@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator5 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCrushing));
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -511,8 +512,8 @@
             this.qrCodeCrush.Name = "qrCodeCrush";
             this.qrCodeCrush.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrCodeCrush.Size = new System.Drawing.Size(285, 126);
-            qrCodeGenerator5.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
-            this.qrCodeCrush.Symbology = qrCodeGenerator5;
+            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
+            this.qrCodeCrush.Symbology = qrCodeGenerator1;
             this.qrCodeCrush.TabIndex = 25;
             // 
             // txtPosted
@@ -737,6 +738,7 @@
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(50, 50);
             this.Name = "frmCrushing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

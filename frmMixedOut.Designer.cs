@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator2 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMixedOut));
             this.label1 = new System.Windows.Forms.Label();
             this.cmbMixId = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -180,8 +181,8 @@
             this.qrCodeMixId.Name = "qrCodeMixId";
             this.qrCodeMixId.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrCodeMixId.Size = new System.Drawing.Size(309, 152);
-            qrCodeGenerator2.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
-            this.qrCodeMixId.Symbology = qrCodeGenerator2;
+            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
+            this.qrCodeMixId.Symbology = qrCodeGenerator1;
             this.qrCodeMixId.TabIndex = 8;
             // 
             // txtMixOutId
@@ -405,6 +406,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cmbMixId);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(50, 50);
             this.Name = "frmMixedOut";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

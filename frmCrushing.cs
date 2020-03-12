@@ -532,7 +532,7 @@ namespace ScaleApp
             conn.Open();
             sqlcmd.ExecuteNonQuery();
             
-            lastCrushRawId = (int)sqlcmd.Parameters["@LastIdentity"].Value;
+            lastCrushRawId = (int)sqlcmd.Parameters["@LastIdentity"].Value + 1;
             return lastCrushRawId;
             
             ScaleApp.Common.DataOperation.disconnect();
@@ -634,6 +634,8 @@ namespace ScaleApp
 
                 lueMaterial.Properties.Columns.Add(new LookUpColumnInfo("MaterialCode", "MaterialCode", 60));
                 lueMaterial.Properties.Columns.Add(new LookUpColumnInfo("MaterialName", "MaterialName", 120));
+
+                lueMaterial.Properties.TextEditStyle = TextEditStyles.Standard;
             }
             catch (Exception ex)
             {
@@ -662,6 +664,8 @@ namespace ScaleApp
 
                 lueMixId.Properties.Columns.Add(new LookUpColumnInfo("MixRawId", "MixRawId", 60));
                 lueMixId.Properties.Columns.Add(new LookUpColumnInfo("MixBacode", "MixBacode", 120));
+
+                lueMixId.Properties.TextEditStyle.= TextEditStyles.Standard;
             }
             catch (Exception ex)
             {

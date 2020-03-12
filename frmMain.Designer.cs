@@ -36,6 +36,7 @@
             this.recycledStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cookiesStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,9 +57,12 @@
             // 
             // toolStripMenuItem1
             // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connectDatabaseToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(49, 20);
             this.toolStripMenuItem1.Text = "Login";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // mixingToolStripMenuItem
             // 
@@ -93,6 +97,13 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
             // 
+            // connectDatabaseToolStripMenuItem
+            // 
+            this.connectDatabaseToolStripMenuItem.Name = "connectDatabaseToolStripMenuItem";
+            this.connectDatabaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.connectDatabaseToolStripMenuItem.Text = "Connect database";
+            this.connectDatabaseToolStripMenuItem.Click += new System.EventHandler(this.connectDatabaseToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -122,6 +133,7 @@
         private System.Windows.Forms.ToolStripMenuItem recycledStationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cookiesStationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem connectDatabaseToolStripMenuItem;
     }
 }
 

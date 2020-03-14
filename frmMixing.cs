@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
 using ScaleApp.Common;
@@ -46,7 +47,7 @@ namespace ScaleApp
             LoadLookUpRecycled();
             //loadGridView1();
             LoadGridControl1();
-            cmdPost.Enabled = false;
+            spbPost.Enabled = false;
             Start_Timer();
         }        
 
@@ -151,21 +152,7 @@ namespace ScaleApp
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtMixID.Text.IsNullOrEmpty())
-            {
-                if (CheckValidForm() == 0)
-                {
-                    MessageBox.Show("Do you miss Item?");                    
-                }
-                else
-                {
-                    CreateMixRaw();
-                }                
-            }
-            else
-            {
-                UpdateMixRaw();
-            }
+            
         }
 
         private int CheckValidForm()
@@ -371,11 +358,11 @@ namespace ScaleApp
 
                 lueProduct.Properties.DataSource = ds.Tables[0];
                 lueProduct.Properties.DisplayMember = "ProductName";
-                lueProduct.Properties.ValueMember = "ProductCode";
+                lueProduct.Properties.ValueMember = "ProductName";
                 lueProduct.Properties.KeyMember = "ProductCode";
 
-                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("ProductCode", "ProductCode", 60));
-                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("ProductName", "ProductName", 120));
+                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("ProductName", "ProductName", 60));
+                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("ProductName", "ProductName", 120));                
                 //enable text editing 
                 lueProduct.Properties.TextEditStyle = TextEditStyles.Standard;
             }
@@ -411,8 +398,8 @@ namespace ScaleApp
 
                 //enable text editing 
                 lueColor.Properties.TextEditStyle = TextEditStyles.Standard;
-                lueColor.CascadingOwner = lueProduct;
-                lueColor.Properties.CascadingMember = "ProductCode";
+                //lueColor.CascadingOwner = lueProduct;
+                //lueColor.Properties.CascadingMember = "ProductCode";
             }
             catch (Exception ex)
             {
@@ -900,25 +887,25 @@ namespace ScaleApp
         private void btnReset_Click(object sender, EventArgs e)
         {
             resetForm();
-            btnSave.Enabled = true;
+            spbSave.Enabled = true;
         }
 
         private void cmdPost_Click(object sender, EventArgs e)
         {
-            UpdatePosted();
+            
         }
 
         private void SetcmdPost()
         {
             if (txtPosted.Text.ToString() == "0")
             {
-                cmdPost.Enabled = true;
-                btnSave.Enabled = true;
+                spbPost.Enabled = true;
+                spbSave.Enabled = true;
             }
             else
             {
-                cmdPost.Enabled = false;
-                btnSave.Enabled = false;
+                spbPost.Enabled = false;
+                spbSave.Enabled = false;
             }
         }
 
@@ -941,8 +928,8 @@ namespace ScaleApp
             {
                 MessageBox.Show("Data posted !");
                 loadGridView1();
-                btnSave.Enabled = false;
-                cmdPost.Enabled = false;
+                spbPost.Enabled = true;
+                spbSave.Enabled = true;
             }
         }
 
@@ -1027,6 +1014,69 @@ namespace ScaleApp
         private void lueRecycled_EditValueChanged(object sender, EventArgs e)
         {
             //MessageBox.Show(lueRecycled.EditValue.ToString());
+        }
+
+        private void bteWeightRM_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bteWeightRM_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            ButtonEdit editor = (ButtonEdit)sender;
+            EditorButton Button = e.Button;
+
+            if (Button.Kind == ButtonPredefines.OK)
+            {
+                editor.Text = txtScaleWeight.Text;
+            }else if (Button.Kind == ButtonPredefines.Delete)
+            {
+                editor.Text = "";
+            }            
+        }
+
+        private void bteWeightRe_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            ButtonEdit editor = (ButtonEdit)sender;
+            EditorButton Button = e.Button;
+
+            if (Button.Kind == ButtonPredefines.OK)
+            {
+                editor.Text = txtScaleWeight.Text;
+            }
+            else if (Button.Kind == ButtonPredefines.Delete)
+            {
+                editor.Text = "";
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void spbSave_Click(object sender, EventArgs e)
+        {
+            if (txtMixID.Text.IsNullOrEmpty())
+            {
+                if (CheckValidForm() == 0)
+                {
+                    MessageBox.Show("Do you miss Item?");
+                }
+                else
+                {
+                    CreateMixRaw();
+                }
+            }
+            else
+            {
+                UpdateMixRaw();
+            }
+        }
+
+        private void spbPost_Click(object sender, EventArgs e)
+        {
+            UpdatePosted();
         }
     }
 }

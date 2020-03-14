@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCookies));
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator2 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
             this.txtMachine = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -59,6 +61,9 @@
             this.cmbShift = new DevExpress.XtraEditors.ComboBoxEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.txtCurrentDate = new DevExpress.XtraEditors.TextEdit();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.barCodeControl1 = new DevExpress.XtraEditors.BarCodeControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueItem.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueComopent.Properties)).BeginInit();
@@ -73,6 +78,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbShift.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCurrentDate.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtMachine
@@ -241,7 +247,7 @@
             this.txtWeightMaterial.Properties.Appearance.Options.UseFont = true;
             this.txtWeightMaterial.Properties.Mask.EditMask = "f";
             this.txtWeightMaterial.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtWeightMaterial.Size = new System.Drawing.Size(178, 24);
+            this.txtWeightMaterial.Size = new System.Drawing.Size(293, 24);
             this.txtWeightMaterial.TabIndex = 15;
             // 
             // txtWeightPurge
@@ -254,7 +260,7 @@
             this.txtWeightPurge.Properties.Mask.EditMask = "n";
             this.txtWeightPurge.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtWeightPurge.Properties.NullText = "Machine";
-            this.txtWeightPurge.Size = new System.Drawing.Size(178, 24);
+            this.txtWeightPurge.Size = new System.Drawing.Size(293, 24);
             this.txtWeightPurge.TabIndex = 17;
             // 
             // labelControl7
@@ -279,7 +285,7 @@
             this.txtWeightTPU.Properties.Mask.EditMask = "f";
             this.txtWeightTPU.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtWeightTPU.Properties.NullText = "Machine";
-            this.txtWeightTPU.Size = new System.Drawing.Size(178, 24);
+            this.txtWeightTPU.Size = new System.Drawing.Size(293, 24);
             this.txtWeightTPU.TabIndex = 19;
             // 
             // labelControl9
@@ -304,7 +310,7 @@
             this.txtWeightMixed.Properties.Mask.EditMask = "f";
             this.txtWeightMixed.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtWeightMixed.Properties.NullText = "Machine";
-            this.txtWeightMixed.Size = new System.Drawing.Size(178, 24);
+            this.txtWeightMixed.Size = new System.Drawing.Size(293, 24);
             this.txtWeightMixed.TabIndex = 21;
             // 
             // labelControl10
@@ -347,6 +353,7 @@
             this.simpleButton1.Size = new System.Drawing.Size(130, 63);
             this.simpleButton1.TabIndex = 23;
             this.simpleButton1.Text = "Get weight";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // simpleButton2
             // 
@@ -444,11 +451,49 @@
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             // 
+            // txtCurrentDate
+            // 
+            this.txtCurrentDate.Location = new System.Drawing.Point(857, 9);
+            this.txtCurrentDate.Name = "txtCurrentDate";
+            this.txtCurrentDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCurrentDate.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.txtCurrentDate.Properties.Appearance.Options.UseFont = true;
+            this.txtCurrentDate.Properties.Appearance.Options.UseForeColor = true;
+            this.txtCurrentDate.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtCurrentDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtCurrentDate.Size = new System.Drawing.Size(232, 24);
+            this.txtCurrentDate.TabIndex = 31;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // barCodeControl1
+            // 
+            this.barCodeControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barCodeControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.barCodeControl1.Appearance.Options.UseFont = true;
+            this.barCodeControl1.Appearance.Options.UseForeColor = true;
+            this.barCodeControl1.AutoModule = true;
+            this.barCodeControl1.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.barCodeControl1.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.barCodeControl1.Location = new System.Drawing.Point(858, 51);
+            this.barCodeControl1.Name = "barCodeControl1";
+            this.barCodeControl1.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
+            this.barCodeControl1.Size = new System.Drawing.Size(231, 100);
+            qrCodeGenerator2.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
+            qrCodeGenerator2.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
+            this.barCodeControl1.Symbology = qrCodeGenerator2;
+            this.barCodeControl1.TabIndex = 32;
+            this.barCodeControl1.Text = "framas.com";
+            // 
             // frmCookies
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1101, 724);
+            this.ClientSize = new System.Drawing.Size(1100, 724);
+            this.Controls.Add(this.barCodeControl1);
+            this.Controls.Add(this.txtCurrentDate);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.cmbShift);
             this.Controls.Add(this.simpleButton6);
@@ -497,6 +542,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbShift.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCurrentDate.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -534,5 +580,8 @@
         private DevExpress.XtraEditors.ComboBoxEdit cmbShift;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.TextEdit txtCurrentDate;
+        private System.Windows.Forms.Timer timer1;
+        private DevExpress.XtraEditors.BarCodeControl barCodeControl1;
     }
 }

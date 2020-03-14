@@ -15,6 +15,8 @@ namespace ScaleApp
 {
     public partial class frmCookies : DevExpress.XtraEditors.XtraForm
     {
+        
+
         public frmCookies()
         {
             InitializeComponent();
@@ -22,6 +24,7 @@ namespace ScaleApp
 
         private void frmCookies_Load(object sender, EventArgs e)
         {
+            Start_Timer();
             LoadLueItem();
             LoadLueMaterial();
         }
@@ -85,6 +88,24 @@ namespace ScaleApp
                 MessageBox.Show(ex.Message);
             }
             ScaleApp.Common.DataOperation.disconnect();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            txtCurrentDate.Text = DateTime.Now.ToString();
+        }
+
+        private void Start_Timer()
+        {
+            timer1 = new System.Windows.Forms.Timer();
+            timer1.Interval = 1000;
+            timer1.Tick += new EventHandler(timer1_Tick);
+            timer1.Enabled = true;
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

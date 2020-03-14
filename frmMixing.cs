@@ -4,11 +4,14 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
 using ScaleApp.Common;
 
@@ -16,6 +19,8 @@ namespace ScaleApp
 {
     public partial class frmMixing : Form
     {
+        public static string labelType = "";
+
         public frmMixing()
         {
             InitializeComponent();
@@ -27,17 +32,22 @@ namespace ScaleApp
         private void frmMixing_Load(object sender, EventArgs e)
         {               
 
-            txtWeightRM.Text = "0";
-            txtWeightRecycled.Text = "0";
+            //txtWeightRM.Text = "0";
+            //txtWeightRecycled.Text = "0";
             txtTotal.Text = "0";
 
             loadComboBoxOperator();
             loadComboBoxStep();
-            loadComboBoxProduct();
-            loadComboBoxMaterial();
-            loadComboBoxRecycle();            
-            loadGridView1();
-            cmdPost.Enabled = false;
+            //loadComboBoxProduct();
+            //loadComboBoxMaterial();
+            LoadLookUpProduct();
+            LoadLookUpColor();
+            LoadLookUpMaterial();
+            //loadComboBoxRecycle();
+            LoadLookUpRecycled();
+            //loadGridView1();
+            LoadGridControl1();
+            spbPost.Enabled = false;
             Start_Timer();
         }        
 
@@ -56,12 +66,14 @@ namespace ScaleApp
 
         private void btnSendToMaterial_Click(object sender, EventArgs e)
         {
-            txtWeightRM.Text = txtScaleWeight.Text;
+            //txtWeightRM.Text = txtScaleWeight.Text;
+            txtWeightMaterial.Text = txtScaleWeight.Text; 
         }
 
         private void btnSendToRecycled_Click(object sender, EventArgs e)
         {
-            txtWeightRecycled.Text = txtScaleWeight.Text;
+            //txtWeightRecycled.Text = txtScaleWeight.Text;
+            txtWeightRe.Text = txtScaleWeight.Text;
         }
 
         private void CreateMixRaw()
@@ -73,15 +85,18 @@ namespace ScaleApp
 
             cmd.Parameters.AddWithValue("@shiftID", cmbShift.SelectedItem);
             cmd.Parameters.AddWithValue("@operatorCode", cmbOperator.SelectedValue);
-            cmd.Parameters.AddWithValue("@productCode", cmbProduct.SelectedValue);
-            cmd.Parameters.AddWithValue("@materialCode", cmbMaterial.SelectedValue);
-            cmd.Parameters.AddWithValue("@colorCode", cmbColor.SelectedValue);
+            //cmd.Parameters.AddWithValue("@productCode", cmbProduct.SelectedValue);
+            cmd.Parameters.AddWithValue("@productCode", lueProduct.EditValue);
+            //cmd.Parameters.AddWithValue("@materialCode", cmbMaterial.SelectedValue);
+            cmd.Parameters.AddWithValue("@materialCode", lueMaterial.EditValue);
+            //cmd.Parameters.AddWithValue("@colorCode", cmbColor.SelectedValue);
+            cmd.Parameters.AddWithValue("@colorCode", lueColor.EditValue);
             cmd.Parameters.AddWithValue("@stepId", cmbStep.SelectedValue);
-            cmd.Parameters.AddWithValue("@weightRecycle", txtWeightRecycled.Text);
-            cmd.Parameters.AddWithValue("@weightMaterial", txtWeightRM.Text);
+            cmd.Parameters.AddWithValue("@weightRecycle", txtWeightRe.Text);
+            cmd.Parameters.AddWithValue("@weightMaterial", txtWeightMaterial.Text);
             cmd.Parameters.AddWithValue("@totalMaterial", txtTotal.Text);
             cmd.Parameters.AddWithValue("@machineID", txtMachine.Text);
-            cmd.Parameters.AddWithValue("@crushRawId", cmbRecycled.Text);
+            cmd.Parameters.AddWithValue("@crushRawId", lueRecycled.EditValue);
             cmd.Parameters.AddWithValue("@qrCode", qrMixLotID.Text);
 
             conn.Open();
@@ -90,7 +105,7 @@ namespace ScaleApp
 
             ScaleApp.Common.DataOperation.disconnect();
 
-            loadGridView1();
+            LoadGridControl1();
 
             if (i != 0)
             {
@@ -107,15 +122,18 @@ namespace ScaleApp
 
             cmd.Parameters.AddWithValue("@shiftID", cmbShift.SelectedItem);
             cmd.Parameters.AddWithValue("@operatorCode", cmbOperator.SelectedValue);
-            cmd.Parameters.AddWithValue("@productCode", cmbProduct.SelectedValue);
-            cmd.Parameters.AddWithValue("@materialCode", cmbMaterial.SelectedValue);
-            cmd.Parameters.AddWithValue("@colorCode", cmbColor.SelectedValue);
+            //cmd.Parameters.AddWithValue("@productCode", cmbProduct.SelectedValue);
+            cmd.Parameters.AddWithValue("@productCode", lueProduct.EditValue);
+            //cmd.Parameters.AddWithValue("@materialCode", cmbMaterial.SelectedValue);
+            cmd.Parameters.AddWithValue("@materialCode", lueMaterial.EditValue);
+            //cmd.Parameters.AddWithValue("@colorCode", cmbColor.SelectedValue);
+            cmd.Parameters.AddWithValue("@colorCode", lueColor.EditValue);
             cmd.Parameters.AddWithValue("@stepId", cmbStep.SelectedValue);
-            cmd.Parameters.AddWithValue("@weightRecycle", txtWeightRecycled.Text);
-            cmd.Parameters.AddWithValue("@weightMaterial", txtWeightRM.Text);
+            cmd.Parameters.AddWithValue("@weightRecycle", txtWeightRe.Text);
+            cmd.Parameters.AddWithValue("@weightMaterial", txtWeightMaterial.Text);
             cmd.Parameters.AddWithValue("@totalMaterial", txtTotal.Text);
             cmd.Parameters.AddWithValue("@machineID", txtMachine.Text);
-            cmd.Parameters.AddWithValue("@crushRawId", cmbRecycled.Text);
+            cmd.Parameters.AddWithValue("@crushRawId", lueRecycled.EditValue);
             cmd.Parameters.AddWithValue("@qrCode", qrMixLotID.Text);
             cmd.Parameters.AddWithValue("@mixRawId", txtMixID.Text);
 
@@ -128,37 +146,23 @@ namespace ScaleApp
             if (i != 0)
             {
                 MessageBox.Show(i + "Data Saved");
-                loadGridView1();
+                LoadGridControl1();
             }
         }        
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtMixID.Text.IsNullOrEmpty())
-            {
-                if (CheckValidForm() == 0)
-                {
-                    MessageBox.Show("Do you miss Item?");                    
-                }
-                else
-                {
-                    CreateMixRaw();
-                }                
-            }
-            else
-            {
-                UpdateMixRaw();
-            }
+            
         }
 
         private int CheckValidForm()
         {            
-            if (cmbProduct.SelectedValue.ToString() == "None")
+            if (lueColor.EditValue == null || lueMaterial.EditValue == null || txtWeightMaterial.Text == null)
             {
                 return 0;
             }
             return 1;
-        }
+        }        
 
         private void cmbOperator_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -241,9 +245,9 @@ namespace ScaleApp
                     SqlDa.Fill(ds);
                 }
                 DataRow blankRow = ds.Tables[0].NewRow();
-                blankRow["ProductCode"] = "None";
-                blankRow["ProductName"] = "";
-                ds.Tables[0].Rows.InsertAt(blankRow, 0);
+                //blankRow["ProductCode"] = "None";
+                //blankRow["ProductName"] = "";
+                //ds.Tables[0].Rows.InsertAt(blankRow, 0);
 
                 cmbProduct.DataSource = ds.Tables[0];
                 cmbProduct.DisplayMember = "ProductName";
@@ -310,6 +314,100 @@ namespace ScaleApp
             ScaleApp.Common.DataOperation.disconnect();
         }
 
+        private void LoadLookUpMaterial()
+        {
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            try
+            {
+                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getMaterials", conn))
+                {
+                    SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    SqlDa.Fill(ds);
+                }                
+
+                lueMaterial.Properties.DataSource = ds.Tables[0];
+                lueMaterial.Properties.DisplayMember = "MaterialName";
+                lueMaterial.Properties.ValueMember = "MaterialCode";
+
+                lueMaterial.Properties.Columns.Add(new LookUpColumnInfo("MaterialCode", "MaterialCode", 60));
+                lueMaterial.Properties.Columns.Add(new LookUpColumnInfo("MaterialName", "MaterialName", 120));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            ScaleApp.Common.DataOperation.disconnect();
+        }
+
+        private void LoadLookUpProduct()
+        {
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            try
+            {
+                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getProducts", conn))
+                {
+                    SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    SqlDa.Fill(ds);
+                }                
+
+                lueProduct.Properties.DataSource = ds.Tables[0];
+                lueProduct.Properties.DisplayMember = "ProductName";
+                lueProduct.Properties.ValueMember = "ProductName";
+                lueProduct.Properties.KeyMember = "ProductCode";
+
+                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("ProductName", "ProductName", 60));
+                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("ProductName", "ProductName", 120));                
+                //enable text editing 
+                lueProduct.Properties.TextEditStyle = TextEditStyles.Standard;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            ScaleApp.Common.DataOperation.disconnect();
+        }
+
+        private void LoadLookUpColor()
+        {
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            try
+            {
+                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getColorsProducts", conn))
+                {
+                    SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    SqlDa.Fill(ds);
+                }
+                
+
+                lueColor .Properties.DataSource = ds.Tables[0];
+                lueColor.Properties.DisplayMember = "ColorName";
+                lueColor.Properties.ValueMember = "ColorCode";
+
+                lueColor.Properties.Columns.Add(new LookUpColumnInfo("ColorCode", "ColorCode", 60));
+                lueColor.Properties.Columns.Add(new LookUpColumnInfo("ColorName", "ColorName", 120));
+                //lueColor.Properties.Columns.Add(new LookUpColumnInfo("ProductName", "ProductName", 120));
+
+                //enable text editing 
+                lueColor.Properties.TextEditStyle = TextEditStyles.Standard;
+                //lueColor.CascadingOwner = lueProduct;
+                //lueColor.Properties.CascadingMember = "ProductCode";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            ScaleApp.Common.DataOperation.disconnect();
+        }
+
         private void loadComboBoxRecycle()
         {
             DataSet ds = new DataSet();
@@ -331,6 +429,34 @@ namespace ScaleApp
                 cmbRecycled.DataSource = ds.Tables[0];
                 cmbRecycled.DisplayMember = "RecycledID";
                 cmbRecycled.ValueMember = "CrushRawId";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            ScaleApp.Common.DataOperation.disconnect();
+        }
+
+        private void LoadLookUpRecycled()
+        {
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            try
+            {
+                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getCrushRaws", conn))
+                {
+                    SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    SqlDa.Fill(ds);
+                }
+
+                lueRecycled.Properties.DataSource = ds.Tables[0];
+                lueRecycled.Properties.DisplayMember = "RecycledID";
+                lueRecycled.Properties.ValueMember = "CrushRawId";
+                
+                lueRecycled.Properties.Columns.Add(new LookUpColumnInfo("CrushRawId", "CrushRawId", 60));
+                lueRecycled.Properties.Columns.Add(new LookUpColumnInfo("RecycledID", "RecycledID", 120));
             }
             catch (Exception ex)
             {
@@ -378,22 +504,22 @@ namespace ScaleApp
             Double weightRe = 0;
             Double weightTotal = 0;
                 
-            if (String.IsNullOrEmpty(txtWeightRM.Text))
+            if (String.IsNullOrEmpty(txtWeightMaterial.Text))
             {
                 weightRM = 0;
             }
             else
             {
-                weightRM = double.Parse(txtWeightRM.Text);
+                weightRM = double.Parse(txtWeightMaterial.Text);
             }
 
-            if (String.IsNullOrEmpty(txtWeightRecycled.Text))
+            if (String.IsNullOrEmpty(txtWeightRe.Text))
             {
                 weightRe = 0;
             }
             else
             {
-                weightRe = double.Parse(txtWeightRecycled.Text);
+                weightRe = double.Parse(txtWeightRe.Text);
             }            
             weightTotal = weightRM + weightRe;
             return weightTotal.ToString();
@@ -413,10 +539,12 @@ namespace ScaleApp
         {
             String qrCodeText = "";
             String qrCodeMfunction = ScaleApp.Common.mFunction.GenerateTextQRCode("MI", DateTime.Today);
-            String ItemCode = cmbProduct.SelectedValue.ToString();
-            String ColorCode = cmbColor.SelectedValue.ToString();
+            //String ItemCode = cmbProduct.SelectedValue.ToString();
+            //String ColorCode = cmbColor.SelectedValue.ToString();
+            String ItemCode = lueProduct.EditValue.ToString();
+            String ColorCode = lueColor.EditValue.ToString();
 
-            qrCodeText = qrCodeMfunction + "." + cmbProduct.SelectedValue.ToString() + "." + cmbColor.SelectedValue.ToString() + "." + cmbMaterial.SelectedValue.ToString() + "." + getLastMixRawId().ToString();
+            qrCodeText = qrCodeMfunction + "." + ItemCode + "|" + ColorCode + "|" + lueMaterial.EditValue.ToString() + "|" + getLastMixRawId().ToString();
             qrMixLotID.Text = qrCodeText;
         }
 
@@ -436,7 +564,7 @@ namespace ScaleApp
             conn.Open();
             sqlcmd.ExecuteNonQuery();
 
-            lastCrushRawId = (int)sqlcmd.Parameters["@LastIdentity"].Value;
+            lastCrushRawId = (int)sqlcmd.Parameters["@LastIdentity"].Value + 1;
             return lastCrushRawId;
 
             ScaleApp.Common.DataOperation.disconnect();
@@ -500,7 +628,131 @@ namespace ScaleApp
                 MessageBox.Show(ex.Message);
             }
             ScaleApp.Common.DataOperation.disconnect();
-        }        
+        }
+
+        private void LoadGridControl1()
+        {
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            try
+            {
+                //Binding data for 2 gridView and attach to gridControl
+                SqlDataAdapter SqlDaMixRaw = new SqlDataAdapter("sp_getFullMixRaws", conn);
+                SqlDataAdapter SqlDaCrush = new SqlDataAdapter("sp_getFullCrushRaws", conn);
+                SqlDaMixRaw.SelectCommand.CommandType = CommandType.StoredProcedure;
+                SqlDaCrush.SelectCommand.CommandType = CommandType.StoredProcedure;
+                SqlDaMixRaw.Fill(ds, "MixRaw");
+                SqlDaCrush.Fill(ds, "CrushRaw");
+
+                //Set up a master-detail relationship between the DataTables 
+                DataColumn keyColumn = ds.Tables["MixRaw"].Columns["MixRawId"];
+                DataColumn foreignKeyColumn = ds.Tables["CrushRaw"].Columns["MixRawId"];
+                ds.Relations.Add("MixCrush", keyColumn, foreignKeyColumn);
+
+                //Binding Master table to gridControl
+                gridControl1.DataSource = ds.Tables["MixRaw"];
+                gridControl1.ForceInitialize();
+
+                //Set the columns of master GridView's columns to AutoResize 
+                gridView2.OptionsView.ColumnAutoWidth = false;
+
+                //Hide unsual columns of master GridView
+                gridView2.Columns["OperatorCode"].VisibleIndex = -1;
+                gridView2.Columns["ProductCode"].VisibleIndex = -1;
+                gridView2.Columns["MaterialCode"].VisibleIndex = -1;
+                gridView2.Columns["StepName"].VisibleIndex = -1;
+                gridView2.Columns["CrushRawID"].VisibleIndex = -1;
+
+                //Reorder Columns of MasterGridView
+                gridView2.Columns["CreateTime"].VisibleIndex = 1;
+                gridView2.Columns["MixBacode"].VisibleIndex = 2;
+                gridView2.Columns["RecycledID"].VisibleIndex = 3;
+                gridView2.Columns["ShiftName"].VisibleIndex = 4;
+                gridView2.Columns["OperatorName"].VisibleIndex = 5;
+                gridView2.Columns["ProductName"].VisibleIndex = 6;
+                gridView2.Columns["MaterialName"].VisibleIndex = 7;
+                gridView2.Columns["ColorCode"].VisibleIndex = 8;
+                gridView2.Columns["ColorName"].VisibleIndex = 9;
+                gridView2.Columns["StepCode"].VisibleIndex = 10;
+                gridView2.Columns["WeightMaterial"].VisibleIndex = 11;
+                gridView2.Columns["WeightRecycle"].VisibleIndex = 12;
+                gridView2.Columns["TotalMaterial"].VisibleIndex = 13;
+                gridView2.Columns["MachineName"].VisibleIndex = 14;
+
+                //Set column's width of Master GridView
+                gridView2.Columns["MixRawId"].Width = 40;
+                gridView2.Columns["RecycledID"].Width = 150;
+                gridView2.Columns["CreateTime"].Width = 100;
+                gridView2.Columns["MixBacode"].Width = 150;                
+                gridView2.Columns["ShiftName"].Width = 40;
+                gridView2.Columns["OperatorName"].Width = 100;
+                gridView2.Columns["ProductName"].Width = 180;
+                gridView2.Columns["MaterialName"].Width = 180;
+                gridView2.Columns["ColorCode"].Width = 82;
+                gridView2.Columns["ColorName"].Width = 170;
+                gridView2.Columns["StepCode"].Width = 60;
+                gridView2.Columns["WeightMaterial"].Width = 80;
+                gridView2.Columns["WeightRecycle"].Width = 80;
+                gridView2.Columns["TotalMaterial"].Width = 80;
+                gridView2.Columns["MachineName"].Width = 80;
+                gridView2.Columns["Posted"].Width = 40;
+
+                //Bind data to GridView2 and attachment to the GridView1 as a Detail
+                GridView gridView3 = new GridView(gridControl1);
+                gridControl1.LevelTree.Nodes.Add("MixCrush", gridView3);
+
+                //Set caption for detail GridView
+                gridView3.ViewCaption = "Recycled Lots";
+
+                //Generate all columns of datatable resource of detail GridView
+                gridView3.PopulateColumns(ds.Tables["CrushRaw"]);
+
+                //Hide unsual columns of detail GridView
+                gridView3.Columns["OperatorCode"].VisibleIndex = -1;
+                gridView3.Columns["ProductCode"].VisibleIndex = -1;
+                gridView3.Columns["MaterialCode"].VisibleIndex = -1;
+                gridView3.Columns["StepName"].VisibleIndex = -1;
+                gridView3.Columns["MixRawId"].VisibleIndex = -1;
+                gridView3.Columns["CreateBy"].VisibleIndex = -1;
+
+                //Set column's width of detail GridView
+                gridView3.Columns["CrushRawId"].Width = 40;
+                gridView3.Columns["OperatorName"].Width = 100;
+                gridView3.Columns["ProductName"].Width = 180;
+                gridView3.Columns["MaterialName"].Width = 180;
+                gridView3.Columns["ColorCode"].Width = 80;
+                gridView3.Columns["ColorName"].Width = 170;
+                gridView3.Columns["WeightRecycle"].Width = 80;
+                gridView3.Columns["LossTypeName"].Width = 60;
+                gridView3.Columns["MixBacode"].Width = 150;
+                gridView3.Columns["MachineName"].Width = 80;
+                gridView3.Columns["RecycledID"].Width = 150;
+                gridView3.Columns["Posted"].Width = 40;
+
+                //Set editable of two GridViews to not allows
+                gridView2.MasterRowExpanded += gridView2_MasterRowExpanded;
+                gridView2.OptionsBehavior.Editable = gridView3.OptionsBehavior.Editable = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void gridView2_MasterRowExpanded(object sender, CustomMasterRowEventArgs e)
+        {
+            GridView master = sender as GridView;
+            GridView detail = master.GetDetailView(e.RowHandle, e.RelationIndex) as GridView;
+            detail.Click += new EventHandler(detail_Click);
+        }
+
+        private void detail_Click(object sender, EventArgs e)
+        {
+            GridView gridView = sender as GridView;
+            var value = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.FocusedColumn);            
+        }
 
         private void loadMixRaw(int mixId)
         {
@@ -518,17 +770,21 @@ namespace ScaleApp
                 SqlDa.Fill(ds);
                 
                 cmbShift.SelectedItem = ds.Tables[0].Rows[0][1]; //Get ShiftID
-                cmbOperator.SelectedValue = ds.Tables[0].Rows[0][2]; //Get Operator
-                cmbProduct.SelectedValue = ds.Tables[0].Rows[0][3]; //Get Item
-                cmbMaterial.SelectedValue = ds.Tables[0].Rows[0][4]; //Get Material
-                cmbColor.SelectedValue = ds.Tables[0].Rows[0][5]; //Get Color
+                cmbOperator.SelectedValue = ds.Tables[0].Rows[0][2]; //Get Operator                
+                //cmbMaterial.SelectedValue = ds.Tables[0].Rows[0][4]; //Get Material
+                lueMaterial.EditValue = ds.Tables[0].Rows[0][4]; //Get Material
+                //cmbProduct.SelectedValue = ds.Tables[0].Rows[0][3]; //Get Item
+                //cmbColor.SelectedValue = ds.Tables[0].Rows[0][5]; //Get Color
+                lueProduct.EditValue= ds.Tables[0].Rows[0][3]; //Get Item
+                lueColor.EditValue = ds.Tables[0].Rows[0][5]; //Get Color
                 cmbStep.SelectedValue = ds.Tables[0].Rows[0][6]; //Get Step
                 txtWeightRM.Text = ds.Tables[0].Rows[0][8].ToString(); //Get Weight RM
                 txtWeightRecycled.Text = ds.Tables[0].Rows[0][9].ToString(); //Get Weight Recycled
                 txtTotal.Text = ds.Tables[0].Rows[0][10].ToString(); //Get Total
                 txtMachine.Text = ds.Tables[0].Rows[0][11].ToString(); //Get Machine
                 qrMixLotID.Text = ds.Tables[0].Rows[0][12].ToString(); //Get Mix Lot ID
-                cmbRecycled.SelectedValue = ds.Tables[0].Rows[0][15]; //Get Recycled Lot ID
+                //cmbRecycled.SelectedValue = ds.Tables[0].Rows[0][15]; //Get Recycled Lot ID
+                lueRecycled.EditValue = ds.Tables[0].Rows[0][15];
                 txtMixDate.Text = ds.Tables[0].Rows[0][14].ToString(); //Get Mix Lot Date                
                 txtPosted.Text = ds.Tables[0].Rows[0][16].ToString();
             }
@@ -554,20 +810,28 @@ namespace ScaleApp
 
         private void button5_Click(object sender, EventArgs e)
         {
-            //string labelType = cmbLabelType.SelectedValue.ToString();
-
-            //switch (labelType)
-            //{
-            //    case "Mixed":
-            //    case "Runner":
-            //    case "Defect":
-            //    case "BlackDot":
-            //    case "Contaminated":
-            //    default:
-            //}
+            //string labelType = cmbLabelType.SelectedItem.ToString();
 
             frmReportMixed report = new frmReportMixed();
-            report.ShowDialog();
+
+            if (cmbLabelType.SelectedItem == null)
+            {
+                report.LableTypeReport = "Mixed";
+            }
+            else
+            {
+                report.LableTypeReport = cmbLabelType.SelectedItem.ToString();
+            }
+
+            if (txtMixID.Text.IsNullOrEmpty())
+            {
+                MessageBox.Show("Select a Mix Lot Id to print !");
+            }
+            else
+            {
+                report.MixID = int.Parse(txtMixID.Text.ToString());
+                report.Show();
+            }            
         }        
 
         private void gridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -604,12 +868,18 @@ namespace ScaleApp
             cmbOperator.SelectedValue = "None";
             txtMachine.Text = null;
             cmbStep.SelectedValue = "None";
-            cmbProduct.SelectedValue = "None";
-            cmbColor.SelectedValue = "None";
-            cmbMaterial.SelectedValue = "None";
-            cmbRecycled.SelectedValue = 0;
-            txtWeightRM.Text = null;
-            txtWeightRecycled.Text = null;
+            //cmbProduct.SelectedValue = "None";
+            //cmbColor.SelectedValue = "None";
+            lueProduct.EditValue = null;
+            lueColor.EditValue = null;
+            //cmbMaterial.SelectedValue = "None";
+            //cmbRecycled.SelectedValue = 0;
+            lueMaterial.EditValue = null;
+            lueRecycled.EditValue = null;
+            //txtWeightRM.Text = null;
+            //txtWeightRecycled.Text = null;
+            txtWeightMaterial.Text = null;
+            txtWeightRe.Text = null;
             txtMixDate.Text = null;
             txtMixID.Text = null;
         }
@@ -617,22 +887,25 @@ namespace ScaleApp
         private void btnReset_Click(object sender, EventArgs e)
         {
             resetForm();
+            spbSave.Enabled = true;
         }
 
         private void cmdPost_Click(object sender, EventArgs e)
         {
-            UpdatePosted();
+            
         }
 
         private void SetcmdPost()
         {
             if (txtPosted.Text.ToString() == "0")
             {
-                cmdPost.Enabled = true;
+                spbPost.Enabled = true;
+                spbSave.Enabled = true;
             }
             else
             {
-                cmdPost.Enabled = false;
+                spbPost.Enabled = false;
+                spbSave.Enabled = false;
             }
         }
 
@@ -655,9 +928,155 @@ namespace ScaleApp
             {
                 MessageBox.Show("Data posted !");
                 loadGridView1();
-                btnSave.Enabled = false;
-                cmdPost.Enabled = false;
+                spbPost.Enabled = true;
+                spbSave.Enabled = true;
             }
+        }
+
+        private void lueProduct_EditValueChanged(object sender, EventArgs e)
+        {
+            lueColor.EditValue = null;
+        }
+
+        private void lueColor_EditValueChanged(object sender, EventArgs e)
+        {            
+        }
+
+        private void lueMaterial_EditValueChanged(object sender, EventArgs e)
+        {
+            if (lueColor.EditValue != null)
+            {
+                generateTextQRCode();
+            }
+            else
+            {
+                qrMixLotID.Text = "framas.com";
+            }
+        }
+
+        private void gridView2_RowClick(object sender, RowClickEventArgs e)
+        {
+            GridView gridView = sender as GridView;
+            //var value1 = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CategoryID"]);
+            cmbShift.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ShiftName"]);
+            cmbOperator.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["OperatorCode"]);
+            lueMaterial.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MaterialCode"]);
+            lueProduct.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);
+            lueColor.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ColorCode"]);
+            cmbStep.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["StepCode"]);
+            txtMachine.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MachineName"]).ToString();
+            qrMixLotID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixBacode"]).ToString();
+            //txtWeightRM.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightMaterial"]).ToString();
+            //txtWeightRecycled.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightRecycle"]).ToString();
+            txtWeightMaterial.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightMaterial"]).ToString();
+            txtWeightRe.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightRecycle"]).ToString();
+            txtTotal.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["TotalMaterial"]).ToString();
+            lueRecycled.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CrushRawID"]);
+            txtMixDate.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]).ToString();
+            txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
+            txtMixID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]).ToString();
+            SetcmdPost();
+        }
+
+        private void txtWeightMaterial_Properties_EditValueChanged(object sender, EventArgs e)
+        {
+            txtTotal.Text = getTotalWeight();
+        }
+
+        private void txtWeightRe_Properties_EditValueChanged(object sender, EventArgs e)
+        {
+            txtTotal.Text = getTotalWeight();
+        }
+
+        private void spWeightMaterial_Click(object sender, EventArgs e)
+        {
+            txtWeightMaterial.Text = txtScaleWeight.Text;
+        }
+
+        private void spWeightCrush_Click(object sender, EventArgs e)
+        {
+            txtWeightRe.Text = txtScaleWeight.Text;
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            LoadGridControl1();
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            string path = "D:\\ExportExcel\\Mixing.xlsx";
+            gridControl1.ExportToXlsx(path);
+            // Open the created XLSX file with the default application. 
+            Process.Start(path);
+        }
+
+        private void lueRecycled_EditValueChanged(object sender, EventArgs e)
+        {
+            //MessageBox.Show(lueRecycled.EditValue.ToString());
+        }
+
+        private void bteWeightRM_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bteWeightRM_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            ButtonEdit editor = (ButtonEdit)sender;
+            EditorButton Button = e.Button;
+
+            if (Button.Kind == ButtonPredefines.OK)
+            {
+                editor.Text = txtScaleWeight.Text;
+            }else if (Button.Kind == ButtonPredefines.Delete)
+            {
+                editor.Text = "";
+            }            
+        }
+
+        private void bteWeightRe_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            ButtonEdit editor = (ButtonEdit)sender;
+            EditorButton Button = e.Button;
+
+            if (Button.Kind == ButtonPredefines.OK)
+            {
+                editor.Text = txtScaleWeight.Text;
+            }
+            else if (Button.Kind == ButtonPredefines.Delete)
+            {
+                editor.Text = "";
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void spbSave_Click(object sender, EventArgs e)
+        {
+            if (txtMixID.Text.IsNullOrEmpty())
+            {
+                if (CheckValidForm() == 0)
+                {
+                    MessageBox.Show("Do you miss Item?");
+                }
+                else
+                {
+                    CreateMixRaw();
+                }
+            }
+            else
+            {
+                UpdateMixRaw();
+            }
+        }
+
+        private void spbPost_Click(object sender, EventArgs e)
+        {
+            UpdatePosted();
         }
     }
 }

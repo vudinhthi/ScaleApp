@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mixingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mixedOutStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recycledStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,29 +57,39 @@
             // 
             // toolStripMenuItem1
             // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connectDatabaseToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(49, 20);
             this.toolStripMenuItem1.Text = "Login";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // connectDatabaseToolStripMenuItem
+            // 
+            this.connectDatabaseToolStripMenuItem.Name = "connectDatabaseToolStripMenuItem";
+            this.connectDatabaseToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.connectDatabaseToolStripMenuItem.Text = "Connect database";
+            this.connectDatabaseToolStripMenuItem.Click += new System.EventHandler(this.connectDatabaseToolStripMenuItem_Click);
             // 
             // mixingToolStripMenuItem
             // 
             this.mixingToolStripMenuItem.Name = "mixingToolStripMenuItem";
-            this.mixingToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.mixingToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.mixingToolStripMenuItem.Text = "Mixing Station";
             this.mixingToolStripMenuItem.Click += new System.EventHandler(this.mixingToolStripMenuItem_Click);
             // 
             // mixedOutStationToolStripMenuItem
             // 
             this.mixedOutStationToolStripMenuItem.Name = "mixedOutStationToolStripMenuItem";
-            this.mixedOutStationToolStripMenuItem.Size = new System.Drawing.Size(115, 20);
-            this.mixedOutStationToolStripMenuItem.Text = "Mixed Out Station";
+            this.mixedOutStationToolStripMenuItem.Size = new System.Drawing.Size(144, 20);
+            this.mixedOutStationToolStripMenuItem.Text = "Incoming Crush Station";
             this.mixedOutStationToolStripMenuItem.Click += new System.EventHandler(this.mixedOutStationToolStripMenuItem_Click);
             // 
             // recycledStationToolStripMenuItem
             // 
             this.recycledStationToolStripMenuItem.Name = "recycledStationToolStripMenuItem";
-            this.recycledStationToolStripMenuItem.Size = new System.Drawing.Size(106, 20);
-            this.recycledStationToolStripMenuItem.Text = "Recycled Station";
+            this.recycledStationToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
+            this.recycledStationToolStripMenuItem.Text = "Crush Station";
             this.recycledStationToolStripMenuItem.Click += new System.EventHandler(this.recycledStationToolStripMenuItem_Click);
             // 
             // cookiesStationToolStripMenuItem
@@ -86,6 +97,7 @@
             this.cookiesStationToolStripMenuItem.Name = "cookiesStationToolStripMenuItem";
             this.cookiesStationToolStripMenuItem.Size = new System.Drawing.Size(101, 20);
             this.cookiesStationToolStripMenuItem.Text = "Cookies Station";
+            this.cookiesStationToolStripMenuItem.Click += new System.EventHandler(this.cookiesStationToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -122,6 +134,7 @@
         private System.Windows.Forms.ToolStripMenuItem recycledStationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cookiesStationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem connectDatabaseToolStripMenuItem;
     }
 }
 

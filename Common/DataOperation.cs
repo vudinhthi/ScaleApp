@@ -43,6 +43,7 @@ namespace ScaleApp.Common
         public static string GetConnectionString()
         {
             var connection = System.Configuration.ConfigurationManager.ConnectionStrings["ScaleApp.Properties.Settings.ColorMixConnectionString"].ConnectionString;
+            connection = "Data Source=server210;Initial Catalog=ColorMix;Persist Security Info=false;User ID=colourmixing;Password=M1x1ng@C0lou4";
             return connection;
         }
 

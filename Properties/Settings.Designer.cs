@@ -27,7 +27,7 @@ namespace ScaleApp.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=FVN-PC-IT-09\\SQLEXPRESS;Initial Catalog=ColorMix;Persist Security Inf" +
-            "o=True;User ID=sa;Password=12345678")]
+            "o=false;User ID=sa;Password=12345678")]
         public string ColorMixConnectionString {
             get {
                 return ((string)(this["ColorMixConnectionString"]));

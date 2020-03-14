@@ -6,16 +6,13 @@ using DevExpress.XtraReports.UI;
 
 namespace ScaleApp
 {
-    public partial class rptMixing : DevExpress.XtraReports.UI.XtraReport
+    public partial class rptMixedOut : DevExpress.XtraReports.UI.XtraReport
     {
-        public rptMixing()
+
+        public rptMixedOut()
         {
             InitializeComponent();
         }
 
-        private void SetHeightLabel()
-        {
-            
-        }
     }
 }

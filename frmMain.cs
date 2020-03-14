@@ -55,5 +55,28 @@ namespace ScaleApp
         {
             //ScaleApp.Common.DataOperation.ConnectToDB();
         }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void connectDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.IsMdiContainer = true;
+            frmConnectDB frmConnect = new frmConnectDB();
+            frmConnect.TopLevel = false;
+            frmConnect.Parent = this;
+            frmConnect.Show();
+        }
+
+        private void cookiesStationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.IsMdiContainer = true;
+            frmCookies cookies = new frmCookies();
+            cookies.TopLevel = false;
+            cookies.Parent = this;
+            cookies.Show();
+        }
     }
 }

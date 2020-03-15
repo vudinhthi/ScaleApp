@@ -32,7 +32,7 @@ namespace ScaleApp.Common
         public static void ConnectToDB()
         {
             conn = new SqlConnection();   //Khởi tạo đối tượng
-            conn.ConnectionString = @"Data Source=FVN-PC-IT-09\SQLEXPRESS;Initial Catalog=ColorMix;Persist Security Info=True;User ID=sa;Password=12345678;Connect Timeout=30";
+            conn.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ColorMix;Persist Security Info=True;User ID=sa;Password=12345678;Connect Timeout=30";
             conn.Open();                  //Mở kết nối
             //Kiểm tra kết nối
             if (conn.State == ConnectionState.Closed)
@@ -43,7 +43,8 @@ namespace ScaleApp.Common
         public static string GetConnectionString()
         {
             var connection = System.Configuration.ConfigurationManager.ConnectionStrings["ScaleApp.Properties.Settings.ColorMixConnectionString"].ConnectionString;
-            connection = "Data Source=server210;Initial Catalog=ColorMix;Persist Security Info=false;User ID=colourmixing;Password=M1x1ng@C0lou4";
+            //connection = "Data Source=server210;Initial Catalog=ColorMix;Persist Security Info=false;User ID=colourmixing;Password=M1x1ng@C0lou4";
+            connection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ColorMix;Persist Security Info=True;User ID=sa;Password=12345678;Connect Timeout=30";
             return connection;
         }
 

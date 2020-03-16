@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using ScaleApp.Common;
 
@@ -19,7 +20,7 @@ namespace ScaleApp
 {
     public partial class frmMixing : Form
     {
-        public static string labelType = "";
+        public static string labelType = "";        
 
         public frmMixing()
         {
@@ -40,7 +41,7 @@ namespace ScaleApp
             loadComboBoxStep();
             //loadComboBoxProduct();
             //loadComboBoxMaterial();
-            LoadLookUpProduct();
+            LoadLookUpProduct();            
             LoadLookUpColor();
             LoadLookUpMaterial();
             //loadComboBoxRecycle();
@@ -148,12 +149,7 @@ namespace ScaleApp
                 MessageBox.Show(i + "Data Saved");
                 LoadGridControl1();
             }
-        }        
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            
-        }
+        }               
 
         private int CheckValidForm()
         {            
@@ -162,17 +158,7 @@ namespace ScaleApp
                 return 0;
             }
             return 1;
-        }        
-
-        private void cmbOperator_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbOperator_Click(object sender, EventArgs e)
-        {
-
-        }
+        }                   
 
         private void loadComboBoxOperator()
         {
@@ -358,11 +344,11 @@ namespace ScaleApp
 
                 lueProduct.Properties.DataSource = ds.Tables[0];
                 lueProduct.Properties.DisplayMember = "ProductName";
-                lueProduct.Properties.ValueMember = "ProductName";
+                lueProduct.Properties.ValueMember = "ProductCode";
                 lueProduct.Properties.KeyMember = "ProductCode";
 
-                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("ProductName", "ProductName", 60));
-                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("ProductName", "ProductName", 120));                
+                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("ProductCode", "ProductCode", 120));
+                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("ProductName", "ProductName", 120));
                 //enable text editing 
                 lueProduct.Properties.TextEditStyle = TextEditStyles.Standard;
             }
@@ -371,7 +357,7 @@ namespace ScaleApp
                 MessageBox.Show(ex.Message);
             }
             ScaleApp.Common.DataOperation.disconnect();
-        }
+        }        
 
         private void LoadLookUpColor()
         {
@@ -387,19 +373,19 @@ namespace ScaleApp
                     SqlDa.Fill(ds);
                 }
                 
-
-                lueColor .Properties.DataSource = ds.Tables[0];
+                lueColor.Properties.DataSource = ds.Tables[0];
                 lueColor.Properties.DisplayMember = "ColorName";
-                lueColor.Properties.ValueMember = "ColorCode";
+                lueColor.Properties.ValueMember = "ColorCode";                
 
                 lueColor.Properties.Columns.Add(new LookUpColumnInfo("ColorCode", "ColorCode", 60));
                 lueColor.Properties.Columns.Add(new LookUpColumnInfo("ColorName", "ColorName", 120));
-                //lueColor.Properties.Columns.Add(new LookUpColumnInfo("ProductName", "ProductName", 120));
 
                 //enable text editing 
-                lueColor.Properties.TextEditStyle = TextEditStyles.Standard;
-                //lueColor.CascadingOwner = lueProduct;
-                //lueColor.Properties.CascadingMember = "ProductCode";
+                lueColor.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
+                lueColor.CascadingOwner = lueProduct;
+                lueColor.Properties.CascadingMember = "ProductCode";                
+
+                lueColor.EditValue = ds.Tables[0].Rows[0][2];
             }
             catch (Exception ex)
             {
@@ -467,7 +453,37 @@ namespace ScaleApp
 
         private void loadColorsByProduct(string productId)
         {
-            if (cmbProduct.SelectedValue.ToString() == "None")
+            //if (cmbProduct.SelectedValue.ToString() == "None")
+            //{
+            //    return;
+            //}
+            //else
+            //{
+            //    DataSet ds = new DataSet();
+            //    String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            //    SqlConnection conn = new SqlConnection(connStr);
+            //    SqlDataAdapter SqlDa = new SqlDataAdapter();
+            //    SqlCommand sqlcmd = new SqlCommand("sp_getColorsProduct", conn);
+            //    try
+            //    {
+            //        sqlcmd.CommandType = CommandType.StoredProcedure;
+            //        sqlcmd.Parameters.AddWithValue("@ProductId", productId);
+            //        SqlDa.SelectCommand = sqlcmd;
+
+            //        SqlDa.Fill(ds);
+
+            //        cmbColor.DataSource = ds.Tables[0];
+            //        cmbColor.DisplayMember = "ColorCode";
+            //        cmbColor.ValueMember = "ColorCode";
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //    ScaleApp.Common.DataOperation.disconnect();
+            //}
+
+            if (lueProduct.EditValue.IsNullOrEmpty())
             {
                 return;
             }
@@ -484,11 +500,16 @@ namespace ScaleApp
                     sqlcmd.Parameters.AddWithValue("@ProductId", productId);
                     SqlDa.SelectCommand = sqlcmd;
 
-                    SqlDa.Fill(ds);
-
-                    cmbColor.DataSource = ds.Tables[0];
-                    cmbColor.DisplayMember = "ColorCode";
-                    cmbColor.ValueMember = "ColorCode";
+                    SqlDa.Fill(ds);                    
+                    
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        tedColor.Text = ds.Tables[0].Rows[0][2].ToString();
+                    }
+                    else
+                    {
+                        tedColor.Text = "";
+                    }                    
                 }
                 catch (Exception ex)
                 {
@@ -498,28 +519,28 @@ namespace ScaleApp
             }
         }
 
-        private string getTotalWeight()
+        private string GetTotalWeight()
         {
             Double weightRM = 0;
             Double weightRe = 0;
             Double weightTotal = 0;
                 
-            if (String.IsNullOrEmpty(txtWeightMaterial.Text))
+            if (String.IsNullOrEmpty(bteWeightRM.Text))
             {
                 weightRM = 0;
             }
             else
             {
-                weightRM = double.Parse(txtWeightMaterial.Text);
+                weightRM = double.Parse(bteWeightRM.Text);
             }
 
-            if (String.IsNullOrEmpty(txtWeightRe.Text))
+            if (String.IsNullOrEmpty(bteWeightRe.Text))
             {
                 weightRe = 0;
             }
             else
             {
-                weightRe = double.Parse(txtWeightRe.Text);
+                weightRe = double.Parse(bteWeightRe.Text);
             }            
             weightTotal = weightRM + weightRe;
             return weightTotal.ToString();
@@ -527,24 +548,20 @@ namespace ScaleApp
 
         private void txtWeightRM_TextChanged(object sender, EventArgs e)
         {            
-            txtTotal.Text = getTotalWeight();
+            txtTotal.Text = GetTotalWeight();
         }
 
         private void txtWeightRecycled_TextChanged(object sender, EventArgs e)
         {            
-            txtTotal.Text = getTotalWeight();
+            txtTotal.Text = GetTotalWeight();
         }
 
         private void generateTextQRCode()
         {
             String qrCodeText = "";
-            String qrCodeMfunction = ScaleApp.Common.mFunction.GenerateTextQRCode("MI", DateTime.Today);
-            //String ItemCode = cmbProduct.SelectedValue.ToString();
-            //String ColorCode = cmbColor.SelectedValue.ToString();
-            String ItemCode = lueProduct.EditValue.ToString();
-            String ColorCode = lueColor.EditValue.ToString();
+            String qrCodeMfunction = ScaleApp.Common.mFunction.GenerateTextQRCode("MI", DateTime.Today);            
 
-            qrCodeText = qrCodeMfunction + "." + ItemCode + "|" + ColorCode + "|" + lueMaterial.EditValue.ToString() + "|" + getLastMixRawId().ToString();
+            qrCodeText = qrCodeMfunction + "|" + lueProduct.EditValue.ToString() + "|" + getLastMixRawId().ToString();
             qrMixLotID.Text = qrCodeText;
         }
 
@@ -738,6 +755,75 @@ namespace ScaleApp
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void LoadGridControl2(string productId, string weightRM)
+        {
+            if (lueProduct.EditValue.IsNullOrEmpty())
+            {
+                return;
+            }
+            else
+            {
+                DataSet ds = new DataSet();
+                String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+                SqlConnection conn = new SqlConnection(connStr);
+                SqlDataAdapter SqlDa = new SqlDataAdapter();
+                SqlCommand sqlcmd = new SqlCommand("sp_getMaterialsProduct", conn);
+                try
+                {
+                    sqlcmd.CommandType = CommandType.StoredProcedure;
+                    sqlcmd.Parameters.AddWithValue("@ProductId", productId);
+                    SqlDa.SelectCommand = sqlcmd;
+
+                    SqlDa.Fill(ds, "MaterialProduct");
+
+                    gridControl2.DataSource = ds.Tables["MaterialProduct"];
+                    gridControl2.ForceInitialize();
+
+                    gridViewMaterialBom.OptionsView.ColumnAutoWidth = false;
+
+                    gridViewMaterialBom.Columns["ID"].VisibleIndex = -1;
+                    gridViewMaterialBom.Columns["ProductCode"].VisibleIndex = -1;
+                    
+                    gridViewMaterialBom.Columns["MaterialCode"].VisibleIndex = 1;
+                    gridViewMaterialBom.Columns["MaterialName"].VisibleIndex = 2;
+                    gridViewMaterialBom.Columns["Quantity"].VisibleIndex = 3;
+                    gridViewMaterialBom.Columns["Unit"].VisibleIndex = 4;
+
+                    gridViewMaterialBom.Columns["Unit"].Width = 50;
+
+                    gridViewMaterialBom.Columns["Quantity"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                    gridViewMaterialBom.Columns["Quantity"].DisplayFormat.FormatString = "{0:n3}";
+
+                    //colTotal.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
+                    //colTotal.UnboundExpression = weightRM + "10*[Quantity]";
+                    //colTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                    //colTotal.DisplayFormat.FormatString = "{0:n3}";
+                    //colTotal.VisibleIndex = gridViewMaterialBom.VisibleColumns.Count;
+
+                    // Calculated Total column: 
+                    GridColumn columnTotal = new GridColumn();
+                    columnTotal.Caption = "Total";
+                    columnTotal.FieldName = "Total";
+                    columnTotal.OptionsColumn.AllowEdit = false;
+                    columnTotal.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
+                    columnTotal.UnboundExpression = weightRM + "10*[Quantity]";
+
+                    gridViewMaterialBom.Columns.Add(columnTotal);
+
+                    columnTotal.VisibleIndex = gridViewMaterialBom.VisibleColumns.Count;
+                    columnTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                    columnTotal.DisplayFormat.FormatString = "{0:n3}";
+
+                    gridViewMaterialBom.OptionsBehavior.Editable = false;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                ScaleApp.Common.DataOperation.disconnect();
             }
         }
 
@@ -936,11 +1022,17 @@ namespace ScaleApp
         private void lueProduct_EditValueChanged(object sender, EventArgs e)
         {
             lueColor.EditValue = null;
-        }
-
-        private void lueColor_EditValueChanged(object sender, EventArgs e)
-        {            
-        }
+            if (lueProduct.EditValue.IsNull())
+            {
+                return;
+            }
+            else
+            {
+                loadColorsByProduct(lueProduct.EditValue.ToString());
+                LoadGridControl2(lueProduct.EditValue.ToString(), bteWeightRe.Text);
+                generateTextQRCode();
+            }
+        }        
 
         private void lueMaterial_EditValueChanged(object sender, EventArgs e)
         {
@@ -978,24 +1070,16 @@ namespace ScaleApp
             SetcmdPost();
         }
 
-        private void txtWeightMaterial_Properties_EditValueChanged(object sender, EventArgs e)
-        {
-            txtTotal.Text = getTotalWeight();
-        }
-
-        private void txtWeightRe_Properties_EditValueChanged(object sender, EventArgs e)
-        {
-            txtTotal.Text = getTotalWeight();
-        }
-
         private void spWeightMaterial_Click(object sender, EventArgs e)
         {
             txtWeightMaterial.Text = txtScaleWeight.Text;
+            txtTotal.Text = GetTotalWeight();
         }
 
         private void spWeightCrush_Click(object sender, EventArgs e)
         {
             txtWeightRe.Text = txtScaleWeight.Text;
+            txtTotal.Text = GetTotalWeight();
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
@@ -1014,46 +1098,52 @@ namespace ScaleApp
         private void lueRecycled_EditValueChanged(object sender, EventArgs e)
         {
             //MessageBox.Show(lueRecycled.EditValue.ToString());
-        }
-
-        private void bteWeightRM_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
+        }        
 
         private void bteWeightRM_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
-            ButtonEdit editor = (ButtonEdit)sender;
+            ButtonEdit editorWeightRM = (ButtonEdit)sender;
             EditorButton Button = e.Button;
 
             if (Button.Kind == ButtonPredefines.OK)
             {
-                editor.Text = txtScaleWeight.Text;
-            }else if (Button.Kind == ButtonPredefines.Delete)
-            {
-                editor.Text = "";
-            }            
-        }
-
-        private void bteWeightRe_ButtonClick(object sender, ButtonPressedEventArgs e)
-        {
-            ButtonEdit editor = (ButtonEdit)sender;
-            EditorButton Button = e.Button;
-
-            if (Button.Kind == ButtonPredefines.OK)
-            {
-                editor.Text = txtScaleWeight.Text;
+                editorWeightRM.Text = txtScaleWeight.Text;
+                if (lueProduct.EditValue == null)
+                {
+                    MessageBox.Show("Select a Product first");
+                }
+                else
+                {
+                    LoadGridControl2(lueProduct.EditValue.ToString(), editorWeightRM.Text);
+                }                
+                txtTotal.Text = GetTotalWeight().ToString();
             }
             else if (Button.Kind == ButtonPredefines.Delete)
             {
-                editor.Text = "";
-            }
-        }
+                editorWeightRM.Text = "";
+            }            
+        }        
 
-        private void label1_Click(object sender, EventArgs e)
+        private void bteWeightRe_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
+            ButtonEdit editorWeightRe = (ButtonEdit)sender;
+            EditorButton Button = e.Button;
 
-        }
+            if (Button.Kind == ButtonPredefines.OK)
+            {
+                txtScaleWeight.Text = "40";
+                editorWeightRe.Text = txtScaleWeight.Text;
+                txtTotal.Text = GetTotalWeight().ToString();
+                txtReRatio.Text = (Double.Parse(bteWeightRe.Text.ToString()) / Double.Parse(txtTotal.Text.ToString())).ToString();
+                txtReRatio.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+                txtReRatio.Properties.Mask.EditMask = "p";
+                txtReRatio.Properties.Mask.UseMaskAsDisplayFormat = true;
+            }
+            else if (Button.Kind == ButtonPredefines.Delete)
+            {
+                editorWeightRe.Text = "";
+            }
+        }        
 
         private void spbSave_Click(object sender, EventArgs e)
         {
@@ -1077,6 +1167,6 @@ namespace ScaleApp
         private void spbPost_Click(object sender, EventArgs e)
         {
             UpdatePosted();
-        }
+        }        
     }
 }

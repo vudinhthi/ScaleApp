@@ -237,7 +237,7 @@ namespace ScaleApp.Common
             sMonth = dteNgay.Month.ToString();
             sYear = dteNgay.Year.ToString();
 
-            textQrCode = codeType + "." +  sYear + sMonth + sDay;
+            textQrCode = codeType + "|" +  sYear + sMonth + sDay;
 
             return textQrCode;
         }

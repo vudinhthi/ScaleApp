@@ -43,8 +43,8 @@ namespace ScaleApp.Common
         public static string GetConnectionString()
         {
             var connection = System.Configuration.ConfigurationManager.ConnectionStrings["ScaleApp.Properties.Settings.ColorMixConnectionString"].ConnectionString;
-            //connection = "Data Source=server210;Initial Catalog=ColorMix;Persist Security Info=false;User ID=colourmixing;Password=M1x1ng@C0lou4";
-            connection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ColorMix;Persist Security Info=True;User ID=sa;Password=12345678;Connect Timeout=30";
+            connection = "Data Source=server210;Initial Catalog=ColorMix;Persist Security Info=false;User ID=colourmixing;Password=M1x1ng@C0lou4";
+            //connection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ColorMix;Persist Security Info=True;User ID=sa;Password=12345678;Connect Timeout=30";
             return connection;
         }
 

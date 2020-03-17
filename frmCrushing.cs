@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors.Controls;
+﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraPrinting;
 using ScaleApp.Common;
@@ -202,7 +203,7 @@ namespace ScaleApp
 
         private void loadColorsByProduct(string productId)
         {
-            if (cmbProduct.SelectedValue.ToString() == "None")
+            if (lueProduct.EditValue.IsNullOrEmpty())
             {
                 return;
             }
@@ -221,9 +222,16 @@ namespace ScaleApp
 
                     SqlDa.Fill(ds);
 
-                    cmbColor.DataSource = ds.Tables[0];
-                    cmbColor.DisplayMember = "ColorCode";
-                    cmbColor.ValueMember = "ColorCode";
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        tedColorCode.Text = ds.Tables[0].Rows[0][1].ToString();
+                        tedColor.Text = ds.Tables[0].Rows[0][2].ToString();
+                    }
+                    else
+                    {
+                        tedColorCode.Text = "";
+                        tedColor.Text = "";
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -266,11 +274,9 @@ namespace ScaleApp
         private void generateTextQRCode()
         {
             String qrCodeText = "";
-            String qrCodeMfunction = ScaleApp.Common.mFunction.GenerateTextQRCode("RE", DateTime.Today);
-            String ItemCode = cmbProduct.SelectedValue.ToString();
-            String ColorCode = cmbColor.SelectedValue.ToString();
+            String qrCodeMfunction = ScaleApp.Common.mFunction.GenerateTextQRCode("RE", DateTime.Today);            
             
-            qrCodeText = qrCodeMfunction + "|" + lueProduct.Text + "|" + lueColor.Text + "|" + lueMaterial.Text + "|" + getLastCrushRawId().ToString();            
+            qrCodeText = qrCodeMfunction + "|" + lueProduct.EditValue + "|" + getLastCrushRawId().ToString();            
             qrCodeCrush.Text = qrCodeText;
         }
 
@@ -349,7 +355,7 @@ namespace ScaleApp
 
         private int CheckValidForm()
         {
-            if (lueColor.EditValue == null || lueMaterial.EditValue == null || lueMixId.EditValue == null || txtWeightRe.Text == null)
+            if (lueMixId.EditValue == null || txtWeightRe.Text == null)
             {
                 return 0;
             }
@@ -386,7 +392,7 @@ namespace ScaleApp
             cmd.Parameters.AddWithValue("@operatorCode", cmbOperator.SelectedValue);
             cmd.Parameters.AddWithValue("@productCode", lueProduct.EditValue);
             cmd.Parameters.AddWithValue("@materialCode", lueMaterial.EditValue);
-            cmd.Parameters.AddWithValue("@colorCode", lueColor.EditValue);
+            cmd.Parameters.AddWithValue("@colorCode", tedColorCode.Text);
             cmd.Parameters.AddWithValue("@stepId", cmbStep.SelectedValue);
             cmd.Parameters.AddWithValue("@weightRecycle", txtWeightRe.Text);
             cmd.Parameters.AddWithValue("@lostType", cmbLostType.SelectedItem);
@@ -419,7 +425,7 @@ namespace ScaleApp
             cmd.Parameters.AddWithValue("@operatorCode", cmbOperator.SelectedValue);
             cmd.Parameters.AddWithValue("@productCode", lueProduct.EditValue);
             cmd.Parameters.AddWithValue("@materialCode", lueMaterial.EditValue);
-            cmd.Parameters.AddWithValue("@colorCode", lueColor.EditValue);
+            cmd.Parameters.AddWithValue("@colorCode", tedColorCode.Text);
             cmd.Parameters.AddWithValue("@stepId", cmbStep.SelectedValue);
             cmd.Parameters.AddWithValue("@weightRecycle", txtWeightRe.Text);
             cmd.Parameters.AddWithValue("@lostType", cmbLostType.SelectedItem);
@@ -476,7 +482,7 @@ namespace ScaleApp
                 cmbOperator.SelectedValue = ds.Tables[0].Rows[0][2]; //Get Operator
                 lueProduct.EditValue = ds.Tables[0].Rows[0][4]; //Get Item
                 lueMaterial.EditValue = ds.Tables[0].Rows[0][6]; //Get Material
-                lueColor.EditValue = ds.Tables[0].Rows[0][8]; //Get Color
+                tedColor.Text = ds.Tables[0].Rows[0][8].ToString(); //Get Color
                 cmbStep.SelectedValue = ds.Tables[0].Rows[0][10]; //Get Step
                 lueMixId.EditValue = ds.Tables[0].Rows[0][13]; //Get Crush Lot ID
 
@@ -504,7 +510,8 @@ namespace ScaleApp
             //cmbProduct.SelectedValue = "None";
             //cmbColor.SelectedValue = "None";
             lueProduct.EditValue = null;
-            lueColor.EditValue = null;
+            tedColorCode.Text = null;
+            tedColor.Text = null;
             //cmbMaterial.SelectedValue = "None";
             lueMaterial.EditValue = null;
             lueMixId.EditValue = null;
@@ -720,18 +727,18 @@ namespace ScaleApp
                 }
 
 
-                lueColor.Properties.DataSource = ds.Tables[0];
-                lueColor.Properties.DisplayMember = "ColorName";
-                lueColor.Properties.ValueMember = "ColorCode";
+                //lueColor.Properties.DataSource = ds.Tables[0];
+                //lueColor.Properties.DisplayMember = "ColorName";
+                //lueColor.Properties.ValueMember = "ColorCode";
 
-                lueColor.Properties.Columns.Add(new LookUpColumnInfo("ColorCode", "ColorCode", 60));
-                lueColor.Properties.Columns.Add(new LookUpColumnInfo("ColorName", "ColorName", 120));
-                //lueColor.Properties.Columns.Add(new LookUpColumnInfo("ProductName", "ProductName", 120));
+                //lueColor.Properties.Columns.Add(new LookUpColumnInfo("ColorCode", "ColorCode", 60));
+                //lueColor.Properties.Columns.Add(new LookUpColumnInfo("ColorName", "ColorName", 120));
+                ////lueColor.Properties.Columns.Add(new LookUpColumnInfo("ProductName", "ProductName", 120));
 
-                //enable text editing 
-                lueColor.Properties.TextEditStyle = TextEditStyles.Standard;
-                lueColor.CascadingOwner = lueProduct;
-                lueColor.Properties.CascadingMember = "ProductCode";
+                ////enable text editing 
+                //lueColor.Properties.TextEditStyle = TextEditStyles.Standard;
+                //lueColor.CascadingOwner = lueProduct;
+                //lueColor.Properties.CascadingMember = "ProductCode";
             }
             catch (Exception ex)
             {
@@ -753,14 +760,17 @@ namespace ScaleApp
         }
 
         private void lueProduct_EditValueChanged(object sender, EventArgs e)
-        {
-            lueColor.EditValue = null;
-        }
-
-        private void spGetWeight_Click(object sender, EventArgs e)
-        {
-            txtWeightRe.Text = textBox1.Text;
-        }
+        {            
+            if (lueProduct.EditValue.IsNull())
+            {
+                return;
+            }
+            else
+            {
+                loadColorsByProduct(lueProduct.EditValue.ToString());                
+                generateTextQRCode();
+            }
+        }        
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
@@ -798,8 +808,7 @@ namespace ScaleApp
                 gridView1.OptionsView.ColumnAutoWidth = false;
 
                 gridView1.Columns["OperatorCode"].VisibleIndex = -1;
-                gridView1.Columns["ProductCode"].VisibleIndex = -1;
-                gridView1.Columns["MaterialCode"].VisibleIndex = -1;                
+                gridView1.Columns["ProductCode"].VisibleIndex = -1;                
                 gridView1.Columns["CreateBy"].VisibleIndex = -1;
                 gridView1.Columns["MixRawId"].VisibleIndex = -1;
 
@@ -809,10 +818,9 @@ namespace ScaleApp
                 gridView1.Columns["MixBacode"].VisibleIndex = 3;
                 gridView1.Columns["ShiftName"].VisibleIndex = 4;
                 gridView1.Columns["OperatorName"].VisibleIndex = 5;
-                gridView1.Columns["ProductName"].VisibleIndex = 6;
-                gridView1.Columns["MaterialName"].VisibleIndex = 7;
+                //gridView1.Columns["ProductName"].VisibleIndex = 6;                
                 gridView1.Columns["ColorCode"].VisibleIndex = 8;
-                gridView1.Columns["ColorName"].VisibleIndex = 9;
+                //gridView1.Columns["ColorName"].VisibleIndex = 9;
                 gridView1.Columns["StepName"].VisibleIndex = 10;
                 gridView1.Columns["LossTypeName"].VisibleIndex = 11;
                 gridView1.Columns["WeightRecycle"].VisibleIndex = 12;
@@ -822,10 +830,9 @@ namespace ScaleApp
                 gridView1.Columns["CrushRawId"].Width = 40;
                 gridView1.Columns["StepName"].Width = 60;
                 gridView1.Columns["OperatorName"].Width = 100;
-                gridView1.Columns["ProductName"].Width = 180;
-                gridView1.Columns["MaterialName"].Width = 180;
+                //gridView1.Columns["ProductName"].Width = 180;                
                 gridView1.Columns["ColorCode"].Width = 80;
-                gridView1.Columns["ColorName"].Width = 170;
+                //gridView1.Columns["ColorName"].Width = 170;
                 gridView1.Columns["WeightRecycle"].Width = 80;
                 gridView1.Columns["LossTypeName"].Width = 60;
                 gridView1.Columns["MixBacode"].Width = 150;
@@ -851,7 +858,7 @@ namespace ScaleApp
             txtMachine.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MachineName"]).ToString();
             cmbStep.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["StepName"]);
             lueProduct.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);
-            lueColor.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ColorCode"]);
+            tedColorCode.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ColorCode"]).ToString();
             lueMixId.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]);
             lueMaterial.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MaterialCode"]);
             txtWeightRe.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightRecycle"]).ToString();
@@ -861,6 +868,22 @@ namespace ScaleApp
             txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
 
             SetcmdPost();
+        }
+
+        private void txtWeightRe_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            ButtonEdit editorWeightRe = (ButtonEdit)sender;
+            EditorButton Button = e.Button;
+
+            if (Button.Kind == ButtonPredefines.OK)
+            {
+                txtScaleWeight.Text = "40";
+                editorWeightRe.Text = txtScaleWeight.Text;
+            }
+            else if (Button.Kind == ButtonPredefines.Delete)
+            {
+                editorWeightRe.Text = "";
+            }
         }
     }
 }

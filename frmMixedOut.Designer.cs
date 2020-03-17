@@ -181,6 +181,7 @@
             this.qrCodeMixId.Name = "qrCodeMixId";
             this.qrCodeMixId.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrCodeMixId.Size = new System.Drawing.Size(309, 152);
+            qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
             qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
             this.qrCodeMixId.Symbology = qrCodeGenerator1;
             this.qrCodeMixId.TabIndex = 8;
@@ -191,6 +192,7 @@
             this.txtMixOutId.Name = "txtMixOutId";
             this.txtMixOutId.Size = new System.Drawing.Size(100, 20);
             this.txtMixOutId.TabIndex = 9;
+            this.txtMixOutId.Visible = false;
             // 
             // txtPosted
             // 
@@ -198,6 +200,7 @@
             this.txtPosted.Name = "txtPosted";
             this.txtPosted.Size = new System.Drawing.Size(100, 20);
             this.txtPosted.TabIndex = 10;
+            this.txtPosted.Visible = false;
             // 
             // txtDateTime
             // 

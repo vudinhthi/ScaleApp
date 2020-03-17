@@ -56,9 +56,7 @@ namespace ScaleApp
             var rptRe = new rptCrushed();
             rptRe.DataSource = ds;
             rptRe.CreateDocument();
-            documentViewer1.DocumentSource = rptRe;           
-
-            //rpt.FindControl("lblColorCode", false).Text = ds.Tables[0].Rows[0][8].ToString();                       
+            documentViewer1.DocumentSource = rptRe;                       
         }
 
         private void frmReportCrush_Load(object sender, EventArgs e)

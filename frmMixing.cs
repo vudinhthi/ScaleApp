@@ -6,8 +6,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
@@ -21,7 +24,9 @@ namespace ScaleApp
 {
     public partial class frmMixing : Form
     {
-        public static string labelType = "";        
+        public static string labelType = "";
+        private SerialPort _serialPort;         //<-- declares a SerialPort Variable to be used throughout the form
+        private const int BaudRate = 9600;      //<-- BaudRate Constant. 9600 seems to be the scale-units default value
 
         public frmMixing()
         {
@@ -33,25 +38,84 @@ namespace ScaleApp
 
         private void frmMixing_Load(object sender, EventArgs e)
         {               
-
-            //txtWeightRM.Text = "0";
-            //txtWeightRecycled.Text = "0";
             txtTotal.Text = "0";
-
+            Start_Timer();
+            GetComPort();
             loadComboBoxOperator();
             loadComboBoxStep();
-            //loadComboBoxProduct();
-            //loadComboBoxMaterial();
             LoadLookUpProduct();            
             LoadLookUpColor();
             LoadLookUpMaterial();
-            //loadComboBoxRecycle();
             LoadLookUpRecycled();
-            //loadGridView1();
             LoadGridControl1();
-            spbPost.Enabled = false;
-            Start_Timer();
+            spbPost.Enabled = false;            
+        }
+
+        private void GetComPort()
+        {
+            string[] portNames = SerialPort.GetPortNames();     //<-- Reads all available comPorts
+            foreach (var portName in portNames)
+            {
+                cboComPort.Items.Add(portName);                  //<-- Adds Ports to combobox
+            }
+            cboComPort.SelectedIndex = 0;                        //<-- Selects first entry (convenience purposes)
+
+            //<-- This block ensures that no exceptions happen
+            if (_serialPort != null && _serialPort.IsOpen)
+                _serialPort.Close();
+            if (_serialPort != null)
+                _serialPort.Dispose();
+            //<-- End of Block
+        }
+
+        private void CloseSerialPort()
+        {
+            if (_serialPort != null && _serialPort.IsOpen)
+                _serialPort.Close();
+            if (_serialPort != null)
+                _serialPort.Dispose();
+        }
+
+        private delegate void Closure();
+
+        private void SerialPortOnDataReceived(object sender, SerialDataReceivedEventArgs serialDataReceivedEventArgs)
+        {
+            if (InvokeRequired)     //<-- Makes sure the function is invoked to work properly in the UI-Thread
+                BeginInvoke(new Closure(() => { SerialPortOnDataReceived(sender, serialDataReceivedEventArgs); }));     //<-- Function invokes itself
+            else
+            {
+                int dataLength = _serialPort.BytesToRead;
+
+                byte[] data = new byte[dataLength];
+                int nbrDataRead = _serialPort.Read(data, 0, dataLength);
+                if (nbrDataRead == 0)
+                {
+                    return;
+                }
+                string str = Encoding.UTF8.GetString(data);
+
+                //Buffers values in a file
+                File.AppendAllText("buffer1", str);
+
+                //Read from buffer and write into "strnew" String
+                string strnew = File.ReadLines("buffer1").Last();
+
+                //Shows actual true value coming from scale
+                txtScaleWeight.Text = strnew;
+                Regex digits = new Regex(@"^\D*?((-?(\d+(\.\d+)?))|(-?\.\d+)).*");
+                Match mx = digits.Match(txtScaleWeight.Text);
+                decimal strValue = mx.Success ? Convert.ToDecimal(mx.Groups[1].Value) : 0;
+                txtScaleWeight.Text = strValue.ToString();                
+            }
         }        
+
+        private void ActionScale()
+        {
+            _serialPort = new SerialPort(cboComPort.Text, BaudRate, Parity.None, 8, StopBits.One);       //<-- Creates new SerialPort using the name selected in the combobox
+            _serialPort.DataReceived += SerialPortOnDataReceived;       //<-- this event happens everytime when new data is received by the ComPort
+            _serialPort.Open();     //<-- make the comport listen
+            txtScaleWeight.Text = "Scaling... " + _serialPort.PortName + "...\r\n";
+        }
 
         private void cmbProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -64,19 +128,7 @@ namespace ScaleApp
             {
                 loadColorsByProduct(cmbProduct.SelectedValue.ToString());
             }            
-        }
-
-        private void btnSendToMaterial_Click(object sender, EventArgs e)
-        {
-            //txtWeightRM.Text = txtScaleWeight.Text;
-            txtWeightMaterial.Text = txtScaleWeight.Text; 
-        }
-
-        private void btnSendToRecycled_Click(object sender, EventArgs e)
-        {
-            //txtWeightRecycled.Text = txtScaleWeight.Text;
-            txtWeightRe.Text = txtScaleWeight.Text;
-        }
+        }        
 
         private void CreateMixRaw()
         {
@@ -93,7 +145,8 @@ namespace ScaleApp
             cmd.Parameters.AddWithValue("@colorCode", tedColorCode.Text);            
             cmd.Parameters.AddWithValue("@weightRecycle", bteWeightRe.Text);
             cmd.Parameters.AddWithValue("@weightMaterial", bteWeightRM.Text);
-            cmd.Parameters.AddWithValue("@totalMaterial", txtTotal.Text);            
+            cmd.Parameters.AddWithValue("@totalMaterial", txtTotal.Text);
+            cmd.Parameters.AddWithValue("@reRatio", txtReRatio.Text);
             cmd.Parameters.AddWithValue("@crushRawId", (lueRecycled.EditValue.IsNullOrEmpty()) ? DBNull.Value : lueRecycled.EditValue);
             cmd.Parameters.AddWithValue("@reason", txtReason.Text);
             cmd.Parameters.AddWithValue("@qrCode", qrMixLotID.Text);
@@ -127,6 +180,7 @@ namespace ScaleApp
             cmd.Parameters.AddWithValue("@weightRecycle", bteWeightRe.Text);
             cmd.Parameters.AddWithValue("@weightMaterial", bteWeightRM.Text);
             cmd.Parameters.AddWithValue("@totalMaterial", txtTotal.Text);
+            cmd.Parameters.AddWithValue("@reRation", txtReRatio.EditValue);
             cmd.Parameters.AddWithValue("@crushRawId", (lueRecycled.EditValue.IsNullOrEmpty()) ? DBNull.Value : lueRecycled.EditValue);
             cmd.Parameters.AddWithValue("@reason", txtReason.Text);
             cmd.Parameters.AddWithValue("@qrCode", qrMixLotID.Text);            
@@ -642,43 +696,48 @@ namespace ScaleApp
                 gridView2.OptionsView.ColumnAutoWidth = false;
 
                 //Hide unsual columns of master GridView
-                gridView2.Columns["OperatorCode"].VisibleIndex = -1;
-                gridView2.Columns["ProductCode"].VisibleIndex = -1;                
+                gridView2.Columns["OperatorCode"].VisibleIndex = -1;                
                 gridView2.Columns["StepName"].VisibleIndex = -1;
+                //gridView2.Columns["ColorCode"].VisibleIndex = -1;
+                gridView2.Columns["ColorName"].VisibleIndex = -1;
+                gridView2.Columns["StepCode"].VisibleIndex = -1;
                 gridView2.Columns["CrushRawID"].VisibleIndex = -1;
                 gridView2.Columns["Reason"].VisibleIndex = -1;
+                gridView2.Columns["RecycledID"].VisibleIndex = -1;
 
                 //Reorder Columns of MasterGridView
-                gridView2.Columns["CreateTime"].VisibleIndex = 1;
-                gridView2.Columns["MixBacode"].VisibleIndex = 2;
-                gridView2.Columns["RecycledID"].VisibleIndex = 3;
-                gridView2.Columns["ShiftName"].VisibleIndex = 4;
-                gridView2.Columns["OperatorName"].VisibleIndex = 5;
-                gridView2.Columns["ProductName"].VisibleIndex = 6;                
+                gridView2.Columns["CreateTime"].VisibleIndex = 1;                
+                gridView2.Columns["ShiftName"].VisibleIndex = 2;
+                gridView2.Columns["OperatorName"].VisibleIndex = 3;
+                gridView2.Columns["MixBacode"].VisibleIndex = 4;                
+                gridView2.Columns["ProductName"].VisibleIndex = 5;
+                gridView2.Columns["ProductCode"].VisibleIndex = 6;
                 gridView2.Columns["ColorCode"].VisibleIndex = 7;
-                gridView2.Columns["ColorName"].VisibleIndex = 8;
-                gridView2.Columns["StepCode"].VisibleIndex = 9;
-                gridView2.Columns["WeightMaterial"].VisibleIndex = 10;
-                gridView2.Columns["WeightRecycle"].VisibleIndex = 11;
-                gridView2.Columns["TotalMaterial"].VisibleIndex = 12;
-                gridView2.Columns["MachineName"].VisibleIndex = 13;
+                gridView2.Columns["WeightMaterial"].VisibleIndex = 8;
+                gridView2.Columns["WeightRecycle"].VisibleIndex = 9;
+                gridView2.Columns["TotalMaterial"].VisibleIndex = 10;
+                gridView2.Columns["ReRatio"].VisibleIndex = 11;
+                gridView2.Columns["MachineName"].VisibleIndex = 12;
+                gridView2.Columns["Posted"].VisibleIndex = 13;
 
                 //Set column's width of Master GridView
-                gridView2.Columns["MixRawId"].Width = 40;
-                gridView2.Columns["RecycledID"].Width = 150;
-                gridView2.Columns["CreateTime"].Width = 100;
-                gridView2.Columns["MixBacode"].Width = 150;                
+                gridView2.Columns["MixRawId"].Width = 40;                
+                gridView2.Columns["CreateTime"].Width = 60;
+                gridView2.Columns["MixBacode"].Width = 220;                
                 gridView2.Columns["ShiftName"].Width = 40;
                 gridView2.Columns["OperatorName"].Width = 100;
-                gridView2.Columns["ProductName"].Width = 180;                
-                gridView2.Columns["ColorCode"].Width = 82;
-                gridView2.Columns["ColorName"].Width = 170;
-                gridView2.Columns["StepCode"].Width = 60;
+                gridView2.Columns["ProductName"].Width = 180;
+                gridView2.Columns["ProductCode"].Width = 180;                
                 gridView2.Columns["WeightMaterial"].Width = 80;
                 gridView2.Columns["WeightRecycle"].Width = 80;
                 gridView2.Columns["TotalMaterial"].Width = 80;
+                gridView2.Columns["ReRatio"].Width = 80;
                 gridView2.Columns["MachineName"].Width = 80;
                 gridView2.Columns["Posted"].Width = 40;
+
+                //Display format for column
+                gridView2.Columns["ReRatio"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                gridView2.Columns["ReRatio"].DisplayFormat.FormatString = "{0:p2}";
 
                 //Bind data to GridView2 and attachment to the GridView1 as a Detail
                 GridView gridView3 = new GridView(gridControl1);
@@ -700,10 +759,7 @@ namespace ScaleApp
                 //Set column's width of detail GridView
                 gridView3.Columns["CrushRawId"].Width = 40;
                 gridView3.Columns["OperatorName"].Width = 100;
-                //gridView3.Columns["ProductName"].Width = 180;
-                //gridView3.Columns["MaterialName"].Width = 180;
                 gridView3.Columns["ColorCode"].Width = 80;
-                //gridView3.Columns["ColorName"].Width = 170;
                 gridView3.Columns["WeightRecycle"].Width = 80;
                 gridView3.Columns["LossTypeName"].Width = 60;
                 gridView3.Columns["MixBacode"].Width = 150;
@@ -772,7 +828,7 @@ namespace ScaleApp
                     columnTotal.FieldName = "Total";
                     columnTotal.OptionsColumn.AllowEdit = false;
                     columnTotal.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
-                    columnTotal.UnboundExpression = weightRM + "10*[Quantity]";                    
+                    columnTotal.UnboundExpression = weightRM + "*[Quantity]";                    
 
                     gridViewMaterialBom.Columns.Add(columnTotal);
 
@@ -784,7 +840,7 @@ namespace ScaleApp
 
                     GridColumnSummaryItem item1 = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", "{0:n3}");
                     gridViewMaterialBom.Columns["Total"].Summary.Add(item1);
-                    txtTotalMaterial.Text = item1.SummaryValue.ToString();
+                    txtTotalMaterial.Text = (item1.SummaryValue.IsNull()) ? "" : item1.SummaryValue.ToString();
                     txtTotalMaterial.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
                     txtTotalMaterial.Properties.Mask.EditMask = "n3";
                     txtTotalMaterial.Properties.Mask.UseMaskAsDisplayFormat = true;
@@ -923,27 +979,24 @@ namespace ScaleApp
             cmbShift.SelectedItem = null;            
             cmbOperator.SelectedValue = "None";
             txtMachine.Text = null;
-            cmbStep.SelectedValue = "None";
-            //cmbProduct.SelectedValue = "None";
-            //cmbColor.SelectedValue = "None";
+            cmbStep.SelectedValue = "None";            
             lueProduct.EditValue = null;
+            txtProductName.Text = null;
             tedColorCode.Text = null;
             tedColor.Text = null;
             gridControl2.DataSource = null;
             gridControl2.ForceInitialize();
-            qrMixLotID.Text = "framas.vn";
-            //lueColor.EditValue = null;
-            //cmbMaterial.SelectedValue = "None";
-            //cmbRecycled.SelectedValue = 0;
-            //lueMaterial.EditValue = null;
+            qrMixLotID.Text = "framas.vn";            
             lueRecycled.EditValue = null;
-            txtReason.Text = null;
-            //txtWeightRM.Text = null;
-            //txtWeightRecycled.Text = null;
+            txtReason.Text = null;            
             txtWeightMaterial.Text = null;
             txtWeightRe.Text = null;
             txtMixDate.Text = null;
             txtMixID.Text = null;
+            bteWeightRM.Text = null;
+            bteWeightRe.Text = null;
+            txtTotal.Text = null;
+            txtTotalMaterial.Text = null;
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -1004,43 +1057,40 @@ namespace ScaleApp
             }
             else
             {
+                txtProductName.Text = lueProduct.Text;
                 loadColorsByProduct(lueProduct.EditValue.ToString());
                 LoadGridControl2(lueProduct.EditValue.ToString(), bteWeightRe.Text);
                 generateTextQRCode();
             }
-        }        
-
-        private void lueMaterial_EditValueChanged(object sender, EventArgs e)
-        {
-            if (lueColor.EditValue != null)
-            {
-                generateTextQRCode();
-            }
-            else
-            {
-                qrMixLotID.Text = "framas.com";
-            }
-        }
+        }                
 
         private void gridView2_RowClick(object sender, RowClickEventArgs e)
         {
-            GridView gridView = sender as GridView;            
-            cmbShift.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ShiftName"]);
-            cmbOperator.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["OperatorCode"]);            
-            lueProduct.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);
-            lueColor.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ColorCode"]);
-            cmbStep.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["StepCode"]);
-            txtMachine.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MachineName"]).ToString();
-            qrMixLotID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixBacode"]).ToString();            
-            bteWeightRM .Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightMaterial"]).ToString();
-            bteWeightRe.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightRecycle"]).ToString();
-            txtTotal.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["TotalMaterial"]).ToString();
-            lueRecycled.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CrushRawID"]);
-            txtReason.Text= gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Reason"]).ToString();
-            txtMixDate.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]).ToString();
-            txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
-            txtMixID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]).ToString();
-            SetcmdPost();
+            try
+            {
+                GridView gridView = sender as GridView;
+                cmbShift.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ShiftName"]);
+                cmbOperator.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["OperatorCode"]);
+                lueProduct.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);
+                //var gridCellProductCode = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);
+                tedColorCode.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ColorCode"]);
+                cmbStep.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["StepCode"]);
+                txtMachine.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MachineName"]).ToString();
+                qrMixLotID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixBacode"]).ToString();
+                bteWeightRM.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightMaterial"]).ToString();
+                bteWeightRe.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightRecycle"]).ToString();
+                txtTotal.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["TotalMaterial"]).ToString();
+                lueRecycled.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CrushRawID"]);
+                txtReason.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Reason"]).ToString();
+                txtMixDate.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]).ToString();
+                txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
+                txtMixID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]).ToString();
+                SetcmdPost();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }                        
         }
 
         private void spWeightMaterial_Click(object sender, EventArgs e)
@@ -1066,12 +1116,7 @@ namespace ScaleApp
             gridControl1.ExportToXlsx(path);
             // Open the created XLSX file with the default application. 
             Process.Start(path);
-        }
-
-        private void lueRecycled_EditValueChanged(object sender, EventArgs e)
-        {
-            //MessageBox.Show(lueRecycled.EditValue.ToString());
-        }        
+        }                
 
         private void bteWeightRM_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
@@ -1103,8 +1148,7 @@ namespace ScaleApp
             EditorButton Button = e.Button;
 
             if (Button.Kind == ButtonPredefines.OK)
-            {
-                txtScaleWeight.Text = "40";
+            {                
                 editorWeightRe.Text = txtScaleWeight.Text;
                 txtTotal.Text = GetTotalWeight().ToString();
                 txtReRatio.Text = (Double.Parse(bteWeightRe.Text.ToString()) / Double.Parse(txtTotal.Text.ToString())).ToString();
@@ -1146,6 +1190,38 @@ namespace ScaleApp
         {
             resetForm();
             spbSave.Enabled = true;
+        }
+
+        private void txtReason_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            ButtonEdit editorReason = (ButtonEdit)sender;
+            EditorButton Button = e.Button;
+
+            if (Button.Kind == ButtonPredefines.Delete)
+            {
+                editorReason.Text = null;
+            }
         }        
+
+        private void toggleSwitch1_Toggled(object sender, EventArgs e)
+        {
+            if (toggleSwitch1.IsOn)
+            {                
+                timer2.Tick += new EventHandler(Timer2_Tick);
+                timer2.Enabled = true;
+                ActionScale();
+            }            
+        }
+
+        private void Timer2_Tick(object sender, EventArgs e)
+        {
+            if (toggleSwitch1.IsOn)
+            {
+                CloseSerialPort();
+                toggleSwitch1.IsOn = false;
+                txtScaleWeight.Text = "Off";
+            }            
+        }
+        
     }
 }

@@ -61,10 +61,10 @@
             this.barCodeControl1 = new DevExpress.XtraEditors.BarCodeControl();
             this.tablePanel1 = new DevExpress.Utils.Layout.TablePanel();
             this.tablePanel2 = new DevExpress.Utils.Layout.TablePanel();
-            this.txtWeightMaterial = new DevExpress.XtraEditors.ButtonEdit();
-            this.txtWeightPurge = new DevExpress.XtraEditors.ButtonEdit();
-            this.txtWeightTPU = new DevExpress.XtraEditors.ButtonEdit();
             this.txtWeightMixed = new DevExpress.XtraEditors.ButtonEdit();
+            this.txtWeightTPU = new DevExpress.XtraEditors.ButtonEdit();
+            this.txtWeightPurge = new DevExpress.XtraEditors.ButtonEdit();
+            this.txtWeightMaterial = new DevExpress.XtraEditors.ButtonEdit();
             this.tablePanel3 = new DevExpress.Utils.Layout.TablePanel();
             this.tablePanel4 = new DevExpress.Utils.Layout.TablePanel();
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).BeginInit();
@@ -82,10 +82,10 @@
             this.tablePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel2)).BeginInit();
             this.tablePanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightMaterial.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightPurge.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightTPU.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightMixed.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightTPU.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightPurge.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightMaterial.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel3)).BeginInit();
             this.tablePanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel4)).BeginInit();
@@ -319,9 +319,8 @@
             // 
             // txtWeightScale
             // 
-            this.tablePanel4.SetColumn(this.txtWeightScale, 5);
             this.txtWeightScale.EditValue = "25";
-            this.txtWeightScale.Location = new System.Drawing.Point(526, 3);
+            this.txtWeightScale.Location = new System.Drawing.Point(12, 175);
             this.txtWeightScale.Name = "txtWeightScale";
             this.txtWeightScale.Properties.Appearance.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtWeightScale.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -331,8 +330,7 @@
             this.txtWeightScale.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtWeightScale.Properties.ReadOnly = true;
             this.txtWeightScale.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.tablePanel4.SetRow(this.txtWeightScale, 0);
-            this.txtWeightScale.Size = new System.Drawing.Size(118, 57);
+            this.txtWeightScale.Size = new System.Drawing.Size(105, 62);
             this.txtWeightScale.TabIndex = 22;
             // 
             // simpleButton2
@@ -442,6 +440,7 @@
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // txtCurrentDate
             // 
@@ -455,7 +454,7 @@
             this.txtCurrentDate.Properties.Appearance.Options.UseTextOptions = true;
             this.txtCurrentDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.tablePanel3.SetRow(this.txtCurrentDate, 0);
-            this.txtCurrentDate.Size = new System.Drawing.Size(208, 20);
+            this.txtCurrentDate.Size = new System.Drawing.Size(208, 22);
             this.txtCurrentDate.TabIndex = 31;
             // 
             // timer1
@@ -472,11 +471,11 @@
             this.tablePanel3.SetColumn(this.barCodeControl1, 0);
             this.barCodeControl1.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.barCodeControl1.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.barCodeControl1.Location = new System.Drawing.Point(3, 29);
+            this.barCodeControl1.Location = new System.Drawing.Point(3, 31);
             this.barCodeControl1.Name = "barCodeControl1";
             this.barCodeControl1.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.tablePanel3.SetRow(this.barCodeControl1, 1);
-            this.barCodeControl1.Size = new System.Drawing.Size(208, 89);
+            this.barCodeControl1.Size = new System.Drawing.Size(208, 87);
             qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
             qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
             this.barCodeControl1.Symbology = qrCodeGenerator1;
@@ -537,33 +536,19 @@
             this.tablePanel2.Size = new System.Drawing.Size(426, 153);
             this.tablePanel2.TabIndex = 34;
             // 
-            // txtWeightMaterial
+            // txtWeightMixed
             // 
-            this.tablePanel2.SetColumn(this.txtWeightMaterial, 1);
-            this.txtWeightMaterial.Location = new System.Drawing.Point(128, 33);
-            this.txtWeightMaterial.Name = "txtWeightMaterial";
-            this.txtWeightMaterial.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWeightMaterial.Properties.Appearance.Options.UseFont = true;
-            this.txtWeightMaterial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.tablePanel2.SetColumn(this.txtWeightMixed, 1);
+            this.txtWeightMixed.Location = new System.Drawing.Point(128, 123);
+            this.txtWeightMixed.Name = "txtWeightMixed";
+            this.txtWeightMixed.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWeightMixed.Properties.Appearance.Options.UseFont = true;
+            this.txtWeightMixed.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
-            this.tablePanel2.SetRow(this.txtWeightMaterial, 1);
-            this.txtWeightMaterial.Size = new System.Drawing.Size(295, 24);
-            this.txtWeightMaterial.TabIndex = 35;
-            // 
-            // txtWeightPurge
-            // 
-            this.tablePanel2.SetColumn(this.txtWeightPurge, 1);
-            this.txtWeightPurge.Location = new System.Drawing.Point(128, 63);
-            this.txtWeightPurge.Name = "txtWeightPurge";
-            this.txtWeightPurge.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWeightPurge.Properties.Appearance.Options.UseFont = true;
-            this.txtWeightPurge.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
-            this.tablePanel2.SetRow(this.txtWeightPurge, 2);
-            this.txtWeightPurge.Size = new System.Drawing.Size(295, 24);
-            this.txtWeightPurge.TabIndex = 36;
+            this.tablePanel2.SetRow(this.txtWeightMixed, 4);
+            this.txtWeightMixed.Size = new System.Drawing.Size(295, 26);
+            this.txtWeightMixed.TabIndex = 38;
             // 
             // txtWeightTPU
             // 
@@ -579,19 +564,33 @@
             this.txtWeightTPU.Size = new System.Drawing.Size(295, 24);
             this.txtWeightTPU.TabIndex = 37;
             // 
-            // txtWeightMixed
+            // txtWeightPurge
             // 
-            this.tablePanel2.SetColumn(this.txtWeightMixed, 1);
-            this.txtWeightMixed.Location = new System.Drawing.Point(128, 123);
-            this.txtWeightMixed.Name = "txtWeightMixed";
-            this.txtWeightMixed.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWeightMixed.Properties.Appearance.Options.UseFont = true;
-            this.txtWeightMixed.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.tablePanel2.SetColumn(this.txtWeightPurge, 1);
+            this.txtWeightPurge.Location = new System.Drawing.Point(128, 63);
+            this.txtWeightPurge.Name = "txtWeightPurge";
+            this.txtWeightPurge.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWeightPurge.Properties.Appearance.Options.UseFont = true;
+            this.txtWeightPurge.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
-            this.tablePanel2.SetRow(this.txtWeightMixed, 4);
-            this.txtWeightMixed.Size = new System.Drawing.Size(295, 26);
-            this.txtWeightMixed.TabIndex = 38;
+            this.tablePanel2.SetRow(this.txtWeightPurge, 2);
+            this.txtWeightPurge.Size = new System.Drawing.Size(295, 24);
+            this.txtWeightPurge.TabIndex = 36;
+            // 
+            // txtWeightMaterial
+            // 
+            this.tablePanel2.SetColumn(this.txtWeightMaterial, 1);
+            this.txtWeightMaterial.Location = new System.Drawing.Point(128, 33);
+            this.txtWeightMaterial.Name = "txtWeightMaterial";
+            this.txtWeightMaterial.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWeightMaterial.Properties.Appearance.Options.UseFont = true;
+            this.txtWeightMaterial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.tablePanel2.SetRow(this.txtWeightMaterial, 1);
+            this.txtWeightMaterial.Size = new System.Drawing.Size(295, 24);
+            this.txtWeightMaterial.TabIndex = 35;
             // 
             // tablePanel3
             // 
@@ -604,8 +603,8 @@
             this.tablePanel3.Location = new System.Drawing.Point(858, 12);
             this.tablePanel3.Name = "tablePanel3";
             this.tablePanel3.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 95F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 28F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 93F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
             this.tablePanel3.Size = new System.Drawing.Size(214, 154);
             this.tablePanel3.TabIndex = 35;
@@ -625,7 +624,6 @@
             this.tablePanel4.Controls.Add(this.simpleButton4);
             this.tablePanel4.Controls.Add(this.simpleButton5);
             this.tablePanel4.Controls.Add(this.simpleButton6);
-            this.tablePanel4.Controls.Add(this.txtWeightScale);
             this.tablePanel4.Location = new System.Drawing.Point(425, 172);
             this.tablePanel4.Name = "tablePanel4";
             this.tablePanel4.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
@@ -643,6 +641,7 @@
             this.Controls.Add(this.tablePanel2);
             this.Controls.Add(this.tablePanel1);
             this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.txtWeightScale);
             this.IconOptions.ImageUri.Uri = "Pie";
             this.Location = new System.Drawing.Point(40, 40);
             this.Name = "frmCookies";
@@ -665,10 +664,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel2)).EndInit();
             this.tablePanel2.ResumeLayout(false);
             this.tablePanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightMaterial.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightPurge.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightTPU.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightMixed.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightTPU.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightPurge.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightMaterial.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel3)).EndInit();
             this.tablePanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel4)).EndInit();

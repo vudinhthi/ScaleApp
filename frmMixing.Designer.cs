@@ -102,13 +102,14 @@
             this.spbRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.bteWeightRM = new DevExpress.XtraEditors.ButtonEdit();
             this.bteWeightRe = new DevExpress.XtraEditors.ButtonEdit();
-            this.txtReason = new System.Windows.Forms.TextBox();
             this.tablePanel1 = new DevExpress.Utils.Layout.TablePanel();
             this.tablePanel2 = new DevExpress.Utils.Layout.TablePanel();
+            this.txtProductName = new System.Windows.Forms.TextBox();
             this.tedColorCode = new DevExpress.XtraEditors.TextEdit();
             this.label12 = new System.Windows.Forms.Label();
             this.tedColor = new DevExpress.XtraEditors.TextEdit();
             this.tablePanel3 = new DevExpress.Utils.Layout.TablePanel();
+            this.txtReason = new DevExpress.XtraEditors.ButtonEdit();
             this.txtTotalMaterial = new DevExpress.XtraEditors.TextEdit();
             this.txtReRatio = new DevExpress.XtraEditors.TextEdit();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
@@ -119,8 +120,11 @@
             this.spbPost = new DevExpress.XtraEditors.SimpleButton();
             this.spbSave = new DevExpress.XtraEditors.SimpleButton();
             this.tablePanel5 = new DevExpress.Utils.Layout.TablePanel();
+            this.cboComPort = new System.Windows.Forms.ComboBox();
             this.tablePanel6 = new DevExpress.Utils.Layout.TablePanel();
             this.lueColor = new DevExpress.XtraEditors.LookUpEdit();
+            this.toggleSwitch1 = new DevExpress.XtraEditors.ToggleSwitch();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueMaterial.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueProduct.Properties)).BeginInit();
@@ -140,6 +144,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tedColor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel3)).BeginInit();
             this.tablePanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReason.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalMaterial.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReRatio.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
@@ -151,6 +156,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel6)).BeginInit();
             this.tablePanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueColor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -253,7 +259,7 @@
             this.label5.Location = new System.Drawing.Point(3, 7);
             this.label5.Name = "label5";
             this.tablePanel3.SetRow(this.label5, 0);
-            this.label5.Size = new System.Drawing.Size(89, 20);
+            this.label5.Size = new System.Drawing.Size(84, 20);
             this.label5.TabIndex = 14;
             this.label5.Text = "Weight (*)";
             // 
@@ -297,9 +303,9 @@
             this.tablePanel2.SetColumn(this.label7, 0);
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label7.Location = new System.Drawing.Point(3, 42);
+            this.label7.Location = new System.Drawing.Point(3, 123);
             this.label7.Name = "label7";
-            this.tablePanel2.SetRow(this.label7, 1);
+            this.tablePanel2.SetRow(this.label7, 2);
             this.label7.Size = new System.Drawing.Size(95, 20);
             this.label7.TabIndex = 10;
             this.label7.Text = "Color code";
@@ -310,7 +316,7 @@
             this.tablePanel2.SetColumn(this.label8, 0);
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label8.Location = new System.Drawing.Point(3, 7);
+            this.label8.Location = new System.Drawing.Point(3, 5);
             this.label8.Name = "label8";
             this.tablePanel2.SetRow(this.label8, 0);
             this.label8.Size = new System.Drawing.Size(95, 20);
@@ -343,10 +349,10 @@
             this.tablePanel3.SetColumn(this.label9, 0);
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(3, 217);
+            this.label9.Location = new System.Drawing.Point(3, 274);
             this.label9.Name = "label9";
             this.tablePanel3.SetRow(this.label9, 2);
-            this.label9.Size = new System.Drawing.Size(104, 20);
+            this.label9.Size = new System.Drawing.Size(84, 20);
             this.label9.TabIndex = 16;
             this.label9.Text = "Recycled ID";
             // 
@@ -366,7 +372,7 @@
             this.tablePanel3.SetColumn(this.label10, 0);
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label10.Location = new System.Drawing.Point(3, 251);
+            this.label10.Location = new System.Drawing.Point(3, 309);
             this.label10.Name = "label10";
             this.tablePanel3.SetRow(this.label10, 3);
             this.label10.Size = new System.Drawing.Size(65, 20);
@@ -379,10 +385,10 @@
             this.tablePanel3.SetColumnSpan(this.txtTotal, 2);
             this.txtTotal.Enabled = false;
             this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(113, 315);
+            this.txtTotal.Location = new System.Drawing.Point(93, 374);
             this.txtTotal.Name = "txtTotal";
             this.tablePanel3.SetRow(this.txtTotal, 5);
-            this.txtTotal.Size = new System.Drawing.Size(359, 36);
+            this.txtTotal.Size = new System.Drawing.Size(394, 38);
             this.txtTotal.TabIndex = 21;
             this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -392,7 +398,7 @@
             this.tablePanel3.SetColumn(this.label11, 0);
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label11.Location = new System.Drawing.Point(3, 323);
+            this.label11.Location = new System.Drawing.Point(3, 383);
             this.label11.Name = "label11";
             this.tablePanel3.SetRow(this.label11, 5);
             this.label11.Size = new System.Drawing.Size(49, 20);
@@ -411,14 +417,11 @@
             // 
             // txtScaleWeight
             // 
-            this.tablePanel5.SetColumn(this.txtScaleWeight, 0);
             this.txtScaleWeight.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtScaleWeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtScaleWeight.Location = new System.Drawing.Point(3, 206);
+            this.txtScaleWeight.Location = new System.Drawing.Point(9, 349);
             this.txtScaleWeight.Name = "txtScaleWeight";
-            this.txtScaleWeight.ReadOnly = true;
-            this.tablePanel5.SetRow(this.txtScaleWeight, 3);
-            this.txtScaleWeight.Size = new System.Drawing.Size(334, 81);
+            this.txtScaleWeight.Size = new System.Drawing.Size(289, 81);
             this.txtScaleWeight.TabIndex = 25;
             this.txtScaleWeight.Text = "25";
             this.txtScaleWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -429,13 +432,14 @@
             this.qrMixLotID.Appearance.Options.UseFont = true;
             this.qrMixLotID.AutoModule = true;
             this.tablePanel5.SetColumn(this.qrMixLotID, 0);
+            this.tablePanel5.SetColumnSpan(this.qrMixLotID, 2);
             this.qrMixLotID.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.qrMixLotID.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.qrMixLotID.Location = new System.Drawing.Point(3, 29);
+            this.qrMixLotID.Location = new System.Drawing.Point(3, 48);
             this.qrMixLotID.Name = "qrMixLotID";
             this.qrMixLotID.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.tablePanel5.SetRow(this.qrMixLotID, 1);
-            this.qrMixLotID.Size = new System.Drawing.Size(334, 138);
+            this.qrMixLotID.Size = new System.Drawing.Size(398, 169);
             qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
             qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
             this.qrMixLotID.Symbology = qrCodeGenerator1;
@@ -444,6 +448,7 @@
             // cmbLabelType
             // 
             this.tablePanel6.SetColumn(this.cmbLabelType, 0);
+            this.cmbLabelType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLabelType.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbLabelType.FormattingEnabled = true;
             this.cmbLabelType.Items.AddRange(new object[] {
@@ -452,10 +457,10 @@
             "Defect",
             "BlackDot",
             "Contaminated"});
-            this.cmbLabelType.Location = new System.Drawing.Point(3, 12);
+            this.cmbLabelType.Location = new System.Drawing.Point(3, 11);
             this.cmbLabelType.Name = "cmbLabelType";
             this.tablePanel6.SetRow(this.cmbLabelType, 0);
-            this.cmbLabelType.Size = new System.Drawing.Size(255, 31);
+            this.cmbLabelType.Size = new System.Drawing.Size(305, 31);
             this.cmbLabelType.TabIndex = 33;
             // 
             // cmbProduct
@@ -619,7 +624,7 @@
             this.tablePanel5.SetColumn(this.lblDateTime, 0);
             this.lblDateTime.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDateTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblDateTime.Location = new System.Drawing.Point(3, 1);
+            this.lblDateTime.Location = new System.Drawing.Point(3, 5);
             this.lblDateTime.Name = "lblDateTime";
             this.tablePanel5.SetRow(this.lblDateTime, 0);
             this.lblDateTime.Size = new System.Drawing.Size(130, 24);
@@ -629,12 +634,14 @@
             // txtMixDate
             // 
             this.tablePanel5.SetColumn(this.txtMixDate, 0);
+            this.tablePanel5.SetColumnSpan(this.txtMixDate, 2);
             this.txtMixDate.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMixDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtMixDate.Location = new System.Drawing.Point(3, 173);
+            this.txtMixDate.Location = new System.Drawing.Point(3, 235);
             this.txtMixDate.Name = "txtMixDate";
+            this.txtMixDate.ReadOnly = true;
             this.tablePanel5.SetRow(this.txtMixDate, 2);
-            this.txtMixDate.Size = new System.Drawing.Size(334, 23);
+            this.txtMixDate.Size = new System.Drawing.Size(398, 29);
             this.txtMixDate.TabIndex = 38;
             this.txtMixDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -654,10 +661,10 @@
             // 
             this.tablePanel6.SetColumn(this.button5, 1);
             this.button5.Image = global::ScaleApp.Properties.Resources.Print_32x32;
-            this.button5.Location = new System.Drawing.Point(264, 8);
+            this.button5.Location = new System.Drawing.Point(314, 7);
             this.button5.Name = "button5";
             this.tablePanel6.SetRow(this.button5, 0);
-            this.button5.Size = new System.Drawing.Size(73, 38);
+            this.button5.Size = new System.Drawing.Size(87, 38);
             this.button5.TabIndex = 29;
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -675,20 +682,21 @@
             this.lueMaterial.Size = new System.Drawing.Size(285, 26);
             this.lueMaterial.TabIndex = 41;
             this.lueMaterial.Visible = false;
-            this.lueMaterial.EditValueChanged += new System.EventHandler(this.lueMaterial_EditValueChanged);
             // 
             // lueProduct
             // 
             this.tablePanel2.SetColumn(this.lueProduct, 1);
-            this.lueProduct.Location = new System.Drawing.Point(116, 4);
+            this.lueProduct.Location = new System.Drawing.Point(117, 3);
             this.lueProduct.Name = "lueProduct";
             this.lueProduct.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueProduct.Properties.Appearance.Options.UseFont = true;
             this.lueProduct.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lueProduct.Properties.NullText = "";
+            this.lueProduct.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.lueProduct.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
             this.tablePanel2.SetRow(this.lueProduct, 0);
-            this.lueProduct.Size = new System.Drawing.Size(285, 26);
+            this.lueProduct.Size = new System.Drawing.Size(287, 25);
             this.lueProduct.TabIndex = 42;
             this.lueProduct.EditValueChanged += new System.EventHandler(this.lueProduct_EditValueChanged);
             // 
@@ -696,7 +704,7 @@
             // 
             this.tablePanel3.SetColumn(this.lueRecycled, 1);
             this.tablePanel3.SetColumnSpan(this.lueRecycled, 2);
-            this.lueRecycled.Location = new System.Drawing.Point(113, 215);
+            this.lueRecycled.Location = new System.Drawing.Point(93, 271);
             this.lueRecycled.Name = "lueRecycled";
             this.lueRecycled.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.lueRecycled.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -706,16 +714,15 @@
             this.lueRecycled.Properties.NullText = "";
             this.lueRecycled.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.tablePanel3.SetRow(this.lueRecycled, 2);
-            this.lueRecycled.Size = new System.Drawing.Size(359, 25);
+            this.lueRecycled.Size = new System.Drawing.Size(394, 26);
             this.lueRecycled.TabIndex = 44;
-            this.lueRecycled.EditValueChanged += new System.EventHandler(this.lueRecycled_EditValueChanged);
             // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(12, 376);
+            this.gridControl1.Location = new System.Drawing.Point(9, 436);
             this.gridControl1.MainView = this.gridView2;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1256, 434);
+            this.gridControl1.Size = new System.Drawing.Size(1313, 374);
             this.gridControl1.TabIndex = 45;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -724,6 +731,7 @@
             // 
             this.gridView2.GridControl = this.gridControl1;
             this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView2_RowClick);
             // 
             // txtWeightMaterial
@@ -776,7 +784,7 @@
             // bteWeightRM
             // 
             this.tablePanel3.SetColumn(this.bteWeightRM, 1);
-            this.bteWeightRM.Location = new System.Drawing.Point(113, 3);
+            this.bteWeightRM.Location = new System.Drawing.Point(93, 3);
             this.bteWeightRM.Name = "bteWeightRM";
             this.bteWeightRM.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bteWeightRM.Properties.Appearance.Options.UseFont = true;
@@ -789,15 +797,16 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "Delete", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.bteWeightRM.Properties.Mask.EditMask = "f";
             this.bteWeightRM.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.bteWeightRM.Properties.ReadOnly = true;
             this.tablePanel3.SetRow(this.bteWeightRM, 0);
-            this.bteWeightRM.Size = new System.Drawing.Size(216, 29);
+            this.bteWeightRM.Size = new System.Drawing.Size(246, 29);
             this.bteWeightRM.TabIndex = 52;
             this.bteWeightRM.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.bteWeightRM_ButtonClick);
             // 
             // bteWeightRe
             // 
             this.tablePanel3.SetColumn(this.bteWeightRe, 1);
-            this.bteWeightRe.Location = new System.Drawing.Point(113, 246);
+            this.bteWeightRe.Location = new System.Drawing.Point(93, 304);
             this.bteWeightRe.Name = "bteWeightRe";
             this.bteWeightRe.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bteWeightRe.Properties.Appearance.Options.UseFont = true;
@@ -808,22 +817,11 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
             this.bteWeightRe.Properties.Mask.EditMask = "f";
             this.bteWeightRe.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.bteWeightRe.Properties.ReadOnly = true;
             this.tablePanel3.SetRow(this.bteWeightRe, 3);
-            this.bteWeightRe.Size = new System.Drawing.Size(216, 30);
+            this.bteWeightRe.Size = new System.Drawing.Size(246, 30);
             this.bteWeightRe.TabIndex = 53;
             this.bteWeightRe.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.bteWeightRe_ButtonClick);
-            // 
-            // txtReason
-            // 
-            this.tablePanel3.SetColumn(this.txtReason, 1);
-            this.tablePanel3.SetColumnSpan(this.txtReason, 2);
-            this.txtReason.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReason.Location = new System.Drawing.Point(113, 282);
-            this.txtReason.Multiline = true;
-            this.txtReason.Name = "txtReason";
-            this.tablePanel3.SetRow(this.txtReason, 4);
-            this.txtReason.Size = new System.Drawing.Size(359, 27);
-            this.txtReason.TabIndex = 54;
             // 
             // tablePanel1
             // 
@@ -855,6 +853,7 @@
             this.tablePanel2.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 16.74F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 43.26F)});
+            this.tablePanel2.Controls.Add(this.txtProductName);
             this.tablePanel2.Controls.Add(this.tedColorCode);
             this.tablePanel2.Controls.Add(this.label12);
             this.tablePanel2.Controls.Add(this.tedColor);
@@ -864,22 +863,35 @@
             this.tablePanel2.Location = new System.Drawing.Point(9, 164);
             this.tablePanel2.Name = "tablePanel2";
             this.tablePanel2.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 35F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 35F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 35F)});
-            this.tablePanel2.Size = new System.Drawing.Size(404, 103);
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 31F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 87F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 30F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
+            this.tablePanel2.Size = new System.Drawing.Size(407, 179);
             this.tablePanel2.TabIndex = 56;
+            // 
+            // txtProductName
+            // 
+            this.tablePanel2.SetColumn(this.txtProductName, 1);
+            this.txtProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductName.Location = new System.Drawing.Point(117, 35);
+            this.txtProductName.Multiline = true;
+            this.txtProductName.Name = "txtProductName";
+            this.txtProductName.ReadOnly = true;
+            this.tablePanel2.SetRow(this.txtProductName, 1);
+            this.txtProductName.Size = new System.Drawing.Size(287, 79);
+            this.txtProductName.TabIndex = 64;
             // 
             // tedColorCode
             // 
             this.tablePanel2.SetColumn(this.tedColorCode, 1);
-            this.tedColorCode.Location = new System.Drawing.Point(116, 39);
+            this.tedColorCode.Location = new System.Drawing.Point(117, 121);
             this.tedColorCode.Name = "tedColorCode";
             this.tedColorCode.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tedColorCode.Properties.Appearance.Options.UseFont = true;
             this.tedColorCode.Properties.ReadOnly = true;
-            this.tablePanel2.SetRow(this.tedColorCode, 1);
-            this.tedColorCode.Size = new System.Drawing.Size(285, 26);
+            this.tablePanel2.SetRow(this.tedColorCode, 2);
+            this.tedColorCode.Size = new System.Drawing.Size(287, 24);
             this.tedColorCode.TabIndex = 63;
             // 
             // label12
@@ -888,9 +900,9 @@
             this.tablePanel2.SetColumn(this.label12, 0);
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label12.Location = new System.Drawing.Point(3, 76);
+            this.label12.Location = new System.Drawing.Point(3, 153);
             this.label12.Name = "label12";
-            this.tablePanel2.SetRow(this.label12, 2);
+            this.tablePanel2.SetRow(this.label12, 3);
             this.label12.Size = new System.Drawing.Size(100, 20);
             this.label12.TabIndex = 61;
             this.label12.Text = "Color name";
@@ -898,51 +910,66 @@
             // tedColor
             // 
             this.tablePanel2.SetColumn(this.tedColor, 1);
-            this.tedColor.Location = new System.Drawing.Point(116, 73);
+            this.tedColor.Location = new System.Drawing.Point(117, 151);
             this.tedColor.Name = "tedColor";
             this.tedColor.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tedColor.Properties.Appearance.Options.UseFont = true;
             this.tedColor.Properties.ReadOnly = true;
-            this.tablePanel2.SetRow(this.tedColor, 2);
-            this.tedColor.Size = new System.Drawing.Size(285, 26);
+            this.tablePanel2.SetRow(this.tedColor, 3);
+            this.tedColor.Size = new System.Drawing.Size(287, 25);
             this.tedColor.TabIndex = 62;
             // 
             // tablePanel3
             // 
             this.tablePanel3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.tablePanel3.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 25.44F),
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 51.36F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 20.26F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 56.54F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 33.2F)});
+            this.tablePanel3.Controls.Add(this.txtReason);
             this.tablePanel3.Controls.Add(this.txtTotalMaterial);
             this.tablePanel3.Controls.Add(this.txtReRatio);
             this.tablePanel3.Controls.Add(this.gridControl2);
             this.tablePanel3.Controls.Add(this.label13);
             this.tablePanel3.Controls.Add(this.bteWeightRM);
             this.tablePanel3.Controls.Add(this.label5);
-            this.tablePanel3.Controls.Add(this.txtReason);
             this.tablePanel3.Controls.Add(this.label9);
             this.tablePanel3.Controls.Add(this.lueRecycled);
             this.tablePanel3.Controls.Add(this.bteWeightRe);
             this.tablePanel3.Controls.Add(this.label10);
             this.tablePanel3.Controls.Add(this.label11);
             this.tablePanel3.Controls.Add(this.txtTotal);
-            this.tablePanel3.Location = new System.Drawing.Point(437, 14);
+            this.tablePanel3.Location = new System.Drawing.Point(422, 14);
             this.tablePanel3.Name = "tablePanel3";
             this.tablePanel3.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 35F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 177F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 31F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 36F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 33F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 233F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 32F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 38F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 32F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
-            this.tablePanel3.Size = new System.Drawing.Size(475, 354);
+            this.tablePanel3.Size = new System.Drawing.Size(490, 416);
             this.tablePanel3.TabIndex = 57;
+            // 
+            // txtReason
+            // 
+            this.tablePanel3.SetColumn(this.txtReason, 1);
+            this.tablePanel3.SetColumnSpan(this.txtReason, 2);
+            this.txtReason.Location = new System.Drawing.Point(93, 342);
+            this.txtReason.Name = "txtReason";
+            this.txtReason.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReason.Properties.Appearance.Options.UseFont = true;
+            this.txtReason.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.tablePanel3.SetRow(this.txtReason, 4);
+            this.txtReason.Size = new System.Drawing.Size(394, 24);
+            this.txtReason.TabIndex = 61;
+            this.txtReason.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtReason_ButtonClick);
             // 
             // txtTotalMaterial
             // 
             this.tablePanel3.SetColumn(this.txtTotalMaterial, 2);
-            this.txtTotalMaterial.Location = new System.Drawing.Point(335, 3);
+            this.txtTotalMaterial.Location = new System.Drawing.Point(345, 3);
             this.txtTotalMaterial.Name = "txtTotalMaterial";
             this.txtTotalMaterial.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalMaterial.Properties.Appearance.Options.UseFont = true;
@@ -952,13 +979,13 @@
             this.txtTotalMaterial.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtTotalMaterial.Properties.ReadOnly = true;
             this.tablePanel3.SetRow(this.txtTotalMaterial, 0);
-            this.txtTotalMaterial.Size = new System.Drawing.Size(137, 29);
+            this.txtTotalMaterial.Size = new System.Drawing.Size(142, 29);
             this.txtTotalMaterial.TabIndex = 60;
             // 
             // txtReRatio
             // 
             this.tablePanel3.SetColumn(this.txtReRatio, 2);
-            this.txtReRatio.Location = new System.Drawing.Point(335, 246);
+            this.txtReRatio.Location = new System.Drawing.Point(345, 304);
             this.txtReRatio.Name = "txtReRatio";
             this.txtReRatio.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReRatio.Properties.Appearance.Options.UseFont = true;
@@ -966,20 +993,21 @@
             this.txtReRatio.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtReRatio.Properties.DisplayFormat.FormatString = "{0:P1}";
             this.txtReRatio.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtReRatio.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtReRatio.Properties.ReadOnly = true;
             this.tablePanel3.SetRow(this.txtReRatio, 3);
-            this.txtReRatio.Size = new System.Drawing.Size(137, 30);
+            this.txtReRatio.Size = new System.Drawing.Size(142, 30);
             this.txtReRatio.TabIndex = 59;
             // 
             // gridControl2
             // 
             this.tablePanel3.SetColumn(this.gridControl2, 1);
             this.tablePanel3.SetColumnSpan(this.gridControl2, 2);
-            this.gridControl2.Location = new System.Drawing.Point(113, 41);
+            this.gridControl2.Location = new System.Drawing.Point(93, 39);
             this.gridControl2.MainView = this.gridViewMaterialBom;
             this.gridControl2.Name = "gridControl2";
             this.tablePanel3.SetRow(this.gridControl2, 1);
-            this.gridControl2.Size = new System.Drawing.Size(359, 164);
+            this.gridControl2.Size = new System.Drawing.Size(394, 224);
             this.gridControl2.TabIndex = 58;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewMaterialBom});
@@ -997,7 +1025,7 @@
             this.tablePanel3.SetColumn(this.label13, 0);
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label13.Location = new System.Drawing.Point(3, 285);
+            this.label13.Location = new System.Drawing.Point(3, 344);
             this.label13.Name = "label13";
             this.tablePanel3.SetRow(this.label13, 4);
             this.label13.Size = new System.Drawing.Size(80, 20);
@@ -1018,7 +1046,7 @@
             this.tablePanel4.Controls.Add(this.spbSave);
             this.tablePanel4.Controls.Add(this.spbExport);
             this.tablePanel4.Controls.Add(this.spbRefresh);
-            this.tablePanel4.Location = new System.Drawing.Point(12, 285);
+            this.tablePanel4.Location = new System.Drawing.Point(918, 287);
             this.tablePanel4.Name = "tablePanel4";
             this.tablePanel4.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
@@ -1063,39 +1091,52 @@
             // 
             // tablePanel5
             // 
+            this.tablePanel5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.tablePanel5.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 5F)});
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 27.54F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 27.46F)});
+            this.tablePanel5.Controls.Add(this.cboComPort);
             this.tablePanel5.Controls.Add(this.lblDateTime);
             this.tablePanel5.Controls.Add(this.qrMixLotID);
-            this.tablePanel5.Controls.Add(this.txtScaleWeight);
             this.tablePanel5.Controls.Add(this.txtMixDate);
-            this.tablePanel5.Location = new System.Drawing.Point(928, 14);
+            this.tablePanel5.Location = new System.Drawing.Point(918, 14);
             this.tablePanel5.Name = "tablePanel5";
             this.tablePanel5.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 144F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 29F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
-            this.tablePanel5.Size = new System.Drawing.Size(340, 295);
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 34F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 198F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 29F)});
+            this.tablePanel5.Size = new System.Drawing.Size(404, 267);
             this.tablePanel5.TabIndex = 59;
+            // 
+            // cboComPort
+            // 
+            this.tablePanel5.SetColumn(this.cboComPort, 1);
+            this.cboComPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboComPort.FormattingEnabled = true;
+            this.cboComPort.Location = new System.Drawing.Point(205, 4);
+            this.cboComPort.Name = "cboComPort";
+            this.tablePanel5.SetRow(this.cboComPort, 0);
+            this.cboComPort.Size = new System.Drawing.Size(196, 26);
+            this.cboComPort.TabIndex = 39;
             // 
             // tablePanel6
             // 
+            this.tablePanel6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.tablePanel6.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 42.28F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 12.72F)});
             this.tablePanel6.Controls.Add(this.cmbLabelType);
             this.tablePanel6.Controls.Add(this.button5);
-            this.tablePanel6.Location = new System.Drawing.Point(928, 315);
+            this.tablePanel6.Location = new System.Drawing.Point(918, 377);
             this.tablePanel6.Name = "tablePanel6";
             this.tablePanel6.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
-            this.tablePanel6.Size = new System.Drawing.Size(340, 55);
+            this.tablePanel6.Size = new System.Drawing.Size(404, 53);
             this.tablePanel6.TabIndex = 60;
             // 
             // lueColor
             // 
-            this.lueColor.Location = new System.Drawing.Point(437, 374);
+            this.lueColor.Location = new System.Drawing.Point(928, 404);
             this.lueColor.Name = "lueColor";
             this.lueColor.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueColor.Properties.Appearance.Options.UseFont = true;
@@ -1107,13 +1148,33 @@
             this.lueColor.TabIndex = 43;
             this.lueColor.Visible = false;
             // 
+            // toggleSwitch1
+            // 
+            this.toggleSwitch1.Location = new System.Drawing.Point(304, 347);
+            this.toggleSwitch1.Name = "toggleSwitch1";
+            this.toggleSwitch1.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toggleSwitch1.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.toggleSwitch1.Properties.Appearance.Options.UseFont = true;
+            this.toggleSwitch1.Properties.Appearance.Options.UseForeColor = true;
+            this.toggleSwitch1.Properties.OffText = "Off";
+            this.toggleSwitch1.Properties.OnText = "On";
+            this.toggleSwitch1.Size = new System.Drawing.Size(112, 24);
+            this.toggleSwitch1.TabIndex = 62;
+            this.toggleSwitch1.Toggled += new System.EventHandler(this.toggleSwitch1_Toggled);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 20000;
+            // 
             // frmMixing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1278, 822);
+            this.ClientSize = new System.Drawing.Size(1333, 822);
+            this.Controls.Add(this.toggleSwitch1);
             this.Controls.Add(this.tablePanel6);
             this.Controls.Add(this.lueColor);
+            this.Controls.Add(this.txtScaleWeight);
             this.Controls.Add(this.tablePanel5);
             this.Controls.Add(this.tablePanel4);
             this.Controls.Add(this.tablePanel3);
@@ -1161,6 +1222,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel3)).EndInit();
             this.tablePanel3.ResumeLayout(false);
             this.tablePanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReason.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalMaterial.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReRatio.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
@@ -1173,6 +1235,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel6)).EndInit();
             this.tablePanel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lueColor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1240,7 +1303,6 @@
         private DevExpress.XtraEditors.SimpleButton spbRefresh;
         private DevExpress.XtraEditors.ButtonEdit bteWeightRM;
         private DevExpress.XtraEditors.ButtonEdit bteWeightRe;
-        private System.Windows.Forms.TextBox txtReason;
         private DevExpress.Utils.Layout.TablePanel tablePanel1;
         private DevExpress.Utils.Layout.TablePanel tablePanel2;
         private DevExpress.Utils.Layout.TablePanel tablePanel3;
@@ -1259,5 +1321,10 @@
         private DevExpress.XtraEditors.TextEdit tedColorCode;
         private System.Windows.Forms.Label label12;
         private DevExpress.XtraEditors.TextEdit txtTotalMaterial;
+        private DevExpress.XtraEditors.ButtonEdit txtReason;
+        private System.Windows.Forms.TextBox txtProductName;
+        private System.Windows.Forms.ComboBox cboComPort;
+        private DevExpress.XtraEditors.ToggleSwitch toggleSwitch1;
+        private System.Windows.Forms.Timer timer2;
     }
 }

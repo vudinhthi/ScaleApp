@@ -123,8 +123,8 @@
             this.cboComPort = new System.Windows.Forms.ComboBox();
             this.tablePanel6 = new DevExpress.Utils.Layout.TablePanel();
             this.lueColor = new DevExpress.XtraEditors.LookUpEdit();
-            this.toggleSwitch1 = new DevExpress.XtraEditors.ToggleSwitch();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.spbScale = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueMaterial.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueProduct.Properties)).BeginInit();
@@ -156,7 +156,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel6)).BeginInit();
             this.tablePanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueColor.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -256,7 +255,7 @@
             this.tablePanel3.SetColumn(this.label5, 0);
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(3, 7);
+            this.label5.Location = new System.Drawing.Point(3, 9);
             this.label5.Name = "label5";
             this.tablePanel3.SetRow(this.label5, 0);
             this.label5.Size = new System.Drawing.Size(84, 20);
@@ -421,7 +420,7 @@
             this.txtScaleWeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtScaleWeight.Location = new System.Drawing.Point(9, 349);
             this.txtScaleWeight.Name = "txtScaleWeight";
-            this.txtScaleWeight.Size = new System.Drawing.Size(289, 81);
+            this.txtScaleWeight.Size = new System.Drawing.Size(312, 81);
             this.txtScaleWeight.TabIndex = 25;
             this.txtScaleWeight.Text = "25";
             this.txtScaleWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -799,7 +798,7 @@
             this.bteWeightRM.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.bteWeightRM.Properties.ReadOnly = true;
             this.tablePanel3.SetRow(this.bteWeightRM, 0);
-            this.bteWeightRM.Size = new System.Drawing.Size(246, 29);
+            this.bteWeightRM.Size = new System.Drawing.Size(246, 32);
             this.bteWeightRM.TabIndex = 52;
             this.bteWeightRM.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.bteWeightRM_ButtonClick);
             // 
@@ -942,8 +941,8 @@
             this.tablePanel3.Location = new System.Drawing.Point(422, 14);
             this.tablePanel3.Name = "tablePanel3";
             this.tablePanel3.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 35F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 233F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 38F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 230F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 32F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 38F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 32F),
@@ -969,7 +968,7 @@
             // txtTotalMaterial
             // 
             this.tablePanel3.SetColumn(this.txtTotalMaterial, 2);
-            this.txtTotalMaterial.Location = new System.Drawing.Point(345, 3);
+            this.txtTotalMaterial.Location = new System.Drawing.Point(345, 4);
             this.txtTotalMaterial.Name = "txtTotalMaterial";
             this.txtTotalMaterial.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalMaterial.Properties.Appearance.Options.UseFont = true;
@@ -979,7 +978,7 @@
             this.txtTotalMaterial.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtTotalMaterial.Properties.ReadOnly = true;
             this.tablePanel3.SetRow(this.txtTotalMaterial, 0);
-            this.txtTotalMaterial.Size = new System.Drawing.Size(142, 29);
+            this.txtTotalMaterial.Size = new System.Drawing.Size(142, 30);
             this.txtTotalMaterial.TabIndex = 60;
             // 
             // txtReRatio
@@ -1003,7 +1002,7 @@
             // 
             this.tablePanel3.SetColumn(this.gridControl2, 1);
             this.tablePanel3.SetColumnSpan(this.gridControl2, 2);
-            this.gridControl2.Location = new System.Drawing.Point(93, 39);
+            this.gridControl2.Location = new System.Drawing.Point(93, 41);
             this.gridControl2.MainView = this.gridViewMaterialBom;
             this.gridControl2.Name = "gridControl2";
             this.tablePanel3.SetRow(this.gridControl2, 1);
@@ -1148,30 +1147,26 @@
             this.lueColor.TabIndex = 43;
             this.lueColor.Visible = false;
             // 
-            // toggleSwitch1
-            // 
-            this.toggleSwitch1.Location = new System.Drawing.Point(304, 347);
-            this.toggleSwitch1.Name = "toggleSwitch1";
-            this.toggleSwitch1.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toggleSwitch1.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.toggleSwitch1.Properties.Appearance.Options.UseFont = true;
-            this.toggleSwitch1.Properties.Appearance.Options.UseForeColor = true;
-            this.toggleSwitch1.Properties.OffText = "Off";
-            this.toggleSwitch1.Properties.OnText = "On";
-            this.toggleSwitch1.Size = new System.Drawing.Size(112, 24);
-            this.toggleSwitch1.TabIndex = 62;
-            this.toggleSwitch1.Toggled += new System.EventHandler(this.toggleSwitch1_Toggled);
-            // 
             // timer2
             // 
             this.timer2.Interval = 20000;
+            // 
+            // spbScale
+            // 
+            this.spbScale.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("spbScale.ImageOptions.Image")));
+            this.spbScale.Location = new System.Drawing.Point(327, 349);
+            this.spbScale.Name = "spbScale";
+            this.spbScale.Size = new System.Drawing.Size(89, 81);
+            this.spbScale.TabIndex = 63;
+            this.spbScale.Text = "Scale";
+            this.spbScale.Click += new System.EventHandler(this.spbScale_Click);
             // 
             // frmMixing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1333, 822);
-            this.Controls.Add(this.toggleSwitch1);
+            this.Controls.Add(this.spbScale);
             this.Controls.Add(this.tablePanel6);
             this.Controls.Add(this.lueColor);
             this.Controls.Add(this.txtScaleWeight);
@@ -1235,7 +1230,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel6)).EndInit();
             this.tablePanel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lueColor.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1324,7 +1318,7 @@
         private DevExpress.XtraEditors.ButtonEdit txtReason;
         private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.ComboBox cboComPort;
-        private DevExpress.XtraEditors.ToggleSwitch toggleSwitch1;
         private System.Windows.Forms.Timer timer2;
+        private DevExpress.XtraEditors.SimpleButton spbScale;
     }
 }

@@ -10,8 +10,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,6 +23,8 @@ namespace ScaleApp
     public partial class frmCrushing : Form
     {
         private Control _focusedControl;
+        private SerialPort _serialPort;         //<-- declares a SerialPort Variable to be used throughout the form
+        private const int BaudRate = 9600;      //<-- BaudRate Constant. 9600 seems to be the scale-units default value
 
         public frmCrushing()
         {
@@ -29,6 +34,7 @@ namespace ScaleApp
         private void frmCrushing_Load(object sender, EventArgs e)
         {
             Start_Timer();
+            GetComPort();
             loadComboBoxOperator();
             loadComboBoxStep();
             //loadComboBoxProduct();
@@ -875,15 +881,93 @@ namespace ScaleApp
             ButtonEdit editorWeightRe = (ButtonEdit)sender;
             EditorButton Button = e.Button;
 
-            if (Button.Kind == ButtonPredefines.OK)
-            {
-                txtScaleWeight.Text = "40";
+            if (Button.Kind == ButtonPredefines.OK)            {
+                
                 editorWeightRe.Text = txtScaleWeight.Text;
             }
             else if (Button.Kind == ButtonPredefines.Delete)
             {
                 editorWeightRe.Text = "";
             }
+        }
+
+        private void spbScale_Click(object sender, EventArgs e)
+        {
+            timer2.Tick += new EventHandler(Timer2_Tick);
+            timer2.Enabled = true;
+            ActionScale();
+        }
+
+        private void Timer2_Tick(object sender, EventArgs e)
+        {
+            CloseSerialPort();
+            txtScaleWeight.Text = "Off";
+        }
+
+        private void GetComPort()
+        {
+            string[] portNames = SerialPort.GetPortNames();     //<-- Reads all available comPorts
+            foreach (var portName in portNames)
+            {
+                cboComPort.Items.Add(portName);                  //<-- Adds Ports to combobox
+            }
+            cboComPort.SelectedIndex = 0;                        //<-- Selects first entry (convenience purposes)
+
+            //<-- This block ensures that no exceptions happen
+            if (_serialPort != null && _serialPort.IsOpen)
+                _serialPort.Close();
+            if (_serialPort != null)
+                _serialPort.Dispose();
+            //<-- End of Block
+        }
+
+        private void CloseSerialPort()
+        {
+            if (_serialPort != null && _serialPort.IsOpen)
+                _serialPort.Close();
+            if (_serialPort != null)
+                _serialPort.Dispose();
+        }
+
+        private delegate void Closure();
+
+        private void SerialPortOnDataReceived(object sender, SerialDataReceivedEventArgs serialDataReceivedEventArgs)
+        {
+            if (InvokeRequired)     //<-- Makes sure the function is invoked to work properly in the UI-Thread
+                BeginInvoke(new Closure(() => { SerialPortOnDataReceived(sender, serialDataReceivedEventArgs); }));     //<-- Function invokes itself
+            else
+            {
+                int dataLength = _serialPort.BytesToRead;
+
+                byte[] data = new byte[dataLength];
+                int nbrDataRead = _serialPort.Read(data, 0, dataLength);
+                if (nbrDataRead == 0)
+                {
+                    return;
+                }
+                string str = Encoding.UTF8.GetString(data);
+
+                //Buffers values in a file
+                File.AppendAllText("buffer1", str);
+
+                //Read from buffer and write into "strnew" String
+                string strnew = File.ReadLines("buffer1").Last();
+
+                //Shows actual true value coming from scale
+                txtScaleWeight.Text = strnew;
+                Regex digits = new Regex(@"^\D*?((-?(\d+(\.\d+)?))|(-?\.\d+)).*");
+                Match mx = digits.Match(txtScaleWeight.Text);
+                decimal strValue = mx.Success ? Convert.ToDecimal(mx.Groups[1].Value) : 0;
+                txtScaleWeight.Text = strValue.ToString();
+            }
+        }
+
+        private void ActionScale()
+        {
+            _serialPort = new SerialPort(cboComPort.Text, BaudRate, Parity.None, 8, StopBits.One);       //<-- Creates new SerialPort using the name selected in the combobox
+            _serialPort.DataReceived += SerialPortOnDataReceived;       //<-- this event happens everytime when new data is received by the ComPort
+            _serialPort.Open();     //<-- make the comport listen
+            txtScaleWeight.Text = "Scaling... " + _serialPort.PortName + "...\r\n";
         }
     }
 }

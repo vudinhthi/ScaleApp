@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator2 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCrushing));
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -91,6 +91,9 @@
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.tablePanel3 = new DevExpress.Utils.Layout.TablePanel();
             this.tablePanel4 = new DevExpress.Utils.Layout.TablePanel();
+            this.spbScale = new DevExpress.XtraEditors.SimpleButton();
+            this.cboComPort = new System.Windows.Forms.ComboBox();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrushed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueMaterial.Properties)).BeginInit();
@@ -250,14 +253,12 @@
             // 
             // txtScaleWeight
             // 
-            this.tablePanel4.SetColumn(this.txtScaleWeight, 0);
             this.txtScaleWeight.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtScaleWeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtScaleWeight.Location = new System.Drawing.Point(3, 187);
+            this.txtScaleWeight.Location = new System.Drawing.Point(15, 199);
             this.txtScaleWeight.Name = "txtScaleWeight";
             this.txtScaleWeight.ReadOnly = true;
-            this.tablePanel4.SetRow(this.txtScaleWeight, 3);
-            this.txtScaleWeight.Size = new System.Drawing.Size(147, 78);
+            this.txtScaleWeight.Size = new System.Drawing.Size(210, 81);
             this.txtScaleWeight.TabIndex = 27;
             this.txtScaleWeight.Text = "25";
             this.txtScaleWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -275,7 +276,7 @@
             this.txtNow.Name = "txtNow";
             this.txtNow.ReadOnly = true;
             this.tablePanel4.SetRow(this.txtNow, 0);
-            this.txtNow.Size = new System.Drawing.Size(147, 20);
+            this.txtNow.Size = new System.Drawing.Size(147, 22);
             this.txtNow.TabIndex = 32;
             this.txtNow.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -283,11 +284,11 @@
             // 
             this.tablePanel4.SetColumn(this.txtCrushDate, 0);
             this.txtCrushDate.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCrushDate.Location = new System.Drawing.Point(3, 161);
+            this.txtCrushDate.Location = new System.Drawing.Point(3, 144);
             this.txtCrushDate.Name = "txtCrushDate";
             this.txtCrushDate.ReadOnly = true;
             this.tablePanel4.SetRow(this.txtCrushDate, 2);
-            this.txtCrushDate.Size = new System.Drawing.Size(147, 20);
+            this.txtCrushDate.Size = new System.Drawing.Size(147, 26);
             this.txtCrushDate.TabIndex = 33;
             this.txtCrushDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -530,14 +531,14 @@
             this.tablePanel4.SetColumn(this.qrCodeCrush, 0);
             this.qrCodeCrush.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.qrCodeCrush.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.qrCodeCrush.Location = new System.Drawing.Point(3, 29);
+            this.qrCodeCrush.Location = new System.Drawing.Point(3, 31);
             this.qrCodeCrush.Name = "qrCodeCrush";
             this.qrCodeCrush.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.tablePanel4.SetRow(this.qrCodeCrush, 1);
-            this.qrCodeCrush.Size = new System.Drawing.Size(147, 126);
-            qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
-            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
-            this.qrCodeCrush.Symbology = qrCodeGenerator1;
+            this.qrCodeCrush.Size = new System.Drawing.Size(147, 106);
+            qrCodeGenerator2.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
+            qrCodeGenerator2.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
+            this.qrCodeCrush.Symbology = qrCodeGenerator2;
             this.qrCodeCrush.TabIndex = 25;
             // 
             // txtPosted
@@ -597,10 +598,10 @@
             this.simpleButton2.Appearance.Options.UseFont = true;
             this.tablePanel3.SetColumn(this.simpleButton2, 5);
             this.simpleButton2.ImageOptions.Image = global::ScaleApp.Properties.Resources.refresh_32x32;
-            this.simpleButton2.Location = new System.Drawing.Point(481, 3);
+            this.simpleButton2.Location = new System.Drawing.Point(376, 3);
             this.simpleButton2.Name = "simpleButton2";
             this.tablePanel3.SetRow(this.simpleButton2, 0);
-            this.simpleButton2.Size = new System.Drawing.Size(88, 81);
+            this.simpleButton2.Size = new System.Drawing.Size(84, 81);
             this.simpleButton2.TabIndex = 55;
             this.simpleButton2.Text = "Refesh";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
@@ -611,22 +612,22 @@
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.tablePanel3.SetColumn(this.simpleButton1, 4);
             this.simpleButton1.ImageOptions.Image = global::ScaleApp.Properties.Resources.exporttoxls_32x32;
-            this.simpleButton1.Location = new System.Drawing.Point(387, 3);
+            this.simpleButton1.Location = new System.Drawing.Point(284, 3);
             this.simpleButton1.Name = "simpleButton1";
             this.tablePanel3.SetRow(this.simpleButton1, 0);
-            this.simpleButton1.Size = new System.Drawing.Size(88, 81);
+            this.simpleButton1.Size = new System.Drawing.Size(85, 81);
             this.simpleButton1.TabIndex = 54;
-            this.simpleButton1.Text = "Excel";
+            this.simpleButton1.Text = "Export";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // cmdPost
             // 
             this.tablePanel3.SetColumn(this.cmdPost, 1);
             this.cmdPost.Image = global::ScaleApp.Properties.Resources.Mark_32x32;
-            this.cmdPost.Location = new System.Drawing.Point(106, 3);
+            this.cmdPost.Location = new System.Drawing.Point(72, 3);
             this.cmdPost.Name = "cmdPost";
             this.tablePanel3.SetRow(this.cmdPost, 0);
-            this.cmdPost.Size = new System.Drawing.Size(88, 81);
+            this.cmdPost.Size = new System.Drawing.Size(64, 81);
             this.cmdPost.TabIndex = 47;
             this.cmdPost.UseVisualStyleBackColor = true;
             this.cmdPost.Click += new System.EventHandler(this.cmdPost_Click);
@@ -635,10 +636,10 @@
             // 
             this.tablePanel3.SetColumn(this.cmdPrint, 3);
             this.cmdPrint.Image = global::ScaleApp.Properties.Resources.Print_32x32;
-            this.cmdPrint.Location = new System.Drawing.Point(294, 3);
+            this.cmdPrint.Location = new System.Drawing.Point(212, 3);
             this.cmdPrint.Name = "cmdPrint";
             this.tablePanel3.SetRow(this.cmdPrint, 0);
-            this.cmdPrint.Size = new System.Drawing.Size(88, 81);
+            this.cmdPrint.Size = new System.Drawing.Size(66, 81);
             this.cmdPrint.TabIndex = 31;
             this.cmdPrint.UseVisualStyleBackColor = true;
             this.cmdPrint.Click += new System.EventHandler(this.cmdPrint_Click);
@@ -647,10 +648,10 @@
             // 
             this.tablePanel3.SetColumn(this.cmdReset, 2);
             this.cmdReset.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
-            this.cmdReset.Location = new System.Drawing.Point(200, 3);
+            this.cmdReset.Location = new System.Drawing.Point(142, 3);
             this.cmdReset.Name = "cmdReset";
             this.tablePanel3.SetRow(this.cmdReset, 0);
-            this.cmdReset.Size = new System.Drawing.Size(88, 81);
+            this.cmdReset.Size = new System.Drawing.Size(65, 81);
             this.cmdReset.TabIndex = 30;
             this.cmdReset.UseVisualStyleBackColor = true;
             this.cmdReset.Click += new System.EventHandler(this.cmdReset_Click);
@@ -662,7 +663,7 @@
             this.cmdSave.Location = new System.Drawing.Point(3, 3);
             this.cmdSave.Name = "cmdSave";
             this.tablePanel3.SetRow(this.cmdSave, 0);
-            this.cmdSave.Size = new System.Drawing.Size(97, 81);
+            this.cmdSave.Size = new System.Drawing.Size(63, 81);
             this.cmdSave.TabIndex = 29;
             this.cmdSave.UseVisualStyleBackColor = true;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
@@ -794,23 +795,23 @@
             // tablePanel3
             // 
             this.tablePanel3.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 55F),
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F),
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F),
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F),
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F),
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F)});
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 45.47F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 45.89F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 46.47F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 47.51F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 60.11F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 59.55F)});
             this.tablePanel3.Controls.Add(this.cmdSave);
             this.tablePanel3.Controls.Add(this.cmdPost);
             this.tablePanel3.Controls.Add(this.cmdReset);
             this.tablePanel3.Controls.Add(this.cmdPrint);
             this.tablePanel3.Controls.Add(this.simpleButton2);
             this.tablePanel3.Controls.Add(this.simpleButton1);
-            this.tablePanel3.Location = new System.Drawing.Point(203, 196);
+            this.tablePanel3.Location = new System.Drawing.Point(312, 196);
             this.tablePanel3.Name = "tablePanel3";
             this.tablePanel3.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
-            this.tablePanel3.Size = new System.Drawing.Size(572, 88);
+            this.tablePanel3.Size = new System.Drawing.Size(463, 88);
             this.tablePanel3.TabIndex = 59;
             // 
             // tablePanel4
@@ -820,25 +821,51 @@
             this.tablePanel4.Controls.Add(this.qrCodeCrush);
             this.tablePanel4.Controls.Add(this.txtNow);
             this.tablePanel4.Controls.Add(this.txtCrushDate);
-            this.tablePanel4.Controls.Add(this.txtScaleWeight);
-            this.tablePanel4.Location = new System.Drawing.Point(781, 15);
+            this.tablePanel4.Location = new System.Drawing.Point(785, 53);
             this.tablePanel4.Name = "tablePanel4";
             this.tablePanel4.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 132F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 28F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 112F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
-            this.tablePanel4.Size = new System.Drawing.Size(153, 268);
+            this.tablePanel4.Size = new System.Drawing.Size(153, 175);
             this.tablePanel4.TabIndex = 60;
+            // 
+            // spbScale
+            // 
+            this.spbScale.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spbScale.Appearance.Options.UseFont = true;
+            this.spbScale.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("spbScale.ImageOptions.Image")));
+            this.spbScale.Location = new System.Drawing.Point(231, 199);
+            this.spbScale.Name = "spbScale";
+            this.spbScale.Size = new System.Drawing.Size(75, 81);
+            this.spbScale.TabIndex = 61;
+            this.spbScale.Text = "Scale";
+            this.spbScale.Click += new System.EventHandler(this.spbScale_Click);
+            // 
+            // cboComPort
+            // 
+            this.cboComPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboComPort.FormattingEnabled = true;
+            this.cboComPort.Location = new System.Drawing.Point(788, 18);
+            this.cboComPort.Name = "cboComPort";
+            this.cboComPort.Size = new System.Drawing.Size(146, 24);
+            this.cboComPort.TabIndex = 62;
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 20000;
             // 
             // frmCrushing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 786);
+            this.Controls.Add(this.cboComPort);
+            this.Controls.Add(this.spbScale);
             this.Controls.Add(this.tablePanel4);
             this.Controls.Add(this.tablePanel3);
             this.Controls.Add(this.tablePanel2);
+            this.Controls.Add(this.txtScaleWeight);
             this.Controls.Add(this.tablePanel1);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.lueMaterial);
@@ -943,5 +970,8 @@
         private DevExpress.Utils.Layout.TablePanel tablePanel3;
         private DevExpress.XtraEditors.TextEdit tedColor;
         private DevExpress.XtraEditors.TextEdit tedColorCode;
+        private DevExpress.XtraEditors.SimpleButton spbScale;
+        private System.Windows.Forms.ComboBox cboComPort;
+        private System.Windows.Forms.Timer timer2;
     }
 }

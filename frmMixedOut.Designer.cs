@@ -56,7 +56,7 @@
             this.WeightRecycle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WeightCookie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Posted = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtWeightSacle = new DevExpress.XtraEditors.TextEdit();
+            this.txtScaleWeight = new DevExpress.XtraEditors.TextEdit();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.cmdPosted = new System.Windows.Forms.Button();
@@ -64,9 +64,12 @@
             this.cmdSave = new System.Windows.Forms.Button();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.cboComPort = new System.Windows.Forms.ComboBox();
+            this.spbScale = new DevExpress.XtraEditors.SimpleButton();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightSacle.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtScaleWeight.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
@@ -177,10 +180,10 @@
             this.qrCodeMixId.AutoModule = true;
             this.qrCodeMixId.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.qrCodeMixId.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.qrCodeMixId.Location = new System.Drawing.Point(433, 56);
+            this.qrCodeMixId.Location = new System.Drawing.Point(433, 93);
             this.qrCodeMixId.Name = "qrCodeMixId";
             this.qrCodeMixId.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
-            this.qrCodeMixId.Size = new System.Drawing.Size(309, 152);
+            this.qrCodeMixId.Size = new System.Drawing.Size(309, 164);
             qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
             qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
             this.qrCodeMixId.Symbology = qrCodeGenerator1;
@@ -310,16 +313,16 @@
             this.Posted.ReadOnly = true;
             this.Posted.Width = 40;
             // 
-            // txtWeightSacle
+            // txtScaleWeight
             // 
-            this.txtWeightSacle.Location = new System.Drawing.Point(124, 135);
-            this.txtWeightSacle.Name = "txtWeightSacle";
-            this.txtWeightSacle.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWeightSacle.Properties.Appearance.Options.UseFont = true;
-            this.txtWeightSacle.Properties.Mask.EditMask = "d";
-            this.txtWeightSacle.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtWeightSacle.Size = new System.Drawing.Size(293, 30);
-            this.txtWeightSacle.TabIndex = 13;
+            this.txtScaleWeight.Location = new System.Drawing.Point(124, 135);
+            this.txtScaleWeight.Name = "txtScaleWeight";
+            this.txtScaleWeight.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtScaleWeight.Properties.Appearance.Options.UseFont = true;
+            this.txtScaleWeight.Properties.Mask.EditMask = "d";
+            this.txtScaleWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtScaleWeight.Size = new System.Drawing.Size(212, 30);
+            this.txtScaleWeight.TabIndex = 13;
             // 
             // simpleButton2
             // 
@@ -387,15 +390,40 @@
             this.gridView2.Name = "gridView2";
             this.gridView2.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView2_RowClick);
             // 
+            // cboComPort
+            // 
+            this.cboComPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboComPort.FormattingEnabled = true;
+            this.cboComPort.Location = new System.Drawing.Point(433, 56);
+            this.cboComPort.Name = "cboComPort";
+            this.cboComPort.Size = new System.Drawing.Size(309, 24);
+            this.cboComPort.TabIndex = 17;
+            // 
+            // spbScale
+            // 
+            this.spbScale.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("spbScale.ImageOptions.Image")));
+            this.spbScale.Location = new System.Drawing.Point(342, 135);
+            this.spbScale.Name = "spbScale";
+            this.spbScale.Size = new System.Drawing.Size(75, 30);
+            this.spbScale.TabIndex = 18;
+            this.spbScale.Text = "Scale";
+            this.spbScale.Click += new System.EventHandler(this.spbScale_Click);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 20000;
+            // 
             // frmMixedOut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 578);
+            this.Controls.Add(this.spbScale);
+            this.Controls.Add(this.cboComPort);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.simpleButton1);
-            this.Controls.Add(this.txtWeightSacle);
+            this.Controls.Add(this.txtScaleWeight);
             this.Controls.Add(this.gridView1);
             this.Controls.Add(this.txtDateTime);
             this.Controls.Add(this.txtPosted);
@@ -418,7 +446,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightSacle.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtScaleWeight.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
@@ -456,10 +484,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn WeightRecycle;
         private System.Windows.Forms.DataGridViewTextBoxColumn WeightCookie;
         private System.Windows.Forms.DataGridViewTextBoxColumn Posted;
-        private DevExpress.XtraEditors.TextEdit txtWeightSacle;
+        private DevExpress.XtraEditors.TextEdit txtScaleWeight;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private System.Windows.Forms.ComboBox cboComPort;
+        private DevExpress.XtraEditors.SimpleButton spbScale;
+        private System.Windows.Forms.Timer timer2;
     }
 }

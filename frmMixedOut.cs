@@ -7,8 +7,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,6 +20,9 @@ namespace ScaleApp
 {
     public partial class frmMixedOut : Form
     {
+        private SerialPort _serialPort;         //<-- declares a SerialPort Variable to be used throughout the form
+        private const int BaudRate = 9600;      //<-- BaudRate Constant. 9600 seems to be the scale-units default value
+
         public frmMixedOut()
         {
             InitializeComponent();
@@ -27,9 +33,8 @@ namespace ScaleApp
             txtWeight.Text = "0";
             rdbRunner.Checked = true;
             Start_Timer();
-
-            LoadComboBoxMixId();
-            //LoaddataGridView1();
+            GetComPort();
+            LoadComboBoxMixId();            
             LoadGridControl();
         }
 
@@ -88,16 +93,16 @@ namespace ScaleApp
                         switch (GetRadioChecked())
                         {
                             case "rdbRunner":
-                                _weightRunner = double.Parse(txtWeightSacle.Text.ToString());
+                                _weightRunner = double.Parse(txtScaleWeight.Text.ToString());
                                 break;
                             case "rdbDefect":
-                                _weightDefect = double.Parse(txtWeightSacle.Text.ToString());
+                                _weightDefect = double.Parse(txtScaleWeight.Text.ToString());
                                 break;
                             case "rdbBlackDot":
-                                _weightBlackDot = double.Parse(txtWeightSacle.Text.ToString());
+                                _weightBlackDot = double.Parse(txtScaleWeight.Text.ToString());
                                 break;
                             case "rdbContaminated":
-                                _weightContaminated = double.Parse(txtWeightSacle.Text.ToString());
+                                _weightContaminated = double.Parse(txtScaleWeight.Text.ToString());
                                 break;
                         }
 
@@ -115,7 +120,7 @@ namespace ScaleApp
 
                         i = cmdUpdate.ExecuteNonQuery();
 
-                        LoaddataGridView1();
+                        LoadGridControl();
 
                         if (i != 0)
                         {
@@ -143,7 +148,7 @@ namespace ScaleApp
             switch (GetRadioChecked())
             {
                 case "rdbRunner":
-                    cmd.Parameters.AddWithValue("@weightRunner", txtWeightSacle.Text);
+                    cmd.Parameters.AddWithValue("@weightRunner", txtScaleWeight.Text);
                     cmd.Parameters.AddWithValue("@weightDefect", 0);
                     cmd.Parameters.AddWithValue("@weightBlackDot", 0);
                     cmd.Parameters.AddWithValue("@weightContaminated", 0);
@@ -152,7 +157,7 @@ namespace ScaleApp
                     break;
                 case "rdbDefect":
                     cmd.Parameters.AddWithValue("@weightRunner", 0);
-                    cmd.Parameters.AddWithValue("@weightDefect", txtWeightSacle.Text);
+                    cmd.Parameters.AddWithValue("@weightDefect", txtScaleWeight.Text);
                     cmd.Parameters.AddWithValue("@weightBlackDot", 0);
                     cmd.Parameters.AddWithValue("@weightContaminated", 0);
                     cmd.Parameters.AddWithValue("@weightRecycle", 0);
@@ -161,7 +166,7 @@ namespace ScaleApp
                 case "rdbBlackDot":
                     cmd.Parameters.AddWithValue("@weightRunner", 0);
                     cmd.Parameters.AddWithValue("@weightDefect", 0);
-                    cmd.Parameters.AddWithValue("@weightBlackDot", txtWeightSacle.Text);
+                    cmd.Parameters.AddWithValue("@weightBlackDot", txtScaleWeight.Text);
                     cmd.Parameters.AddWithValue("@weightContaminated", 0);
                     cmd.Parameters.AddWithValue("@weightRecycle", 0);
                     cmd.Parameters.AddWithValue("@weightCookie", 0);
@@ -170,7 +175,7 @@ namespace ScaleApp
                     cmd.Parameters.AddWithValue("@weightRunner", 0);
                     cmd.Parameters.AddWithValue("@weightDefect", 0);
                     cmd.Parameters.AddWithValue("@weightBlackDot", 0);
-                    cmd.Parameters.AddWithValue("@weightContaminated", txtWeightSacle.Text);
+                    cmd.Parameters.AddWithValue("@weightContaminated", txtScaleWeight.Text);
                     cmd.Parameters.AddWithValue("@weightRecycle", 0);
                     cmd.Parameters.AddWithValue("@weightCookie", 0);
                     break;
@@ -180,7 +185,7 @@ namespace ScaleApp
             conn.Open();
 
             int i = cmd.ExecuteNonQuery();
-            LoaddataGridView1();
+            LoadGridControl();
 
             ScaleApp.Common.DataOperation.disconnect();           
 
@@ -244,7 +249,7 @@ namespace ScaleApp
 
             ScaleApp.Common.DataOperation.disconnect();
 
-            LoaddataGridView1();
+            LoadGridControl();
 
             if (i != 0)
             {
@@ -363,56 +368,7 @@ namespace ScaleApp
         private void cmbMixId_SelectedIndexChanged(object sender, EventArgs e)
         {
             qrCodeMixId.Text = cmbMixId.Text;
-        }
-
-        private void LoaddataGridView1()
-        {
-            DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
-            SqlConnection conn = new SqlConnection(connStr);
-
-            try
-            {
-                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getFullMixOuts", conn))
-                {
-                    SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
-                    SqlDa.Fill(ds);
-                }
-
-                //Select only one row
-                gridView1.MultiSelect = false;
-                gridView1.AutoGenerateColumns = false;
-
-                gridView1.DataSource = ds.Tables[0];
-                //Change name of Columns
-                gridView1.Columns["Id"].DataPropertyName = "Id";
-                gridView1.Columns["WeightDate"].DataPropertyName = "CreateTime";
-                gridView1.Columns["MixId"].DataPropertyName = "MixBacode";
-                gridView1.Columns["WeightRunner"].DataPropertyName = "WeightRunner";
-                gridView1.Columns["WeightDefect"].DataPropertyName = "WeightDefect";
-                gridView1.Columns["WeightBlackDot"].DataPropertyName = "WeightBlackDot";
-                gridView1.Columns["WeighContamination"].DataPropertyName = "WeighContamination";
-                gridView1.Columns["WeightRecycle"].DataPropertyName = "WeightRecycle";
-                gridView1.Columns["WeightCookie"].DataPropertyName = "WeightCookie";                
-                gridView1.Columns["Posted"].DataPropertyName = "Posted";
-
-                //gridView1.Columns["MixId"].Width = 50;
-                //gridView1.Columns["WeightDate"].Width = 80;
-                //gridView1.Columns["MixId"].Width = 120;
-                //gridView1.Columns["WeightRunner"].Width = 60;
-                //gridView1.Columns["WeightDefect"].Width = 60;
-                //gridView1.Columns["WeightBlackDot"].Width = 60;
-                //gridView1.Columns["WeightContaminated"].Width = 60;
-                //gridView1.Columns["WeightRecycle"].Width = 60;
-                //gridView1.Columns["WeightCookie"].Width = 60;
-                //gridView1.Columns["Posted"].Width = 50;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            ScaleApp.Common.DataOperation.disconnect();
-        }
+        }        
 
         private void cmdReset_Click(object sender, EventArgs e)
         {
@@ -474,7 +430,7 @@ namespace ScaleApp
             if (i != 0)
             {
                 MessageBox.Show("Data posted !");
-                LoaddataGridView1();
+                LoadGridControl();
                 cmdSave.Enabled = false;
                 cmdPosted.Enabled = false;
             }
@@ -556,6 +512,85 @@ namespace ScaleApp
             gridControl1.ExportToXlsx(path);
             // Open the created XLSX file with the default application. 
             Process.Start(path);
+        }
+
+        private void GetComPort()
+        {
+            string[] portNames = SerialPort.GetPortNames();     //<-- Reads all available comPorts
+            foreach (var portName in portNames)
+            {
+                cboComPort.Items.Add(portName);                  //<-- Adds Ports to combobox
+            }
+            cboComPort.SelectedIndex = 0;                        //<-- Selects first entry (convenience purposes)
+
+            //<-- This block ensures that no exceptions happen
+            if (_serialPort != null && _serialPort.IsOpen)
+                _serialPort.Close();
+            if (_serialPort != null)
+                _serialPort.Dispose();
+            //<-- End of Block
+        }
+
+        private void CloseSerialPort()
+        {
+            if (_serialPort != null && _serialPort.IsOpen)
+                _serialPort.Close();
+            if (_serialPort != null)
+                _serialPort.Dispose();
+        }
+
+        private delegate void Closure();
+
+        private void SerialPortOnDataReceived(object sender, SerialDataReceivedEventArgs serialDataReceivedEventArgs)
+        {
+            if (InvokeRequired)     //<-- Makes sure the function is invoked to work properly in the UI-Thread
+                BeginInvoke(new Closure(() => { SerialPortOnDataReceived(sender, serialDataReceivedEventArgs); }));     //<-- Function invokes itself
+            else
+            {
+                int dataLength = _serialPort.BytesToRead;
+
+                byte[] data = new byte[dataLength];
+                int nbrDataRead = _serialPort.Read(data, 0, dataLength);
+                if (nbrDataRead == 0)
+                {
+                    return;
+                }
+                string str = Encoding.UTF8.GetString(data);
+
+                //Buffers values in a file
+                File.AppendAllText("buffer1", str);
+
+                //Read from buffer and write into "strnew" String
+                string strnew = File.ReadLines("buffer1").Last();
+
+                //Shows actual true value coming from scale
+                txtScaleWeight.Text = strnew;
+                Regex digits = new Regex(@"^\D*?((-?(\d+(\.\d+)?))|(-?\.\d+)).*");
+                Match mx = digits.Match(txtScaleWeight.Text);
+                decimal strValue = mx.Success ? Convert.ToDecimal(mx.Groups[1].Value) : 0;
+                txtScaleWeight.Text = strValue.ToString();
+            }
+        }
+
+        private void ActionScale()
+        {
+            _serialPort = new SerialPort(cboComPort.Text, BaudRate, Parity.None, 8, StopBits.One);       //<-- Creates new SerialPort using the name selected in the combobox
+            _serialPort.DataReceived += SerialPortOnDataReceived;       //<-- this event happens everytime when new data is received by the ComPort
+            _serialPort.Open();     //<-- make the comport listen
+            txtScaleWeight.Text = "Scaling... " + _serialPort.PortName + "...\r\n";
+        }
+
+        private void spbScale_Click(object sender, EventArgs e)
+        {
+            timer2.Tick += new EventHandler(Timer2_Tick);
+            timer2.Enabled = true;
+            ActionScale();
+        }
+
+        private void Timer2_Tick(object sender, EventArgs e)
+        {
+            CloseSerialPort();
+            txtScaleWeight.Text = "Off";
         }
     }
 }

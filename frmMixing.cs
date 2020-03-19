@@ -146,7 +146,7 @@ namespace ScaleApp
             cmd.Parameters.AddWithValue("@weightRecycle", bteWeightRe.Text);
             cmd.Parameters.AddWithValue("@weightMaterial", bteWeightRM.Text);
             cmd.Parameters.AddWithValue("@totalMaterial", txtTotal.Text);
-            cmd.Parameters.AddWithValue("@reRatio", txtReRatio.Text);
+            cmd.Parameters.AddWithValue("@reRatio", txtReRatio.EditValue);
             cmd.Parameters.AddWithValue("@crushRawId", (lueRecycled.EditValue.IsNullOrEmpty()) ? DBNull.Value : lueRecycled.EditValue);
             cmd.Parameters.AddWithValue("@reason", txtReason.Text);
             cmd.Parameters.AddWithValue("@qrCode", qrMixLotID.Text);
@@ -440,36 +440,7 @@ namespace ScaleApp
                 MessageBox.Show(ex.Message);
             }
             ScaleApp.Common.DataOperation.disconnect();
-        }
-
-        private void loadComboBoxRecycle()
-        {
-            DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
-            SqlConnection conn = new SqlConnection(connStr);
-
-            try
-            {
-                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getCrushRaws", conn))
-                {
-                    SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
-                    SqlDa.Fill(ds);
-                }
-                DataRow blankRow = ds.Tables[0].NewRow();
-                blankRow["CrushRawId"] = "0";
-                blankRow["RecycledID"] = "";
-                ds.Tables[0].Rows.InsertAt(blankRow, 0);
-
-                cmbRecycled.DataSource = ds.Tables[0];
-                cmbRecycled.DisplayMember = "RecycledID";
-                cmbRecycled.ValueMember = "CrushRawId";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            ScaleApp.Common.DataOperation.disconnect();
-        }
+        }        
 
         private void LoadLookUpRecycled()
         {
@@ -606,6 +577,39 @@ namespace ScaleApp
 
             ScaleApp.Common.DataOperation.disconnect();
 
+        }
+
+        private string GetProductMaterial_S(string productId)
+        {
+            string materialCode = "";
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+            SqlDataAdapter SqlDa = new SqlDataAdapter();
+            SqlCommand sqlcmd = new SqlCommand("sp_getMaterialsProduct_s", conn);
+            try
+            {
+                sqlcmd.CommandType = CommandType.StoredProcedure;
+                sqlcmd.Parameters.AddWithValue("@ProductId", productId);
+                SqlDa.SelectCommand = sqlcmd;
+
+                SqlDa.Fill(ds);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    materialCode = ds.Tables[0].Rows[0][8].ToString();                    
+                }
+                else
+                {
+                    materialCode = "";                    
+                }                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return materialCode;
+            ScaleApp.Common.DataOperation.disconnect();
         }
 
         private void loadGridView1()
@@ -1050,6 +1054,13 @@ namespace ScaleApp
 
         private void lueProduct_EditValueChanged(object sender, EventArgs e)
         {
+            string strBomCode = "";
+            string strBomCodeF = "";
+            string strBomCodeL = "";
+            string strProductCode = "";
+            string strProductCodeF = "";
+            string strProductCodeL = "";
+
             lueColor.EditValue = null;
             if (lueProduct.EditValue.IsNull())
             {
@@ -1057,9 +1068,26 @@ namespace ScaleApp
             }
             else
             {
-                txtProductName.Text = lueProduct.Text;
-                loadColorsByProduct(lueProduct.EditValue.ToString());
-                LoadGridControl2(lueProduct.EditValue.ToString(), bteWeightRe.Text);
+                txtProductName.Text = lueProduct.Text;                
+
+                strBomCode = GetProductMaterial_S(lueProduct.EditValue.ToString());
+                strBomCodeF = strBomCode.Substring(0, strBomCode.Length - 5);
+                strBomCodeL = strBomCode.Substring(strBomCode.Length - 4, 4);
+
+                strProductCode = lueProduct.EditValue.ToString();
+                strProductCodeF = strProductCode.Substring(0, strProductCode.Length - 5);
+                strProductCodeL = strProductCode.Substring(strProductCode.Length - 4, 4);
+
+                if (strProductCode.Contains(strBomCodeF))
+                {
+                    LoadGridControl2(strBomCode, bteWeightRe.Text);
+                }
+                else
+                {
+                    LoadGridControl2(strProductCode, bteWeightRe.Text);
+                }
+
+                loadColorsByProduct(lueProduct.EditValue.ToString());                
                 generateTextQRCode();
             }
         }                
@@ -1201,27 +1229,19 @@ namespace ScaleApp
             {
                 editorReason.Text = null;
             }
-        }        
-
-        private void toggleSwitch1_Toggled(object sender, EventArgs e)
-        {
-            if (toggleSwitch1.IsOn)
-            {                
-                timer2.Tick += new EventHandler(Timer2_Tick);
-                timer2.Enabled = true;
-                ActionScale();
-            }            
-        }
+        }     
 
         private void Timer2_Tick(object sender, EventArgs e)
-        {
-            if (toggleSwitch1.IsOn)
-            {
-                CloseSerialPort();
-                toggleSwitch1.IsOn = false;
-                txtScaleWeight.Text = "Off";
-            }            
+        {            
+            CloseSerialPort();                
+            txtScaleWeight.Text = "Off";            
         }
-        
+
+        private void spbScale_Click(object sender, EventArgs e)
+        {
+            timer2.Tick += new EventHandler(Timer2_Tick);
+            timer2.Enabled = true;
+            ActionScale();
+        }
     }
 }

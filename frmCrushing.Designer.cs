@@ -878,6 +878,7 @@
             this.Controls.Add(this.cmbColor);
             this.Controls.Add(this.cmbProduct);
             this.Controls.Add(this.gridCrushed);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(50, 50);
             this.Name = "frmCrushing";

@@ -59,7 +59,7 @@ namespace ScaleApp
             Double _weightContaminated;
             int i;
 
-            if (CheckExistedMixOut() == 0)
+            if (CheckExistedMixOut(int.Parse(cmbMixId.SelectedValue.ToString())) == 0)
             {
                 CreateMixOut();
             }
@@ -125,6 +125,7 @@ namespace ScaleApp
                         if (i != 0)
                         {
                             MessageBox.Show(i + "Data Saved");
+                            LoadComboBoxMixId();
                         }
                         //End UpdateMixOut
                     }
@@ -192,6 +193,7 @@ namespace ScaleApp
             if (i != 0)
             {
                 MessageBox.Show(i + "Data Saved");
+                LoadComboBoxMixId();
             }
         }
 
@@ -271,17 +273,29 @@ namespace ScaleApp
             return rdicheckName;
         }
 
-        private int CheckExistedMixOut()
+        private int CheckExistedMixOut(int mixRawId)
         {
-            if (txtMixOutId.Text == "")
-            {
-                return 0;
-            }
-            else
-            {
-                return 1;
-            }
-            
+            int mixRawExists;
+
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+            SqlCommand sqlcmd = new SqlCommand("sp_checkExistsMixOut", conn);
+
+            sqlcmd.CommandType = CommandType.StoredProcedure;
+            sqlcmd.Parameters.AddWithValue("@mixRawId", mixRawId);
+
+            SqlParameter returnParameter = new SqlParameter("@LastIdentity", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
+            sqlcmd.Parameters.Add(returnParameter);
+            conn.Open();
+            sqlcmd.ExecuteNonQuery();
+
+            mixRawExists = (int)sqlcmd.Parameters["@LastIdentity"].Value;            
+
+            ScaleApp.Common.DataOperation.disconnect();
+
+            return mixRawExists;
+
         }
 
         private void LoadComboBoxMixId()
@@ -468,7 +482,7 @@ namespace ScaleApp
 
                 gridView2.Columns["Id"].Width = 50;
                 gridView2.Columns["CreateTime"].Width = 80;
-                gridView2.Columns["MixBacode"].Width = 120;
+                gridView2.Columns["MixBacode"].Width = 230;
                 gridView2.Columns["WeightRunner"].Width = 100;
                 gridView2.Columns["WeightDefect"].Width = 100;
                 gridView2.Columns["WeightBlackDot"].Width = 100;

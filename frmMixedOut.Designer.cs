@@ -92,7 +92,7 @@
             this.cmbMixId.FormattingEnabled = true;
             this.cmbMixId.Location = new System.Drawing.Point(124, 93);
             this.cmbMixId.Name = "cmbMixId";
-            this.cmbMixId.Size = new System.Drawing.Size(293, 31);
+            this.cmbMixId.Size = new System.Drawing.Size(341, 31);
             this.cmbMixId.TabIndex = 1;
             this.cmbMixId.SelectedIndexChanged += new System.EventHandler(this.cmbMixId_SelectedIndexChanged);
             // 
@@ -105,7 +105,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(16, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(401, 69);
+            this.groupBox1.Size = new System.Drawing.Size(449, 69);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Loss type";
@@ -180,7 +180,7 @@
             this.qrCodeMixId.AutoModule = true;
             this.qrCodeMixId.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.qrCodeMixId.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.qrCodeMixId.Location = new System.Drawing.Point(433, 93);
+            this.qrCodeMixId.Location = new System.Drawing.Point(471, 93);
             this.qrCodeMixId.Name = "qrCodeMixId";
             this.qrCodeMixId.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrCodeMixId.Size = new System.Drawing.Size(309, 164);
@@ -209,7 +209,7 @@
             // 
             this.txtDateTime.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDateTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtDateTime.Location = new System.Drawing.Point(433, 24);
+            this.txtDateTime.Location = new System.Drawing.Point(471, 24);
             this.txtDateTime.Name = "txtDateTime";
             this.txtDateTime.Size = new System.Drawing.Size(309, 26);
             this.txtDateTime.TabIndex = 11;
@@ -321,13 +321,13 @@
             this.txtScaleWeight.Properties.Appearance.Options.UseFont = true;
             this.txtScaleWeight.Properties.Mask.EditMask = "d";
             this.txtScaleWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtScaleWeight.Size = new System.Drawing.Size(212, 30);
+            this.txtScaleWeight.Size = new System.Drawing.Size(260, 30);
             this.txtScaleWeight.TabIndex = 13;
             // 
             // simpleButton2
             // 
             this.simpleButton2.ImageOptions.Image = global::ScaleApp.Properties.Resources.refresh_32x321;
-            this.simpleButton2.Location = new System.Drawing.Point(333, 188);
+            this.simpleButton2.Location = new System.Drawing.Point(381, 188);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(84, 69);
             this.simpleButton2.TabIndex = 15;
@@ -337,7 +337,7 @@
             // simpleButton1
             // 
             this.simpleButton1.ImageOptions.Image = global::ScaleApp.Properties.Resources.exporttoxlsx_32x32;
-            this.simpleButton1.Location = new System.Drawing.Point(243, 188);
+            this.simpleButton1.Location = new System.Drawing.Point(284, 188);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(84, 69);
             this.simpleButton1.TabIndex = 14;
@@ -388,13 +388,14 @@
             // 
             this.gridView2.GridControl = this.gridControl1;
             this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView2_RowClick);
             // 
             // cboComPort
             // 
             this.cboComPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboComPort.FormattingEnabled = true;
-            this.cboComPort.Location = new System.Drawing.Point(433, 56);
+            this.cboComPort.Location = new System.Drawing.Point(471, 56);
             this.cboComPort.Name = "cboComPort";
             this.cboComPort.Size = new System.Drawing.Size(309, 24);
             this.cboComPort.TabIndex = 17;
@@ -402,7 +403,7 @@
             // spbScale
             // 
             this.spbScale.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("spbScale.ImageOptions.Image")));
-            this.spbScale.Location = new System.Drawing.Point(342, 135);
+            this.spbScale.Location = new System.Drawing.Point(390, 135);
             this.spbScale.Name = "spbScale";
             this.spbScale.Size = new System.Drawing.Size(75, 30);
             this.spbScale.TabIndex = 18;
@@ -437,6 +438,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cmbMixId);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(50, 50);
             this.Name = "frmMixedOut";

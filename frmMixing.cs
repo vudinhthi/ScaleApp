@@ -1260,5 +1260,16 @@ namespace ScaleApp
             timer2.Enabled = true;
             ActionScale();
         }
+
+        private void UpdateBomMaterialWeight()
+        {
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            //foreach (GridRow gridRow in gridView2.ro)
+            //{
+
+            //}
+        }
     }
 }

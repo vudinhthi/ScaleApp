@@ -1055,11 +1055,11 @@ namespace ScaleApp
         private void lueProduct_EditValueChanged(object sender, EventArgs e)
         {
             string strBomCode = "";
-            string strBomCodeF = "";
-            string strBomCodeL = "";
+            //string strBomCodeF = "";
+            //string strBomCodeL = "";
             string strProductCode = "";
             string strProductCodeF = "";
-            string strProductCodeL = "";
+            //string strProductCodeL = "";
 
             lueColor.EditValue = null;
             if (lueProduct.EditValue.IsNull())
@@ -1071,14 +1071,14 @@ namespace ScaleApp
                 txtProductName.Text = lueProduct.Text;                
 
                 strBomCode = GetProductMaterial_S(lueProduct.EditValue.ToString());
-                strBomCodeF = strBomCode.Substring(0, strBomCode.Length - 5);
-                strBomCodeL = strBomCode.Substring(strBomCode.Length - 4, 4);
+                //strBomCodeF = (strBomCode.IsNullOrEmpty()) ? "" : strBomCode.Substring(0, strBomCode.Length - 5);
+                //strBomCodeL = (strBomCode.IsNullOrEmpty()) ? "" : strBomCode.Substring(strBomCode.Length - 4, 4);
 
                 strProductCode = lueProduct.EditValue.ToString();
-                strProductCodeF = strProductCode.Substring(0, strProductCode.Length - 5);
-                strProductCodeL = strProductCode.Substring(strProductCode.Length - 4, 4);
+                strProductCodeF = (strProductCode.IsNullOrEmpty()) ? "" : strProductCode.Substring(0, strProductCode.Length - 5);
+                //strProductCodeL = (strProductCode.IsNullOrEmpty()) ? "" : strProductCode.Substring(strProductCode.Length - 4, 4);
 
-                if (strProductCode.Contains(strBomCodeF))
+                if ((strBomCode != "") && (strBomCode.Contains(strProductCodeF)))
                 {
                     LoadGridControl2(strBomCode, bteWeightRe.Text);
                 }

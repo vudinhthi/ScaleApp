@@ -1054,12 +1054,7 @@ namespace ScaleApp
 
         private void lueProduct_EditValueChanged(object sender, EventArgs e)
         {
-            string strBomCode = "";
-            //string strBomCodeF = "";
-            //string strBomCodeL = "";
-            string strProductCode = "";
-            string strProductCodeF = "";
-            //string strProductCodeL = "";
+            string strBomCode = "";            
 
             lueColor.EditValue = null;
             if (lueProduct.EditValue.IsNull())
@@ -1068,29 +1063,49 @@ namespace ScaleApp
             }
             else
             {
-                txtProductName.Text = lueProduct.Text;                
+                txtProductName.Text = lueProduct.Text;
 
-                strBomCode = GetProductMaterial_S(lueProduct.EditValue.ToString());
-                //strBomCodeF = (strBomCode.IsNullOrEmpty()) ? "" : strBomCode.Substring(0, strBomCode.Length - 5);
-                //strBomCodeL = (strBomCode.IsNullOrEmpty()) ? "" : strBomCode.Substring(strBomCode.Length - 4, 4);
+                strBomCode = GetStrBomCode(lueProduct.EditValue.ToString());
+                //strProductCode = lueProduct.EditValue.ToString();
+                //strProductCodeF = (strProductCode.IsNullOrEmpty()) ? "" : strProductCode.Substring(0, strProductCode.Length - 5);
 
-                strProductCode = lueProduct.EditValue.ToString();
-                strProductCodeF = (strProductCode.IsNullOrEmpty()) ? "" : strProductCode.Substring(0, strProductCode.Length - 5);
-                //strProductCodeL = (strProductCode.IsNullOrEmpty()) ? "" : strProductCode.Substring(strProductCode.Length - 4, 4);
+                //if ((strBomCode != "") && (strBomCode.Contains(strProductCodeF)))
+                //{
+                //    LoadGridControl2(strBomCode, bteWeightRe.Text);
+                //}
+                //else
+                //{
+                //    LoadGridControl2(strProductCode, bteWeightRe.Text);
+                //}
 
-                if ((strBomCode != "") && (strBomCode.Contains(strProductCodeF)))
-                {
-                    LoadGridControl2(strBomCode, bteWeightRe.Text);
-                }
-                else
-                {
-                    LoadGridControl2(strProductCode, bteWeightRe.Text);
-                }
+                LoadGridControl2(strBomCode, bteWeightRe.Text);
 
                 loadColorsByProduct(lueProduct.EditValue.ToString());                
                 generateTextQRCode();
             }
-        }                
+        }
+
+        private string GetStrBomCode(string strProductCode)
+        {
+            string sBomCode = "";
+            string sProductCodeF = "";
+
+            if (strProductCode.IsNullOrEmpty())
+            {
+                sBomCode = "";
+            }
+            else
+            {
+                sBomCode = GetProductMaterial_S(strProductCode);
+                sProductCodeF = (strProductCode.IsNullOrEmpty()) ? "" : strProductCode.Substring(0, strProductCode.Length - 5);
+
+                if (!sBomCode.Contains(sProductCodeF))
+                {
+                    sBomCode = strProductCode;
+                }                
+            }
+            return sBomCode;
+        }
 
         private void gridView2_RowClick(object sender, RowClickEventArgs e)
         {
@@ -1150,6 +1165,7 @@ namespace ScaleApp
         {
             ButtonEdit editorWeightRM = (ButtonEdit)sender;
             EditorButton Button = e.Button;
+            string sBomCode = "";
 
             if (Button.Kind == ButtonPredefines.OK)
             {
@@ -1160,7 +1176,8 @@ namespace ScaleApp
                 }
                 else
                 {
-                    LoadGridControl2(lueProduct.EditValue.ToString(), editorWeightRM.Text);
+                    sBomCode = GetStrBomCode(lueProduct.EditValue.ToString());
+                    LoadGridControl2(sBomCode, editorWeightRM.Text);
                 }                
                 txtTotal.Text = GetTotalWeight().ToString();
             }

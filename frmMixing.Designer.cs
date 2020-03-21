@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
             DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery1 = new DevExpress.DataAccess.Sql.StoredProcQuery();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMixing));
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -49,7 +49,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cmbStep = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.cmbMaterial = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbColor = new System.Windows.Forms.ComboBox();
@@ -57,11 +56,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtWeightRM = new System.Windows.Forms.TextBox();
             this.cmbRecycled = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.txtWeightRecycled = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtTotal = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.txtMachine = new System.Windows.Forms.TextBox();
             this.txtScaleWeight = new System.Windows.Forms.TextBox();
             this.qrMixLotID = new DevExpress.XtraEditors.BarCodeControl();
@@ -92,7 +87,6 @@
             this.button5 = new System.Windows.Forms.Button();
             this.lueMaterial = new DevExpress.XtraEditors.LookUpEdit();
             this.lueProduct = new DevExpress.XtraEditors.LookUpEdit();
-            this.lueRecycled = new DevExpress.XtraEditors.LookUpEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.txtWeightMaterial = new DevExpress.XtraEditors.TextEdit();
@@ -100,21 +94,12 @@
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.spbExport = new DevExpress.XtraEditors.SimpleButton();
             this.spbRefresh = new DevExpress.XtraEditors.SimpleButton();
-            this.bteWeightRM = new DevExpress.XtraEditors.ButtonEdit();
-            this.bteWeightRe = new DevExpress.XtraEditors.ButtonEdit();
             this.tablePanel1 = new DevExpress.Utils.Layout.TablePanel();
             this.tablePanel2 = new DevExpress.Utils.Layout.TablePanel();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.tedColorCode = new DevExpress.XtraEditors.TextEdit();
             this.label12 = new System.Windows.Forms.Label();
             this.tedColor = new DevExpress.XtraEditors.TextEdit();
-            this.tablePanel3 = new DevExpress.Utils.Layout.TablePanel();
-            this.txtReason = new DevExpress.XtraEditors.ButtonEdit();
-            this.txtTotalMaterial = new DevExpress.XtraEditors.TextEdit();
-            this.txtReRatio = new DevExpress.XtraEditors.TextEdit();
-            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
-            this.gridViewMaterialBom = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.label13 = new System.Windows.Forms.Label();
             this.tablePanel4 = new DevExpress.Utils.Layout.TablePanel();
             this.spbReset = new DevExpress.XtraEditors.SimpleButton();
             this.spbPost = new DevExpress.XtraEditors.SimpleButton();
@@ -125,30 +110,36 @@
             this.lueColor = new DevExpress.XtraEditors.LookUpEdit();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.spbScale = new DevExpress.XtraEditors.SimpleButton();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.bteWeightRe = new DevExpress.XtraEditors.ButtonEdit();
+            this.lueRecycled = new DevExpress.XtraEditors.LookUpEdit();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.bteWeightRM = new DevExpress.XtraEditors.ButtonEdit();
+            this.label13 = new System.Windows.Forms.Label();
+            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
+            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridViewMaterialBom = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.txtReRatio = new DevExpress.XtraEditors.TextEdit();
+            this.txtTotalMaterial = new DevExpress.XtraEditors.TextEdit();
+            this.txtReason = new DevExpress.XtraEditors.ButtonEdit();
+            this.tablePanel3 = new DevExpress.Utils.Layout.TablePanel();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueMaterial.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueProduct.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueRecycled.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightMaterial.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightRe.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bteWeightRM.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bteWeightRe.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).BeginInit();
             this.tablePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel2)).BeginInit();
             this.tablePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tedColorCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tedColor.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablePanel3)).BeginInit();
-            this.tablePanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtReason.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTotalMaterial.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtReRatio.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewMaterialBom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel4)).BeginInit();
             this.tablePanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel5)).BeginInit();
@@ -156,6 +147,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel6)).BeginInit();
             this.tablePanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueColor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bteWeightRe.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueRecycled.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bteWeightRM.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewMaterialBom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReRatio.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalMaterial.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReason.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablePanel3)).BeginInit();
+            this.tablePanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -249,19 +251,6 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Machine";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.tablePanel3.SetColumn(this.label5, 0);
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(3, 9);
-            this.label5.Name = "label5";
-            this.tablePanel3.SetRow(this.label5, 0);
-            this.label5.Size = new System.Drawing.Size(84, 20);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "Weight (*)";
-            // 
             // cmbMaterial
             // 
             this.cmbMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -342,19 +331,6 @@
             this.cmbRecycled.TabIndex = 17;
             this.cmbRecycled.Visible = false;
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.tablePanel3.SetColumn(this.label9, 0);
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(3, 274);
-            this.label9.Name = "label9";
-            this.tablePanel3.SetRow(this.label9, 2);
-            this.label9.Size = new System.Drawing.Size(84, 20);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Recycled ID";
-            // 
             // txtWeightRecycled
             // 
             this.txtWeightRecycled.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -364,45 +340,6 @@
             this.txtWeightRecycled.TabIndex = 19;
             this.txtWeightRecycled.Visible = false;
             this.txtWeightRecycled.TextChanged += new System.EventHandler(this.txtWeightRecycled_TextChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.tablePanel3.SetColumn(this.label10, 0);
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label10.Location = new System.Drawing.Point(3, 309);
-            this.label10.Name = "label10";
-            this.tablePanel3.SetRow(this.label10, 3);
-            this.label10.Size = new System.Drawing.Size(65, 20);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "Weight";
-            // 
-            // txtTotal
-            // 
-            this.tablePanel3.SetColumn(this.txtTotal, 1);
-            this.tablePanel3.SetColumnSpan(this.txtTotal, 2);
-            this.txtTotal.Enabled = false;
-            this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(93, 374);
-            this.txtTotal.Name = "txtTotal";
-            this.tablePanel3.SetRow(this.txtTotal, 5);
-            this.txtTotal.Size = new System.Drawing.Size(394, 38);
-            this.txtTotal.TabIndex = 21;
-            this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.tablePanel3.SetColumn(this.label11, 0);
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label11.Location = new System.Drawing.Point(3, 383);
-            this.label11.Name = "label11";
-            this.tablePanel3.SetRow(this.label11, 5);
-            this.label11.Size = new System.Drawing.Size(49, 20);
-            this.label11.TabIndex = 20;
-            this.label11.Text = "Total";
             // 
             // txtMachine
             // 
@@ -699,23 +636,6 @@
             this.lueProduct.TabIndex = 42;
             this.lueProduct.EditValueChanged += new System.EventHandler(this.lueProduct_EditValueChanged);
             // 
-            // lueRecycled
-            // 
-            this.tablePanel3.SetColumn(this.lueRecycled, 1);
-            this.tablePanel3.SetColumnSpan(this.lueRecycled, 2);
-            this.lueRecycled.Location = new System.Drawing.Point(93, 271);
-            this.lueRecycled.Name = "lueRecycled";
-            this.lueRecycled.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            this.lueRecycled.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueRecycled.Properties.Appearance.Options.UseFont = true;
-            this.lueRecycled.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lueRecycled.Properties.NullText = "";
-            this.lueRecycled.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.tablePanel3.SetRow(this.lueRecycled, 2);
-            this.lueRecycled.Size = new System.Drawing.Size(394, 26);
-            this.lueRecycled.TabIndex = 44;
-            // 
             // gridControl1
             // 
             this.gridControl1.Location = new System.Drawing.Point(9, 436);
@@ -779,48 +699,6 @@
             this.spbRefresh.TabIndex = 49;
             this.spbRefresh.Text = "Refresh";
             this.spbRefresh.Click += new System.EventHandler(this.simpleButton2_Click);
-            // 
-            // bteWeightRM
-            // 
-            this.tablePanel3.SetColumn(this.bteWeightRM, 1);
-            this.bteWeightRM.Location = new System.Drawing.Point(93, 3);
-            this.bteWeightRM.Name = "bteWeightRM";
-            this.bteWeightRM.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bteWeightRM.Properties.Appearance.Options.UseFont = true;
-            this.bteWeightRM.Properties.Appearance.Options.UseTextOptions = true;
-            this.bteWeightRM.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
-            this.bteWeightRM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK, "Ok", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "Delete", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.bteWeightRM.Properties.Mask.EditMask = "f";
-            this.bteWeightRM.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.bteWeightRM.Properties.ReadOnly = true;
-            this.tablePanel3.SetRow(this.bteWeightRM, 0);
-            this.bteWeightRM.Size = new System.Drawing.Size(246, 32);
-            this.bteWeightRM.TabIndex = 52;
-            this.bteWeightRM.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.bteWeightRM_ButtonClick);
-            // 
-            // bteWeightRe
-            // 
-            this.tablePanel3.SetColumn(this.bteWeightRe, 1);
-            this.bteWeightRe.Location = new System.Drawing.Point(93, 304);
-            this.bteWeightRe.Name = "bteWeightRe";
-            this.bteWeightRe.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bteWeightRe.Properties.Appearance.Options.UseFont = true;
-            this.bteWeightRe.Properties.Appearance.Options.UseTextOptions = true;
-            this.bteWeightRe.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.bteWeightRe.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
-            this.bteWeightRe.Properties.Mask.EditMask = "f";
-            this.bteWeightRe.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.bteWeightRe.Properties.ReadOnly = true;
-            this.tablePanel3.SetRow(this.bteWeightRe, 3);
-            this.bteWeightRe.Size = new System.Drawing.Size(246, 30);
-            this.bteWeightRe.TabIndex = 53;
-            this.bteWeightRe.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.bteWeightRe_ButtonClick);
             // 
             // tablePanel1
             // 
@@ -917,119 +795,6 @@
             this.tablePanel2.SetRow(this.tedColor, 3);
             this.tedColor.Size = new System.Drawing.Size(287, 25);
             this.tedColor.TabIndex = 62;
-            // 
-            // tablePanel3
-            // 
-            this.tablePanel3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.tablePanel3.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 20.26F),
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 56.54F),
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 33.2F)});
-            this.tablePanel3.Controls.Add(this.txtReason);
-            this.tablePanel3.Controls.Add(this.txtTotalMaterial);
-            this.tablePanel3.Controls.Add(this.txtReRatio);
-            this.tablePanel3.Controls.Add(this.gridControl2);
-            this.tablePanel3.Controls.Add(this.label13);
-            this.tablePanel3.Controls.Add(this.bteWeightRM);
-            this.tablePanel3.Controls.Add(this.label5);
-            this.tablePanel3.Controls.Add(this.label9);
-            this.tablePanel3.Controls.Add(this.lueRecycled);
-            this.tablePanel3.Controls.Add(this.bteWeightRe);
-            this.tablePanel3.Controls.Add(this.label10);
-            this.tablePanel3.Controls.Add(this.label11);
-            this.tablePanel3.Controls.Add(this.txtTotal);
-            this.tablePanel3.Location = new System.Drawing.Point(422, 14);
-            this.tablePanel3.Name = "tablePanel3";
-            this.tablePanel3.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 38F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 230F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 32F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 38F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 32F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
-            this.tablePanel3.Size = new System.Drawing.Size(490, 416);
-            this.tablePanel3.TabIndex = 57;
-            // 
-            // txtReason
-            // 
-            this.tablePanel3.SetColumn(this.txtReason, 1);
-            this.tablePanel3.SetColumnSpan(this.txtReason, 2);
-            this.txtReason.Location = new System.Drawing.Point(93, 342);
-            this.txtReason.Name = "txtReason";
-            this.txtReason.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReason.Properties.Appearance.Options.UseFont = true;
-            this.txtReason.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
-            this.tablePanel3.SetRow(this.txtReason, 4);
-            this.txtReason.Size = new System.Drawing.Size(394, 24);
-            this.txtReason.TabIndex = 61;
-            this.txtReason.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtReason_ButtonClick);
-            // 
-            // txtTotalMaterial
-            // 
-            this.tablePanel3.SetColumn(this.txtTotalMaterial, 2);
-            this.txtTotalMaterial.Location = new System.Drawing.Point(345, 4);
-            this.txtTotalMaterial.Name = "txtTotalMaterial";
-            this.txtTotalMaterial.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalMaterial.Properties.Appearance.Options.UseFont = true;
-            this.txtTotalMaterial.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtTotalMaterial.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtTotalMaterial.Properties.DisplayFormat.FormatString = "{0:P1}";
-            this.txtTotalMaterial.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtTotalMaterial.Properties.ReadOnly = true;
-            this.tablePanel3.SetRow(this.txtTotalMaterial, 0);
-            this.txtTotalMaterial.Size = new System.Drawing.Size(142, 30);
-            this.txtTotalMaterial.TabIndex = 60;
-            // 
-            // txtReRatio
-            // 
-            this.tablePanel3.SetColumn(this.txtReRatio, 2);
-            this.txtReRatio.Location = new System.Drawing.Point(345, 304);
-            this.txtReRatio.Name = "txtReRatio";
-            this.txtReRatio.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReRatio.Properties.Appearance.Options.UseFont = true;
-            this.txtReRatio.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtReRatio.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtReRatio.Properties.DisplayFormat.FormatString = "{0:P1}";
-            this.txtReRatio.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtReRatio.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtReRatio.Properties.ReadOnly = true;
-            this.tablePanel3.SetRow(this.txtReRatio, 3);
-            this.txtReRatio.Size = new System.Drawing.Size(142, 30);
-            this.txtReRatio.TabIndex = 59;
-            // 
-            // gridControl2
-            // 
-            this.tablePanel3.SetColumn(this.gridControl2, 1);
-            this.tablePanel3.SetColumnSpan(this.gridControl2, 2);
-            this.gridControl2.Location = new System.Drawing.Point(93, 41);
-            this.gridControl2.MainView = this.gridViewMaterialBom;
-            this.gridControl2.Name = "gridControl2";
-            this.tablePanel3.SetRow(this.gridControl2, 1);
-            this.gridControl2.Size = new System.Drawing.Size(394, 224);
-            this.gridControl2.TabIndex = 58;
-            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewMaterialBom});
-            // 
-            // gridViewMaterialBom
-            // 
-            this.gridViewMaterialBom.GridControl = this.gridControl2;
-            this.gridViewMaterialBom.Name = "gridViewMaterialBom";
-            this.gridViewMaterialBom.OptionsView.ShowFooter = true;
-            this.gridViewMaterialBom.OptionsView.ShowGroupPanel = false;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.tablePanel3.SetColumn(this.label13, 0);
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label13.Location = new System.Drawing.Point(3, 344);
-            this.label13.Name = "label13";
-            this.tablePanel3.SetRow(this.label13, 4);
-            this.label13.Size = new System.Drawing.Size(80, 20);
-            this.label13.TabIndex = 58;
-            this.label13.Text = "Resason";
             // 
             // tablePanel4
             // 
@@ -1161,6 +926,248 @@
             this.spbScale.Text = "Scale";
             this.spbScale.Click += new System.EventHandler(this.spbScale_Click);
             // 
+            // txtTotal
+            // 
+            this.tablePanel3.SetColumn(this.txtTotal, 1);
+            this.tablePanel3.SetColumnSpan(this.txtTotal, 2);
+            this.txtTotal.Enabled = false;
+            this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal.Location = new System.Drawing.Point(93, 374);
+            this.txtTotal.Name = "txtTotal";
+            this.tablePanel3.SetRow(this.txtTotal, 5);
+            this.txtTotal.Size = new System.Drawing.Size(394, 38);
+            this.txtTotal.TabIndex = 21;
+            this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.tablePanel3.SetColumn(this.label11, 0);
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label11.Location = new System.Drawing.Point(3, 383);
+            this.label11.Name = "label11";
+            this.tablePanel3.SetRow(this.label11, 5);
+            this.label11.Size = new System.Drawing.Size(49, 20);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "Total";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.tablePanel3.SetColumn(this.label10, 0);
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label10.Location = new System.Drawing.Point(3, 309);
+            this.label10.Name = "label10";
+            this.tablePanel3.SetRow(this.label10, 3);
+            this.label10.Size = new System.Drawing.Size(65, 20);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "Weight";
+            // 
+            // bteWeightRe
+            // 
+            this.tablePanel3.SetColumn(this.bteWeightRe, 1);
+            this.bteWeightRe.Location = new System.Drawing.Point(93, 304);
+            this.bteWeightRe.Name = "bteWeightRe";
+            this.bteWeightRe.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bteWeightRe.Properties.Appearance.Options.UseFont = true;
+            this.bteWeightRe.Properties.Appearance.Options.UseTextOptions = true;
+            this.bteWeightRe.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.bteWeightRe.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.bteWeightRe.Properties.Mask.EditMask = "f";
+            this.bteWeightRe.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.bteWeightRe.Properties.ReadOnly = true;
+            this.tablePanel3.SetRow(this.bteWeightRe, 3);
+            this.bteWeightRe.Size = new System.Drawing.Size(246, 30);
+            this.bteWeightRe.TabIndex = 53;
+            this.bteWeightRe.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.bteWeightRe_ButtonClick);
+            // 
+            // lueRecycled
+            // 
+            this.tablePanel3.SetColumn(this.lueRecycled, 1);
+            this.tablePanel3.SetColumnSpan(this.lueRecycled, 2);
+            this.lueRecycled.Location = new System.Drawing.Point(93, 271);
+            this.lueRecycled.Name = "lueRecycled";
+            this.lueRecycled.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.lueRecycled.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueRecycled.Properties.Appearance.Options.UseFont = true;
+            this.lueRecycled.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueRecycled.Properties.NullText = "";
+            this.lueRecycled.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.tablePanel3.SetRow(this.lueRecycled, 2);
+            this.lueRecycled.Size = new System.Drawing.Size(394, 26);
+            this.lueRecycled.TabIndex = 44;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.tablePanel3.SetColumn(this.label9, 0);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label9.Location = new System.Drawing.Point(3, 274);
+            this.label9.Name = "label9";
+            this.tablePanel3.SetRow(this.label9, 2);
+            this.label9.Size = new System.Drawing.Size(84, 20);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Recycled ID";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.tablePanel3.SetColumn(this.label5, 0);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label5.Location = new System.Drawing.Point(3, 9);
+            this.label5.Name = "label5";
+            this.tablePanel3.SetRow(this.label5, 0);
+            this.label5.Size = new System.Drawing.Size(84, 20);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Weight (*)";
+            // 
+            // bteWeightRM
+            // 
+            this.tablePanel3.SetColumn(this.bteWeightRM, 1);
+            this.bteWeightRM.Location = new System.Drawing.Point(93, 3);
+            this.bteWeightRM.Name = "bteWeightRM";
+            this.bteWeightRM.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bteWeightRM.Properties.Appearance.Options.UseFont = true;
+            this.bteWeightRM.Properties.Appearance.Options.UseTextOptions = true;
+            this.bteWeightRM.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            this.bteWeightRM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK, "Ok", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "Delete", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.bteWeightRM.Properties.Mask.EditMask = "f";
+            this.bteWeightRM.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.bteWeightRM.Properties.ReadOnly = true;
+            this.tablePanel3.SetRow(this.bteWeightRM, 0);
+            this.bteWeightRM.Size = new System.Drawing.Size(246, 32);
+            this.bteWeightRM.TabIndex = 52;
+            this.bteWeightRM.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.bteWeightRM_ButtonClick);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.tablePanel3.SetColumn(this.label13, 0);
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label13.Location = new System.Drawing.Point(3, 344);
+            this.label13.Name = "label13";
+            this.tablePanel3.SetRow(this.label13, 4);
+            this.label13.Size = new System.Drawing.Size(80, 20);
+            this.label13.TabIndex = 58;
+            this.label13.Text = "Resason";
+            // 
+            // gridControl2
+            // 
+            this.tablePanel3.SetColumn(this.gridControl2, 1);
+            this.tablePanel3.SetColumnSpan(this.gridControl2, 2);
+            this.gridControl2.Location = new System.Drawing.Point(93, 41);
+            this.gridControl2.MainView = this.gridViewMaterialBom;
+            this.gridControl2.Name = "gridControl2";
+            this.tablePanel3.SetRow(this.gridControl2, 1);
+            this.gridControl2.Size = new System.Drawing.Size(394, 224);
+            this.gridControl2.TabIndex = 58;
+            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewMaterialBom});
+            // 
+            // gridView3
+            // 
+            this.gridView3.GridControl = this.gridControl2;
+            this.gridView3.Name = "gridView3";
+            // 
+            // gridViewMaterialBom
+            // 
+            this.gridViewMaterialBom.GridControl = this.gridControl2;
+            this.gridViewMaterialBom.Name = "gridViewMaterialBom";
+            this.gridViewMaterialBom.OptionsView.ShowFooter = true;
+            this.gridViewMaterialBom.OptionsView.ShowGroupPanel = false;
+            // 
+            // txtReRatio
+            // 
+            this.tablePanel3.SetColumn(this.txtReRatio, 2);
+            this.txtReRatio.Location = new System.Drawing.Point(345, 304);
+            this.txtReRatio.Name = "txtReRatio";
+            this.txtReRatio.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReRatio.Properties.Appearance.Options.UseFont = true;
+            this.txtReRatio.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtReRatio.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtReRatio.Properties.DisplayFormat.FormatString = "{0:P1}";
+            this.txtReRatio.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtReRatio.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtReRatio.Properties.ReadOnly = true;
+            this.tablePanel3.SetRow(this.txtReRatio, 3);
+            this.txtReRatio.Size = new System.Drawing.Size(142, 30);
+            this.txtReRatio.TabIndex = 59;
+            // 
+            // txtTotalMaterial
+            // 
+            this.tablePanel3.SetColumn(this.txtTotalMaterial, 2);
+            this.txtTotalMaterial.Location = new System.Drawing.Point(345, 4);
+            this.txtTotalMaterial.Name = "txtTotalMaterial";
+            this.txtTotalMaterial.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalMaterial.Properties.Appearance.Options.UseFont = true;
+            this.txtTotalMaterial.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtTotalMaterial.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtTotalMaterial.Properties.DisplayFormat.FormatString = "{0:P1}";
+            this.txtTotalMaterial.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtTotalMaterial.Properties.ReadOnly = true;
+            this.tablePanel3.SetRow(this.txtTotalMaterial, 0);
+            this.txtTotalMaterial.Size = new System.Drawing.Size(142, 30);
+            this.txtTotalMaterial.TabIndex = 60;
+            // 
+            // txtReason
+            // 
+            this.tablePanel3.SetColumn(this.txtReason, 1);
+            this.tablePanel3.SetColumnSpan(this.txtReason, 2);
+            this.txtReason.Location = new System.Drawing.Point(93, 342);
+            this.txtReason.Name = "txtReason";
+            this.txtReason.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReason.Properties.Appearance.Options.UseFont = true;
+            this.txtReason.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.tablePanel3.SetRow(this.txtReason, 4);
+            this.txtReason.Size = new System.Drawing.Size(394, 24);
+            this.txtReason.TabIndex = 61;
+            this.txtReason.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtReason_ButtonClick);
+            // 
+            // tablePanel3
+            // 
+            this.tablePanel3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.tablePanel3.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 20.26F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 56.54F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 33.2F)});
+            this.tablePanel3.Controls.Add(this.txtReason);
+            this.tablePanel3.Controls.Add(this.txtTotalMaterial);
+            this.tablePanel3.Controls.Add(this.txtReRatio);
+            this.tablePanel3.Controls.Add(this.gridControl2);
+            this.tablePanel3.Controls.Add(this.label13);
+            this.tablePanel3.Controls.Add(this.bteWeightRM);
+            this.tablePanel3.Controls.Add(this.label5);
+            this.tablePanel3.Controls.Add(this.label9);
+            this.tablePanel3.Controls.Add(this.lueRecycled);
+            this.tablePanel3.Controls.Add(this.bteWeightRe);
+            this.tablePanel3.Controls.Add(this.label10);
+            this.tablePanel3.Controls.Add(this.label11);
+            this.tablePanel3.Controls.Add(this.txtTotal);
+            this.tablePanel3.Location = new System.Drawing.Point(422, 14);
+            this.tablePanel3.Name = "tablePanel3";
+            this.tablePanel3.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 38F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 230F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 32F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 38F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 32F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
+            this.tablePanel3.Size = new System.Drawing.Size(490, 416);
+            this.tablePanel3.TabIndex = 57;
+            // 
             // frmMixing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1199,14 +1206,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueMaterial.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueProduct.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueRecycled.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightMaterial.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightRe.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bteWeightRM.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bteWeightRe.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).EndInit();
             this.tablePanel1.ResumeLayout(false);
             this.tablePanel1.PerformLayout();
@@ -1215,14 +1219,6 @@
             this.tablePanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tedColorCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tedColor.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablePanel3)).EndInit();
-            this.tablePanel3.ResumeLayout(false);
-            this.tablePanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtReason.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTotalMaterial.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtReRatio.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewMaterialBom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel4)).EndInit();
             this.tablePanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel5)).EndInit();
@@ -1231,6 +1227,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel6)).EndInit();
             this.tablePanel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lueColor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bteWeightRe.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueRecycled.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bteWeightRM.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewMaterialBom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReRatio.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalMaterial.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReason.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablePanel3)).EndInit();
+            this.tablePanel3.ResumeLayout(false);
+            this.tablePanel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1245,7 +1253,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbStep;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbMaterial;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbColor;
@@ -1253,11 +1260,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtWeightRM;
         private System.Windows.Forms.ComboBox cmbRecycled;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtWeightRecycled;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtTotal;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtMachine;
         private System.Windows.Forms.TextBox txtScaleWeight;
         private System.Windows.Forms.Button button5;
@@ -1288,7 +1291,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Posted;
         private DevExpress.XtraEditors.LookUpEdit lueMaterial;
         private DevExpress.XtraEditors.LookUpEdit lueProduct;
-        private DevExpress.XtraEditors.LookUpEdit lueRecycled;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraEditors.TextEdit txtWeightMaterial;
@@ -1296,14 +1298,8 @@
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
         private DevExpress.XtraEditors.SimpleButton spbExport;
         private DevExpress.XtraEditors.SimpleButton spbRefresh;
-        private DevExpress.XtraEditors.ButtonEdit bteWeightRM;
-        private DevExpress.XtraEditors.ButtonEdit bteWeightRe;
         private DevExpress.Utils.Layout.TablePanel tablePanel1;
         private DevExpress.Utils.Layout.TablePanel tablePanel2;
-        private DevExpress.Utils.Layout.TablePanel tablePanel3;
-        private DevExpress.XtraGrid.GridControl gridControl2;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridViewMaterialBom;
-        private System.Windows.Forms.Label label13;
         private DevExpress.Utils.Layout.TablePanel tablePanel4;
         private DevExpress.XtraEditors.SimpleButton spbSave;
         private DevExpress.XtraEditors.SimpleButton spbPost;
@@ -1312,14 +1308,27 @@
         private DevExpress.Utils.Layout.TablePanel tablePanel6;
         private DevExpress.XtraEditors.TextEdit tedColor;
         private DevExpress.XtraEditors.LookUpEdit lueColor;
-        private DevExpress.XtraEditors.TextEdit txtReRatio;
         private DevExpress.XtraEditors.TextEdit tedColorCode;
         private System.Windows.Forms.Label label12;
-        private DevExpress.XtraEditors.TextEdit txtTotalMaterial;
-        private DevExpress.XtraEditors.ButtonEdit txtReason;
         private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.ComboBox cboComPort;
         private System.Windows.Forms.Timer timer2;
         private DevExpress.XtraEditors.SimpleButton spbScale;
+        private System.Windows.Forms.TextBox txtTotal;
+        private DevExpress.Utils.Layout.TablePanel tablePanel3;
+        private DevExpress.XtraEditors.ButtonEdit txtReason;
+        private DevExpress.XtraEditors.TextEdit txtTotalMaterial;
+        private DevExpress.XtraEditors.TextEdit txtReRatio;
+        private DevExpress.XtraGrid.GridControl gridControl2;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewMaterialBom;
+        private System.Windows.Forms.Label label13;
+        private DevExpress.XtraEditors.ButtonEdit bteWeightRM;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label9;
+        private DevExpress.XtraEditors.LookUpEdit lueRecycled;
+        private DevExpress.XtraEditors.ButtonEdit bteWeightRe;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
     }
 }

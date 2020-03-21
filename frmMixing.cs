@@ -13,11 +13,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.Export;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraPrinting;
 using ScaleApp.Common;
 
 namespace ScaleApp
@@ -1155,11 +1157,27 @@ namespace ScaleApp
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            string path = "D:\\ExportExcel\\Mixing.xlsx";
-            gridControl1.ExportToXlsx(path);
-            // Open the created XLSX file with the default application. 
+            // Ensure that the data-aware export mode is enabled. 
+            ExportSettings.DefaultExportType = ExportType.DataAware;
+            // Create a new object defining how a document is exported to the XLSX format. 
+            var options = new XlsxExportOptionsEx();
+            // Specify a name of the sheet in the created XLSX file. 
+            options.SheetName = "Mixed Raw";
+
+            // Subscribe to export customization events.  
+            //options.CustomizeSheetSettings += options_CustomizeSheetSettings;
+            //options.CustomizeSheetHeader += options_CustomizeSheetHeader;
+            //options.CustomizeCell += options_CustomizeCell;
+            //options.CustomizeSheetFooter += options_CustomizeSheetFooter;
+            //options.AfterAddRow += options_AfterAddRow;
+            
+
+            // Export the grid data to the XLSX format. 
+            string path = "D:\\ExportExcel\\grid-export.xlsx";
+            gridControl2.ExportToXlsx(path, options);
+            // Open the created document. 
             Process.Start(path);
-        }                
+        }        
 
         private void bteWeightRM_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
@@ -1218,11 +1236,13 @@ namespace ScaleApp
                 else
                 {
                     CreateMixRaw();
+                    UpdateBomMaterialWeight();
                 }
             }
             else
             {
                 UpdateMixRaw();
+                UpdateBomMaterialWeight();
             }
         }
 
@@ -1262,14 +1282,35 @@ namespace ScaleApp
         }
 
         private void UpdateBomMaterialWeight()
-        {
+        {            
+            GridView view = gridViewMaterialBom;
+
             String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
             SqlConnection conn = new SqlConnection(connStr);
+            int dataRowCount = view.DataRowCount;
+            conn.Open();
 
-            //foreach (GridRow gridRow in gridView2.ro)
-            //{
+            //Delete all record by MixBarCode
+            SqlCommand cmdDelMix = new SqlCommand("sp_delProdMaterialScale", conn);
+            cmdDelMix.CommandType = CommandType.StoredProcedure;
+            cmdDelMix.Parameters.AddWithValue("@mixRawId", qrMixLotID.Text);
+            cmdDelMix.ExecuteNonQuery();
 
-            //}
-        }
+            for (int i = 0; i < dataRowCount; i++)
+            {
+                SqlCommand cmd = new SqlCommand("sp_createProdMaterialScale", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@productid", lueProduct.EditValue);
+                cmd.Parameters.AddWithValue("@bomid", view.GetRowCellValue(i, "ProductCode"));
+                cmd.Parameters.AddWithValue("@materialcode", view.GetRowCellValue(i, "MaterialCode"));
+                cmd.Parameters.AddWithValue("@quantity", view.GetRowCellValue(i, "Quantity"));
+                cmd.Parameters.AddWithValue("@scaleweight", view.GetRowCellValue(i, "Total"));
+                cmd.Parameters.AddWithValue("@mixbarcode", qrMixLotID.Text);
+
+                cmd.ExecuteNonQuery();
+            }
+            ScaleApp.Common.DataOperation.disconnect();
+        }        
     }
 }

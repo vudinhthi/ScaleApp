@@ -1,4 +1,7 @@
-﻿using DevExpress.XtraGrid.Views.Grid;
+﻿using DevExpress.Utils;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraPrinting;
 using System;
 using System.Collections.Generic;
@@ -14,7 +17,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ScaleApp
 {
@@ -59,7 +62,7 @@ namespace ScaleApp
             Double _weightContaminated;
             int i;
 
-            if (CheckExistedMixOut(int.Parse(cmbMixId.SelectedValue.ToString())) == 0)
+            if (CheckExistedMixOut(int.Parse(cmbMixId.EditValue.ToString())) == 0)
             {
                 CreateMixOut();
             }
@@ -113,7 +116,7 @@ namespace ScaleApp
                         cmdUpdate.Parameters.AddWithValue("@weightRecycle", 0);
                         cmdUpdate.Parameters.AddWithValue("@weightCookie", 0);
 
-                        cmdUpdate.Parameters.AddWithValue("@mixRawId", cmbMixId.SelectedValue);
+                        cmdUpdate.Parameters.AddWithValue("@mixRawId", cmbMixId.EditValue);
                         cmdUpdate.Parameters.AddWithValue("@Id", txtMixOutId.Text);
 
                         conn.Open();
@@ -181,7 +184,7 @@ namespace ScaleApp
                     cmd.Parameters.AddWithValue("@weightCookie", 0);
                     break;
             }           
-            cmd.Parameters.AddWithValue("@mixRawId", cmbMixId.SelectedValue);            
+            cmd.Parameters.AddWithValue("@mixRawId", cmbMixId.EditValue);            
 
             conn.Open();
 
@@ -242,7 +245,7 @@ namespace ScaleApp
                     cmd.Parameters.AddWithValue("@weightCookie", 0);
                     break;
             }
-            cmd.Parameters.AddWithValue("@mixRawId", cmbMixId.SelectedValue);
+            cmd.Parameters.AddWithValue("@mixRawId", cmbMixId.EditValue);
             cmd.Parameters.AddWithValue("@Id", txtMixOutId.Text);
 
             conn.Open();
@@ -310,15 +313,16 @@ namespace ScaleApp
                 {
                     SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                     SqlDa.Fill(ds);
-                }
-                DataRow blankRow = ds.Tables[0].NewRow();
-                blankRow["MixRawId"] = "0";
-                blankRow["MixBacode"] = "";
-                ds.Tables[0].Rows.InsertAt(blankRow, 0);
+                }                
 
-                cmbMixId.DataSource = ds.Tables[0];
-                cmbMixId.DisplayMember = "MixBacode";
-                cmbMixId.ValueMember = "MixRawId";
+                cmbMixId.Properties.DataSource = ds.Tables[0];
+                cmbMixId.Properties.DisplayMember = "MixBacode";
+                cmbMixId.Properties.ValueMember = "MixRawId";
+
+                cmbMixId.Properties.Columns.Add(new LookUpColumnInfo("MixRawId", "MixRawId", 40));
+                cmbMixId.Properties.Columns.Add(new LookUpColumnInfo("MixBacode", "MixBacode", 120));
+                //enable text editing 
+                cmbMixId.Properties.TextEditStyle = TextEditStyles.Standard;
             }
             catch (Exception ex)
             {
@@ -369,7 +373,7 @@ namespace ScaleApp
                 if (i > 0)
                 {
                     txtMixOutId.Text = ds.Tables[0].Rows[0][0].ToString();
-                    cmbMixId.SelectedValue = ds.Tables[0].Rows[0][7].ToString();
+                    cmbMixId.EditValue = ds.Tables[0].Rows[0][7].ToString();
                 }                
             }
             catch (Exception ex)
@@ -386,7 +390,7 @@ namespace ScaleApp
 
         private void cmdReset_Click(object sender, EventArgs e)
         {
-            cmbMixId.SelectedValue = 0;
+            cmbMixId.EditValue = null;
             txtWeight.Text = null;
             cmdSave.Enabled = true;
         }
@@ -506,7 +510,7 @@ namespace ScaleApp
 
             txtMixOutId.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Id"]).ToString(); 
             txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
-            cmbMixId.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]);
+            cmbMixId.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]);
 
             SetcmdPost();
         }
@@ -518,14 +522,84 @@ namespace ScaleApp
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            string path = "D:\\ExportExcel\\IncomingCrush.xlsx";
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
 
-            XlsxExportOptionsEx xlsxExport = new XlsxExportOptionsEx();
-            xlsxExport.ExportType = DevExpress.Export.ExportType.DataAware;
+            try
+            {
+                //SqlDataAdapter SqlDaMixRaw = new SqlDataAdapter("sp_getFullMixRaws", conn);
+                //SqlDaMixRaw.SelectCommand.CommandType = CommandType.StoredProcedure;
+                //SqlDaMixRaw.Fill(ds, "MixRaw");
 
-            gridControl1.ExportToXlsx(path);
-            // Open the created XLSX file with the default application. 
-            Process.Start(path);
+                SqlDataAdapter SqlDaCrush = new SqlDataAdapter("sp_getFullMixOuts", conn);
+                SqlDaCrush.SelectCommand.CommandType = CommandType.StoredProcedure;
+                SqlDaCrush.Fill(ds, "CrushRaw");
+                ExportDataSetToExcel(ds, "");
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool ExportDataSetToExcel(DataSet ds, string filename)
+        {
+            try
+            {
+                var dialog = new SaveFileDialog();
+                dialog.Title = @"Export file to Excel";
+                dialog.FileName = filename;
+                dialog.Filter = @"Microsoft Excel|*.xlsx";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Creae an Excel application instance
+                    Excel.Application excelApp = new Excel.Application();
+
+                    //Create an Excel workbook instance and open it from the predefined location
+                    Excel.Workbook excelWorkBook = excelApp.Workbooks.Add(1);
+
+                    foreach (DataTable table in ds.Tables)
+                    {
+                        //Add a new worksheet to workbook with the Datatable name
+                        Excel.Worksheet excelWorkSheet = excelWorkBook.Sheets.Add();
+                        excelWorkSheet.Name = table.TableName;
+
+                        for (int i = 1; i < table.Columns.Count + 1; i++)
+                        {
+                            excelWorkSheet.Cells[1, i] = table.Columns[i - 1].ColumnName;
+                        }
+
+                        for (int j = 0; j < table.Rows.Count; j++)
+                        {
+                            for (int k = 0; k < table.Columns.Count; k++)
+                            {
+                                excelWorkSheet.Cells[j + 2, k + 1] = table.Rows[j].ItemArray[k].ToString();
+                            }
+                        }
+                    }
+
+                    excelWorkBook.SaveAs(dialog.FileName);
+                    excelWorkBook.Close();
+                    excelApp.Quit();
+
+                    XtraMessageBox.Show("Successed!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information, DefaultBoolean.True);
+
+                    if (File.Exists(dialog.FileName))
+                    {
+                        if (XtraMessageBox.Show("Do you want open file? ", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                        {
+                            Process.Start(dialog.FileName);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show("Error: " + e, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return false;
         }
 
         private void GetComPort()

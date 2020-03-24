@@ -438,7 +438,9 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.lblItemName.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ProductName]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Remove(Iif(Contains([ProductName], \'Mixing\'), Remove([ProductName], 0, 6), [Produ" +
+                    "ctName])\n, CharIndex(\' Color\', Iif(Contains([ProductName], \'Mixing\'), Remove([Pr" +
+                    "oductName], 0, 6), [ProductName])\n))")});
             this.lblItemName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblItemName.LocationFloat = new DevExpress.Utils.PointFloat(15F, 111.7843F);
             this.lblItemName.Multiline = true;

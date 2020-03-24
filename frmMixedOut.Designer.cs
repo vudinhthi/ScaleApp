@@ -32,7 +32,6 @@
             DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMixedOut));
             this.label1 = new System.Windows.Forms.Label();
-            this.cmbMixId = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rdbContaminated = new System.Windows.Forms.RadioButton();
             this.rdbBlackDot = new System.Windows.Forms.RadioButton();
@@ -67,11 +66,13 @@
             this.cboComPort = new System.Windows.Forms.ComboBox();
             this.spbScale = new DevExpress.XtraEditors.SimpleButton();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.cmbMixId = new DevExpress.XtraEditors.LookUpEdit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtScaleWeight.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbMixId.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -84,17 +85,6 @@
             this.label1.Size = new System.Drawing.Size(84, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mix Lot ID";
-            // 
-            // cmbMixId
-            // 
-            this.cmbMixId.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cmbMixId.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbMixId.FormattingEnabled = true;
-            this.cmbMixId.Location = new System.Drawing.Point(124, 93);
-            this.cmbMixId.Name = "cmbMixId";
-            this.cmbMixId.Size = new System.Drawing.Size(341, 31);
-            this.cmbMixId.TabIndex = 1;
-            this.cmbMixId.SelectedIndexChanged += new System.EventHandler(this.cmbMixId_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -376,11 +366,17 @@
             // 
             // gridControl1
             // 
+            this.gridControl1.EmbeddedNavigator.Buttons.Append.Visible = false;
+            this.gridControl1.EmbeddedNavigator.Buttons.CancelEdit.Visible = false;
+            this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
+            this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
+            this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
             this.gridControl1.Location = new System.Drawing.Point(13, 267);
             this.gridControl1.MainView = this.gridView2;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.Size = new System.Drawing.Size(838, 299);
             this.gridControl1.TabIndex = 16;
+            this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
             // 
@@ -414,11 +410,26 @@
             // 
             this.timer2.Interval = 20000;
             // 
+            // cmbMixId
+            // 
+            this.cmbMixId.Location = new System.Drawing.Point(124, 93);
+            this.cmbMixId.Name = "cmbMixId";
+            this.cmbMixId.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMixId.Properties.Appearance.Options.UseFont = true;
+            this.cmbMixId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbMixId.Properties.NullText = "";
+            this.cmbMixId.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.cmbMixId.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
+            this.cmbMixId.Size = new System.Drawing.Size(341, 26);
+            this.cmbMixId.TabIndex = 19;
+            // 
             // frmMixedOut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 578);
+            this.Controls.Add(this.cmbMixId);
             this.Controls.Add(this.spbScale);
             this.Controls.Add(this.cboComPort);
             this.Controls.Add(this.gridControl1);
@@ -436,7 +447,6 @@
             this.Controls.Add(this.txtWeight);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.cmbMixId);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -451,6 +461,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtScaleWeight.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbMixId.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -459,7 +470,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbMixId;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rdbContaminated;
         private System.Windows.Forms.RadioButton rdbBlackDot;
@@ -494,5 +504,6 @@
         private System.Windows.Forms.ComboBox cboComPort;
         private DevExpress.XtraEditors.SimpleButton spbScale;
         private System.Windows.Forms.Timer timer2;
+        private DevExpress.XtraEditors.LookUpEdit cmbMixId;
     }
 }

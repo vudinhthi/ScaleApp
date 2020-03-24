@@ -60,7 +60,6 @@
             this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Machine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Posted = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbOperator = new System.Windows.Forms.ComboBox();
             this.cmbShift = new System.Windows.Forms.ComboBox();
             this.cmbLostType = new System.Windows.Forms.ComboBox();
             this.cmbStep = new System.Windows.Forms.ComboBox();
@@ -84,16 +83,19 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tablePanel1 = new DevExpress.Utils.Layout.TablePanel();
-            this.tablePanel2 = new DevExpress.Utils.Layout.TablePanel();
-            this.tedColor = new DevExpress.XtraEditors.TextEdit();
-            this.tedColorCode = new DevExpress.XtraEditors.TextEdit();
+            this.cmbOperator = new DevExpress.XtraEditors.LookUpEdit();
             this.txtWeightRe = new DevExpress.XtraEditors.ButtonEdit();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.tedColorCode = new DevExpress.XtraEditors.TextEdit();
             this.tablePanel3 = new DevExpress.Utils.Layout.TablePanel();
             this.tablePanel4 = new DevExpress.Utils.Layout.TablePanel();
             this.spbScale = new DevExpress.XtraEditors.SimpleButton();
             this.cboComPort = new System.Windows.Forms.ComboBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.tablePanel5 = new DevExpress.Utils.Layout.TablePanel();
+            this.tedColor = new System.Windows.Forms.TextBox();
+            this.tedProductName = new System.Windows.Forms.TextBox();
+            this.txtMachineMix = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrushed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueMaterial.Properties)).BeginInit();
@@ -103,15 +105,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).BeginInit();
             this.tablePanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tablePanel2)).BeginInit();
-            this.tablePanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tedColor.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tedColorCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbOperator.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightRe.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tedColorCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel3)).BeginInit();
             this.tablePanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel4)).BeginInit();
             this.tablePanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tablePanel5)).BeginInit();
+            this.tablePanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMachineMix.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -148,10 +151,10 @@
             this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.labelControl3.Appearance.Options.UseFont = true;
             this.labelControl3.Appearance.Options.UseForeColor = true;
-            this.tablePanel1.SetColumn(this.labelControl3, 0);
-            this.labelControl3.Location = new System.Drawing.Point(3, 77);
+            this.tablePanel1.SetColumn(this.labelControl3, 2);
+            this.labelControl3.Location = new System.Drawing.Point(395, 7);
             this.labelControl3.Name = "labelControl3";
-            this.tablePanel1.SetRow(this.labelControl3, 2);
+            this.tablePanel1.SetRow(this.labelControl3, 0);
             this.labelControl3.Size = new System.Drawing.Size(72, 20);
             this.labelControl3.TabIndex = 5;
             this.labelControl3.Text = "Operator";
@@ -162,10 +165,10 @@
             this.labelControl4.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.labelControl4.Appearance.Options.UseFont = true;
             this.labelControl4.Appearance.Options.UseForeColor = true;
-            this.tablePanel1.SetColumn(this.labelControl4, 0);
-            this.labelControl4.Location = new System.Drawing.Point(3, 111);
+            this.tablePanel1.SetColumn(this.labelControl4, 2);
+            this.labelControl4.Location = new System.Drawing.Point(395, 42);
             this.labelControl4.Name = "labelControl4";
-            this.tablePanel1.SetRow(this.labelControl4, 3);
+            this.tablePanel1.SetRow(this.labelControl4, 1);
             this.labelControl4.Size = new System.Drawing.Size(67, 20);
             this.labelControl4.TabIndex = 7;
             this.labelControl4.Text = "Machine";
@@ -176,10 +179,10 @@
             this.labelControl5.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.labelControl5.Appearance.Options.UseFont = true;
             this.labelControl5.Appearance.Options.UseForeColor = true;
-            this.tablePanel1.SetColumn(this.labelControl5, 0);
-            this.labelControl5.Location = new System.Drawing.Point(3, 146);
+            this.tablePanel5.SetColumn(this.labelControl5, 2);
+            this.labelControl5.Location = new System.Drawing.Point(394, 138);
             this.labelControl5.Name = "labelControl5";
-            this.tablePanel1.SetRow(this.labelControl5, 4);
+            this.tablePanel5.SetRow(this.labelControl5, 3);
             this.labelControl5.Size = new System.Drawing.Size(38, 20);
             this.labelControl5.TabIndex = 9;
             this.labelControl5.Text = "Step";
@@ -190,23 +193,23 @@
             this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.labelControl6.Appearance.Options.UseFont = true;
             this.labelControl6.Appearance.Options.UseForeColor = true;
-            this.tablePanel2.SetColumn(this.labelControl6, 0);
-            this.labelControl6.Location = new System.Drawing.Point(3, 112);
+            this.tablePanel5.SetColumn(this.labelControl6, 0);
+            this.labelControl6.Location = new System.Drawing.Point(3, 7);
             this.labelControl6.Name = "labelControl6";
-            this.tablePanel2.SetRow(this.labelControl6, 3);
+            this.tablePanel5.SetRow(this.labelControl6, 0);
             this.labelControl6.Size = new System.Drawing.Size(105, 20);
             this.labelControl6.TabIndex = 11;
             this.labelControl6.Text = "Mix Lot ID (*)";
             // 
             // txtMachine
             // 
-            this.tablePanel1.SetColumn(this.txtMachine, 1);
-            this.txtMachine.Location = new System.Drawing.Point(93, 108);
+            this.tablePanel1.SetColumn(this.txtMachine, 3);
+            this.txtMachine.Location = new System.Drawing.Point(493, 39);
             this.txtMachine.Name = "txtMachine";
-            this.txtMachine.Properties.Appearance.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMachine.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMachine.Properties.Appearance.Options.UseFont = true;
-            this.tablePanel1.SetRow(this.txtMachine, 3);
-            this.txtMachine.Size = new System.Drawing.Size(239, 27);
+            this.tablePanel1.SetRow(this.txtMachine, 1);
+            this.txtMachine.Size = new System.Drawing.Size(267, 26);
             this.txtMachine.TabIndex = 12;
             // 
             // labelControl7
@@ -215,10 +218,10 @@
             this.labelControl7.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.labelControl7.Appearance.Options.UseFont = true;
             this.labelControl7.Appearance.Options.UseForeColor = true;
-            this.tablePanel2.SetColumn(this.labelControl7, 0);
-            this.labelControl7.Location = new System.Drawing.Point(3, 7);
+            this.tablePanel5.SetColumn(this.labelControl7, 0);
+            this.labelControl7.Location = new System.Drawing.Point(3, 42);
             this.labelControl7.Name = "labelControl7";
-            this.tablePanel2.SetRow(this.labelControl7, 0);
+            this.tablePanel5.SetRow(this.labelControl7, 1);
             this.labelControl7.Size = new System.Drawing.Size(86, 20);
             this.labelControl7.TabIndex = 14;
             this.labelControl7.Text = "Product (*)";
@@ -229,10 +232,10 @@
             this.labelControl8.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.labelControl8.Appearance.Options.UseFont = true;
             this.labelControl8.Appearance.Options.UseForeColor = true;
-            this.tablePanel2.SetColumn(this.labelControl8, 0);
-            this.labelControl8.Location = new System.Drawing.Point(3, 41);
+            this.tablePanel5.SetColumn(this.labelControl8, 2);
+            this.labelControl8.Location = new System.Drawing.Point(394, 42);
             this.labelControl8.Name = "labelControl8";
-            this.tablePanel2.SetRow(this.labelControl8, 1);
+            this.tablePanel5.SetRow(this.labelControl8, 1);
             this.labelControl8.Size = new System.Drawing.Size(86, 20);
             this.labelControl8.TabIndex = 16;
             this.labelControl8.Text = "Color code";
@@ -243,19 +246,19 @@
             this.labelControl11.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.labelControl11.Appearance.Options.UseFont = true;
             this.labelControl11.Appearance.Options.UseForeColor = true;
-            this.tablePanel2.SetColumn(this.labelControl11, 0);
-            this.labelControl11.Location = new System.Drawing.Point(3, 147);
+            this.tablePanel1.SetColumn(this.labelControl11, 0);
+            this.labelControl11.Location = new System.Drawing.Point(3, 81);
             this.labelControl11.Name = "labelControl11";
-            this.tablePanel2.SetRow(this.labelControl11, 4);
-            this.labelControl11.Size = new System.Drawing.Size(128, 20);
+            this.tablePanel1.SetRow(this.labelControl11, 2);
+            this.labelControl11.Size = new System.Drawing.Size(56, 20);
             this.labelControl11.TabIndex = 21;
-            this.labelControl11.Text = "Weight Crushed";
+            this.labelControl11.Text = "Weight";
             // 
             // txtScaleWeight
             // 
             this.txtScaleWeight.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtScaleWeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtScaleWeight.Location = new System.Drawing.Point(15, 199);
+            this.txtScaleWeight.Location = new System.Drawing.Point(12, 305);
             this.txtScaleWeight.Name = "txtScaleWeight";
             this.txtScaleWeight.ReadOnly = true;
             this.txtScaleWeight.Size = new System.Drawing.Size(210, 81);
@@ -276,7 +279,7 @@
             this.txtNow.Name = "txtNow";
             this.txtNow.ReadOnly = true;
             this.tablePanel4.SetRow(this.txtNow, 0);
-            this.txtNow.Size = new System.Drawing.Size(147, 22);
+            this.txtNow.Size = new System.Drawing.Size(212, 25);
             this.txtNow.TabIndex = 32;
             this.txtNow.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -284,11 +287,11 @@
             // 
             this.tablePanel4.SetColumn(this.txtCrushDate, 0);
             this.txtCrushDate.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCrushDate.Location = new System.Drawing.Point(3, 144);
+            this.txtCrushDate.Location = new System.Drawing.Point(3, 187);
             this.txtCrushDate.Name = "txtCrushDate";
             this.txtCrushDate.ReadOnly = true;
             this.tablePanel4.SetRow(this.txtCrushDate, 2);
-            this.txtCrushDate.Size = new System.Drawing.Size(147, 26);
+            this.txtCrushDate.Size = new System.Drawing.Size(212, 26);
             this.txtCrushDate.TabIndex = 33;
             this.txtCrushDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -312,7 +315,7 @@
             this.Weight,
             this.Machine,
             this.Posted});
-            this.gridCrushed.Location = new System.Drawing.Point(12, 413);
+            this.gridCrushed.Location = new System.Drawing.Point(26, 590);
             this.gridCrushed.Name = "gridCrushed";
             this.gridCrushed.ReadOnly = true;
             this.gridCrushed.Size = new System.Drawing.Size(666, 100);
@@ -403,38 +406,26 @@
             this.Posted.Name = "Posted";
             this.Posted.ReadOnly = true;
             // 
-            // cmbOperator
-            // 
-            this.cmbOperator.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.tablePanel1.SetColumn(this.cmbOperator, 1);
-            this.cmbOperator.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbOperator.FormattingEnabled = true;
-            this.cmbOperator.Location = new System.Drawing.Point(93, 73);
-            this.cmbOperator.Name = "cmbOperator";
-            this.tablePanel1.SetRow(this.cmbOperator, 2);
-            this.cmbOperator.Size = new System.Drawing.Size(239, 30);
-            this.cmbOperator.TabIndex = 35;
-            // 
             // cmbShift
             // 
             this.tablePanel1.SetColumn(this.cmbShift, 1);
-            this.cmbShift.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbShift.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbShift.FormattingEnabled = true;
             this.cmbShift.Items.AddRange(new object[] {
             "",
             "X",
             "Y",
             "Z"});
-            this.cmbShift.Location = new System.Drawing.Point(93, 3);
+            this.cmbShift.Location = new System.Drawing.Point(116, 3);
             this.cmbShift.Name = "cmbShift";
             this.tablePanel1.SetRow(this.cmbShift, 0);
-            this.cmbShift.Size = new System.Drawing.Size(239, 30);
+            this.cmbShift.Size = new System.Drawing.Size(273, 28);
             this.cmbShift.TabIndex = 36;
             // 
             // cmbLostType
             // 
             this.tablePanel1.SetColumn(this.cmbLostType, 1);
-            this.cmbLostType.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbLostType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbLostType.FormattingEnabled = true;
             this.cmbLostType.Items.AddRange(new object[] {
             "",
@@ -443,21 +434,22 @@
             "Framapur",
             "Framaprene",
             "Mix Material/Contaminated"});
-            this.cmbLostType.Location = new System.Drawing.Point(93, 38);
+            this.cmbLostType.Location = new System.Drawing.Point(116, 38);
             this.cmbLostType.Name = "cmbLostType";
             this.tablePanel1.SetRow(this.cmbLostType, 1);
-            this.cmbLostType.Size = new System.Drawing.Size(239, 30);
+            this.cmbLostType.Size = new System.Drawing.Size(273, 28);
             this.cmbLostType.TabIndex = 37;
             // 
             // cmbStep
             // 
-            this.tablePanel1.SetColumn(this.cmbStep, 1);
-            this.cmbStep.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tablePanel5.SetColumn(this.cmbStep, 3);
+            this.cmbStep.Enabled = false;
+            this.cmbStep.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStep.FormattingEnabled = true;
-            this.cmbStep.Location = new System.Drawing.Point(93, 141);
+            this.cmbStep.Location = new System.Drawing.Point(492, 134);
             this.cmbStep.Name = "cmbStep";
-            this.tablePanel1.SetRow(this.cmbStep, 4);
-            this.cmbStep.Size = new System.Drawing.Size(239, 30);
+            this.tablePanel5.SetRow(this.cmbStep, 3);
+            this.cmbStep.Size = new System.Drawing.Size(268, 28);
             this.cmbStep.TabIndex = 38;
             // 
             // cmbProduct
@@ -465,7 +457,7 @@
             this.cmbProduct.DropDownWidth = 400;
             this.cmbProduct.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProduct.FormattingEnabled = true;
-            this.cmbProduct.Location = new System.Drawing.Point(73, 205);
+            this.cmbProduct.Location = new System.Drawing.Point(70, 394);
             this.cmbProduct.Name = "cmbProduct";
             this.cmbProduct.Size = new System.Drawing.Size(23, 30);
             this.cmbProduct.TabIndex = 39;
@@ -477,7 +469,7 @@
             this.cmbColor.DropDownWidth = 250;
             this.cmbColor.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbColor.FormattingEnabled = true;
-            this.cmbColor.Location = new System.Drawing.Point(102, 203);
+            this.cmbColor.Location = new System.Drawing.Point(99, 392);
             this.cmbColor.Name = "cmbColor";
             this.cmbColor.Size = new System.Drawing.Size(23, 30);
             this.cmbColor.TabIndex = 40;
@@ -516,7 +508,7 @@
             // 
             // txtCrushID
             // 
-            this.txtCrushID.Location = new System.Drawing.Point(15, 246);
+            this.txtCrushID.Location = new System.Drawing.Point(12, 435);
             this.txtCrushID.Name = "txtCrushID";
             this.txtCrushID.ReadOnly = true;
             this.txtCrushID.Size = new System.Drawing.Size(170, 20);
@@ -531,11 +523,12 @@
             this.tablePanel4.SetColumn(this.qrCodeCrush, 0);
             this.qrCodeCrush.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.qrCodeCrush.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.qrCodeCrush.Location = new System.Drawing.Point(3, 31);
+            this.qrCodeCrush.Location = new System.Drawing.Point(3, 54);
             this.qrCodeCrush.Name = "qrCodeCrush";
             this.qrCodeCrush.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.tablePanel4.SetRow(this.qrCodeCrush, 1);
-            this.qrCodeCrush.Size = new System.Drawing.Size(147, 106);
+            this.qrCodeCrush.ShowText = false;
+            this.qrCodeCrush.Size = new System.Drawing.Size(212, 106);
             qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
             qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
             this.qrCodeCrush.Symbology = qrCodeGenerator1;
@@ -543,7 +536,7 @@
             // 
             // txtPosted
             // 
-            this.txtPosted.Location = new System.Drawing.Point(15, 272);
+            this.txtPosted.Location = new System.Drawing.Point(12, 461);
             this.txtPosted.Name = "txtPosted";
             this.txtPosted.Size = new System.Drawing.Size(170, 20);
             this.txtPosted.TabIndex = 46;
@@ -551,7 +544,7 @@
             // 
             // lueMaterial
             // 
-            this.lueMaterial.Location = new System.Drawing.Point(15, 202);
+            this.lueMaterial.Location = new System.Drawing.Point(12, 391);
             this.lueMaterial.Name = "lueMaterial";
             this.lueMaterial.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueMaterial.Properties.Appearance.Options.UseFont = true;
@@ -565,30 +558,35 @@
             // 
             // lueMixId
             // 
-            this.tablePanel2.SetColumn(this.lueMixId, 1);
-            this.lueMixId.Location = new System.Drawing.Point(141, 108);
+            this.tablePanel5.SetColumn(this.lueMixId, 1);
+            this.tablePanel5.SetColumnSpan(this.lueMixId, 3);
+            this.lueMixId.Location = new System.Drawing.Point(117, 4);
             this.lueMixId.Name = "lueMixId";
-            this.lueMixId.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueMixId.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueMixId.Properties.Appearance.Options.UseFont = true;
             this.lueMixId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lueMixId.Properties.NullText = "";
-            this.tablePanel2.SetRow(this.lueMixId, 3);
-            this.lueMixId.Size = new System.Drawing.Size(277, 29);
+            this.tablePanel5.SetRow(this.lueMixId, 0);
+            this.lueMixId.Size = new System.Drawing.Size(643, 26);
             this.lueMixId.TabIndex = 50;
+            this.lueMixId.EditValueChanged += new System.EventHandler(this.lueMixId_EditValueChanged);
             // 
             // lueProduct
             // 
-            this.tablePanel2.SetColumn(this.lueProduct, 1);
-            this.lueProduct.Location = new System.Drawing.Point(141, 3);
+            this.tablePanel5.SetColumn(this.lueProduct, 1);
+            this.lueProduct.Location = new System.Drawing.Point(117, 39);
             this.lueProduct.Name = "lueProduct";
-            this.lueProduct.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueProduct.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueProduct.Properties.Appearance.Options.UseFont = true;
             this.lueProduct.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lueProduct.Properties.NullText = "";
-            this.tablePanel2.SetRow(this.lueProduct, 0);
-            this.lueProduct.Size = new System.Drawing.Size(277, 29);
+            this.lueProduct.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.lueProduct.Properties.ReadOnly = true;
+            this.lueProduct.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
+            this.tablePanel5.SetRow(this.lueProduct, 1);
+            this.lueProduct.Size = new System.Drawing.Size(271, 26);
             this.lueProduct.TabIndex = 51;
             this.lueProduct.EditValueChanged += new System.EventHandler(this.lueProduct_EditValueChanged);
             // 
@@ -670,11 +668,17 @@
             // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(12, 290);
+            this.gridControl1.EmbeddedNavigator.Buttons.Append.Visible = false;
+            this.gridControl1.EmbeddedNavigator.Buttons.CancelEdit.Visible = false;
+            this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
+            this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
+            this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
+            this.gridControl1.Location = new System.Drawing.Point(12, 396);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(922, 484);
+            this.gridControl1.Size = new System.Drawing.Size(990, 378);
             this.gridControl1.TabIndex = 56;
+            this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
@@ -689,109 +693,74 @@
             // 
             this.tablePanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.tablePanel1.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 16.16F),
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 43.84F)});
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 23.69F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 58.58F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 20.38F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 57.35F)});
+            this.tablePanel1.Controls.Add(this.cmbOperator);
+            this.tablePanel1.Controls.Add(this.txtWeightRe);
             this.tablePanel1.Controls.Add(this.labelControl1);
+            this.tablePanel1.Controls.Add(this.labelControl11);
             this.tablePanel1.Controls.Add(this.cmbShift);
             this.tablePanel1.Controls.Add(this.labelControl2);
             this.tablePanel1.Controls.Add(this.cmbLostType);
             this.tablePanel1.Controls.Add(this.labelControl3);
-            this.tablePanel1.Controls.Add(this.cmbOperator);
             this.tablePanel1.Controls.Add(this.labelControl4);
             this.tablePanel1.Controls.Add(this.txtMachine);
-            this.tablePanel1.Controls.Add(this.labelControl5);
-            this.tablePanel1.Controls.Add(this.cmbStep);
-            this.tablePanel1.Location = new System.Drawing.Point(12, 15);
+            this.tablePanel1.Location = new System.Drawing.Point(15, 184);
             this.tablePanel1.Name = "tablePanel1";
             this.tablePanel1.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 35F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 35F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 35F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 33F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 37F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 35F)});
-            this.tablePanel1.Size = new System.Drawing.Size(335, 175);
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 37F)});
+            this.tablePanel1.Size = new System.Drawing.Size(763, 112);
             this.tablePanel1.TabIndex = 57;
             // 
-            // tablePanel2
+            // cmbOperator
             // 
-            this.tablePanel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.tablePanel2.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 19.72F),
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 40.28F)});
-            this.tablePanel2.Controls.Add(this.tedColor);
-            this.tablePanel2.Controls.Add(this.tedColorCode);
-            this.tablePanel2.Controls.Add(this.txtWeightRe);
-            this.tablePanel2.Controls.Add(this.labelControl10);
-            this.tablePanel2.Controls.Add(this.labelControl7);
-            this.tablePanel2.Controls.Add(this.labelControl8);
-            this.tablePanel2.Controls.Add(this.lueProduct);
-            this.tablePanel2.Controls.Add(this.labelControl6);
-            this.tablePanel2.Controls.Add(this.lueMixId);
-            this.tablePanel2.Controls.Add(this.labelControl11);
-            this.tablePanel2.Location = new System.Drawing.Point(354, 15);
-            this.tablePanel2.Name = "tablePanel2";
-            this.tablePanel2.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 35F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 32F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 38F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 35F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 35F)});
-            this.tablePanel2.Size = new System.Drawing.Size(421, 175);
-            this.tablePanel2.TabIndex = 58;
+            this.tablePanel1.SetColumn(this.cmbOperator, 3);
+            this.cmbOperator.Location = new System.Drawing.Point(493, 4);
+            this.cmbOperator.Name = "cmbOperator";
+            this.cmbOperator.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbOperator.Properties.Appearance.Options.UseFont = true;
+            this.cmbOperator.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbOperator.Properties.NullText = "";
+            this.cmbOperator.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.cmbOperator.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
+            this.tablePanel1.SetRow(this.cmbOperator, 0);
+            this.cmbOperator.Size = new System.Drawing.Size(267, 26);
+            this.cmbOperator.TabIndex = 61;
             // 
-            // tedColor
+            // txtWeightRe
             // 
-            this.tablePanel2.SetColumn(this.tedColor, 1);
-            this.tedColor.Location = new System.Drawing.Point(141, 73);
-            this.tedColor.Name = "tedColor";
-            this.tedColor.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tedColor.Properties.Appearance.Options.UseFont = true;
-            this.tedColor.Properties.ReadOnly = true;
-            this.tablePanel2.SetRow(this.tedColor, 2);
-            this.tedColor.Size = new System.Drawing.Size(277, 26);
-            this.tedColor.TabIndex = 62;
+            this.tablePanel1.SetColumn(this.txtWeightRe, 1);
+            this.tablePanel1.SetColumnSpan(this.txtWeightRe, 3);
+            this.txtWeightRe.Location = new System.Drawing.Point(116, 75);
+            this.txtWeightRe.Name = "txtWeightRe";
+            this.txtWeightRe.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWeightRe.Properties.Appearance.Options.UseFont = true;
+            this.txtWeightRe.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtWeightRe.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtWeightRe.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.tablePanel1.SetRow(this.txtWeightRe, 2);
+            this.txtWeightRe.Size = new System.Drawing.Size(644, 32);
+            this.txtWeightRe.TabIndex = 60;
+            this.txtWeightRe.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtWeightRe_ButtonClick);
             // 
             // tedColorCode
             // 
-            this.tablePanel2.SetColumn(this.tedColorCode, 1);
-            this.tedColorCode.Location = new System.Drawing.Point(141, 38);
+            this.tablePanel5.SetColumn(this.tedColorCode, 3);
+            this.tedColorCode.Location = new System.Drawing.Point(492, 39);
             this.tedColorCode.Name = "tedColorCode";
             this.tedColorCode.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tedColorCode.Properties.Appearance.Options.UseFont = true;
             this.tedColorCode.Properties.ReadOnly = true;
-            this.tablePanel2.SetRow(this.tedColorCode, 1);
-            this.tedColorCode.Size = new System.Drawing.Size(277, 26);
+            this.tablePanel5.SetRow(this.tedColorCode, 1);
+            this.tedColorCode.Size = new System.Drawing.Size(268, 26);
             this.tedColorCode.TabIndex = 61;
-            // 
-            // txtWeightRe
-            // 
-            this.tablePanel2.SetColumn(this.txtWeightRe, 1);
-            this.txtWeightRe.Location = new System.Drawing.Point(141, 144);
-            this.txtWeightRe.Name = "txtWeightRe";
-            this.txtWeightRe.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWeightRe.Properties.Appearance.Options.UseFont = true;
-            this.txtWeightRe.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
-            this.tablePanel2.SetRow(this.txtWeightRe, 4);
-            this.txtWeightRe.Size = new System.Drawing.Size(277, 26);
-            this.txtWeightRe.TabIndex = 60;
-            this.txtWeightRe.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtWeightRe_ButtonClick);
-            // 
-            // labelControl10
-            // 
-            this.labelControl10.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl10.Appearance.ForeColor = System.Drawing.Color.Navy;
-            this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Appearance.Options.UseForeColor = true;
-            this.tablePanel2.SetColumn(this.labelControl10, 0);
-            this.labelControl10.Location = new System.Drawing.Point(3, 76);
-            this.labelControl10.Name = "labelControl10";
-            this.tablePanel2.SetRow(this.labelControl10, 2);
-            this.labelControl10.Size = new System.Drawing.Size(91, 20);
-            this.labelControl10.TabIndex = 59;
-            this.labelControl10.Text = "Color name";
             // 
             // tablePanel3
             // 
@@ -808,7 +777,7 @@
             this.tablePanel3.Controls.Add(this.cmdPrint);
             this.tablePanel3.Controls.Add(this.simpleButton2);
             this.tablePanel3.Controls.Add(this.simpleButton1);
-            this.tablePanel3.Location = new System.Drawing.Point(312, 196);
+            this.tablePanel3.Location = new System.Drawing.Point(315, 302);
             this.tablePanel3.Name = "tablePanel3";
             this.tablePanel3.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
@@ -822,13 +791,13 @@
             this.tablePanel4.Controls.Add(this.qrCodeCrush);
             this.tablePanel4.Controls.Add(this.txtNow);
             this.tablePanel4.Controls.Add(this.txtCrushDate);
-            this.tablePanel4.Location = new System.Drawing.Point(785, 53);
+            this.tablePanel4.Location = new System.Drawing.Point(784, 12);
             this.tablePanel4.Name = "tablePanel4";
             this.tablePanel4.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 28F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 112F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 31F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 153F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
-            this.tablePanel4.Size = new System.Drawing.Size(153, 175);
+            this.tablePanel4.Size = new System.Drawing.Size(218, 216);
             this.tablePanel4.TabIndex = 60;
             // 
             // spbScale
@@ -836,7 +805,7 @@
             this.spbScale.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spbScale.Appearance.Options.UseFont = true;
             this.spbScale.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("spbScale.ImageOptions.Image")));
-            this.spbScale.Location = new System.Drawing.Point(231, 199);
+            this.spbScale.Location = new System.Drawing.Point(228, 305);
             this.spbScale.Name = "spbScale";
             this.spbScale.Size = new System.Drawing.Size(75, 81);
             this.spbScale.TabIndex = 61;
@@ -847,25 +816,105 @@
             // 
             this.cboComPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboComPort.FormattingEnabled = true;
-            this.cboComPort.Location = new System.Drawing.Point(788, 18);
+            this.cboComPort.Location = new System.Drawing.Point(787, 234);
             this.cboComPort.Name = "cboComPort";
-            this.cboComPort.Size = new System.Drawing.Size(146, 24);
+            this.cboComPort.Size = new System.Drawing.Size(212, 24);
             this.cboComPort.TabIndex = 62;
             // 
             // timer2
             // 
             this.timer2.Interval = 20000;
             // 
+            // tablePanel5
+            // 
+            this.tablePanel5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.tablePanel5.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 23.95F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 58.1F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 20.39F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 57.56F)});
+            this.tablePanel5.Controls.Add(this.tedColor);
+            this.tablePanel5.Controls.Add(this.tedProductName);
+            this.tablePanel5.Controls.Add(this.txtMachineMix);
+            this.tablePanel5.Controls.Add(this.labelControl9);
+            this.tablePanel5.Controls.Add(this.tedColorCode);
+            this.tablePanel5.Controls.Add(this.labelControl6);
+            this.tablePanel5.Controls.Add(this.lueMixId);
+            this.tablePanel5.Controls.Add(this.labelControl7);
+            this.tablePanel5.Controls.Add(this.lueProduct);
+            this.tablePanel5.Controls.Add(this.labelControl8);
+            this.tablePanel5.Controls.Add(this.labelControl5);
+            this.tablePanel5.Controls.Add(this.cmbStep);
+            this.tablePanel5.Location = new System.Drawing.Point(15, 12);
+            this.tablePanel5.Name = "tablePanel5";
+            this.tablePanel5.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 35F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 35F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 60F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 35F)});
+            this.tablePanel5.Size = new System.Drawing.Size(763, 166);
+            this.tablePanel5.TabIndex = 63;
+            // 
+            // tedColor
+            // 
+            this.tablePanel5.SetColumn(this.tedColor, 3);
+            this.tedColor.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tedColor.Location = new System.Drawing.Point(492, 73);
+            this.tedColor.Multiline = true;
+            this.tedColor.Name = "tedColor";
+            this.tedColor.ReadOnly = true;
+            this.tablePanel5.SetRow(this.tedColor, 2);
+            this.tedColor.Size = new System.Drawing.Size(268, 54);
+            this.tedColor.TabIndex = 66;
+            // 
+            // tedProductName
+            // 
+            this.tablePanel5.SetColumn(this.tedProductName, 1);
+            this.tedProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tedProductName.Location = new System.Drawing.Point(117, 73);
+            this.tedProductName.Multiline = true;
+            this.tedProductName.Name = "tedProductName";
+            this.tedProductName.ReadOnly = true;
+            this.tablePanel5.SetRow(this.tedProductName, 2);
+            this.tedProductName.Size = new System.Drawing.Size(271, 54);
+            this.tedProductName.TabIndex = 65;
+            // 
+            // txtMachineMix
+            // 
+            this.tablePanel5.SetColumn(this.txtMachineMix, 1);
+            this.txtMachineMix.Location = new System.Drawing.Point(117, 135);
+            this.txtMachineMix.Name = "txtMachineMix";
+            this.txtMachineMix.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMachineMix.Properties.Appearance.Options.UseFont = true;
+            this.txtMachineMix.Properties.ReadOnly = true;
+            this.tablePanel5.SetRow(this.txtMachineMix, 3);
+            this.txtMachineMix.Size = new System.Drawing.Size(271, 26);
+            this.txtMachineMix.TabIndex = 64;
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl9.Appearance.ForeColor = System.Drawing.Color.Navy;
+            this.labelControl9.Appearance.Options.UseFont = true;
+            this.labelControl9.Appearance.Options.UseForeColor = true;
+            this.tablePanel5.SetColumn(this.labelControl9, 0);
+            this.labelControl9.Location = new System.Drawing.Point(3, 138);
+            this.labelControl9.Name = "labelControl9";
+            this.tablePanel5.SetRow(this.labelControl9, 3);
+            this.labelControl9.Size = new System.Drawing.Size(67, 20);
+            this.labelControl9.TabIndex = 63;
+            this.labelControl9.Text = "Machine";
+            // 
             // frmCrushing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(950, 786);
+            this.ClientSize = new System.Drawing.Size(1014, 781);
+            this.Controls.Add(this.tablePanel5);
             this.Controls.Add(this.cboComPort);
             this.Controls.Add(this.spbScale);
             this.Controls.Add(this.tablePanel4);
             this.Controls.Add(this.tablePanel3);
-            this.Controls.Add(this.tablePanel2);
             this.Controls.Add(this.txtScaleWeight);
             this.Controls.Add(this.tablePanel1);
             this.Controls.Add(this.gridControl1);
@@ -895,17 +944,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).EndInit();
             this.tablePanel1.ResumeLayout(false);
             this.tablePanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tablePanel2)).EndInit();
-            this.tablePanel2.ResumeLayout(false);
-            this.tablePanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tedColor.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tedColorCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbOperator.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightRe.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tedColorCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel3)).EndInit();
             this.tablePanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel4)).EndInit();
             this.tablePanel4.ResumeLayout(false);
             this.tablePanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tablePanel5)).EndInit();
+            this.tablePanel5.ResumeLayout(false);
+            this.tablePanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMachineMix.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -930,7 +980,6 @@
         private System.Windows.Forms.TextBox txtNow;
         private System.Windows.Forms.TextBox txtCrushDate;
         private System.Windows.Forms.DataGridView gridCrushed;
-        private System.Windows.Forms.ComboBox cmbOperator;
         private System.Windows.Forms.ComboBox cmbShift;
         private System.Windows.Forms.ComboBox cmbLostType;
         private System.Windows.Forms.ComboBox cmbStep;
@@ -965,15 +1014,18 @@
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.Utils.Layout.TablePanel tablePanel1;
-        private DevExpress.Utils.Layout.TablePanel tablePanel2;
         private DevExpress.XtraEditors.ButtonEdit txtWeightRe;
-        private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.Utils.Layout.TablePanel tablePanel4;
         private DevExpress.Utils.Layout.TablePanel tablePanel3;
-        private DevExpress.XtraEditors.TextEdit tedColor;
         private DevExpress.XtraEditors.TextEdit tedColorCode;
         private DevExpress.XtraEditors.SimpleButton spbScale;
         private System.Windows.Forms.ComboBox cboComPort;
         private System.Windows.Forms.Timer timer2;
+        private DevExpress.Utils.Layout.TablePanel tablePanel5;
+        private DevExpress.XtraEditors.TextEdit txtMachineMix;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
+        private System.Windows.Forms.TextBox tedColor;
+        private System.Windows.Forms.TextBox tedProductName;
+        private DevExpress.XtraEditors.LookUpEdit cmbOperator;
     }
 }

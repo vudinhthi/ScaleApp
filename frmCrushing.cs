@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Utils;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraPrinting;
@@ -17,6 +18,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ScaleApp
 {
@@ -75,14 +77,16 @@ namespace ScaleApp
                     SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                     SqlDa.Fill(ds);
                 }
-                DataRow blankRow = ds.Tables[0].NewRow();
-                blankRow["OperatorCode"] = "None";
-                blankRow["OperatorName"] = "";
-                ds.Tables[0].Rows.InsertAt(blankRow,0);
+                DataRow blankRow = ds.Tables[0].NewRow();                
 
-                cmbOperator.DataSource = ds.Tables[0];
-                cmbOperator.DisplayMember = "OperatorName";
-                cmbOperator.ValueMember = "OperatorCode";
+                cmbOperator.Properties.DataSource = ds.Tables[0];
+                cmbOperator.Properties.DisplayMember = "OperatorName";
+                cmbOperator.Properties.ValueMember = "OperatorCode";
+
+                cmbOperator.Properties.Columns.Add(new LookUpColumnInfo("OperatorCode", "OperatorCode", 40));
+                cmbOperator.Properties.Columns.Add(new LookUpColumnInfo("OperatorName", "OperatorName", 120));
+                //enable text editing 
+                cmbOperator.Properties.TextEditStyle = TextEditStyles.Standard;
             }
             catch (Exception ex)
             {
@@ -256,7 +260,7 @@ namespace ScaleApp
 
             try
             {
-                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getMixRaws", conn))
+                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getMixRawsPosted", conn))
                 {
                     SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                     SqlDa.Fill(ds);
@@ -395,7 +399,7 @@ namespace ScaleApp
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@shiftID", cmbShift.SelectedItem);
-            cmd.Parameters.AddWithValue("@operatorCode", cmbOperator.SelectedValue);
+            cmd.Parameters.AddWithValue("@operatorCode", cmbOperator.EditValue);
             cmd.Parameters.AddWithValue("@productCode", lueProduct.EditValue);
             cmd.Parameters.AddWithValue("@materialCode", lueMaterial.EditValue);
             cmd.Parameters.AddWithValue("@colorCode", tedColorCode.Text);
@@ -428,7 +432,7 @@ namespace ScaleApp
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@shiftID", cmbShift.SelectedItem);
-            cmd.Parameters.AddWithValue("@operatorCode", cmbOperator.SelectedValue);
+            cmd.Parameters.AddWithValue("@operatorCode", cmbOperator.EditValue);
             cmd.Parameters.AddWithValue("@productCode", lueProduct.EditValue);
             cmd.Parameters.AddWithValue("@materialCode", lueMaterial.EditValue);
             cmd.Parameters.AddWithValue("@colorCode", tedColorCode.Text);
@@ -485,7 +489,7 @@ namespace ScaleApp
 
                 cmbShift.SelectedItem = ds.Tables[0].Rows[0][1]; //Get ShiftID
                 cmbLostType.SelectedItem = ds.Tables[0].Rows[0][12]; //Get Lost Type
-                cmbOperator.SelectedValue = ds.Tables[0].Rows[0][2]; //Get Operator
+                cmbOperator.EditValue = ds.Tables[0].Rows[0][2]; //Get Operator
                 lueProduct.EditValue = ds.Tables[0].Rows[0][4]; //Get Item
                 lueMaterial.EditValue = ds.Tables[0].Rows[0][6]; //Get Material
                 tedColor.Text = ds.Tables[0].Rows[0][8].ToString(); //Get Color
@@ -510,7 +514,7 @@ namespace ScaleApp
         {
             cmbShift.SelectedItem = null;
             cmbLostType.SelectedItem = null;
-            cmbOperator.SelectedValue = "None";
+            cmbOperator.EditValue = null;
             txtMachine.Text = null;
             cmbStep.SelectedValue = "None";
             //cmbProduct.SelectedValue = "None";
@@ -547,7 +551,7 @@ namespace ScaleApp
             
             lastCrushRawId = (int)sqlcmd.Parameters["@LastIdentity"].Value + 1;
             return lastCrushRawId;
-            
+
             ScaleApp.Common.DataOperation.disconnect();
             
         }
@@ -665,7 +669,7 @@ namespace ScaleApp
 
             try
             {
-                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getMixRaws", conn))
+                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getMixRawsPosted", conn))
                 {
                     SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                     SqlDa.Fill(ds);
@@ -675,8 +679,9 @@ namespace ScaleApp
                 lueMixId.Properties.DisplayMember = "MixBacode";
                 lueMixId.Properties.ValueMember = "MixRawId";
 
-                lueMixId.Properties.Columns.Add(new LookUpColumnInfo("MixRawId", "MixRawId", 60));
-                lueMixId.Properties.Columns.Add(new LookUpColumnInfo("MixBacode", "MixBacode", 120));
+                lueMixId.Properties.Columns.Add(new LookUpColumnInfo("MixRawId", "MixRawId", 20));
+                lueMixId.Properties.Columns.Add(new LookUpColumnInfo("MixBacode", "MixBacode", 60));
+                lueMixId.Properties.Columns.Add(new LookUpColumnInfo("ProductName", "ProductName", 60));
 
                 lueMixId.Properties.TextEditStyle= TextEditStyles.Standard;
             }
@@ -685,6 +690,13 @@ namespace ScaleApp
                 MessageBox.Show(ex.Message);
             }
             ScaleApp.Common.DataOperation.disconnect();
+        }
+
+        private void lueMixId_EditValueChanged(object sender, EventArgs e)
+        {
+            lueProduct.EditValue = lueMixId.GetColumnValue("ProductName");
+            txtMachineMix.Text = lueMixId.GetColumnValue("MachineName").ToString();
+            cmbStep.SelectedValue = lueMixId.GetColumnValue("StepName");
         }
 
         private void LoadLookUpProduct()
@@ -773,6 +785,7 @@ namespace ScaleApp
             }
             else
             {
+                tedProductName.Text = lueProduct.Text;
                 loadColorsByProduct(lueProduct.EditValue.ToString());                
                 generateTextQRCode();
             }
@@ -786,14 +799,84 @@ namespace ScaleApp
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            string path = "D:\\ExportExcel\\Crush.xlsx";
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            SqlConnection conn = new SqlConnection(connStr);
 
-            XlsxExportOptionsEx xlsxExport = new XlsxExportOptionsEx();
-            xlsxExport.ExportType = DevExpress.Export.ExportType.DataAware;
+            try
+            {
+                //SqlDataAdapter SqlDaMixRaw = new SqlDataAdapter("sp_getFullMixRaws", conn);
+                //SqlDaMixRaw.SelectCommand.CommandType = CommandType.StoredProcedure;
+                //SqlDaMixRaw.Fill(ds, "MixRaw");
 
-            gridControl1.ExportToXlsx(path);
-            // Open the created XLSX file with the default application. 
-            Process.Start(path);
+                SqlDataAdapter SqlDaCrush = new SqlDataAdapter("sp_getFullCrushRaws", conn);
+                SqlDaCrush.SelectCommand.CommandType = CommandType.StoredProcedure;
+                SqlDaCrush.Fill(ds, "CrushRaw");
+                ExportDataSetToExcel(ds, "");
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool ExportDataSetToExcel(DataSet ds, string filename)
+        {
+            try
+            {
+                var dialog = new SaveFileDialog();
+                dialog.Title = @"Export file to Excel";
+                dialog.FileName = filename;
+                dialog.Filter = @"Microsoft Excel|*.xlsx";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Creae an Excel application instance
+                    Excel.Application excelApp = new Excel.Application();
+
+                    //Create an Excel workbook instance and open it from the predefined location
+                    Excel.Workbook excelWorkBook = excelApp.Workbooks.Add(1);
+
+                    foreach (DataTable table in ds.Tables)
+                    {
+                        //Add a new worksheet to workbook with the Datatable name
+                        Excel.Worksheet excelWorkSheet = excelWorkBook.Sheets.Add();
+                        excelWorkSheet.Name = table.TableName;
+
+                        for (int i = 1; i < table.Columns.Count + 1; i++)
+                        {
+                            excelWorkSheet.Cells[1, i] = table.Columns[i - 1].ColumnName;
+                        }
+
+                        for (int j = 0; j < table.Rows.Count; j++)
+                        {
+                            for (int k = 0; k < table.Columns.Count; k++)
+                            {
+                                excelWorkSheet.Cells[j + 2, k + 1] = table.Rows[j].ItemArray[k].ToString();
+                            }
+                        }
+                    }
+
+                    excelWorkBook.SaveAs(dialog.FileName);
+                    excelWorkBook.Close();
+                    excelApp.Quit();
+
+                    XtraMessageBox.Show("Successed!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information, DefaultBoolean.True);
+
+                    if (File.Exists(dialog.FileName))
+                    {
+                        if (XtraMessageBox.Show("Do you want open file? ", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                        {
+                            Process.Start(dialog.FileName);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show("Error: " + e, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return false;
         }
 
         private void LoadGridControl1()
@@ -860,7 +943,7 @@ namespace ScaleApp
             GridView gridView = sender as GridView;
             cmbShift.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ShiftName"]);
             cmbLostType.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["LossTypeName"]);
-            cmbOperator.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["OperatorCode"]);
+            cmbOperator.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["OperatorCode"]);
             txtMachine.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MachineName"]).ToString();
             cmbStep.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["StepName"]);
             lueProduct.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);
@@ -968,6 +1051,6 @@ namespace ScaleApp
             _serialPort.DataReceived += SerialPortOnDataReceived;       //<-- this event happens everytime when new data is received by the ComPort
             _serialPort.Open();     //<-- make the comport listen
             txtScaleWeight.Text = "Scaling... " + _serialPort.PortName + "...\r\n";
-        }
+        }        
     }
 }

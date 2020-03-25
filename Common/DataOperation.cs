@@ -40,11 +40,21 @@ namespace ScaleApp.Common
 
         }
 
-        public static string GetConnectionString()
+        public static string GetConnectionString(int db)
         {
-            var connection = System.Configuration.ConfigurationManager.ConnectionStrings["ScaleApp.Properties.Settings.ColorMixConnectionString"].ConnectionString;
-            connection = "Data Source=server210;Initial Catalog=ColorMix;Persist Security Info=false;User ID=colourmixing;Password=M1x1ng@C0lou4";
+            //var connection = System.Configuration.ConfigurationManager.ConnectionStrings["ScaleApp.Properties.Settings.ColorMixConnectionString"].ConnectionString;
             //connection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ColorMix;Persist Security Info=True;User ID=sa;Password=12345678;Connect Timeout=30";
+            var connection = "";
+            //Get data from database ColorMix
+            if (db == 1)
+            {
+                connection = "Data Source=server210;Initial Catalog=ColorMix;Persist Security Info=false;User ID=colourmixing;Password=M1x1ng@C0lou4";
+            }
+            //Get data from database Winline
+            else if (db == 2)
+            {
+                connection = "Data Source=server210;Initial Catalog=ColorMix;Persist Security Info=false;User ID=sa;Password=Fdw24$110";
+            }
             return connection;
         }
 

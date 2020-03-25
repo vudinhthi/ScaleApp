@@ -32,7 +32,7 @@ namespace ScaleApp
         private void LoadLueItem()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(2);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -63,7 +63,7 @@ namespace ScaleApp
         private void LoadLueMaterial()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(2);
             SqlConnection conn = new SqlConnection(connStr);
 
             try

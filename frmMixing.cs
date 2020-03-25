@@ -137,7 +137,7 @@ namespace ScaleApp
 
         private void CreateMixRaw()
         {
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlCommand cmd = new SqlCommand("sp_createMixRaw", conn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -146,8 +146,12 @@ namespace ScaleApp
             cmd.Parameters.AddWithValue("@operatorCode", lueOperator.EditValue);
             cmd.Parameters.AddWithValue("@stepId", cmbStep.SelectedValue);
             cmd.Parameters.AddWithValue("@machineID", txtMachine.Text);
+            //cmd.Parameters.AddWithValue("@materialCode", tedColorCode.Text);
+            //cmd.Parameters.AddWithValue("@materialName", lueProduct.EditValue);
             cmd.Parameters.AddWithValue("@productCode", lueProduct.EditValue);
-            cmd.Parameters.AddWithValue("@colorCode", tedColorCode.Text);            
+            cmd.Parameters.AddWithValue("@productName", txtProductName.Text);
+            cmd.Parameters.AddWithValue("@colorCode", tedColorCode.Text);
+            cmd.Parameters.AddWithValue("@colorName", tedColor.Text);
             cmd.Parameters.AddWithValue("@weightRecycle", bteWeightRe.Text);
             cmd.Parameters.AddWithValue("@weightMaterial", bteWeightRM.Text);
             cmd.Parameters.AddWithValue("@totalMaterial", txtTotal.Text);
@@ -171,7 +175,7 @@ namespace ScaleApp
 
         private void UpdateMixRaw()
         {
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlCommand cmd = new SqlCommand("sp_editMixRaw", conn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -215,7 +219,7 @@ namespace ScaleApp
         private void loadComboBoxOperator()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -243,7 +247,7 @@ namespace ScaleApp
         private void LoadLueOperator()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -274,7 +278,7 @@ namespace ScaleApp
         private void loadComboBoxStep()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -303,7 +307,7 @@ namespace ScaleApp
         private void loadComboBoxProduct()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -332,12 +336,12 @@ namespace ScaleApp
         private void loadComboBoxColor()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
             {
-                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getColors", conn))
+                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getColorsWL", conn))
                 {
                     SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                     SqlDa.Fill(ds);
@@ -357,7 +361,7 @@ namespace ScaleApp
         private void loadComboBoxMaterial()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -386,7 +390,7 @@ namespace ScaleApp
         private void LoadLookUpMaterial()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(2);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -414,24 +418,24 @@ namespace ScaleApp
         private void LoadLookUpProduct()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(2);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
             {
-                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getProducts", conn))
+                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getProductsWinline", conn))
                 {
                     SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                     SqlDa.Fill(ds);
                 }                
 
                 lueProduct.Properties.DataSource = ds.Tables[0];
-                lueProduct.Properties.DisplayMember = "ProductName";
-                lueProduct.Properties.ValueMember = "ProductCode";
-                lueProduct.Properties.KeyMember = "ProductCode";
+                lueProduct.Properties.DisplayMember = "c003";
+                lueProduct.Properties.ValueMember = "c002";
+                lueProduct.Properties.KeyMember = "c002";
 
-                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("ProductCode", "ProductCode", 120));
-                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("ProductName", "ProductName", 120));
+                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("c002", "ProductCode", 120));
+                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("c003", "ProductName", 120));
                 //enable text editing 
                 lueProduct.Properties.TextEditStyle = TextEditStyles.Standard;
             }
@@ -445,7 +449,7 @@ namespace ScaleApp
         private void LoadLookUpColor()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(2);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -480,7 +484,7 @@ namespace ScaleApp
         private void LoadLookUpRecycled()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -514,7 +518,7 @@ namespace ScaleApp
             else
             {
                 DataSet ds = new DataSet();
-                String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+                String connStr = ScaleApp.Common.DataOperation.GetConnectionString(2);
                 SqlConnection conn = new SqlConnection(connStr);
                 SqlDataAdapter SqlDa = new SqlDataAdapter();
                 SqlCommand sqlcmd = new SqlCommand("sp_getColorsProduct", conn);
@@ -595,7 +599,7 @@ namespace ScaleApp
         {
             int lastCrushRawId;
 
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlCommand sqlcmd = new SqlCommand("sp_getLastMixIdentity", conn);
 
@@ -618,7 +622,7 @@ namespace ScaleApp
         {
             string materialCode = "";
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlDataAdapter SqlDa = new SqlDataAdapter();
             SqlCommand sqlcmd = new SqlCommand("sp_getMaterialsProduct_s", conn);
@@ -650,7 +654,7 @@ namespace ScaleApp
         private void loadGridView1()
         {   
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -709,7 +713,7 @@ namespace ScaleApp
         private void LoadGridControl1()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -831,10 +835,10 @@ namespace ScaleApp
                 }
 
                 DataSet ds = new DataSet();
-                String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+                String connStr = ScaleApp.Common.DataOperation.GetConnectionString(2);
                 SqlConnection conn = new SqlConnection(connStr);
                 SqlDataAdapter SqlDa = new SqlDataAdapter();
-                SqlCommand sqlcmd = new SqlCommand("sp_getMaterialsProduct", conn);
+                SqlCommand sqlcmd = new SqlCommand("sp_getMaterialsProductWinLine", conn);
                 try
                 {
                     sqlcmd.CommandType = CommandType.StoredProcedure;
@@ -849,14 +853,13 @@ namespace ScaleApp
                     gridViewMaterialBom.OptionsView.ColumnAutoWidth = false;
 
                     gridViewMaterialBom.Columns["ID"].VisibleIndex = -1;
-                    gridViewMaterialBom.Columns["ProductCode"].VisibleIndex = -1;
-                    gridViewMaterialBom.Columns["Unit"].VisibleIndex = -1;
+                    gridViewMaterialBom.Columns["productcode"].VisibleIndex = -1;                    
 
-                    gridViewMaterialBom.Columns["MaterialCode"].VisibleIndex = 1;
-                    gridViewMaterialBom.Columns["MaterialName"].VisibleIndex = 2;
+                    gridViewMaterialBom.Columns["materialcode"].VisibleIndex = 1;
+                    gridViewMaterialBom.Columns["materialname"].VisibleIndex = 2;
                     gridViewMaterialBom.Columns["Quantity"].VisibleIndex = 3;
 
-                    gridViewMaterialBom.Columns["Unit"].Width = 50;
+                    //gridViewMaterialBom.Columns["Unit"].Width = 50;
 
                     gridViewMaterialBom.Columns["Quantity"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
                     gridViewMaterialBom.Columns["Quantity"].DisplayFormat.FormatString = "{0:n3}";                    
@@ -908,7 +911,7 @@ namespace ScaleApp
         private void loadMixRaw(int mixId)
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlDataAdapter SqlDa = new SqlDataAdapter();
             SqlCommand sqlcmd = new SqlCommand("sp_getMixRaw", conn);
@@ -1065,7 +1068,7 @@ namespace ScaleApp
 
         private void UpdatePosted()
         {
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlCommand cmd = new SqlCommand("sp_setPosted", conn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -1100,24 +1103,14 @@ namespace ScaleApp
             else
             {
                 txtProductName.Text = lueProduct.Text;
-
                 strBomCode = GetStrBomCode(lueProduct.EditValue.ToString());
-                //strProductCode = lueProduct.EditValue.ToString();
-                //strProductCodeF = (strProductCode.IsNullOrEmpty()) ? "" : strProductCode.Substring(0, strProductCode.Length - 5);
-
-                //if ((strBomCode != "") && (strBomCode.Contains(strProductCodeF)))
-                //{
-                //    LoadGridControl2(strBomCode, bteWeightRe.Text);
-                //}
-                //else
-                //{
-                //    LoadGridControl2(strProductCode, bteWeightRe.Text);
-                //}
-
-                LoadGridControl2(strBomCode, bteWeightRe.Text);
-
-                loadColorsByProduct(lueProduct.EditValue.ToString());                
+                
+                tedColorCode.Text = lueProduct.GetColumnValue("ColorCode").ToString();
+                tedColor.Text = lueProduct.GetColumnValue("ColorName").ToString();
+                //loadColorsByProduct(lueProduct.EditValue.ToString());
                 generateTextQRCode();
+
+                LoadGridControl2(strBomCode, bteWeightRe.Text);                
             }
         }
 
@@ -1194,7 +1187,7 @@ namespace ScaleApp
             //ExportExcel("");
 
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -1432,7 +1425,7 @@ namespace ScaleApp
         {            
             GridView view = gridViewMaterialBom;
 
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             int dataRowCount = view.DataRowCount;
             conn.Open();

@@ -35,7 +35,7 @@ namespace ScaleApp
         private void LoadDataToReport()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlDataAdapter SqlDa = new SqlDataAdapter();
             SqlCommand sqlcmd = new SqlCommand("sp_getFullCrushRaw2", conn);

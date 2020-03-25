@@ -67,7 +67,7 @@ namespace ScaleApp
         private void loadComboBoxOperator()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -98,7 +98,7 @@ namespace ScaleApp
         private void loadComboBoxStep()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -127,7 +127,7 @@ namespace ScaleApp
         private void loadComboBoxProduct()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -156,7 +156,7 @@ namespace ScaleApp
         private void loadComboBoxColor()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -185,7 +185,7 @@ namespace ScaleApp
         private void loadComboBoxMaterial()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -220,7 +220,7 @@ namespace ScaleApp
             else
             {
                 DataSet ds = new DataSet();
-                String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+                String connStr = ScaleApp.Common.DataOperation.GetConnectionString(2);
                 SqlConnection conn = new SqlConnection(connStr);
                 SqlDataAdapter SqlDa = new SqlDataAdapter();
                 SqlCommand sqlcmd = new SqlCommand("sp_getColorsProduct", conn);
@@ -255,7 +255,7 @@ namespace ScaleApp
         private void loadComboBoxMixId()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -310,7 +310,7 @@ namespace ScaleApp
         private void loadGridCrush()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -393,7 +393,7 @@ namespace ScaleApp
 
         private void CreateCrushRaw()
         {
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlCommand cmd = new SqlCommand("sp_createCrushRaw", conn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -426,7 +426,7 @@ namespace ScaleApp
 
         private void UpdateCrushRaw()
         {
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlCommand cmd = new SqlCommand("sp_editCrushRaw", conn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -475,7 +475,7 @@ namespace ScaleApp
         private void loadCrushRaw(int crushId)
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlDataAdapter SqlDa = new SqlDataAdapter();
             SqlCommand sqlcmd = new SqlCommand("sp_getFullCrushRaw", conn);
@@ -537,7 +537,7 @@ namespace ScaleApp
         {
             int lastCrushRawId;
 
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlCommand sqlcmd = new SqlCommand("sp_getLastIdentity", conn);
             
@@ -588,7 +588,7 @@ namespace ScaleApp
 
         private void UpdatePosted()
         {
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlCommand cmd = new SqlCommand("sp_setCrushPosted", conn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -634,7 +634,7 @@ namespace ScaleApp
         private void LoadLookUpMaterial()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(2);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -664,7 +664,7 @@ namespace ScaleApp
         private void LoadLookUpMixId()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -702,7 +702,7 @@ namespace ScaleApp
         private void LoadLookUpProduct()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(2);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -733,7 +733,7 @@ namespace ScaleApp
         private void LoadLookUpColor()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(2);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -800,7 +800,7 @@ namespace ScaleApp
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -882,7 +882,7 @@ namespace ScaleApp
         private void LoadGridControl1()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try

@@ -69,7 +69,7 @@ namespace ScaleApp
             else
             {                
                 //Get data of fields weight
-                String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+                String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
                 SqlConnection conn = new SqlConnection(connStr);
                 SqlDataAdapter SqlDa = new SqlDataAdapter();
                 SqlCommand sqlcmd = new SqlCommand("sp_getFullMixOut", conn);
@@ -144,7 +144,7 @@ namespace ScaleApp
         
         private void CreateMixOut()
         {
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlCommand cmd = new SqlCommand("sp_createMixOut", conn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -203,7 +203,7 @@ namespace ScaleApp
         private void UpdateMixOut()
         {
             //Lay 1 record ra va luu cac Weight da ton tai, chi cap nhat Weight theo form
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             
             //Update Mixing Out Record by ID
@@ -280,7 +280,7 @@ namespace ScaleApp
         {
             int mixRawExists;
 
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlCommand sqlcmd = new SqlCommand("sp_checkExistsMixOut", conn);
 
@@ -304,7 +304,7 @@ namespace ScaleApp
         private void LoadComboBoxMixId()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -334,7 +334,7 @@ namespace ScaleApp
         private void loadMixRaw(int mixId)
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlDataAdapter SqlDa = new SqlDataAdapter();
             SqlCommand sqlcmd = new SqlCommand("sp_getMixRaw", conn);
@@ -357,7 +357,7 @@ namespace ScaleApp
 
         private void loadMixOut(int Id)
         {            
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlDataAdapter SqlDa = new SqlDataAdapter();
             SqlCommand sqlcmd = new SqlCommand("sp_getFullMixOut", conn);
@@ -432,7 +432,7 @@ namespace ScaleApp
 
         private void UpdatePosted()
         {
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlCommand cmd = new SqlCommand("sp_setMixOutPosted", conn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -457,7 +457,7 @@ namespace ScaleApp
         private void LoadGridControl()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -523,7 +523,7 @@ namespace ScaleApp
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try

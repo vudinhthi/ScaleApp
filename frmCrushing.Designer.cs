@@ -858,7 +858,7 @@
             // tedColor
             // 
             this.tablePanel5.SetColumn(this.tedColor, 3);
-            this.tedColor.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tedColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tedColor.Location = new System.Drawing.Point(492, 73);
             this.tedColor.Multiline = true;
             this.tedColor.Name = "tedColor";

@@ -38,7 +38,7 @@ namespace ScaleApp
             String connStr = ScaleApp.Common.DataOperation.GetConnectionString();
             SqlConnection conn = new SqlConnection(connStr);
             SqlDataAdapter SqlDa = new SqlDataAdapter();
-            SqlCommand sqlcmd = new SqlCommand("sp_getFullCrushRaw", conn);
+            SqlCommand sqlcmd = new SqlCommand("sp_getFullCrushRaw2", conn);
 
             try
             {

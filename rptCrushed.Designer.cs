@@ -338,6 +338,7 @@
             this.lblKg.StylePriority.UseTextAlignment = false;
             this.lblKg.Text = "lblKg";
             this.lblKg.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lblKg.TextFormatString = "{0:n3}";
             // 
             // lblStep
             // 

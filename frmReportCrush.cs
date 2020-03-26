@@ -56,7 +56,9 @@ namespace ScaleApp
             var rptRe = new rptCrushed();
             rptRe.DataSource = ds;
             rptRe.CreateDocument();
-            documentViewer1.DocumentSource = rptRe;                       
+            ReportPrintTool printToolCrush = new ReportPrintTool(rptRe);
+            printToolCrush.PrintDialog();
+            //documentViewer1.DocumentSource = rptRe;                       
         }
 
         private void frmReportCrush_Load(object sender, EventArgs e)

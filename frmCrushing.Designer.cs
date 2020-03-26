@@ -260,7 +260,6 @@
             this.txtScaleWeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtScaleWeight.Location = new System.Drawing.Point(12, 305);
             this.txtScaleWeight.Name = "txtScaleWeight";
-            this.txtScaleWeight.ReadOnly = true;
             this.txtScaleWeight.Size = new System.Drawing.Size(210, 81);
             this.txtScaleWeight.TabIndex = 27;
             this.txtScaleWeight.Text = "25";
@@ -745,6 +744,9 @@
             this.txtWeightRe.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.txtWeightRe.Properties.Mask.EditMask = "f";
+            this.txtWeightRe.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtWeightRe.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.tablePanel1.SetRow(this.txtWeightRe, 2);
             this.txtWeightRe.Size = new System.Drawing.Size(644, 32);
             this.txtWeightRe.TabIndex = 60;

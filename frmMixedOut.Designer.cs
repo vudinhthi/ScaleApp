@@ -67,12 +67,14 @@
             this.spbScale = new DevExpress.XtraEditors.SimpleButton();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.cmbMixId = new DevExpress.XtraEditors.LookUpEdit();
+            this.tedRealWeight = new DevExpress.XtraEditors.TextEdit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtScaleWeight.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMixId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tedRealWeight.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -311,8 +313,9 @@
             this.txtScaleWeight.Properties.Appearance.Options.UseFont = true;
             this.txtScaleWeight.Properties.Mask.EditMask = "d";
             this.txtScaleWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtScaleWeight.Size = new System.Drawing.Size(260, 30);
+            this.txtScaleWeight.Size = new System.Drawing.Size(139, 30);
             this.txtScaleWeight.TabIndex = 13;
+            this.txtScaleWeight.EditValueChanged += new System.EventHandler(this.txtScaleWeight_EditValueChanged);
             // 
             // simpleButton2
             // 
@@ -424,11 +427,24 @@
             this.cmbMixId.Size = new System.Drawing.Size(341, 26);
             this.cmbMixId.TabIndex = 19;
             // 
+            // tedRealWeight
+            // 
+            this.tedRealWeight.Location = new System.Drawing.Point(269, 135);
+            this.tedRealWeight.Name = "tedRealWeight";
+            this.tedRealWeight.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tedRealWeight.Properties.Appearance.Options.UseFont = true;
+            this.tedRealWeight.Properties.Mask.EditMask = "d";
+            this.tedRealWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.tedRealWeight.Properties.ReadOnly = true;
+            this.tedRealWeight.Size = new System.Drawing.Size(115, 30);
+            this.tedRealWeight.TabIndex = 20;
+            // 
             // frmMixedOut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 578);
+            this.Controls.Add(this.tedRealWeight);
             this.Controls.Add(this.cmbMixId);
             this.Controls.Add(this.spbScale);
             this.Controls.Add(this.cboComPort);
@@ -462,6 +478,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMixId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tedRealWeight.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -505,5 +522,6 @@
         private DevExpress.XtraEditors.SimpleButton spbScale;
         private System.Windows.Forms.Timer timer2;
         private DevExpress.XtraEditors.LookUpEdit cmbMixId;
+        private DevExpress.XtraEditors.TextEdit tedRealWeight;
     }
 }

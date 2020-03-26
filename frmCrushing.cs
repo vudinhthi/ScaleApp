@@ -39,15 +39,8 @@ namespace ScaleApp
             GetComPort();
             loadComboBoxOperator();
             loadComboBoxStep();
-            //loadComboBoxProduct();
-            //loadComboBoxMaterial();
-            LoadLookUpMaterial();
-            LoadLookUpProduct();
-            LoadLookUpColor();
-            //loadComboBoxMixId();
             LoadLookUpMixId();
             cmdPost.Enabled = false;
-            //loadGridCrush();
             LoadGridControl1();
         }
 
@@ -72,7 +65,7 @@ namespace ScaleApp
 
             try
             {
-                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getOperators", conn))
+                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getOperatorsCrush", conn))
                 {
                     SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                     SqlDa.Fill(ds);
@@ -378,7 +371,7 @@ namespace ScaleApp
             {
                 if (CheckValidForm() == 0)
                 {
-                    MessageBox.Show("Do you miss Item?");
+                    XtraMessageBox.Show("Input data at Mix Lot ID and Weight from Scale!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
@@ -393,68 +386,88 @@ namespace ScaleApp
 
         private void CreateCrushRaw()
         {
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
-            SqlConnection conn = new SqlConnection(connStr);
-            SqlCommand cmd = new SqlCommand("sp_createCrushRaw", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.AddWithValue("@shiftID", cmbShift.SelectedItem);
-            cmd.Parameters.AddWithValue("@operatorCode", cmbOperator.EditValue);
-            cmd.Parameters.AddWithValue("@productCode", lueProduct.EditValue);
-            cmd.Parameters.AddWithValue("@materialCode", lueMaterial.EditValue);
-            cmd.Parameters.AddWithValue("@colorCode", tedColorCode.Text);
-            cmd.Parameters.AddWithValue("@stepId", cmbStep.SelectedValue);
-            cmd.Parameters.AddWithValue("@weightRecycle", txtWeightRe.Text);
-            cmd.Parameters.AddWithValue("@lostType", cmbLostType.SelectedItem);
-            cmd.Parameters.AddWithValue("@mixRawId", lueMixId.EditValue);
-            cmd.Parameters.AddWithValue("@machineID", txtMachine.Text);
-            cmd.Parameters.AddWithValue("@qrCode", qrCodeCrush.Text);
-
-            conn.Open();
-
-            int i = cmd.ExecuteNonQuery();
-
-            ScaleApp.Common.DataOperation.disconnect();            
-
-            if (i != 0)
+            try
             {
-                MessageBox.Show(i + " Crushed Lot saved!");
-                //loadGridCrush();
-                LoadGridControl1();
+                String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
+                SqlConnection conn = new SqlConnection(connStr);
+                SqlCommand cmd = new SqlCommand("sp_createCrushRaw", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@shiftID", cmbShift.SelectedItem);
+                cmd.Parameters.AddWithValue("@operatorCode", cmbOperator.EditValue);
+                cmd.Parameters.AddWithValue("@productCode", lueProduct.EditValue);
+                cmd.Parameters.AddWithValue("@productName", tedProductName.Text);
+                cmd.Parameters.AddWithValue("@materialCode", lueMixId.GetColumnValue("MaterialName"));
+                cmd.Parameters.AddWithValue("@materialName", lueMixId.GetColumnValue("MaterialName1"));
+                cmd.Parameters.AddWithValue("@colorCode", tedColorCode.Text);
+                cmd.Parameters.AddWithValue("@colorName", tedColor.Text);
+                cmd.Parameters.AddWithValue("@stepId", cmbStep.SelectedValue);
+                cmd.Parameters.AddWithValue("@weightRecycle", txtWeightRe.Text);
+                cmd.Parameters.AddWithValue("@lostType", cmbLostType.SelectedItem);
+                cmd.Parameters.AddWithValue("@mixRawId", lueMixId.EditValue);
+                cmd.Parameters.AddWithValue("@machineID", txtMachine.Text);
+                cmd.Parameters.AddWithValue("@qrCode", qrCodeCrush.Text);
+
+                conn.Open();
+
+                int i = cmd.ExecuteNonQuery();
+
+                ScaleApp.Common.DataOperation.disconnect();
+
+                if (i != 0)
+                {
+                    XtraMessageBox.Show("Save Crushing Raw successful !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadGridControl1();
+                }
             }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void UpdateCrushRaw()
         {
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
-            SqlConnection conn = new SqlConnection(connStr);
-            SqlCommand cmd = new SqlCommand("sp_editCrushRaw", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.AddWithValue("@shiftID", cmbShift.SelectedItem);
-            cmd.Parameters.AddWithValue("@operatorCode", cmbOperator.EditValue);
-            cmd.Parameters.AddWithValue("@productCode", lueProduct.EditValue);
-            cmd.Parameters.AddWithValue("@materialCode", lueMaterial.EditValue);
-            cmd.Parameters.AddWithValue("@colorCode", tedColorCode.Text);
-            cmd.Parameters.AddWithValue("@stepId", cmbStep.SelectedValue);
-            cmd.Parameters.AddWithValue("@weightRecycle", txtWeightRe.Text);
-            cmd.Parameters.AddWithValue("@lostType", cmbLostType.SelectedItem);
-            cmd.Parameters.AddWithValue("@mixRawId", lueMixId.EditValue);
-            cmd.Parameters.AddWithValue("@machineID", txtMachine.Text);            
-            cmd.Parameters.AddWithValue("@crushRawId", txtCrushID.Text);
-
-            conn.Open();
-
-            int i = cmd.ExecuteNonQuery();
-
-            ScaleApp.Common.DataOperation.disconnect();
-
-            if (i != 0)
+            try
             {
-                MessageBox.Show(i + "Data Saved");
-                //loadGridCrush();
-                LoadGridControl1();
+                String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
+                SqlConnection conn = new SqlConnection(connStr);
+                SqlCommand cmd = new SqlCommand("sp_editCrushRaw", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@shiftID", cmbShift.SelectedItem);
+                cmd.Parameters.AddWithValue("@operatorCode", cmbOperator.EditValue);
+                cmd.Parameters.AddWithValue("@productCode", lueProduct.EditValue);
+                cmd.Parameters.AddWithValue("@productName", tedProductName.Text);
+                cmd.Parameters.AddWithValue("@materialCode", lueMixId.GetColumnValue("MaterialName"));
+                cmd.Parameters.AddWithValue("@materialName", lueMixId.GetColumnValue("MaterialName1"));
+                cmd.Parameters.AddWithValue("@colorCode", tedColorCode.Text);
+                cmd.Parameters.AddWithValue("@colorName", tedColor.Text);
+                cmd.Parameters.AddWithValue("@stepId", cmbStep.SelectedValue);
+                cmd.Parameters.AddWithValue("@weightRecycle", txtWeightRe.Text);
+                cmd.Parameters.AddWithValue("@lostType", cmbLostType.SelectedItem);
+                cmd.Parameters.AddWithValue("@mixRawId", lueMixId.EditValue);
+                cmd.Parameters.AddWithValue("@machineID", txtMachine.Text);
+                cmd.Parameters.AddWithValue("@crushRawId", txtCrushID.Text);
+
+                conn.Open();
+
+                int i = cmd.ExecuteNonQuery();
+
+                ScaleApp.Common.DataOperation.disconnect();
+
+                if (i != 0)
+                {
+                    XtraMessageBox.Show("Save Crushing Raw successful !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadGridControl1();
+                }
             }
+            catch(Exception ex)
+            {
+                XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void gridCrushed_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -550,10 +563,9 @@ namespace ScaleApp
             sqlcmd.ExecuteNonQuery();
             
             lastCrushRawId = (int)sqlcmd.Parameters["@LastIdentity"].Value + 1;
-            return lastCrushRawId;
-
             ScaleApp.Common.DataOperation.disconnect();
-            
+
+            return lastCrushRawId;
         }
 
         private void cmdReset_Click(object sender, EventArgs e)
@@ -588,25 +600,32 @@ namespace ScaleApp
 
         private void UpdatePosted()
         {
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
-            SqlConnection conn = new SqlConnection(connStr);
-            SqlCommand cmd = new SqlCommand("sp_setCrushPosted", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.AddWithValue("@crushRawId", txtCrushID.Text);
-
-            conn.Open();
-
-            int i = cmd.ExecuteNonQuery();
-
-            ScaleApp.Common.DataOperation.disconnect();            
-
-            if (i != 0)
+            try
             {
-                MessageBox.Show("Data posted !");
-                loadGridCrush();
-                cmdSave.Enabled = false;
-                cmdPost.Enabled = false;
+                String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
+                SqlConnection conn = new SqlConnection(connStr);
+                SqlCommand cmd = new SqlCommand("sp_setCrushPosted", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@crushRawId", txtCrushID.Text);
+
+                conn.Open();
+
+                int i = cmd.ExecuteNonQuery();
+
+                ScaleApp.Common.DataOperation.disconnect();
+
+                if (i != 0)
+                {
+                    XtraMessageBox.Show("Crush Raw Lot posted !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadGridControl1();
+                    cmdSave.Enabled = false;
+                    cmdPost.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -621,14 +640,13 @@ namespace ScaleApp
 
             if (txtCrushID.Text.IsNullOrEmpty())
             {
-                MessageBox.Show("Select a Mix Lot Id to print !");
+                XtraMessageBox.Show("Select a Crush Lot to print !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
                 reportCrush.MixID = int.Parse(txtCrushID.Text.ToString());
                 reportCrush.Show();
             }
-            
         }
 
         private void LoadLookUpMaterial()
@@ -656,7 +674,7 @@ namespace ScaleApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             ScaleApp.Common.DataOperation.disconnect();
         }
@@ -695,6 +713,9 @@ namespace ScaleApp
         private void lueMixId_EditValueChanged(object sender, EventArgs e)
         {
             lueProduct.EditValue = lueMixId.GetColumnValue("ProductName");
+            tedProductName.Text = lueMixId.GetColumnValue("ProductName1").ToString();
+            tedColorCode.Text = lueMixId.GetColumnValue("ColorName").ToString();
+            tedColor.Text = lueMixId.GetColumnValue("ColorName1").ToString();
             txtMachineMix.Text = lueMixId.GetColumnValue("MachineName").ToString();
             cmbStep.SelectedValue = lueMixId.GetColumnValue("StepName");
         }
@@ -930,11 +951,13 @@ namespace ScaleApp
                 gridView1.Columns["MixBacode"].Width = 150;
                 gridView1.Columns["Posted"].Width = 40;
 
+                gridView1.Columns["WeightRecycle"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                gridView1.Columns["WeightRecycle"].DisplayFormat.FormatString = "{0:n3}";
                 gridView1.OptionsBehavior.Editable = false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -956,6 +979,9 @@ namespace ScaleApp
             txtCrushID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CrushRawId"]).ToString();
             txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
 
+            txtWeightRe.Properties.DisplayFormat.FormatType = FormatType.Numeric;
+            txtWeightRe.Properties.DisplayFormat.FormatString = "{0:n3}";
+
             SetcmdPost();
         }
 
@@ -964,9 +990,11 @@ namespace ScaleApp
             ButtonEdit editorWeightRe = (ButtonEdit)sender;
             EditorButton Button = e.Button;
 
-            if (Button.Kind == ButtonPredefines.OK)            {
-                
-                editorWeightRe.Text = txtScaleWeight.Text;
+            if (Button.Kind == ButtonPredefines.OK)
+            {                
+                editorWeightRe.Text = (float.Parse(txtScaleWeight.Text) - 1.14).ToString();                
+                editorWeightRe.ToolTipIconType = ToolTipIconType.Information;
+                editorWeightRe.ToolTip = txtScaleWeight.Text + "-1.14";
             }
             else if (Button.Kind == ButtonPredefines.Delete)
             {

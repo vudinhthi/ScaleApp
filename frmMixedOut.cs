@@ -96,16 +96,16 @@ namespace ScaleApp
                         switch (GetRadioChecked())
                         {
                             case "rdbRunner":
-                                _weightRunner = double.Parse(txtScaleWeight.Text.ToString());
+                                _weightRunner = double.Parse(tedRealWeight.Text.ToString());
                                 break;
                             case "rdbDefect":
-                                _weightDefect = double.Parse(txtScaleWeight.Text.ToString());
+                                _weightDefect = double.Parse(tedRealWeight.Text.ToString());
                                 break;
                             case "rdbBlackDot":
-                                _weightBlackDot = double.Parse(txtScaleWeight.Text.ToString());
+                                _weightBlackDot = double.Parse(tedRealWeight.Text.ToString());
                                 break;
                             case "rdbContaminated":
-                                _weightContaminated = double.Parse(txtScaleWeight.Text.ToString());
+                                _weightContaminated = double.Parse(tedRealWeight.Text.ToString());
                                 break;
                         }
 
@@ -127,7 +127,7 @@ namespace ScaleApp
 
                         if (i != 0)
                         {
-                            MessageBox.Show(i + "Data Saved");
+                            XtraMessageBox.Show("Save data successful !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadComboBoxMixId();
                         }
                         //End UpdateMixOut
@@ -135,7 +135,7 @@ namespace ScaleApp
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 ScaleApp.Common.DataOperation.disconnect();
                 //End get datas weight  
@@ -152,7 +152,7 @@ namespace ScaleApp
             switch (GetRadioChecked())
             {
                 case "rdbRunner":
-                    cmd.Parameters.AddWithValue("@weightRunner", txtScaleWeight.Text);
+                    cmd.Parameters.AddWithValue("@weightRunner", tedRealWeight.Text);
                     cmd.Parameters.AddWithValue("@weightDefect", 0);
                     cmd.Parameters.AddWithValue("@weightBlackDot", 0);
                     cmd.Parameters.AddWithValue("@weightContaminated", 0);
@@ -161,7 +161,7 @@ namespace ScaleApp
                     break;
                 case "rdbDefect":
                     cmd.Parameters.AddWithValue("@weightRunner", 0);
-                    cmd.Parameters.AddWithValue("@weightDefect", txtScaleWeight.Text);
+                    cmd.Parameters.AddWithValue("@weightDefect", tedRealWeight.Text);
                     cmd.Parameters.AddWithValue("@weightBlackDot", 0);
                     cmd.Parameters.AddWithValue("@weightContaminated", 0);
                     cmd.Parameters.AddWithValue("@weightRecycle", 0);
@@ -170,7 +170,7 @@ namespace ScaleApp
                 case "rdbBlackDot":
                     cmd.Parameters.AddWithValue("@weightRunner", 0);
                     cmd.Parameters.AddWithValue("@weightDefect", 0);
-                    cmd.Parameters.AddWithValue("@weightBlackDot", txtScaleWeight.Text);
+                    cmd.Parameters.AddWithValue("@weightBlackDot", tedRealWeight.Text);
                     cmd.Parameters.AddWithValue("@weightContaminated", 0);
                     cmd.Parameters.AddWithValue("@weightRecycle", 0);
                     cmd.Parameters.AddWithValue("@weightCookie", 0);
@@ -179,7 +179,7 @@ namespace ScaleApp
                     cmd.Parameters.AddWithValue("@weightRunner", 0);
                     cmd.Parameters.AddWithValue("@weightDefect", 0);
                     cmd.Parameters.AddWithValue("@weightBlackDot", 0);
-                    cmd.Parameters.AddWithValue("@weightContaminated", txtScaleWeight.Text);
+                    cmd.Parameters.AddWithValue("@weightContaminated", tedRealWeight.Text);
                     cmd.Parameters.AddWithValue("@weightRecycle", 0);
                     cmd.Parameters.AddWithValue("@weightCookie", 0);
                     break;
@@ -195,7 +195,7 @@ namespace ScaleApp
 
             if (i != 0)
             {
-                MessageBox.Show(i + "Data Saved");
+                XtraMessageBox.Show("Save data successful !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadComboBoxMixId();
             }
         }
@@ -279,26 +279,25 @@ namespace ScaleApp
         private int CheckExistedMixOut(int mixRawId)
         {
             int mixRawExists;
+            
+                String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
+                SqlConnection conn = new SqlConnection(connStr);
+                SqlCommand sqlcmd = new SqlCommand("sp_checkExistsMixOut", conn);
 
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
-            SqlConnection conn = new SqlConnection(connStr);
-            SqlCommand sqlcmd = new SqlCommand("sp_checkExistsMixOut", conn);
+                sqlcmd.CommandType = CommandType.StoredProcedure;
+                sqlcmd.Parameters.AddWithValue("@mixRawId", mixRawId);
 
-            sqlcmd.CommandType = CommandType.StoredProcedure;
-            sqlcmd.Parameters.AddWithValue("@mixRawId", mixRawId);
+                SqlParameter returnParameter = new SqlParameter("@LastIdentity", SqlDbType.Int);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+                sqlcmd.Parameters.Add(returnParameter);
+                conn.Open();
+                sqlcmd.ExecuteNonQuery();
 
-            SqlParameter returnParameter = new SqlParameter("@LastIdentity", SqlDbType.Int);
-            returnParameter.Direction = ParameterDirection.ReturnValue;
-            sqlcmd.Parameters.Add(returnParameter);
-            conn.Open();
-            sqlcmd.ExecuteNonQuery();
-
-            mixRawExists = (int)sqlcmd.Parameters["@LastIdentity"].Value;            
-
-            ScaleApp.Common.DataOperation.disconnect();
-
-            return mixRawExists;
-
+                mixRawExists = (int)sqlcmd.Parameters["@LastIdentity"].Value;
+                
+                ScaleApp.Common.DataOperation.disconnect();
+                return mixRawExists;
+                        
         }
 
         private void LoadComboBoxMixId()
@@ -326,7 +325,7 @@ namespace ScaleApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             ScaleApp.Common.DataOperation.disconnect();
         }
@@ -432,26 +431,34 @@ namespace ScaleApp
 
         private void UpdatePosted()
         {
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
-            SqlConnection conn = new SqlConnection(connStr);
-            SqlCommand cmd = new SqlCommand("sp_setMixOutPosted", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.AddWithValue("@Id", txtMixOutId.Text);
-
-            conn.Open();
-
-            int i = cmd.ExecuteNonQuery();
-
-            ScaleApp.Common.DataOperation.disconnect();
-
-            if (i != 0)
+            try
             {
-                MessageBox.Show("Data posted !");
-                LoadGridControl();
-                cmdSave.Enabled = false;
-                cmdPosted.Enabled = false;
+                String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
+                SqlConnection conn = new SqlConnection(connStr);
+                SqlCommand cmd = new SqlCommand("sp_setMixOutPosted", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Id", txtMixOutId.Text);
+
+                conn.Open();
+
+                int i = cmd.ExecuteNonQuery();
+
+                ScaleApp.Common.DataOperation.disconnect();
+
+                if (i != 0)
+                {
+                    XtraMessageBox.Show("Data was posted !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadGridControl();
+                    cmdSave.Enabled = false;
+                    cmdPosted.Enabled = false;
+                }
             }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void LoadGridControl()
@@ -499,7 +506,7 @@ namespace ScaleApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             ScaleApp.Common.DataOperation.disconnect();
         }
@@ -679,6 +686,11 @@ namespace ScaleApp
         {
             CloseSerialPort();
             txtScaleWeight.Text = "Off";
+        }
+
+        private void txtScaleWeight_EditValueChanged(object sender, EventArgs e)
+        {
+            tedRealWeight.Text = (Double.Parse(txtScaleWeight.Text) - 2.1966).ToString();
         }
     }
 }

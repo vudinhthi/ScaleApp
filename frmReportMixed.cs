@@ -62,7 +62,7 @@ namespace ScaleApp
             String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
             SqlDataAdapter SqlDa = new SqlDataAdapter();
-            SqlCommand sqlcmd = new SqlCommand("sp_getFullMixRaw2", conn);
+            SqlCommand sqlcmd = new SqlCommand("sp_getFullMixRaw3", conn);
 
             try
             {
@@ -82,42 +82,52 @@ namespace ScaleApp
                 case "Mixed":
                     var rptMix = new rptMixing();
                     rptMix.DataSource = ds;
-                    rptMix.CreateDocument();
-                    documentViewer1.DocumentSource = rptMix;
+                    //rptMix.CreateDocument();
+                    ReportPrintTool printToolMix = new ReportPrintTool(rptMix);
+                    printToolMix.PrintDialog();
+                    //documentViewer1.DocumentSource = rptMix;
                     break;
                 case "Runner":
                     var rptRunner = new rptMixedOut();
                     rptRunner.DataSource = ds;
                     rptRunner.CreateDocument();
-                    documentViewer1.DocumentSource = rptRunner;
+                    ReportPrintTool printToolRunner = new ReportPrintTool(rptRunner);
+                    printToolRunner.PrintDialog();
+                    //documentViewer1.DocumentSource = rptRunner;
                     break;
                 case "Defect":
                     var rptDefect = new rptDefect();
                     rptDefect.DataSource = ds;
                     rptDefect.CreateDocument();
-                    documentViewer1.DocumentSource = rptDefect;
+                    ReportPrintTool printToolDefect = new ReportPrintTool(rptDefect);
+                    printToolDefect.PrintDialog();
+                    //documentViewer1.DocumentSource = rptDefect;
                     break;
                 case "BlackDot":
                     var rptBlackDot = new rptBlackDot();
                     rptBlackDot.DataSource = ds;
                     rptBlackDot.CreateDocument();
-                    documentViewer1.DocumentSource = rptBlackDot;
+                    ReportPrintTool printToolBlackDot = new ReportPrintTool(rptBlackDot);
+                    printToolBlackDot.PrintDialog();
+                    //documentViewer1.DocumentSource = rptBlackDot;
                     break;
                 case "Contaminated":
                     var rptContaminated = new rptContaminated();
                     rptContaminated.DataSource = ds;
                     rptContaminated.CreateDocument();
-                    documentViewer1.DocumentSource = rptContaminated;
+                    ReportPrintTool printToolContaminated = new ReportPrintTool(rptContaminated);
+                    printToolContaminated.PrintDialog();
+                    //documentViewer1.DocumentSource = rptContaminated;
                     break;
                 default:
                     rptMix = new rptMixing();
                     rptMix.DataSource = ds;
                     rptMix.CreateDocument();
-                    documentViewer1.DocumentSource = rptMix;
+                    printToolMix = new ReportPrintTool(rptMix);
+                    printToolMix.PrintDialog();
+                    //documentViewer1.DocumentSource = rptMix;
                     break;
-            }            
-                                    
-            //rpt.FindControl("lblColorCode", false).Text = ds.Tables[0].Rows[0][8].ToString();                       
+            }                                   
         }
     }
 }

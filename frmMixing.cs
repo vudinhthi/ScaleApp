@@ -157,7 +157,7 @@ namespace ScaleApp
                 cmd.Parameters.AddWithValue("@colorCode", tedColorCode.Text);
                 cmd.Parameters.AddWithValue("@colorName", tedColor.Text);
                 cmd.Parameters.AddWithValue("@weightRecycle", bteWeightRe.Text);
-                cmd.Parameters.AddWithValue("@weightMaterial", txtTotalMaterial.Text);
+                cmd.Parameters.AddWithValue("@weightMaterial", bteWeightRM.Text);
                 cmd.Parameters.AddWithValue("@totalMaterial", txtTotal.Text);
                 cmd.Parameters.AddWithValue("@reRatio", (txtReRatio.EditValue.IsNullOrEmpty()) ? DBNull.Value : txtReRatio.EditValue);
                 cmd.Parameters.AddWithValue("@crushRawId", (lueRecycled.EditValue.IsNullOrEmpty()) ? DBNull.Value : lueRecycled.EditValue);
@@ -199,7 +199,7 @@ namespace ScaleApp
                 cmd.Parameters.AddWithValue("@productCode", lueProduct.EditValue);
                 cmd.Parameters.AddWithValue("@weightRecycle", bteWeightRe.Text);
                 cmd.Parameters.AddWithValue("@weightMaterial", txtTotalMaterial.Text);
-                cmd.Parameters.AddWithValue("@totalMaterial", txtTotal.Text);
+                cmd.Parameters.AddWithValue("@totalMaterial", bteWeightRM.Text);
                 cmd.Parameters.AddWithValue("@reRation", (txtReRatio.EditValue.IsNullOrEmpty()) ? DBNull.Value : txtReRatio.EditValue);
                 cmd.Parameters.AddWithValue("@crushRawId", (lueRecycled.EditValue.IsNullOrEmpty()) ? DBNull.Value : lueRecycled.EditValue);
                 cmd.Parameters.AddWithValue("@reason", txtReason.Text);
@@ -599,8 +599,7 @@ namespace ScaleApp
             }
             else
             {
-                //weightRM = double.Parse(bteWeightRM.Text);
-                weightRM = double.Parse(txtTotalMaterial.Text);
+                weightRM = double.Parse(bteWeightRM.Text);
             }
 
             if (String.IsNullOrEmpty(bteWeightRe.Text))

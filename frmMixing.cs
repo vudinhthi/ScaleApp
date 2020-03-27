@@ -1231,35 +1231,18 @@ namespace ScaleApp
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            //ExportExcel("");
+            frmDateRange frmDate = new frmDateRange();
 
-            DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
-            SqlConnection conn = new SqlConnection(connStr);
-
-            try
+            if (!lueProduct.EditValue.IsNullOrEmpty())
             {
-                SqlDataAdapter SqlDaMixRaw = new SqlDataAdapter("sp_getFullMixRawsEx", conn);
-                SqlDaMixRaw.SelectCommand.CommandType = CommandType.StoredProcedure;
-                SqlDaMixRaw.Fill(ds, "MixRaw");
-
-                SqlDataAdapter SqlDaCrush = new SqlDataAdapter("sp_getFullCrushRaws", conn);
-                SqlDaCrush.SelectCommand.CommandType = CommandType.StoredProcedure;
-                SqlDaCrush.Fill(ds, "CrushRaw");
-
-                SqlDataAdapter SqlDa = new SqlDataAdapter();
-                SqlCommand sqlcmd = new SqlCommand("sp_getMaterialsProduct_Scaled", conn);
-                sqlcmd.CommandType = CommandType.StoredProcedure;
-                sqlcmd.Parameters.AddWithValue("@ProductId", lueProduct.EditValue);
-                SqlDa.SelectCommand = sqlcmd;
-                SqlDa.Fill(ds, "MaterialProduct");
-
-                ExportDataSetToExcel(ds, "");
+                frmDate.ProductId = lueProduct.EditValue.ToString();
             }
-            catch (Exception ex)
+            else
             {
-                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                frmDate.ProductId = null;
+            }            
+
+            frmDate.Show();
         }
 
         private bool ExportExcel(string filename)
@@ -1305,65 +1288,6 @@ namespace ScaleApp
                 XtraMessageBox.Show("Error: " + e, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return false;
-        }
-
-        private bool ExportDataSetToExcel(DataSet ds, string filename)
-        {
-            try
-            {
-                var dialog = new SaveFileDialog();
-                dialog.Title = @"Export file to Excel";
-                dialog.FileName = filename;
-                dialog.Filter = @"Microsoft Excel|*.xlsx";
-
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {                   
-                    //Creae an Excel application instance
-                    Excel.Application excelApp = new Excel.Application();
-
-                    //Create an Excel workbook instance and open it from the predefined location
-                    Excel.Workbook excelWorkBook = excelApp.Workbooks.Add(1);
-
-                    foreach (DataTable table in ds.Tables)
-                    {
-                        //Add a new worksheet to workbook with the Datatable name
-                        Excel.Worksheet excelWorkSheet = excelWorkBook.Sheets.Add();
-                        excelWorkSheet.Name = table.TableName;
-
-                        for (int i = 1; i < table.Columns.Count + 1; i++)
-                        {
-                            excelWorkSheet.Cells[1, i] = table.Columns[i - 1].ColumnName;
-                        }
-
-                        for (int j = 0; j < table.Rows.Count; j++)
-                        {
-                            for (int k = 0; k < table.Columns.Count; k++)
-                            {
-                                excelWorkSheet.Cells[j + 2, k + 1] = table.Rows[j].ItemArray[k].ToString();
-                            }
-                        }
-                    }
-
-                    excelWorkBook.SaveAs(dialog.FileName);
-                    excelWorkBook.Close();
-                    excelApp.Quit();
-
-                    XtraMessageBox.Show("Successed!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information, DefaultBoolean.True);
-
-                    if (File.Exists(dialog.FileName))
-                    {
-                        if (XtraMessageBox.Show("Do you want open file? ", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                        {
-                            Process.Start(dialog.FileName);
-                        }
-                    }
-                }                 
-            }
-            catch (Exception e)
-            {
-                XtraMessageBox.Show("Error: " + e, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return false;            
         }
 
         private void bteWeightRM_ButtonClick(object sender, ButtonPressedEventArgs e)

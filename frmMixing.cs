@@ -472,10 +472,11 @@ namespace ScaleApp
                 lueProduct.Properties.ValueMember = "c002";
                 lueProduct.Properties.KeyMember = "c002";
 
-                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("c002", "ProductCode", 120));
-                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("c003", "ProductName", 120));
+                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("c002", "ProductCode", 100));
+                lueProduct.Properties.Columns.Add(new LookUpColumnInfo("c003", "ProductName", 300));
                 //enable text editing 
                 lueProduct.Properties.TextEditStyle = TextEditStyles.Standard;
+                
             }
             catch (Exception ex)
             {
@@ -902,7 +903,9 @@ namespace ScaleApp
                     gridViewMaterialBom.Columns["materialname"].VisibleIndex = 2;
                     gridViewMaterialBom.Columns["Quantity"].VisibleIndex = 3;
 
-                    //gridViewMaterialBom.Columns["Unit"].Width = 50;
+                    gridViewMaterialBom.Columns["materialcode"].Width = 80;
+                    gridViewMaterialBom.Columns["materialname"].Width = 170;
+                    gridViewMaterialBom.Columns["Quantity"].Width = 60;
 
                     gridViewMaterialBom.Columns["Quantity"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
                     gridViewMaterialBom.Columns["Quantity"].DisplayFormat.FormatString = "{0:n3}";                    
@@ -1385,7 +1388,17 @@ namespace ScaleApp
             }
             else if (Button.Kind == ButtonPredefines.Delete)
             {
-                editorWeightRM.Text = "";
+                editorWeightRM.Text = null;
+                txtTotalMaterial.Text = null;
+                if (lueProduct.EditValue == null)
+                {
+                    XtraMessageBox.Show("Select a product", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    sBomCode = GetStrBomCode(lueProduct.EditValue.ToString());
+                    LoadGridControl2(sBomCode, editorWeightRM.Text);
+                }
             }            
         }        
 
@@ -1405,7 +1418,8 @@ namespace ScaleApp
             }
             else if (Button.Kind == ButtonPredefines.Delete)
             {
-                editorWeightRe.Text = "";
+                editorWeightRe.Text = null;
+                txtReRatio.Text = null;
             }
         }        
 

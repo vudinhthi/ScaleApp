@@ -633,6 +633,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lueProduct.Properties.NullText = "";
             this.lueProduct.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.lueProduct.Properties.PopupFormMinSize = new System.Drawing.Size(580, 0);
             this.lueProduct.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
             this.tablePanel2.SetRow(this.lueProduct, 0);
             this.lueProduct.Size = new System.Drawing.Size(287, 25);

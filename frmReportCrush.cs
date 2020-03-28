@@ -64,6 +64,8 @@ namespace ScaleApp
         private void frmReportCrush_Load(object sender, EventArgs e)
         {
             LoadDataToReport();
+            this.Close();
+            this.Dispose();
         }
     }
 }

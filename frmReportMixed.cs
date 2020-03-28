@@ -45,6 +45,8 @@ namespace ScaleApp
             //labelReport = LableTypeReport;
             //SendToPrint();            
             LoadDataToReport(LableTypeReport);
+            this.Close();
+            this.Dispose();
         }        
         
         private void SendToPrint()

@@ -68,7 +68,7 @@
             // connectDatabaseToolStripMenuItem
             // 
             this.connectDatabaseToolStripMenuItem.Name = "connectDatabaseToolStripMenuItem";
-            this.connectDatabaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.connectDatabaseToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.connectDatabaseToolStripMenuItem.Text = "Connect database";
             this.connectDatabaseToolStripMenuItem.Click += new System.EventHandler(this.connectDatabaseToolStripMenuItem_Click);
             // 
@@ -103,10 +103,10 @@
             // 
             // aboutToolStripMenuItem
             // 
-            this.aboutToolStripMenuItem.Enabled = false;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // frmMain
             // 

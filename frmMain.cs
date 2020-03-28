@@ -78,5 +78,14 @@ namespace ScaleApp
             cookies.Parent = this;
             cookies.Show();
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.IsMdiContainer = true;
+            frmAbout about = new frmAbout();
+            about.TopLevel = false;
+            about.Parent = this;
+            about.Show();
+        }
     }
 }

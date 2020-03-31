@@ -11,6 +11,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.Export;
@@ -198,8 +199,8 @@ namespace ScaleApp
                 cmd.Parameters.AddWithValue("@machineID", txtMachine.Text);
                 cmd.Parameters.AddWithValue("@productCode", lueProduct.EditValue);
                 cmd.Parameters.AddWithValue("@weightRecycle", bteWeightRe.Text);
-                cmd.Parameters.AddWithValue("@weightMaterial", txtTotalMaterial.Text);
-                cmd.Parameters.AddWithValue("@totalMaterial", bteWeightRM.Text);
+                cmd.Parameters.AddWithValue("@weightMaterial", bteWeightRM.Text);
+                cmd.Parameters.AddWithValue("@totalMaterial", txtTotal.Text);
                 cmd.Parameters.AddWithValue("@reRation", (txtReRatio.EditValue.IsNullOrEmpty()) ? DBNull.Value : txtReRatio.EditValue);
                 cmd.Parameters.AddWithValue("@crushRawId", (lueRecycled.EditValue.IsNullOrEmpty()) ? DBNull.Value : lueRecycled.EditValue);
                 cmd.Parameters.AddWithValue("@reason", txtReason.Text);
@@ -1029,6 +1030,14 @@ namespace ScaleApp
             }
             else
             {
+                SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+                SplashScreenManager.Default.SetWaitFormCaption("Getting new data...");
+                for (int i = 0; i < 100; i++)
+                {
+                    Thread.Sleep(10);
+                }
+                SplashScreenManager.CloseForm();
+
                 report.MixID = int.Parse(txtMixID.Text.ToString());
                 report.Show();
             }            
@@ -1226,6 +1235,13 @@ namespace ScaleApp
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+            SplashScreenManager.Default.SetWaitFormCaption("Getting new data...");
+            for (int i=0; i<100; i++)
+            {
+                Thread.Sleep(10);
+            }
+            SplashScreenManager.CloseForm();
             LoadGridControl1();
         }
 
@@ -1349,6 +1365,14 @@ namespace ScaleApp
 
         private void spbSave_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+            SplashScreenManager.Default.SetWaitFormCaption("Updating data...");
+            for (int i = 0; i < 100; i++)
+            {
+                Thread.Sleep(10);
+            }
+            SplashScreenManager.CloseForm();
+
             if (txtMixID.Text.IsNullOrEmpty())
             {
                 if (CheckValidForm() == 0)
@@ -1370,6 +1394,14 @@ namespace ScaleApp
 
         private void spbPost_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+            SplashScreenManager.Default.SetWaitFormCaption("Posting data...");
+            for (int i = 0; i < 100; i++)
+            {
+                Thread.Sleep(10);
+            }
+            SplashScreenManager.CloseForm();
+
             UpdatePosted();
         }
 

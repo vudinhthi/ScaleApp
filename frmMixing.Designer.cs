@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator2 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
-            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery2 = new DevExpress.DataAccess.Sql.StoredProcQuery();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery1 = new DevExpress.DataAccess.Sql.StoredProcQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMixing));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbShift = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -115,7 +115,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.bteWeightRe = new DevExpress.XtraEditors.ButtonEdit();
-            this.lueRecycled = new DevExpress.XtraEditors.LookUpEdit();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.bteWeightRM = new DevExpress.XtraEditors.ButtonEdit();
@@ -127,6 +126,7 @@
             this.txtTotalMaterial = new DevExpress.XtraEditors.TextEdit();
             this.txtReason = new DevExpress.XtraEditors.ButtonEdit();
             this.tablePanel3 = new DevExpress.Utils.Layout.TablePanel();
+            this.lueRecycled = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueMaterial.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueProduct.Properties)).BeginInit();
@@ -150,7 +150,6 @@
             this.tablePanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueColor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bteWeightRe.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueRecycled.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bteWeightRM.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewMaterialBom)).BeginInit();
@@ -160,6 +159,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtReason.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel3)).BeginInit();
             this.tablePanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueRecycled.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -362,7 +362,6 @@
             this.txtScaleWeight.Name = "txtScaleWeight";
             this.txtScaleWeight.Size = new System.Drawing.Size(312, 81);
             this.txtScaleWeight.TabIndex = 25;
-            this.txtScaleWeight.Text = "25";
             this.txtScaleWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // qrMixLotID
@@ -379,9 +378,9 @@
             this.qrMixLotID.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.tablePanel5.SetRow(this.qrMixLotID, 1);
             this.qrMixLotID.Size = new System.Drawing.Size(398, 169);
-            qrCodeGenerator2.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
-            qrCodeGenerator2.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
-            this.qrMixLotID.Symbology = qrCodeGenerator2;
+            qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
+            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
+            this.qrMixLotID.Symbology = qrCodeGenerator1;
             this.qrMixLotID.TabIndex = 32;
             // 
             // cmbLabelType
@@ -419,10 +418,10 @@
             // 
             this.sqlDataSource1.ConnectionName = "ScaleApp.Properties.Settings.ColorMixConnectionString";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            storedProcQuery2.Name = "sp_getMixRaws";
-            storedProcQuery2.StoredProcName = "sp_getMixRaws";
+            storedProcQuery1.Name = "sp_getMixRaws";
+            storedProcQuery1.StoredProcName = "sp_getMixRaws";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            storedProcQuery2});
+            storedProcQuery1});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // gridView1
@@ -1010,24 +1009,6 @@
             this.bteWeightRe.TabIndex = 53;
             this.bteWeightRe.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.bteWeightRe_ButtonClick);
             // 
-            // lueRecycled
-            // 
-            this.tablePanel3.SetColumn(this.lueRecycled, 1);
-            this.tablePanel3.SetColumnSpan(this.lueRecycled, 2);
-            this.lueRecycled.Location = new System.Drawing.Point(93, 271);
-            this.lueRecycled.Name = "lueRecycled";
-            this.lueRecycled.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            this.lueRecycled.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueRecycled.Properties.Appearance.Options.UseFont = true;
-            this.lueRecycled.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lueRecycled.Properties.NullText = "";
-            this.lueRecycled.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            this.lueRecycled.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
-            this.tablePanel3.SetRow(this.lueRecycled, 2);
-            this.lueRecycled.Size = new System.Drawing.Size(394, 26);
-            this.lueRecycled.TabIndex = 44;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -1063,11 +1044,11 @@
             this.bteWeightRM.Properties.Appearance.Options.UseFont = true;
             this.bteWeightRM.Properties.Appearance.Options.UseTextOptions = true;
             this.bteWeightRM.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
-            editorButtonImageOptions4.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions4.Image")));
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
             this.bteWeightRM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK, "Ok", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "Delete", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK, "Ok", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "Delete", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.bteWeightRM.Properties.Mask.EditMask = "f";
             this.bteWeightRM.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.bteWeightRM.Properties.ReadOnly = true;
@@ -1178,11 +1159,11 @@
             this.tablePanel3.Controls.Add(this.bteWeightRM);
             this.tablePanel3.Controls.Add(this.label5);
             this.tablePanel3.Controls.Add(this.label9);
-            this.tablePanel3.Controls.Add(this.lueRecycled);
             this.tablePanel3.Controls.Add(this.bteWeightRe);
             this.tablePanel3.Controls.Add(this.label10);
             this.tablePanel3.Controls.Add(this.label11);
             this.tablePanel3.Controls.Add(this.txtTotal);
+            this.tablePanel3.Controls.Add(this.lueRecycled);
             this.tablePanel3.Location = new System.Drawing.Point(422, 14);
             this.tablePanel3.Name = "tablePanel3";
             this.tablePanel3.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
@@ -1194,6 +1175,21 @@
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
             this.tablePanel3.Size = new System.Drawing.Size(490, 416);
             this.tablePanel3.TabIndex = 57;
+            // 
+            // lueRecycled
+            // 
+            this.lueRecycled.Location = new System.Drawing.Point(93, 271);
+            this.lueRecycled.Name = "lueRecycled";
+            this.lueRecycled.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.lueRecycled.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueRecycled.Properties.Appearance.Options.UseFont = true;
+            this.lueRecycled.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueRecycled.Properties.NullText = "";
+            this.lueRecycled.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.lueRecycled.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
+            this.lueRecycled.Size = new System.Drawing.Size(394, 26);
+            this.lueRecycled.TabIndex = 44;
             // 
             // frmMixing
             // 
@@ -1256,7 +1252,6 @@
             this.tablePanel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lueColor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bteWeightRe.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueRecycled.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bteWeightRM.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewMaterialBom)).EndInit();
@@ -1267,6 +1262,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel3)).EndInit();
             this.tablePanel3.ResumeLayout(false);
             this.tablePanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueRecycled.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1353,11 +1349,11 @@
         private DevExpress.XtraEditors.ButtonEdit bteWeightRM;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label9;
-        private DevExpress.XtraEditors.LookUpEdit lueRecycled;
         private DevExpress.XtraEditors.ButtonEdit bteWeightRe;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private DevExpress.XtraEditors.LookUpEdit lueOperator;
+        private DevExpress.XtraEditors.LookUpEdit lueRecycled;
     }
 }

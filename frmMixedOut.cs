@@ -3,6 +3,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraPrinting;
+using DevExpress.XtraSplashScreen;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -61,6 +63,14 @@ namespace ScaleApp
             Double _weightBlackDot;
             Double _weightContaminated;
             int i;
+
+            SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+            SplashScreenManager.Default.SetWaitFormCaption("Updating data...");
+            for (int j = 0; j < 100; j++)
+            {
+                Thread.Sleep(10);
+            }
+            SplashScreenManager.CloseForm();
 
             if (CheckExistedMixOut(int.Parse(cmbMixId.EditValue.ToString())) == 0)
             {
@@ -412,6 +422,14 @@ namespace ScaleApp
 
         private void cmdPosted_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+            SplashScreenManager.Default.SetWaitFormCaption("Posting data...");
+            for (int i = 0; i < 100; i++)
+            {
+                Thread.Sleep(10);
+            }
+            SplashScreenManager.CloseForm();
+
             UpdatePosted();
         }
 
@@ -524,6 +542,13 @@ namespace ScaleApp
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+            SplashScreenManager.Default.SetWaitFormCaption("Getting new data...");
+            for (int i = 0; i < 100; i++)
+            {
+                Thread.Sleep(10);
+            }
+            SplashScreenManager.CloseForm();
             LoadGridControl();
         }
 

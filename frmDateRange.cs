@@ -13,6 +13,8 @@ using System.IO;
 using System.Diagnostics;
 using System.Data.SqlClient;
 using DevExpress.Utils;
+using DevExpress.XtraSplashScreen;
+using System.Threading;
 
 namespace ScaleApp
 {
@@ -125,9 +127,17 @@ namespace ScaleApp
                         }
                     }
 
+                    SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+                    SplashScreenManager.Default.SetWaitFormCaption("Exproting data to Excel...");
+                    for (int i = 0; i < 100; i++)
+                    {
+                        Thread.Sleep(10);
+                    }
+                    SplashScreenManager.CloseForm();
+
                     excelWorkBook.SaveAs(dialog.FileName);
                     excelWorkBook.Close();
-                    excelApp.Quit();
+                    excelApp.Quit();                    
 
                     XtraMessageBox.Show("Successed!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information, DefaultBoolean.True);
 

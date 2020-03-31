@@ -213,12 +213,6 @@
     <Compile Include="rptDefect.Designer.cs">
       <DependentUpon>rptDefect.cs</DependentUpon>
     </Compile>
-    <Compile Include="rptMixed.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="rptMixed.Designer.cs">
-      <DependentUpon>rptMixed.cs</DependentUpon>
-    </Compile>
     <Compile Include="rptMixedOut.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -290,9 +284,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="rptDefect.resx">
       <DependentUpon>rptDefect.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="rptMixed.resx">
-      <DependentUpon>rptMixed.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="rptMixedOut.resx">
       <DependentUpon>rptMixedOut.cs</DependentUpon>

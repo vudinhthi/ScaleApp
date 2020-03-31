@@ -3,6 +3,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraPrinting;
+using DevExpress.XtraSplashScreen;
 using ScaleApp.Common;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -40,6 +42,7 @@ namespace ScaleApp
             loadComboBoxOperator();
             loadComboBoxStep();
             LoadLookUpMixId();
+            //LoadLookUpProduct();
             cmdPost.Enabled = false;
             LoadGridControl1();
         }
@@ -367,6 +370,14 @@ namespace ScaleApp
 
         private void cmdSave_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+            SplashScreenManager.Default.SetWaitFormCaption("Updating data...");
+            for (int i = 0; i < 100; i++)
+            {
+                Thread.Sleep(10);
+            }
+            SplashScreenManager.CloseForm();
+
             if (txtCrushID.Text.IsNullOrEmpty())
             {
                 if (CheckValidForm() == 0)
@@ -631,6 +642,14 @@ namespace ScaleApp
 
         private void cmdPost_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+            SplashScreenManager.Default.SetWaitFormCaption("Posting data...");
+            for (int i = 0; i < 100; i++)
+            {
+                Thread.Sleep(10);
+            }
+            SplashScreenManager.CloseForm();
+
             UpdatePosted();
         }
 
@@ -728,7 +747,7 @@ namespace ScaleApp
 
             try
             {
-                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getProducts", conn))
+                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getProductsWinline", conn))
                 {
                     SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                     SqlDa.Fill(ds);
@@ -814,7 +833,13 @@ namespace ScaleApp
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            //loadGridCrush();
+            SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+            SplashScreenManager.Default.SetWaitFormCaption("Getting new data...");
+            for (int i = 0; i < 100; i++)
+            {
+                Thread.Sleep(10);
+            }
+            SplashScreenManager.CloseForm();
             LoadGridControl1();
         }
 

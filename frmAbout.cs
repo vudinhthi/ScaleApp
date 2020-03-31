@@ -17,28 +17,17 @@ namespace ScaleApp
         public frmAbout()
         {
             InitializeComponent();
-        }
+        }       
 
         private void frmAbout_Load(object sender, EventArgs e)
         {
-            textEdit1.Text = AssemblyVersion.Major.ToString() + "."
-                        + AssemblyVersion.Minor.ToString() + "."
-                        + AssemblyVersion.Build.ToString() + "."
-                        + AssemblyVersion.Revision.ToString();
-        }
-
-        public Version AssemblyVersion
-        {
-            get
-            {
-                return ApplicationDeployment.CurrentDeployment.CurrentVersion;
-            }
-        }
+            textEdit1.Text = Application.ProductVersion.ToString();  
+        }        
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             this.Close();
             this.Dispose();
-        }
+        }        
     }
 }

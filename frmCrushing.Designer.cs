@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator3 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCrushing));
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -262,7 +262,6 @@
             this.txtScaleWeight.Name = "txtScaleWeight";
             this.txtScaleWeight.Size = new System.Drawing.Size(210, 81);
             this.txtScaleWeight.TabIndex = 27;
-            this.txtScaleWeight.Text = "25";
             this.txtScaleWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // timer1
@@ -526,11 +525,10 @@
             this.qrCodeCrush.Name = "qrCodeCrush";
             this.qrCodeCrush.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.tablePanel4.SetRow(this.qrCodeCrush, 1);
-            this.qrCodeCrush.ShowText = false;
             this.qrCodeCrush.Size = new System.Drawing.Size(212, 106);
-            qrCodeGenerator3.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
-            qrCodeGenerator3.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
-            this.qrCodeCrush.Symbology = qrCodeGenerator3;
+            qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
+            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
+            this.qrCodeCrush.Symbology = qrCodeGenerator1;
             this.qrCodeCrush.TabIndex = 25;
             // 
             // txtPosted
@@ -582,7 +580,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lueProduct.Properties.NullText = "";
             this.lueProduct.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            this.lueProduct.Properties.ReadOnly = true;
             this.lueProduct.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
             this.tablePanel5.SetRow(this.lueProduct, 1);
             this.lueProduct.Size = new System.Drawing.Size(271, 26);

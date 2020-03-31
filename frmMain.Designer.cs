@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.connectDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userLoginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mixingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mixedOutStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recycledStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,19 +58,18 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.connectDatabaseToolStripMenuItem});
-            this.toolStripMenuItem1.Enabled = false;
+            this.userLoginToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(49, 20);
             this.toolStripMenuItem1.Text = "Login";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
-            // connectDatabaseToolStripMenuItem
+            // userLoginToolStripMenuItem
             // 
-            this.connectDatabaseToolStripMenuItem.Name = "connectDatabaseToolStripMenuItem";
-            this.connectDatabaseToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.connectDatabaseToolStripMenuItem.Text = "Connect database";
-            this.connectDatabaseToolStripMenuItem.Click += new System.EventHandler(this.connectDatabaseToolStripMenuItem_Click);
+            this.userLoginToolStripMenuItem.Name = "userLoginToolStripMenuItem";
+            this.userLoginToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.userLoginToolStripMenuItem.Text = "User";
+            this.userLoginToolStripMenuItem.Click += new System.EventHandler(this.connectDatabaseToolStripMenuItem_Click);
             // 
             // mixingToolStripMenuItem
             // 
@@ -137,7 +136,7 @@
         private System.Windows.Forms.ToolStripMenuItem recycledStationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cookiesStationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem connectDatabaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userLoginToolStripMenuItem;
     }
 }
 

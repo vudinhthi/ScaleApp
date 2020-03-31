@@ -14,10 +14,12 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.CodeParser;
 using DevExpress.Export;
 using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraEditors.DXErrorProvider;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
@@ -157,9 +159,9 @@ namespace ScaleApp
                 cmd.Parameters.AddWithValue("@productName", txtProductName.Text);
                 cmd.Parameters.AddWithValue("@colorCode", tedColorCode.Text);
                 cmd.Parameters.AddWithValue("@colorName", tedColor.Text);
-                cmd.Parameters.AddWithValue("@weightRecycle", bteWeightRe.Text);
-                cmd.Parameters.AddWithValue("@weightMaterial", bteWeightRM.Text);
-                cmd.Parameters.AddWithValue("@totalMaterial", txtTotal.Text);
+                cmd.Parameters.AddWithValue("@weightRecycle", (bteWeightRe.EditValue.IsNullOrEmpty()) ? DBNull.Value : bteWeightRe.EditValue);
+                cmd.Parameters.AddWithValue("@weightMaterial", (bteWeightRM.EditValue.IsNullOrEmpty()) ? DBNull.Value : bteWeightRM.EditValue);
+                cmd.Parameters.AddWithValue("@totalMaterial", (txtTotal.Text.IsNullOrEmpty()) ? null : txtTotal.Text);
                 cmd.Parameters.AddWithValue("@reRatio", (txtReRatio.EditValue.IsNullOrEmpty()) ? DBNull.Value : txtReRatio.EditValue);
                 cmd.Parameters.AddWithValue("@crushRawId", (lueRecycled.EditValue.IsNullOrEmpty()) ? DBNull.Value : lueRecycled.EditValue);
                 cmd.Parameters.AddWithValue("@reason", txtReason.Text);
@@ -177,11 +179,23 @@ namespace ScaleApp
                     LoadGridControl1();
                 }
             }
+            catch (SqlException sqlEx)
+            {
+                int exNumber = sqlEx.Number;
+                switch (sqlEx.Number)
+                {
+                    case 2601:
+                        XtraMessageBox.Show("Data was existing !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    default:
+                        XtraMessageBox.Show("Error: " + sqlEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }                
+            }
             catch (Exception ex)
             {
                 XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
+            }            
         }
 
         private void UpdateMixRaw()
@@ -198,9 +212,9 @@ namespace ScaleApp
                 cmd.Parameters.AddWithValue("@stepId", cmbStep.SelectedValue);
                 cmd.Parameters.AddWithValue("@machineID", txtMachine.Text);
                 cmd.Parameters.AddWithValue("@productCode", lueProduct.EditValue);
-                cmd.Parameters.AddWithValue("@weightRecycle", bteWeightRe.Text);
-                cmd.Parameters.AddWithValue("@weightMaterial", bteWeightRM.Text);
-                cmd.Parameters.AddWithValue("@totalMaterial", txtTotal.Text);
+                cmd.Parameters.AddWithValue("@weightRecycle", (bteWeightRe.EditValue.IsNullOrEmpty()) ? DBNull.Value : bteWeightRe.EditValue);
+                cmd.Parameters.AddWithValue("@weightMaterial", (bteWeightRM.EditValue.IsNullOrEmpty()) ? DBNull.Value : bteWeightRM.EditValue);
+                cmd.Parameters.AddWithValue("@totalMaterial", (txtTotal.Text.IsNullOrEmpty()) ? null : txtTotal.Text);
                 cmd.Parameters.AddWithValue("@reRation", (txtReRatio.EditValue.IsNullOrEmpty()) ? DBNull.Value : txtReRatio.EditValue);
                 cmd.Parameters.AddWithValue("@crushRawId", (lueRecycled.EditValue.IsNullOrEmpty()) ? DBNull.Value : lueRecycled.EditValue);
                 cmd.Parameters.AddWithValue("@reason", txtReason.Text);
@@ -240,7 +254,7 @@ namespace ScaleApp
                     XtraMessageBox.Show("Give me scale weight for Recycled Lot", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     bteWeightRe.Focus();
                     return 0;                    
-                }
+                }                
             }
             else
             {
@@ -1073,10 +1087,10 @@ namespace ScaleApp
 
         private void resetForm()
         {
-            cmbShift.SelectedItem = null;
-            lueOperator.EditValue = null;
-            txtMachine.Text = null;
-            cmbStep.SelectedValue = "None";            
+            //cmbShift.SelectedItem = null;
+            //lueOperator.EditValue = null;
+            //txtMachine.Text = null;
+            //cmbStep.SelectedValue = "None";            
             lueProduct.EditValue = null;
             txtProductName.Text = null;
             tedColorCode.Text = null;
@@ -1099,13 +1113,9 @@ namespace ScaleApp
         private void btnReset_Click(object sender, EventArgs e)
         {
             resetForm();
-            spbSave.Enabled = true;
-        }
 
-        private void cmdPost_Click(object sender, EventArgs e)
-        {
-            
-        }
+            spbSave.Enabled = true;
+        }       
 
         private void SetcmdPost()
         {
@@ -1365,44 +1375,51 @@ namespace ScaleApp
 
         private void spbSave_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
-            SplashScreenManager.Default.SetWaitFormCaption("Updating data...");
-            for (int i = 0; i < 100; i++)
-            {
-                Thread.Sleep(10);
-            }
-            SplashScreenManager.CloseForm();
+            ValidateForm();
+            bool valited = dxValidationProvider1.Validate();
+            MessageBox.Show(valited.ToString());
 
-            if (txtMixID.Text.IsNullOrEmpty())
-            {
-                if (CheckValidForm() == 0)
-                {
-                    return;
-                }
-                else
-                {
-                    CreateMixRaw();
-                    UpdateBomMaterialWeight();
-                }
-            }
-            else
-            {
-                UpdateMixRaw();
-                UpdateBomMaterialWeight();
-            }
+            //SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+            //SplashScreenManager.Default.SetWaitFormCaption("Updating data...");
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    Thread.Sleep(10);
+            //}
+            //SplashScreenManager.CloseForm();
+
+            //if (txtMixID.Text.IsNullOrEmpty())
+            //{
+            //    if (CheckValidForm() == 0)
+            //    {
+            //        return;
+            //    }
+            //    else
+            //    {
+            //        CreateMixRaw();
+            //        UpdateBomMaterialWeight();
+            //    }
+            //}
+            //else
+            //{
+            //    UpdateMixRaw();
+            //    UpdateBomMaterialWeight();
+            //}
         }
 
         private void spbPost_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
-            SplashScreenManager.Default.SetWaitFormCaption("Posting data...");
-            for (int i = 0; i < 100; i++)
+            if (XtraMessageBox.Show("Chú ý : Khi post Mix Lot bạn sẽ không thể sửa dữ liệu. Bạn có muốn post Mix Lot này?", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                Thread.Sleep(10);
-            }
-            SplashScreenManager.CloseForm();
+                SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+                SplashScreenManager.Default.SetWaitFormCaption("Posting data...");
+                for (int i = 0; i < 100; i++)
+                {
+                    Thread.Sleep(10);
+                }
+                SplashScreenManager.CloseForm();
 
-            UpdatePosted();
+                UpdatePosted();
+            }            
         }
 
         private void spbReset_Click(object sender, EventArgs e)
@@ -1462,7 +1479,7 @@ namespace ScaleApp
                     cmd.Parameters.AddWithValue("@materialcode", view.GetRowCellValue(i, "materialcode"));
                     cmd.Parameters.AddWithValue("@materialname", view.GetRowCellValue(i, "materialname"));
                     cmd.Parameters.AddWithValue("@quantity", view.GetRowCellValue(i, "Quantity"));
-                    cmd.Parameters.AddWithValue("@scaleweight", view.GetRowCellValue(i, "Total"));
+                    cmd.Parameters.AddWithValue("@scaleweight", (view.GetRowCellValue(i, "Total").IsNullOrEmpty()) ? DBNull.Value : view.GetRowCellValue(i, "Total"));
                     cmd.Parameters.AddWithValue("@mixbarcode", qrMixLotID.Text);
 
                     cmd.ExecuteNonQuery();
@@ -1474,5 +1491,42 @@ namespace ScaleApp
                 XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }        
+
+        private void ValidateForm()
+        {
+            //Validate Operator
+            ConditionValidationRule notEqualsValidationRule = new ConditionValidationRule();
+            notEqualsValidationRule.ConditionOperator = ConditionOperator.IsNotBlank;            
+            notEqualsValidationRule.ErrorText = "Chọn dữ liệu";
+            notEqualsValidationRule.ErrorType = ErrorType.Critical;            
+
+            //Validate Machine
+            ConditionValidationRule notEmptyValidationRule = new ConditionValidationRule();            
+            notEmptyValidationRule.ConditionOperator = ConditionOperator.IsNotBlank;
+            notEmptyValidationRule.ErrorText = "Nhập dữ liệu";
+            notEqualsValidationRule.ErrorType = ErrorType.Critical;
+
+            //Validate follow Recyled Lot
+            CompareAgainstControlValidationRule compareValidationRule = new CompareAgainstControlValidationRule();
+            compareValidationRule.Control = bteWeightRe;
+            compareValidationRule.CompareControlOperator = CompareControlOperator.NotEquals;
+            compareValidationRule.ErrorText = "Please enter a value that equals to the first editor's value";
+
+            dxValidationProvider1.SetValidationRule(lueOperator, notEqualsValidationRule);
+            dxValidationProvider1.SetIconAlignment(lueOperator, ErrorIconAlignment.MiddleRight);
+
+            dxValidationProvider1.SetValidationRule(lueProduct, notEqualsValidationRule);
+            dxValidationProvider1.SetIconAlignment(lueProduct, ErrorIconAlignment.MiddleRight);
+
+            dxValidationProvider1.SetValidationRule(txtMachine, notEmptyValidationRule);
+            dxValidationProvider1.SetIconAlignment(txtMachine, ErrorIconAlignment.MiddleRight);
+
+            dxValidationProvider1.SetValidationRule(bteWeightRM, notEmptyValidationRule);
+            dxValidationProvider1.SetIconAlignment(bteWeightRM, ErrorIconAlignment.MiddleRight);
+
+            //dxValidationProvider1.SetValidationRule(txtReason, compareValidationRule);
+            //dxValidationProvider1.SetIconAlignment(txtReason, ErrorIconAlignment.MiddleRight);
+            
+        }
     }
 }

@@ -64,10 +64,7 @@ namespace ScaleApp
         private void connectDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.IsMdiContainer = true;
-            frmConnectDB frmConnect = new frmConnectDB();
-            frmConnect.TopLevel = false;
-            frmConnect.Parent = this;
-            frmConnect.Show();
+            frmLogin frmLogin = new frmLogin();            
         }
 
         private void cookiesStationToolStripMenuItem_Click(object sender, EventArgs e)

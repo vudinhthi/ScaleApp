@@ -18,7 +18,14 @@ namespace ScaleApp
         {
             InitializeComponent();
             LoginUserControl myControl = new LoginUserControl();
-            DevExpress.XtraEditors.XtraDialog.Show(myControl, "Sign in", MessageBoxButtons.OKCancel);
+            if (DevExpress.XtraEditors.XtraDialog.Show(myControl, "Sign in", MessageBoxButtons.OKCancel) == DialogResult.OK) 
+            {
+                MessageBox.Show("You pressed Ok");
+            }
+            else
+            {
+                MessageBox.Show("You pressed Cancel");
+            }
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
@@ -34,8 +41,11 @@ namespace ScaleApp
         {
             LayoutControl lc = new LayoutControl();
             lc.Dock = DockStyle.Fill;
+            
             TextEdit teLogin = new TextEdit();
             TextEdit tePassword = new TextEdit();
+            tePassword.Properties.UseSystemPasswordChar = true;
+
             CheckEdit ceKeep = new CheckEdit() { Text = "Keep me signed in" };
             SeparatorControl separatorControl = new SeparatorControl();
             lc.AddItem(String.Empty, teLogin).TextVisible = false;

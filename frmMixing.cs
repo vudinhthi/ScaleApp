@@ -1375,35 +1375,35 @@ namespace ScaleApp
 
         private void spbSave_Click(object sender, EventArgs e)
         {
-            ValidateForm();
-            bool valited = dxValidationProvider1.Validate();
-            MessageBox.Show(valited.ToString());
+            //ValidateForm();
+            //bool valited = dxValidationProvider1.Validate();
+            //MessageBox.Show(valited.ToString());
 
-            //SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
-            //SplashScreenManager.Default.SetWaitFormCaption("Updating data...");
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    Thread.Sleep(10);
-            //}
-            //SplashScreenManager.CloseForm();
+            SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+            SplashScreenManager.Default.SetWaitFormCaption("Updating data...");
+            for (int i = 0; i < 100; i++)
+            {
+                Thread.Sleep(10);
+            }
+            SplashScreenManager.CloseForm();
 
-            //if (txtMixID.Text.IsNullOrEmpty())
-            //{
-            //    if (CheckValidForm() == 0)
-            //    {
-            //        return;
-            //    }
-            //    else
-            //    {
-            //        CreateMixRaw();
-            //        UpdateBomMaterialWeight();
-            //    }
-            //}
-            //else
-            //{
-            //    UpdateMixRaw();
-            //    UpdateBomMaterialWeight();
-            //}
+            if (txtMixID.Text.IsNullOrEmpty())
+            {
+                if (CheckValidForm() == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    CreateMixRaw();
+                    UpdateBomMaterialWeight();
+                }
+            }
+            else
+            {
+                UpdateMixRaw();
+                UpdateBomMaterialWeight();
+            }
         }
 
         private void spbPost_Click(object sender, EventArgs e)
@@ -1504,7 +1504,7 @@ namespace ScaleApp
             ConditionValidationRule notEmptyValidationRule = new ConditionValidationRule();            
             notEmptyValidationRule.ConditionOperator = ConditionOperator.IsNotBlank;
             notEmptyValidationRule.ErrorText = "Nhập dữ liệu";
-            notEqualsValidationRule.ErrorType = ErrorType.Critical;
+            notEmptyValidationRule.ErrorType = ErrorType.Critical;
 
             //Validate follow Recyled Lot
             CompareAgainstControlValidationRule compareValidationRule = new CompareAgainstControlValidationRule();

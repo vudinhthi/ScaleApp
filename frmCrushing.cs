@@ -540,17 +540,12 @@ namespace ScaleApp
             cmbLostType.SelectedItem = null;
             cmbOperator.EditValue = null;
             txtMachine.Text = null;
-            cmbStep.SelectedValue = "None";
-            //cmbProduct.SelectedValue = "None";
-            //cmbColor.SelectedValue = "None";
+            cmbStep.SelectedValue = "None";            
             lueProduct.EditValue = null;
             tedColorCode.Text = null;
-            tedColor.Text = null;
-            //cmbMaterial.SelectedValue = "None";
+            tedColor.Text = null;            
             lueMaterial.EditValue = null;
-            lueMixId.EditValue = null;
-            //cmbMixId.SelectedValue = 0;
-            //txtWeightCrushed.Text = null;
+            lueMixId.EditValue = null;            
             txtWeightRe.Text = null;
             txtCrushDate.Text = null;
             txtCrushID.Text = null;
@@ -731,12 +726,23 @@ namespace ScaleApp
 
         private void lueMixId_EditValueChanged(object sender, EventArgs e)
         {
-            lueProduct.EditValue = lueMixId.GetColumnValue("ProductName");
-            tedProductName.Text = lueMixId.GetColumnValue("ProductName1").ToString();
-            tedColorCode.Text = lueMixId.GetColumnValue("ColorName").ToString();
-            tedColor.Text = lueMixId.GetColumnValue("ColorName1").ToString();
-            txtMachineMix.Text = lueMixId.GetColumnValue("MachineName").ToString();
-            cmbStep.SelectedValue = lueMixId.GetColumnValue("StepName");
+            if (lueMixId.EditValue.IsNullOrEmpty())
+            {
+                lueProduct.EditValue = null;
+                tedProductName.Text = null;
+                tedColorCode.Text = null;
+                tedColor.Text = null;
+                txtMachineMix.Text = null;
+            }
+            else
+            {
+                lueProduct.EditValue = lueMixId.GetColumnValue("ProductName");
+                tedProductName.Text = lueMixId.GetColumnValue("ProductName1").ToString();
+                tedColorCode.Text = lueMixId.GetColumnValue("ColorName").ToString();
+                tedColor.Text = lueMixId.GetColumnValue("ColorName1").ToString();
+                txtMachineMix.Text = lueMixId.GetColumnValue("MachineName").ToString();
+                cmbStep.SelectedValue = lueMixId.GetColumnValue("StepName");
+            }            
         }
 
         private void LoadLookUpProduct()

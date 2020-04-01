@@ -370,10 +370,7 @@ namespace ScaleApp
                     SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                     SqlDa.Fill(ds);
                 }
-                DataRow blankRow = ds.Tables[0].NewRow();
-                //blankRow["ProductCode"] = "None";
-                //blankRow["ProductName"] = "";
-                //ds.Tables[0].Rows.InsertAt(blankRow, 0);
+                DataRow blankRow = ds.Tables[0].NewRow();                
 
                 cmbProduct.DataSource = ds.Tables[0];
                 cmbProduct.DisplayMember = "ProductName";

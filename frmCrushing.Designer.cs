@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator2 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCrushing));
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -526,9 +526,9 @@
             this.qrCodeCrush.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.tablePanel4.SetRow(this.qrCodeCrush, 1);
             this.qrCodeCrush.Size = new System.Drawing.Size(212, 106);
-            qrCodeGenerator2.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
-            qrCodeGenerator2.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
-            this.qrCodeCrush.Symbology = qrCodeGenerator2;
+            qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
+            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
+            this.qrCodeCrush.Symbology = qrCodeGenerator1;
             this.qrCodeCrush.TabIndex = 25;
             // 
             // txtPosted
@@ -672,7 +672,7 @@
             this.gridControl1.Location = new System.Drawing.Point(12, 396);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1283, 378);
+            this.gridControl1.Size = new System.Drawing.Size(1457, 378);
             this.gridControl1.TabIndex = 56;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -907,7 +907,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1307, 781);
+            this.ClientSize = new System.Drawing.Size(1481, 781);
             this.Controls.Add(this.tablePanel5);
             this.Controls.Add(this.cboComPort);
             this.Controls.Add(this.spbScale);

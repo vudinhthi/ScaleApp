@@ -510,7 +510,7 @@ namespace ScaleApp
                 gridView2.Columns["Posted"].VisibleIndex = 9;
 
                 gridView2.Columns["Id"].Width = 50;
-                gridView2.Columns["CreateTime"].Width = 80;
+                gridView2.Columns["CreateTime"].Width = 120;
                 gridView2.Columns["MixBacode"].Width = 230;
                 gridView2.Columns["WeightRunner"].Width = 100;
                 gridView2.Columns["WeightDefect"].Width = 100;
@@ -519,6 +519,9 @@ namespace ScaleApp
                 gridView2.Columns["WeightRecycle"].Width = 100;
                 gridView2.Columns["WeightCookie"].Width = 100;
                 gridView2.Columns["Posted"].Width = 50;
+
+                gridView2.Columns["CreateTime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                gridView2.Columns["CreateTime"].DisplayFormat.FormatString = "MM/dd/yyyy hh:mm:ss";
 
                 gridView2.OptionsBehavior.Editable = false;
             }

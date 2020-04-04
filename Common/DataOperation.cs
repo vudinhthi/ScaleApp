@@ -29,15 +29,21 @@ namespace ScaleApp.Common
 
         }
 
-        public static void ConnectToDB()
+        public static int ConnectToDB()
         {
-            conn = new SqlConnection();   //Khởi tạo đối tượng
-            conn.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ColorMix;Persist Security Info=True;User ID=sa;Password=12345678;Connect Timeout=30";
-            conn.Open();                  //Mở kết nối
-            //Kiểm tra kết nối
-            if (conn.State == ConnectionState.Closed)
-                MessageBox.Show("Opps. Fail to connect to database!");           
-
+            string conStr = "Data Source=server210;Initial Catalog=ColorMix;Persist Security Info=false;User ID=sa;Password=Fdw24$110";
+            using (SqlConnection connection = new SqlConnection(conStr))
+            {
+                try
+                {
+                    connection.Open();
+                    return 1;
+                }
+                catch (SqlException)
+                {
+                    return 0;
+                }
+            }
         }
 
         public static string GetConnectionString(int db)

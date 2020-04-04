@@ -672,7 +672,7 @@
             this.gridControl1.Location = new System.Drawing.Point(12, 396);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1283, 378);
+            this.gridControl1.Size = new System.Drawing.Size(1457, 378);
             this.gridControl1.TabIndex = 56;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -682,7 +682,6 @@
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
             // 
             // tablePanel1
@@ -908,7 +907,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1307, 781);
+            this.ClientSize = new System.Drawing.Size(1481, 781);
             this.Controls.Add(this.tablePanel5);
             this.Controls.Add(this.cboComPort);
             this.Controls.Add(this.spbScale);

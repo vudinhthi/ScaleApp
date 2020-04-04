@@ -377,7 +377,7 @@
             this.gridControl1.Location = new System.Drawing.Point(13, 267);
             this.gridControl1.MainView = this.gridView2;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(838, 299);
+            this.gridControl1.Size = new System.Drawing.Size(1402, 299);
             this.gridControl1.TabIndex = 16;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -387,7 +387,6 @@
             // 
             this.gridView2.GridControl = this.gridControl1;
             this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView2_RowClick);
             // 
             // cboComPort
@@ -443,7 +442,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(863, 578);
+            this.ClientSize = new System.Drawing.Size(1427, 578);
             this.Controls.Add(this.tedRealWeight);
             this.Controls.Add(this.cmbMixId);
             this.Controls.Add(this.spbScale);

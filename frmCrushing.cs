@@ -969,6 +969,7 @@ namespace ScaleApp
                 gridView1.Columns["Posted"].VisibleIndex = 14;
 
                 gridView1.Columns["CrushRawId"].Width = 40;
+                gridView1.Columns["CreateTime"].Width = 120;
                 gridView1.Columns["StepName"].Width = 60;
                 gridView1.Columns["OperatorName"].Width = 100;
                 //gridView1.Columns["ProductName"].Width = 180;                
@@ -981,6 +982,9 @@ namespace ScaleApp
                 gridView1.Columns["RecycledID"].Width = 150;
                 gridView1.Columns["MixBacode"].Width = 150;
                 gridView1.Columns["Posted"].Width = 40;
+
+                gridView1.Columns["CreateTime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                gridView1.Columns["CreateTime"].DisplayFormat.FormatString = "MM/dd/yyyy hh:mm:ss";
 
                 gridView1.Columns["WeightRecycle"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
                 gridView1.Columns["WeightRecycle"].DisplayFormat.FormatString = "{0:n3}";

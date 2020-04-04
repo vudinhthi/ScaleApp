@@ -818,7 +818,7 @@ namespace ScaleApp
 
                 //Set column's width of Master GridView
                 gridView2.Columns["MixRawId"].Width = 40;                
-                gridView2.Columns["CreateTime"].Width = 60;
+                gridView2.Columns["CreateTime"].Width = 120;
                 gridView2.Columns["MixBacode"].Width = 220;                
                 gridView2.Columns["ShiftName"].Width = 40;
                 gridView2.Columns["OperatorName"].Width = 100;
@@ -832,6 +832,9 @@ namespace ScaleApp
                 gridView2.Columns["Posted"].Width = 40;
 
                 //Display format for column
+                gridView2.Columns["CreateTime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                gridView2.Columns["CreateTime"].DisplayFormat.FormatString = "MM/dd/yyyy hh:mm:ss";
+
                 gridView2.Columns["ReRatio"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
                 gridView2.Columns["ReRatio"].DisplayFormat.FormatString = "{0:p2}";
 

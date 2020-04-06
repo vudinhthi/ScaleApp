@@ -176,7 +176,7 @@ namespace ScaleApp
                 if (i != 0)
                 {
                     XtraMessageBox.Show("Save Mixing Raw successful !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadGridControl1();
+                    LoadGridControl1();                    
                 }
             }
             catch (SqlException sqlEx)
@@ -837,6 +837,8 @@ namespace ScaleApp
 
                 gridView2.Columns["ReRatio"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
                 gridView2.Columns["ReRatio"].DisplayFormat.FormatString = "{0:p2}";
+                
+                gridView2.FocusedRowHandle = gridView2.DataRowCount - 1;
 
                 //Bind data to GridView2 and attachment to the GridView1 as a Detail
                 GridView gridView3 = new GridView(gridControl1);
@@ -1378,7 +1380,7 @@ namespace ScaleApp
             //ValidateForm();
             //bool valited = dxValidationProvider1.Validate();
             //MessageBox.Show(valited.ToString());
-
+            
             SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
             SplashScreenManager.Default.SetWaitFormCaption("Updating data...");
             for (int i = 0; i < 100; i++)
@@ -1404,6 +1406,8 @@ namespace ScaleApp
                 UpdateMixRaw();
                 UpdateBomMaterialWeight();
             }
+
+
         }
 
         private void spbPost_Click(object sender, EventArgs e)

@@ -851,25 +851,9 @@ namespace ScaleApp
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
-            SqlConnection conn = new SqlConnection(connStr);
-
-            try
-            {
-                //SqlDataAdapter SqlDaMixRaw = new SqlDataAdapter("sp_getFullMixRaws", conn);
-                //SqlDaMixRaw.SelectCommand.CommandType = CommandType.StoredProcedure;
-                //SqlDaMixRaw.Fill(ds, "MixRaw");
-
-                SqlDataAdapter SqlDaCrush = new SqlDataAdapter("sp_getFullCrushRaws", conn);
-                SqlDaCrush.SelectCommand.CommandType = CommandType.StoredProcedure;
-                SqlDaCrush.Fill(ds, "CrushRaw");
-                ExportDataSetToExcel(ds, "");
-            }
-            catch (Exception ex)
-            {
-                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            frmDateRange frmDate = new frmDateRange();
+            frmDate.ExportName = 2;
+            frmDate.Show();
         }
 
         private bool ExportDataSetToExcel(DataSet ds, string filename)
@@ -1114,6 +1098,30 @@ namespace ScaleApp
             _serialPort.DataReceived += SerialPortOnDataReceived;       //<-- this event happens everytime when new data is received by the ComPort
             _serialPort.Open();     //<-- make the comport listen
             txtScaleWeight.Text = "Scaling... " + _serialPort.PortName + "...\r\n";
-        }        
+        }
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            GridView gridView = sender as GridView;
+            cmbShift.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ShiftName"]);
+            cmbLostType.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["LossTypeName"]);
+            cmbOperator.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["OperatorCode"]);
+            txtMachine.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MachineName"]).ToString();
+            cmbStep.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["StepName"]);
+            lueProduct.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);
+            tedColorCode.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ColorCode"]).ToString();
+            lueMixId.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]);
+            lueMaterial.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MaterialCode"]);
+            txtWeightRe.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightRecycle"]).ToString();
+            qrCodeCrush.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["RecycledID"]).ToString();
+            txtCrushDate.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]).ToString();
+            txtCrushID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CrushRawId"]).ToString();
+            txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
+
+            txtWeightRe.Properties.DisplayFormat.FormatType = FormatType.Numeric;
+            txtWeightRe.Properties.DisplayFormat.FormatString = "{0:n3}";
+
+            SetcmdPost();
+        }
     }
 }

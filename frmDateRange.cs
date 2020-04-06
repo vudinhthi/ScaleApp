@@ -28,6 +28,30 @@ namespace ScaleApp
             set { this.productId = value; }
         }
 
+        private int exportName;
+
+        public int ExportName
+        {
+            get { return exportName; }
+            set { exportName = value; }
+        }
+
+        private DateTime fromDate;
+        private DateTime toDate;
+
+        public DateTime ToDate
+        {
+            get { return toDate; }
+            set { toDate = value; }
+        }
+
+        public DateTime FromDate
+        {
+            get { return fromDate; }
+            set { fromDate = value; }
+        }
+
+
         public frmDateRange()
         {
             InitializeComponent();
@@ -41,47 +65,90 @@ namespace ScaleApp
             }
             else
             {
-                DataSet ds = new DataSet();
-                String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
-                SqlConnection conn = new SqlConnection(connStr);
+                this.FromDate = (DateTime) dateFromdate.EditValue;
+                this.ToDate = (DateTime) dateTodate.EditValue;
 
-                try
+                switch (exportName)
                 {
-                    SqlDataAdapter SqlDaMixRaw = new SqlDataAdapter();
-                    SqlCommand sqlcmdMixRaw = new SqlCommand("sp_getFullMixRawsEx", conn);
-                    sqlcmdMixRaw.CommandType = CommandType.StoredProcedure;
-                    sqlcmdMixRaw.Parameters.AddWithValue("@fromDate", dateFromdate.EditValue);
-                    sqlcmdMixRaw.Parameters.AddWithValue("@toDate", dateTodate.EditValue);
-                    SqlDaMixRaw.SelectCommand = sqlcmdMixRaw;
-                    SqlDaMixRaw.Fill(ds, "MixRaw");
+                    case 1:
+                        ExportMixing();
+                        break;
 
-                    SqlDataAdapter SqlDaCrush = new SqlDataAdapter();
-                    SqlCommand sqlcmdCrush = new SqlCommand("sp_getFullCrushRawsEx", conn);
-                    sqlcmdCrush.CommandType = CommandType.StoredProcedure;
-                    sqlcmdCrush.Parameters.AddWithValue("@fromDate", dateFromdate.EditValue);
-                    sqlcmdCrush.Parameters.AddWithValue("@toDate", dateTodate.EditValue);
-                    SqlDaCrush.SelectCommand = sqlcmdCrush;
-                    SqlDaCrush.Fill(ds, "CrushRaw");
-
-                    if (!String.IsNullOrEmpty(productId))
-                    {
-                        SqlDataAdapter SqlDa = new SqlDataAdapter();
-                        SqlCommand sqlcmd = new SqlCommand("sp_getMaterialsProduct_Scaled", conn);
-                        sqlcmd.CommandType = CommandType.StoredProcedure;
-                        sqlcmd.Parameters.AddWithValue("@ProductId", productId);
-                        SqlDa.SelectCommand = sqlcmd;
-                        SqlDa.Fill(ds, "MaterialProduct");
-                    }
-                    ExportDataSetToExcel(ds, "");
-
-                    this.Close();
-                    this.Dispose();
-                }
-                catch (Exception ex)
-                {
-                    XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    case 2:
+                        ExportCrushing();
+                        break;
                 }
             }            
+        }
+
+        private void ExportMixing()
+        {
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
+            SqlConnection conn = new SqlConnection(connStr);
+
+            try
+            {
+                SqlDataAdapter SqlDaMixRaw = new SqlDataAdapter();
+                SqlCommand sqlcmdMixRaw = new SqlCommand("sp_getFullMixRawsEx", conn);
+                sqlcmdMixRaw.CommandType = CommandType.StoredProcedure;
+                sqlcmdMixRaw.Parameters.AddWithValue("@fromDate", dateFromdate.EditValue);
+                sqlcmdMixRaw.Parameters.AddWithValue("@toDate", dateTodate.EditValue);
+                SqlDaMixRaw.SelectCommand = sqlcmdMixRaw;
+                SqlDaMixRaw.Fill(ds, "MixRaw");
+
+                //SqlDataAdapter SqlDaCrush = new SqlDataAdapter();
+                //SqlCommand sqlcmdCrush = new SqlCommand("sp_getFullCrushRawsEx", conn);
+                //sqlcmdCrush.CommandType = CommandType.StoredProcedure;
+                //sqlcmdCrush.Parameters.AddWithValue("@fromDate", dateFromdate.EditValue);
+                //sqlcmdCrush.Parameters.AddWithValue("@toDate", dateTodate.EditValue);
+                //SqlDaCrush.SelectCommand = sqlcmdCrush;
+                //SqlDaCrush.Fill(ds, "CrushRaw");
+
+                if (!String.IsNullOrEmpty(productId))
+                {
+                    SqlDataAdapter SqlDa = new SqlDataAdapter();
+                    SqlCommand sqlcmd = new SqlCommand("sp_getMaterialsProduct_Scaled", conn);
+                    sqlcmd.CommandType = CommandType.StoredProcedure;
+                    sqlcmd.Parameters.AddWithValue("@ProductId", productId);
+                    SqlDa.SelectCommand = sqlcmd;
+                    SqlDa.Fill(ds, "MaterialProduct");
+                }
+                ExportDataSetToExcel(ds, "");
+                ds.Clear();
+
+                this.Close();
+                this.Dispose();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ExportCrushing()
+        {
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
+            SqlConnection conn = new SqlConnection(connStr);
+
+            try
+            {
+                SqlDataAdapter SqlDaMixRaw = new SqlDataAdapter();
+                SqlCommand sqlcmdMixRaw = new SqlCommand("sp_getFullCrushRawsEx", conn);
+                sqlcmdMixRaw.CommandType = CommandType.StoredProcedure;
+                sqlcmdMixRaw.Parameters.AddWithValue("@fromDate", dateFromdate.EditValue);
+                sqlcmdMixRaw.Parameters.AddWithValue("@toDate", dateTodate.EditValue);
+                SqlDaMixRaw.SelectCommand = sqlcmdMixRaw;
+                SqlDaMixRaw.Fill(ds, "CrushRaw");
+
+                ExportDataSetToExcel(ds, "");
+                ds.Clear();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void spbCancel_Click(object sender, EventArgs e)
@@ -101,6 +168,14 @@ namespace ScaleApp
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
+                    SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+                    SplashScreenManager.Default.SetWaitFormCaption("Exproting data to Excel...");
+                    for (int i = 0; i < 100; i++)
+                    {
+                        Thread.Sleep(20);
+                    }
+                    SplashScreenManager.CloseForm();
+
                     //Creae an Excel application instance
                     Excel.Application excelApp = new Excel.Application();
 
@@ -125,15 +200,7 @@ namespace ScaleApp
                                 excelWorkSheet.Cells[j + 2, k + 1] = table.Rows[j].ItemArray[k].ToString();
                             }
                         }
-                    }
-
-                    SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
-                    SplashScreenManager.Default.SetWaitFormCaption("Exproting data to Excel...");
-                    for (int i = 0; i < 100; i++)
-                    {
-                        Thread.Sleep(10);
-                    }
-                    SplashScreenManager.CloseForm();
+                    }                                      
 
                     excelWorkBook.SaveAs(dialog.FileName);
                     excelWorkBook.Close();

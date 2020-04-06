@@ -720,5 +720,16 @@ namespace ScaleApp
         {
             tedRealWeight.Text = (Double.Parse(txtScaleWeight.Text) - 2.1966).ToString();
         }
+
+        private void gridView2_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            GridView gridView = sender as GridView;
+
+            txtMixOutId.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Id"]).ToString();
+            txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
+            cmbMixId.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]);
+
+            SetcmdPost();
+        }
     }
 }

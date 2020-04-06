@@ -1083,10 +1083,6 @@ namespace ScaleApp
 
         private void resetForm()
         {
-            //cmbShift.SelectedItem = null;
-            //lueOperator.EditValue = null;
-            //txtMachine.Text = null;
-            //cmbStep.SelectedValue = "None";            
             lueProduct.EditValue = null;
             txtProductName.Text = null;
             tedColorCode.Text = null;

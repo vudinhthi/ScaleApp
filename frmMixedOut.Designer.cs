@@ -426,7 +426,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbMixId.Properties.NullText = "";
             this.cmbMixId.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            this.cmbMixId.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
             this.cmbMixId.Size = new System.Drawing.Size(341, 26);
             this.cmbMixId.TabIndex = 19;
             // 

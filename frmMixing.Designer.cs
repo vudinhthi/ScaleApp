@@ -966,7 +966,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lueRecycled.Properties.NullText = "";
             this.lueRecycled.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            this.lueRecycled.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
             this.lueRecycled.Size = new System.Drawing.Size(394, 26);
             this.lueRecycled.TabIndex = 1;
             this.lueRecycled.EditValueChanged += new System.EventHandler(this.lueRecycled_EditValueChanged);

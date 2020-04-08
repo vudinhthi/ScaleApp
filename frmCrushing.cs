@@ -428,6 +428,8 @@ namespace ScaleApp
                 if (i != 0)
                 {
                     XtraMessageBox.Show("Save Crushing Raw successful !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmdSave.Enabled = false;
+                    cmdPost.Enabled = false;
                     LoadGridControl1();
                 }
             }
@@ -961,10 +963,9 @@ namespace ScaleApp
                 //gridView1.Columns["ColorName"].Width = 170;
                 gridView1.Columns["WeightRecycle"].Width = 80;
                 gridView1.Columns["LossTypeName"].Width = 60;
-                gridView1.Columns["MixBacode"].Width = 150;
+                gridView1.Columns["MixBacode"].Width = 250;
                 gridView1.Columns["MachineName"].Width = 80;
-                gridView1.Columns["RecycledID"].Width = 150;
-                gridView1.Columns["MixBacode"].Width = 150;
+                gridView1.Columns["RecycledID"].Width = 250;                
                 gridView1.Columns["Posted"].Width = 40;
 
                 gridView1.Columns["CreateTime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -1011,9 +1012,16 @@ namespace ScaleApp
 
             if (Button.Kind == ButtonPredefines.OK)
             {                
-                editorWeightRe.Text = (float.Parse(txtScaleWeight.Text) - 1.14).ToString();                
-                editorWeightRe.ToolTipIconType = ToolTipIconType.Information;
-                editorWeightRe.ToolTip = txtScaleWeight.Text + "-1.14";
+                if (!String.IsNullOrEmpty(txtScaleWeight.Text))
+                {
+                    editorWeightRe.Text = (float.Parse(txtScaleWeight.Text) - 1.14).ToString();
+
+                    editorWeightRe.ToolTipIconType = ToolTipIconType.Information;
+                    editorWeightRe.ToolTip = txtScaleWeight.Text + "-1.14";
+                }                
+
+                txtWeightRe.Properties.DisplayFormat.FormatType = FormatType.Numeric;
+                txtWeightRe.Properties.DisplayFormat.FormatString = "{0:n3}";
             }
             else if (Button.Kind == ButtonPredefines.Delete)
             {
@@ -1023,6 +1031,7 @@ namespace ScaleApp
 
         private void spbScale_Click(object sender, EventArgs e)
         {
+            CloseSerialPort();
             timer2.Tick += new EventHandler(Timer2_Tick);
             timer2.Enabled = true;
             ActionScale();
@@ -1036,6 +1045,16 @@ namespace ScaleApp
 
         private void GetComPort()
         {
+            foreach (var portName in SerialPort.GetPortNames())
+            {
+                SerialPort port = new SerialPort(portName);
+                if (port.IsOpen)
+                {
+                    port.Close();
+                    port.Dispose();
+                }
+            }
+
             string[] portNames = SerialPort.GetPortNames();     //<-- Reads all available comPorts
             foreach (var portName in portNames)
             {
@@ -1118,8 +1137,7 @@ namespace ScaleApp
             txtCrushID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CrushRawId"]).ToString();
             txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
 
-            txtWeightRe.Properties.DisplayFormat.FormatType = FormatType.Numeric;
-            txtWeightRe.Properties.DisplayFormat.FormatString = "{0:n3}";
+            txtWeightRe.Properties.Mask.UseMaskAsDisplayFormat = true;
 
             SetcmdPost();
         }

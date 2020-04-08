@@ -55,11 +55,9 @@
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.lblMaterialName = new DevExpress.XtraReports.UI.XRLabel();
-            this.lblColorCode = new DevExpress.XtraReports.UI.XRLabel();
             this.lblItemName = new DevExpress.XtraReports.UI.XRLabel();
             this.lblColorName = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -141,11 +139,9 @@
             this.xrLabel4,
             this.xrLabel5,
             this.lblMaterialName,
-            this.lblColorCode,
             this.lblItemName,
             this.lblColorName,
             this.xrLabel3,
-            this.xrLabel2,
             this.xrLabel1});
             this.Detail.HeightF = 430F;
             this.Detail.Name = "Detail";
@@ -366,22 +362,6 @@
             this.lblMaterialName.Text = "lblMaterialName";
             this.lblMaterialName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
-            // lblColorCode
-            // 
-            this.lblColorCode.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.lblColorCode.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ColorCode]")});
-            this.lblColorCode.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColorCode.LocationFloat = new DevExpress.Utils.PointFloat(1.284891E-05F, 73.15926F);
-            this.lblColorCode.Multiline = true;
-            this.lblColorCode.Name = "lblColorCode";
-            this.lblColorCode.SizeF = new System.Drawing.SizeF(127.0417F, 38.625F);
-            this.lblColorCode.StylePriority.UseBorders = false;
-            this.lblColorCode.StylePriority.UseFont = false;
-            this.lblColorCode.StylePriority.UseTextAlignment = false;
-            this.lblColorCode.Text = "lblColorCode";
-            this.lblColorCode.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
             // lblItemName
             // 
             this.lblItemName.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
@@ -408,10 +388,10 @@
             this.lblColorName.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ColorName]")});
             this.lblColorName.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColorName.LocationFloat = new DevExpress.Utils.PointFloat(127.0417F, 73.15926F);
+            this.lblColorName.LocationFloat = new DevExpress.Utils.PointFloat(8.940697E-06F, 73.15927F);
             this.lblColorName.Multiline = true;
             this.lblColorName.Name = "lblColorName";
-            this.lblColorName.SizeF = new System.Drawing.SizeF(242.9583F, 38.625F);
+            this.lblColorName.SizeF = new System.Drawing.SizeF(370F, 38.62501F);
             this.lblColorName.StylePriority.UseBorders = false;
             this.lblColorName.StylePriority.UseFont = false;
             this.lblColorName.StylePriority.UseTextAlignment = false;
@@ -423,29 +403,15 @@
             this.xrLabel3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(127.0417F, 50.15927F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(8.940697E-06F, 50.15928F);
             this.xrLabel3.Multiline = true;
             this.xrLabel3.Name = "xrLabel3";
-            this.xrLabel3.SizeF = new System.Drawing.SizeF(242.9583F, 23F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(370F, 23F);
             this.xrLabel3.StylePriority.UseBorders = false;
             this.xrLabel3.StylePriority.UseFont = false;
             this.xrLabel3.StylePriority.UseTextAlignment = false;
             this.xrLabel3.Text = "COLOR NAME";
             this.xrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
-            // xrLabel2
-            // 
-            this.xrLabel2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrLabel2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 50.15923F);
-            this.xrLabel2.Multiline = true;
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(127.0417F, 22.99999F);
-            this.xrLabel2.StylePriority.UseBorders = false;
-            this.xrLabel2.StylePriority.UseFont = false;
-            this.xrLabel2.StylePriority.UseTextAlignment = false;
-            this.xrLabel2.Text = "COLOR CODE";
-            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrLabel1
             // 
@@ -513,11 +479,9 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel4;
         private DevExpress.XtraReports.UI.XRLabel xrLabel5;
         private DevExpress.XtraReports.UI.XRLabel lblMaterialName;
-        private DevExpress.XtraReports.UI.XRLabel lblColorCode;
         private DevExpress.XtraReports.UI.XRLabel lblItemName;
         private DevExpress.XtraReports.UI.XRLabel lblColorName;
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;
     }

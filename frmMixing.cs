@@ -53,10 +53,20 @@ namespace ScaleApp
 
         private void GetComPort()
         {
+            foreach (var portName in SerialPort.GetPortNames())
+            {
+                SerialPort port = new SerialPort(portName);
+                if (port.IsOpen)
+                {
+                    port.Close();
+                    port.Dispose();
+                }
+            }
+
             string[] portNames = SerialPort.GetPortNames();     //<-- Reads all available comPorts
             foreach (var portName in portNames)
-            {
-                cboComPort.Items.Add(portName);                  //<-- Adds Ports to combobox
+            {                
+                cboComPort.Items.Add(portName);                  //<-- Adds Ports to combobox                
             }
             cboComPort.SelectedIndex = 0;                        //<-- Selects first entry (convenience purposes)
 
@@ -169,7 +179,9 @@ namespace ScaleApp
                 if (i != 0)
                 {
                     XtraMessageBox.Show("Save Mixing Raw successful !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadGridControl1();
+                    spbPost.Enabled = false;
+                    spbSave.Enabled = false;
+                    LoadGridControl1();                    
                 }
             }
             catch (SqlException sqlEx)
@@ -786,7 +798,6 @@ namespace ScaleApp
                 //Hide unsual columns of master GridView
                 gridView2.Columns["OperatorCode"].VisibleIndex = -1;
                 gridView2.Columns["StepName"].VisibleIndex = -1;
-                //gridView2.Columns["ColorCode"].VisibleIndex = -1;
                 gridView2.Columns["ColorName"].VisibleIndex = -1;
                 gridView2.Columns["StepCode"].VisibleIndex = -1;
                 gridView2.Columns["CrushRawID"].VisibleIndex = -1;
@@ -851,8 +862,23 @@ namespace ScaleApp
                 gridView3.Columns["MixRawId"].VisibleIndex = -1;
                 gridView3.Columns["CreateBy"].VisibleIndex = -1;
 
+                //Orde column of Detail Grid
+                gridView3.Columns["CrushRawId"].VisibleIndex = 0;
+                gridView3.Columns["CreateTime"].VisibleIndex = 1;
+                gridView3.Columns["ShiftName"].VisibleIndex = 2;
+                gridView3.Columns["RecycledID"].VisibleIndex = 3;
+                gridView3.Columns["MixBacode"].VisibleIndex = 4;
+                gridView3.Columns["OperatorName"].VisibleIndex = 5;
+                gridView3.Columns["ColorCode"].VisibleIndex = 6;
+                gridView3.Columns["WeightRecycle"].VisibleIndex = 7;
+                gridView3.Columns["LossTypeName"].VisibleIndex = 8;                
+                gridView3.Columns["MachineName"].VisibleIndex = 9;                
+                gridView3.Columns["Posted"].VisibleIndex = 10;
+
                 //Set column's width of detail GridView
                 gridView3.Columns["CrushRawId"].Width = 40;
+                gridView3.Columns["CreateTime"].Width = 120;
+                gridView3.Columns["ShiftName"].Width = 40;
                 gridView3.Columns["OperatorName"].Width = 100;
                 gridView3.Columns["ColorCode"].Width = 80;
                 gridView3.Columns["WeightRecycle"].Width = 80;
@@ -861,6 +887,9 @@ namespace ScaleApp
                 gridView3.Columns["MachineName"].Width = 80;
                 gridView3.Columns["RecycledID"].Width = 150;
                 gridView3.Columns["Posted"].Width = 40;
+
+                gridView3.Columns["CreateTime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                gridView3.Columns["CreateTime"].DisplayFormat.FormatString = "MM/dd/yyyy hh:mm:ss";
 
                 gridView3.Columns["WeightRecycle"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
                 gridView3.Columns["WeightRecycle"].DisplayFormat.FormatString = "{0:n3}";
@@ -1098,6 +1127,7 @@ namespace ScaleApp
             txtMixID.Text = null;
             bteWeightRM.Text = null;
             bteWeightRe.Text = null;
+            txtReRatio.Text = null;
             txtTotal.Text = null;
             txtTotalMaterial.Text = null;
         }
@@ -1200,8 +1230,7 @@ namespace ScaleApp
                 GridView gridView = sender as GridView;
                 cmbShift.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ShiftName"]);
                 lueOperator.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["OperatorCode"]);
-                lueProduct.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);
-                //var gridCellProductCode = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);
+                lueProduct.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);                
                 tedColorCode.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ColorCode"]);
                 cmbStep.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["StepCode"]);
                 txtMachine.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MachineName"]).ToString();
@@ -1215,6 +1244,11 @@ namespace ScaleApp
                 txtMixDate.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]).ToString();
                 txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
                 txtMixID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]).ToString();
+
+                txtReRatio.Properties.DisplayFormat.FormatType = FormatType.Numeric;
+                txtReRatio.Properties.DisplayFormat.FormatString = "p";
+                txtReRatio.Properties.Mask.UseMaskAsDisplayFormat = true;
+
                 LoadGridControl2(lueProduct.EditValue.ToString(), bteWeightRM.Text);
                 SetcmdPost();
             }
@@ -1444,6 +1478,7 @@ namespace ScaleApp
 
         private void spbScale_Click(object sender, EventArgs e)
         {
+            CloseSerialPort();
             timer2.Tick += new EventHandler(Timer2_Tick);
             timer2.Enabled = true;
             ActionScale();
@@ -1534,26 +1569,50 @@ namespace ScaleApp
                 cmbShift.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ShiftName"]);
                 lueOperator.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["OperatorCode"]);
                 lueProduct.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);
-                //var gridCellProductCode = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);
                 tedColorCode.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ColorCode"]);
                 cmbStep.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["StepCode"]);
                 txtMachine.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MachineName"]).ToString();
                 qrMixLotID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixBacode"]).ToString();
                 bteWeightRM.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightMaterial"]).ToString();
                 bteWeightRe.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightRecycle"]).ToString();
-                txtTotal.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["TotalMaterial"]).ToString();
+                txtTotal.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["TotalMaterial"]).ToString();               
                 txtReRatio.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ReRatio"]).ToString();
                 lueRecycled.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CrushRawID"]);
                 txtReason.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Reason"]).ToString();
                 txtMixDate.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]).ToString();
                 txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
                 txtMixID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]).ToString();
+
+                txtReRatio.Properties.DisplayFormat.FormatType = FormatType.Numeric;
+                txtReRatio.Properties.DisplayFormat.FormatString = "p";
+                txtReRatio.Properties.Mask.UseMaskAsDisplayFormat = true;
+
                 LoadGridControl2(lueProduct.EditValue.ToString(), bteWeightRM.Text);
                 SetcmdPost();
             }
             catch (Exception ex)
             {
                 XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void lueRecycled_EditValueChanged(object sender, EventArgs e)
+        {
+            if (lueRecycled.EditValue.IsNull())
+            {
+                return;
+            }
+            else
+            {
+                if (!lueRecycled.GetColumnValue("StepName").IsNullOrEmpty())
+                {
+                    cmbStep.SelectedValue = lueRecycled.GetColumnValue("StepName").ToString();
+                }
+
+                if (!lueRecycled.GetColumnValue("ProductName").IsNullOrEmpty())
+                {
+                    lueProduct.EditValue = lueRecycled.GetColumnValue("ProductName");
+                }
             }
         }
     }

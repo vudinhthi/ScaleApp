@@ -639,6 +639,16 @@ namespace ScaleApp
 
         private void GetComPort()
         {
+            foreach (var portName in SerialPort.GetPortNames())
+            {
+                SerialPort port = new SerialPort(portName);
+                if (port.IsOpen)
+                {
+                    port.Close();
+                    port.Dispose();
+                }
+            }
+
             string[] portNames = SerialPort.GetPortNames();     //<-- Reads all available comPorts
             foreach (var portName in portNames)
             {
@@ -705,6 +715,7 @@ namespace ScaleApp
 
         private void spbScale_Click(object sender, EventArgs e)
         {
+            CloseSerialPort();
             timer2.Tick += new EventHandler(Timer2_Tick);
             timer2.Enabled = true;
             ActionScale();
@@ -714,12 +725,7 @@ namespace ScaleApp
         {
             CloseSerialPort();
             txtScaleWeight.Text = "Off";
-        }
-
-        private void txtScaleWeight_EditValueChanged(object sender, EventArgs e)
-        {
-            tedRealWeight.Text = (Double.Parse(txtScaleWeight.Text) - 2.1966).ToString();
-        }
+        }        
 
         private void gridView2_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
@@ -730,6 +736,30 @@ namespace ScaleApp
             cmbMixId.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]);
 
             SetcmdPost();
+        }
+
+        private void tedRealWeight_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            ButtonEdit editorWeightRe = (ButtonEdit)sender;
+            EditorButton Button = e.Button;
+
+            if (Button.Kind == ButtonPredefines.OK)
+            {
+                if (!String.IsNullOrEmpty(txtScaleWeight.Text))
+                {
+                    editorWeightRe.Text = (Double.Parse(txtScaleWeight.Text) - 2.1966).ToString();
+
+                    editorWeightRe.ToolTipIconType = ToolTipIconType.Information;
+                    editorWeightRe.ToolTip = txtScaleWeight.Text + "-2.1966";
+                }                
+
+                tedRealWeight.Properties.DisplayFormat.FormatType = FormatType.Numeric;
+                tedRealWeight.Properties.DisplayFormat.FormatString = "{0:n3}";
+            }
+            else if (Button.Kind == ButtonPredefines.Delete)
+            {
+                editorWeightRe.Text = "";
+            }
         }
     }
 }

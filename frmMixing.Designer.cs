@@ -943,7 +943,7 @@
             // 
             // timer2
             // 
-            this.timer2.Interval = 20000;
+            this.timer2.Interval = 10000;
             // 
             // spbScale
             // 
@@ -969,6 +969,7 @@
             this.lueRecycled.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSearch;
             this.lueRecycled.Size = new System.Drawing.Size(394, 26);
             this.lueRecycled.TabIndex = 1;
+            this.lueRecycled.EditValueChanged += new System.EventHandler(this.lueRecycled_EditValueChanged);
             // 
             // txtTotal
             // 
@@ -1125,9 +1126,12 @@
             this.txtReRatio.Properties.Appearance.Options.UseFont = true;
             this.txtReRatio.Properties.Appearance.Options.UseTextOptions = true;
             this.txtReRatio.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtReRatio.Properties.DisplayFormat.FormatString = "{0:P1}";
+            this.txtReRatio.Properties.DisplayFormat.FormatString = "f";
             this.txtReRatio.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtReRatio.Properties.EditFormat.FormatString = "f";
             this.txtReRatio.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtReRatio.Properties.Mask.EditMask = "p";
+            this.txtReRatio.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtReRatio.Properties.ReadOnly = true;
             this.tablePanel3.SetRow(this.txtReRatio, 3);
             this.txtReRatio.Size = new System.Drawing.Size(142, 30);

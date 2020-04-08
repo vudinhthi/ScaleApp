@@ -741,9 +741,13 @@
             this.txtWeightRe.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
-            this.txtWeightRe.Properties.Mask.EditMask = "f";
+            this.txtWeightRe.Properties.DisplayFormat.FormatString = "n3";
+            this.txtWeightRe.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtWeightRe.Properties.EditFormat.FormatString = "n3";
+            this.txtWeightRe.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtWeightRe.Properties.Mask.EditMask = "n3";
             this.txtWeightRe.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtWeightRe.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.txtWeightRe.Properties.ReadOnly = true;
             this.tablePanel1.SetRow(this.txtWeightRe, 2);
             this.txtWeightRe.Size = new System.Drawing.Size(644, 32);
             this.txtWeightRe.TabIndex = 60;
@@ -822,7 +826,7 @@
             // 
             // timer2
             // 
-            this.timer2.Interval = 20000;
+            this.timer2.Interval = 10000;
             // 
             // tablePanel5
             // 

@@ -67,7 +67,7 @@
             this.spbScale = new DevExpress.XtraEditors.SimpleButton();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.cmbMixId = new DevExpress.XtraEditors.LookUpEdit();
-            this.tedRealWeight = new DevExpress.XtraEditors.TextEdit();
+            this.tedRealWeight = new DevExpress.XtraEditors.ButtonEdit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtScaleWeight.Properties)).BeginInit();
@@ -175,7 +175,7 @@
             this.qrCodeMixId.Location = new System.Drawing.Point(471, 93);
             this.qrCodeMixId.Name = "qrCodeMixId";
             this.qrCodeMixId.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
-            this.qrCodeMixId.Size = new System.Drawing.Size(309, 164);
+            this.qrCodeMixId.Size = new System.Drawing.Size(309, 191);
             qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
             qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
             this.qrCodeMixId.Symbology = qrCodeGenerator1;
@@ -227,7 +227,7 @@
             this.WeightRecycle,
             this.WeightCookie,
             this.Posted});
-            this.gridView1.Location = new System.Drawing.Point(16, 267);
+            this.gridView1.Location = new System.Drawing.Point(22, 467);
             this.gridView1.Name = "gridView1";
             this.gridView1.ReadOnly = true;
             this.gridView1.Size = new System.Drawing.Size(835, 92);
@@ -311,16 +311,17 @@
             this.txtScaleWeight.Name = "txtScaleWeight";
             this.txtScaleWeight.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtScaleWeight.Properties.Appearance.Options.UseFont = true;
-            this.txtScaleWeight.Properties.Mask.EditMask = "d";
+            this.txtScaleWeight.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtScaleWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtScaleWeight.Properties.Mask.EditMask = "n";
             this.txtScaleWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtScaleWeight.Size = new System.Drawing.Size(139, 30);
+            this.txtScaleWeight.Size = new System.Drawing.Size(244, 30);
             this.txtScaleWeight.TabIndex = 13;
-            this.txtScaleWeight.EditValueChanged += new System.EventHandler(this.txtScaleWeight_EditValueChanged);
             // 
             // simpleButton2
             // 
             this.simpleButton2.ImageOptions.Image = global::ScaleApp.Properties.Resources.refresh_32x321;
-            this.simpleButton2.Location = new System.Drawing.Point(381, 188);
+            this.simpleButton2.Location = new System.Drawing.Point(381, 215);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(84, 69);
             this.simpleButton2.TabIndex = 15;
@@ -330,7 +331,7 @@
             // simpleButton1
             // 
             this.simpleButton1.ImageOptions.Image = global::ScaleApp.Properties.Resources.exporttoxlsx_32x32;
-            this.simpleButton1.Location = new System.Drawing.Point(284, 188);
+            this.simpleButton1.Location = new System.Drawing.Point(284, 215);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(84, 69);
             this.simpleButton1.TabIndex = 14;
@@ -340,7 +341,7 @@
             // cmdPosted
             // 
             this.cmdPosted.Image = global::ScaleApp.Properties.Resources.Mark_32x32;
-            this.cmdPosted.Location = new System.Drawing.Point(84, 188);
+            this.cmdPosted.Location = new System.Drawing.Point(84, 215);
             this.cmdPosted.Name = "cmdPosted";
             this.cmdPosted.Size = new System.Drawing.Size(62, 69);
             this.cmdPosted.TabIndex = 7;
@@ -350,7 +351,7 @@
             // cmdReset
             // 
             this.cmdReset.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
-            this.cmdReset.Location = new System.Drawing.Point(152, 188);
+            this.cmdReset.Location = new System.Drawing.Point(152, 215);
             this.cmdReset.Name = "cmdReset";
             this.cmdReset.Size = new System.Drawing.Size(62, 69);
             this.cmdReset.TabIndex = 6;
@@ -360,7 +361,7 @@
             // cmdSave
             // 
             this.cmdSave.Image = global::ScaleApp.Properties.Resources.Save_32x32;
-            this.cmdSave.Location = new System.Drawing.Point(16, 188);
+            this.cmdSave.Location = new System.Drawing.Point(16, 215);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(62, 69);
             this.cmdSave.TabIndex = 5;
@@ -374,10 +375,10 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(13, 267);
+            this.gridControl1.Location = new System.Drawing.Point(16, 290);
             this.gridControl1.MainView = this.gridView2;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1402, 299);
+            this.gridControl1.Size = new System.Drawing.Size(1402, 422);
             this.gridControl1.TabIndex = 16;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -401,17 +402,19 @@
             // 
             // spbScale
             // 
+            this.spbScale.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spbScale.Appearance.Options.UseFont = true;
             this.spbScale.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("spbScale.ImageOptions.Image")));
-            this.spbScale.Location = new System.Drawing.Point(390, 135);
+            this.spbScale.Location = new System.Drawing.Point(381, 135);
             this.spbScale.Name = "spbScale";
-            this.spbScale.Size = new System.Drawing.Size(75, 30);
+            this.spbScale.Size = new System.Drawing.Size(84, 73);
             this.spbScale.TabIndex = 18;
             this.spbScale.Text = "Scale";
             this.spbScale.Click += new System.EventHandler(this.spbScale_Click);
             // 
             // timer2
             // 
-            this.timer2.Interval = 20000;
+            this.timer2.Interval = 5000;
             // 
             // cmbMixId
             // 
@@ -429,22 +432,27 @@
             // 
             // tedRealWeight
             // 
-            this.tedRealWeight.Location = new System.Drawing.Point(269, 135);
+            this.tedRealWeight.Location = new System.Drawing.Point(124, 179);
             this.tedRealWeight.Name = "tedRealWeight";
             this.tedRealWeight.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tedRealWeight.Properties.Appearance.Options.UseFont = true;
-            this.tedRealWeight.Properties.Mask.EditMask = "d";
+            this.tedRealWeight.Properties.Appearance.Options.UseTextOptions = true;
+            this.tedRealWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.tedRealWeight.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.tedRealWeight.Properties.Mask.EditMask = "n3";
             this.tedRealWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.tedRealWeight.Properties.ReadOnly = true;
-            this.tedRealWeight.Size = new System.Drawing.Size(115, 30);
+            this.tedRealWeight.Size = new System.Drawing.Size(244, 30);
             this.tedRealWeight.TabIndex = 20;
+            this.tedRealWeight.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.tedRealWeight_ButtonClick);
             // 
             // frmMixedOut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1427, 578);
-            this.Controls.Add(this.tedRealWeight);
+            this.ClientSize = new System.Drawing.Size(1427, 724);
             this.Controls.Add(this.cmbMixId);
             this.Controls.Add(this.spbScale);
             this.Controls.Add(this.cboComPort);
@@ -464,6 +472,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.tedRealWeight);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(50, 50);
@@ -522,6 +531,6 @@
         private DevExpress.XtraEditors.SimpleButton spbScale;
         private System.Windows.Forms.Timer timer2;
         private DevExpress.XtraEditors.LookUpEdit cmbMixId;
-        private DevExpress.XtraEditors.TextEdit tedRealWeight;
+        private DevExpress.XtraEditors.ButtonEdit tedRealWeight;
     }
 }

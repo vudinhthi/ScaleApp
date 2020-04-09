@@ -7,24 +7,22 @@ using System.Runtime.CompilerServices;
 using System.Data;
 using System.Configuration;
 using System.Windows.Forms;
-
+using ScaleApp.Models;
 namespace ScaleApp.Common
 {
-    class DataOperation
+   public class DataOperation
     {
         static SqlConnection conn;
         static SqlCommand cmd = new SqlCommand();
-
+        static DataSet ds = new DataSet();
         // open connection
         public static void connect(int db)
         {
 
             string conStr = ConfigurationManager.ConnectionStrings[db].ToString();
-
             conn = new SqlConnection(conStr);
 
             if (conn.State == ConnectionState.Closed)
-
                 conn.Open();
 
         }
@@ -92,7 +90,74 @@ namespace ScaleApp.Common
             return dt;
 
         }
+        public static void InsertComponent(int db, string spName,int id, string name, string ItemID)
+        {
+            connect(db);
+            using (SqlCommand cmd = new SqlCommand(spName, conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@id", SqlDbType.Int).Value =id;
+                cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = name;
+                cmd.Parameters.Add("@ItemID", SqlDbType.NVarChar).Value = ItemID;
+                cmd.ExecuteNonQuery();
+                disconnect();
+            }
 
+        }
+        public static DataSet SelectComponent(int db,string spName,string itemID)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter();
+                connect(db);
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ItemID", itemID);
+                da.SelectCommand = cmd;
+                da.Fill(ds, "tbComponent");
+                cmd.Dispose();
+                da.Dispose();
+                disconnect();
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+           
+        }
+        public int UpdateComponent()
+        {
+            int result = 0;
+            
+            return result;
+        }
+        public static DataSet SelectSrewsize(int db,string spName,string ItemID)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter();
+                connect(db);
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+               cmd.Parameters.AddWithValue("@ItemID", ItemID);
+                da.SelectCommand = cmd;
+              
+                da.Fill(ds, "tbScrewsize");
+                //cmd.Dispose();
+                //da.Dispose();
+                disconnect();
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
         // thực thi câu lệnh truy vấn insert,delete,update
         public static void ExecuteNonQuery(int db, string sql)
         {
@@ -114,13 +179,10 @@ namespace ScaleApp.Common
             cmd = new SqlCommand(sql, conn);
 
             SqlDataReader dr = cmd.ExecuteReader();
-
             disconnect();
-
             return dr;
-
-        }
-
+        }   
+      
         public static DataSet GetDataSet(int db, string procName, string[] paramName, string[] paramValue)
         {
 

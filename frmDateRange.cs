@@ -77,6 +77,9 @@ namespace ScaleApp
                     case 2:
                         ExportCrushing();
                         break;
+                    case 3:
+                        ExportIncomingCrush();
+                        break;
                 }
             }            
         }
@@ -144,6 +147,25 @@ namespace ScaleApp
 
                 ExportDataSetToExcel(ds, "");
                 ds.Clear();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ExportIncomingCrush()
+        {
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
+            SqlConnection conn = new SqlConnection(connStr);
+
+            try
+            {
+                SqlDataAdapter SqlDaCrush = new SqlDataAdapter("sp_getFullMixOutsEx", conn);
+                SqlDaCrush.SelectCommand.CommandType = CommandType.StoredProcedure;
+                SqlDaCrush.Fill(ds, "Incoming crush");
+                ExportDataSetToExcel(ds, "");
             }
             catch (Exception ex)
             {

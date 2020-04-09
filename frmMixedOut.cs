@@ -35,6 +35,7 @@ namespace ScaleApp
 
         private void frmMixedOut_Load(object sender, EventArgs e)
         {
+            timer2.Interval = ScaleApp.Properties.Settings.Default.TimeScale;
             txtWeight.Text = "0";
             rdbRunner.Checked = true;
             Start_Timer();
@@ -402,6 +403,7 @@ namespace ScaleApp
             cmbMixId.EditValue = null;
             txtWeight.Text = null;
             cmdSave.Enabled = true;
+            cmbMixId.Focus();
         }
 
         private void gridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -557,25 +559,9 @@ namespace ScaleApp
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
-            SqlConnection conn = new SqlConnection(connStr);
-
-            try
-            {
-                //SqlDataAdapter SqlDaMixRaw = new SqlDataAdapter("sp_getFullMixRaws", conn);
-                //SqlDaMixRaw.SelectCommand.CommandType = CommandType.StoredProcedure;
-                //SqlDaMixRaw.Fill(ds, "MixRaw");
-
-                SqlDataAdapter SqlDaCrush = new SqlDataAdapter("sp_getFullMixOuts", conn);
-                SqlDaCrush.SelectCommand.CommandType = CommandType.StoredProcedure;
-                SqlDaCrush.Fill(ds, "CrushRaw");
-                ExportDataSetToExcel(ds, "");
-            }
-            catch (Exception ex)
-            {
-                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            frmDateRange frmDate = new frmDateRange();
+            frmDate.ExportName = 3;
+            frmDate.Show();            
         }
 
         private bool ExportDataSetToExcel(DataSet ds, string filename)
@@ -665,7 +651,7 @@ namespace ScaleApp
         }
 
         private void CloseSerialPort()
-        {
+        {            
             if (_serialPort != null && _serialPort.IsOpen)
                 _serialPort.Close();
             if (_serialPort != null)
@@ -707,10 +693,19 @@ namespace ScaleApp
 
         private void ActionScale()
         {
-            _serialPort = new SerialPort(cboComPort.Text, BaudRate, Parity.None, 8, StopBits.One);       //<-- Creates new SerialPort using the name selected in the combobox
-            _serialPort.DataReceived += SerialPortOnDataReceived;       //<-- this event happens everytime when new data is received by the ComPort
-            _serialPort.Open();     //<-- make the comport listen
-            txtScaleWeight.Text = "Scaling... " + _serialPort.PortName + "...\r\n";
+            try 
+            {
+                //_serialPort = new SerialPort(cboComPort.Text, BaudRate, Parity.None, 8, StopBits.One);       //<-- Creates new SerialPort using the name selected in the combobox
+                _serialPort = new SerialPort(ScaleApp.Properties.Settings.Default.COMPort, BaudRate, Parity.None, 8, StopBits.One);
+                _serialPort.DataReceived += SerialPortOnDataReceived;       //<-- this event happens everytime when new data is received by the ComPort
+                _serialPort.Open();     //<-- make the comport listen
+                txtScaleWeight.Text = "Scaling... " + _serialPort.PortName + "...\r\n";
+            }
+            catch (Exception ex) 
+            {
+                XtraMessageBox.Show(ex.Message + " - Cân đang đóng!" + Environment.NewLine + "Vui lòng tắt form và mở lại để tiếp tục nhập !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CloseSerialPort();
+            }
         }
 
         private void spbScale_Click(object sender, EventArgs e)
@@ -745,7 +740,7 @@ namespace ScaleApp
 
             if (Button.Kind == ButtonPredefines.OK)
             {
-                if (!String.IsNullOrEmpty(txtScaleWeight.Text))
+                if (!String.IsNullOrEmpty(txtScaleWeight.Text) && (txtScaleWeight.Text != "Off"))
                 {
                     editorWeightRe.Text = (Double.Parse(txtScaleWeight.Text) - 2.1966).ToString();
 
@@ -760,6 +755,11 @@ namespace ScaleApp
             {
                 editorWeightRe.Text = "";
             }
+        }
+
+        private void frmMixedOut_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CloseSerialPort();
         }
     }
 }

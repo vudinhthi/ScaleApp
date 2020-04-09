@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator3 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMixedOut));
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -176,9 +176,9 @@
             this.qrCodeMixId.Name = "qrCodeMixId";
             this.qrCodeMixId.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrCodeMixId.Size = new System.Drawing.Size(309, 191);
-            qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
-            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
-            this.qrCodeMixId.Symbology = qrCodeGenerator1;
+            qrCodeGenerator3.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
+            qrCodeGenerator3.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
+            this.qrCodeMixId.Symbology = qrCodeGenerator3;
             this.qrCodeMixId.TabIndex = 8;
             // 
             // txtMixOutId
@@ -340,6 +340,7 @@
             // 
             // cmdPosted
             // 
+            this.cmdPosted.Enabled = false;
             this.cmdPosted.Image = global::ScaleApp.Properties.Resources.Mark_32x32;
             this.cmdPosted.Location = new System.Drawing.Point(84, 215);
             this.cmdPosted.Name = "cmdPosted";
@@ -478,6 +479,7 @@
             this.Name = "frmMixedOut";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Incoming Crush Station";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMixedOut_FormClosing);
             this.Load += new System.EventHandler(this.frmMixedOut_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

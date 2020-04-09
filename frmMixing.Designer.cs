@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
-            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery1 = new DevExpress.DataAccess.Sql.StoredProcQuery();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator3 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery3 = new DevExpress.DataAccess.Sql.StoredProcQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMixing));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -192,7 +192,7 @@
             this.cmbShift.Name = "cmbShift";
             this.tablePanel1.SetRow(this.cmbShift, 0);
             this.cmbShift.Size = new System.Drawing.Size(285, 28);
-            this.cmbShift.TabIndex = 3;
+            this.cmbShift.TabIndex = 0;
             // 
             // label2
             // 
@@ -243,7 +243,7 @@
             this.cmbStep.Name = "cmbStep";
             this.tablePanel1.SetRow(this.cmbStep, 2);
             this.cmbStep.Size = new System.Drawing.Size(285, 28);
-            this.cmbStep.TabIndex = 5;
+            this.cmbStep.TabIndex = 2;
             // 
             // label4
             // 
@@ -372,9 +372,9 @@
             this.qrMixLotID.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.tablePanel5.SetRow(this.qrMixLotID, 1);
             this.qrMixLotID.Size = new System.Drawing.Size(398, 169);
-            qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
-            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
-            this.qrMixLotID.Symbology = qrCodeGenerator1;
+            qrCodeGenerator3.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
+            qrCodeGenerator3.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
+            this.qrMixLotID.Symbology = qrCodeGenerator3;
             this.qrMixLotID.TabIndex = 32;
             // 
             // cmbLabelType
@@ -412,10 +412,10 @@
             // 
             this.sqlDataSource1.ConnectionName = "ScaleApp.Properties.Settings.ColorMixConnectionString";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            storedProcQuery1.Name = "sp_getMixRaws";
-            storedProcQuery1.StoredProcName = "sp_getMixRaws";
+            storedProcQuery3.Name = "sp_getMixRaws";
+            storedProcQuery3.StoredProcName = "sp_getMixRaws";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            storedProcQuery1});
+            storedProcQuery3});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // gridView1
@@ -737,7 +737,7 @@
             this.txtMachine.Properties.Appearance.Options.UseFont = true;
             this.tablePanel1.SetRow(this.txtMachine, 3);
             this.txtMachine.Size = new System.Drawing.Size(285, 24);
-            this.txtMachine.TabIndex = 6;
+            this.txtMachine.TabIndex = 3;
             // 
             // lueOperator
             // 
@@ -751,7 +751,7 @@
             this.lueOperator.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.lueOperator.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
             this.lueOperator.Size = new System.Drawing.Size(285, 26);
-            this.lueOperator.TabIndex = 4;
+            this.lueOperator.TabIndex = 1;
             // 
             // tablePanel2
             // 
@@ -861,6 +861,7 @@
             // spbPost
             // 
             this.tablePanel4.SetColumn(this.spbPost, 1);
+            this.spbPost.Enabled = false;
             this.spbPost.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("spbPost.ImageOptions.Image")));
             this.spbPost.Location = new System.Drawing.Point(79, 3);
             this.spbPost.Name = "spbPost";
@@ -943,7 +944,7 @@
             // 
             // timer2
             // 
-            this.timer2.Interval = 10000;
+            this.timer2.Interval = 5000;
             // 
             // spbScale
             // 
@@ -951,7 +952,7 @@
             this.spbScale.Location = new System.Drawing.Point(327, 349);
             this.spbScale.Name = "spbScale";
             this.spbScale.Size = new System.Drawing.Size(89, 81);
-            this.spbScale.TabIndex = 63;
+            this.spbScale.TabIndex = 0;
             this.spbScale.Text = "Scale";
             this.spbScale.Click += new System.EventHandler(this.spbScale_Click);
             // 
@@ -966,6 +967,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lueRecycled.Properties.NullText = "";
             this.lueRecycled.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.lueRecycled.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.lueRecycled.Size = new System.Drawing.Size(394, 26);
             this.lueRecycled.TabIndex = 1;
             this.lueRecycled.EditValueChanged += new System.EventHandler(this.lueRecycled_EditValueChanged);
@@ -1026,7 +1028,7 @@
             this.bteWeightRe.Properties.ReadOnly = true;
             this.tablePanel3.SetRow(this.bteWeightRe, 3);
             this.bteWeightRe.Size = new System.Drawing.Size(246, 30);
-            this.bteWeightRe.TabIndex = 2;
+            this.bteWeightRe.TabIndex = 1;
             this.bteWeightRe.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.bteWeightRe_ButtonClick);
             // 
             // label9
@@ -1164,7 +1166,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
             this.tablePanel3.SetRow(this.txtReason, 4);
             this.txtReason.Size = new System.Drawing.Size(394, 24);
-            this.txtReason.TabIndex = 3;
+            this.txtReason.TabIndex = 2;
             this.txtReason.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtReason_ButtonClick);
             // 
             // tablePanel3
@@ -1237,6 +1239,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Mixing Station";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMixing_FormClosing);
             this.Load += new System.EventHandler(this.frmMixing_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueMaterial.Properties)).EndInit();

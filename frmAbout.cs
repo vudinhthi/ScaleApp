@@ -21,7 +21,14 @@ namespace ScaleApp
 
         private void frmAbout_Load(object sender, EventArgs e)
         {
-            textEdit1.Text = Application.ProductVersion.ToString();  
+            if (ApplicationDeployment.IsNetworkDeployed)
+            {
+                textEdit1.Text = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+            }
+            else
+            {
+                textEdit1.Text = Application.ProductVersion.ToString();
+            }
         }        
 
         private void simpleButton1_Click(object sender, EventArgs e)

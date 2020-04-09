@@ -32,11 +32,13 @@ namespace ScaleApp
 
         public frmCrushing()
         {
+            //serialPortCrush = Program._serialPort;
             InitializeComponent();
         }
 
         private void frmCrushing_Load(object sender, EventArgs e)
         {
+            timer2.Interval = ScaleApp.Properties.Settings.Default.TimeScale;
             Start_Timer();
             GetComPort();
             loadComboBoxOperator();
@@ -552,6 +554,7 @@ namespace ScaleApp
             txtCrushDate.Text = null;
             txtCrushID.Text = null;
             txtPosted.Text = "0";
+            lueMixId.Focus();
         }
 
         private int getLastCrushRawId()
@@ -1012,7 +1015,7 @@ namespace ScaleApp
 
             if (Button.Kind == ButtonPredefines.OK)
             {                
-                if (!String.IsNullOrEmpty(txtScaleWeight.Text))
+                if (!String.IsNullOrEmpty(txtScaleWeight.Text) && (txtScaleWeight.Text != "Off"))
                 {
                     editorWeightRe.Text = (float.Parse(txtScaleWeight.Text) - 1.14).ToString();
 
@@ -1062,16 +1065,16 @@ namespace ScaleApp
             }
             cboComPort.SelectedIndex = 0;                        //<-- Selects first entry (convenience purposes)
 
-            //<-- This block ensures that no exceptions happen
+            //< --This block ensures that no exceptions happen
             if (_serialPort != null && _serialPort.IsOpen)
                 _serialPort.Close();
             if (_serialPort != null)
                 _serialPort.Dispose();
-            //<-- End of Block
+            //< --End of Block
         }
 
         private void CloseSerialPort()
-        {
+        {            
             if (_serialPort != null && _serialPort.IsOpen)
                 _serialPort.Close();
             if (_serialPort != null)
@@ -1113,10 +1116,19 @@ namespace ScaleApp
 
         private void ActionScale()
         {
-            _serialPort = new SerialPort(cboComPort.Text, BaudRate, Parity.None, 8, StopBits.One);       //<-- Creates new SerialPort using the name selected in the combobox
-            _serialPort.DataReceived += SerialPortOnDataReceived;       //<-- this event happens everytime when new data is received by the ComPort
-            _serialPort.Open();     //<-- make the comport listen
-            txtScaleWeight.Text = "Scaling... " + _serialPort.PortName + "...\r\n";
+            try 
+            {
+                //_serialPort = new SerialPort(cboComPort.Text, BaudRate, Parity.None, 8, StopBits.One);  //<-- this event happens everytime when new data is received by the ComPort 
+                _serialPort = new SerialPort(ScaleApp.Properties.Settings.Default.COMPort, BaudRate, Parity.None, 8, StopBits.One);
+                _serialPort.DataReceived += SerialPortOnDataReceived;
+                _serialPort.Open();     //<-- make the comport listen
+                txtScaleWeight.Text = "Scaling... " + _serialPort.PortName + "...\r\n";
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message + " - Cân đang đóng!" + Environment.NewLine + "Vui lòng tắt form và mở lại để tiếp tục nhập !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CloseSerialPort();
+            }         
         }
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -1140,6 +1152,11 @@ namespace ScaleApp
             txtWeightRe.Properties.Mask.UseMaskAsDisplayFormat = true;
 
             SetcmdPost();
+        }
+
+        private void frmCrushing_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CloseSerialPort();
         }
     }
 }

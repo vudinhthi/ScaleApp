@@ -49,8 +49,7 @@ namespace ScaleApp
                 };
                 view.RowUpdated += (sd,oj)=>
                 {
-
-
+                    Debug.WriteLine(ds.Tables["tbComponent"].Rows[oj.RowHandle]["name"].ToString());
                 };
             };
               gridviewComponent.EditFormHidden += (s, o) =>
@@ -75,14 +74,15 @@ namespace ScaleApp
         private void spbSave_Click(object sender, EventArgs e)
         {
             gridviewComponent = gctComponent.MainView as GridView;
-            var currentrow = gridviewComponent.FocusedRowHandle;
-            int id = Convert.ToInt32(gridviewComponent.GetFocusedRowCellValue("id").ToString());
-            string name = gridviewComponent.GetFocusedRowCellValue("name").ToString();
-            string ItemID = gridviewComponent.GetFocusedRowCellValue("ItemID").ToString();
-            DataOperation.InsertComponent(2, "sp_createComponent",id,name,ItemID);
-            ds= DataOperation.SelectComponent(2, "sp_GetComponent","1");
-            gctComponent.DataSource = null;
-            gctComponent.DataSource = ds.Tables["sp_GetComponent"];
+            //var currentrow = gridviewComponent.FocusedRowHandle;
+            //int id = Convert.ToInt32(gridviewComponent.GetFocusedRowCellValue("id").ToString());
+            //string name = gridviewComponent.GetFocusedRowCellValue("name").ToString();
+            //string ItemID = gridviewComponent.GetFocusedRowCellValue("ItemID").ToString();
+            DataTable dt = ds.Tables["tbComponent"];
+            DataOperation.UpdateComponent(2,ref dt, $"SELECT * from Component where ItemID = 1 order by componentID asc");
+            GridControlLoad();
+            //gctComponent.DataSource = null;
+            //  gctComponent.DataSource = ds.Tables[""];
         }
         private void GridControlLoad()
         {

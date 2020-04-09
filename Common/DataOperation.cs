@@ -18,13 +18,11 @@ namespace ScaleApp.Common
         // open connection
         public static void connect(int db)
         {
-
             string conStr = ConfigurationManager.ConnectionStrings[db].ToString();
             conn = new SqlConnection(conStr);
 
             if (conn.State == ConnectionState.Closed)
                 conn.Open();
-
         }
 
         public static int ConnectToDB()
@@ -71,6 +69,7 @@ namespace ScaleApp.Common
                 conn.Close();    //Đóng kết nối
                 conn.Dispose();  //Giải phóng tài nguyên
                 conn = null;
+
             }
         }
 
@@ -128,10 +127,14 @@ namespace ScaleApp.Common
             }
            
         }
-        public int UpdateComponent()
+        public  static  int UpdateComponent(int db,ref DataTable dt,string query)
         {
             int result = 0;
-            
+            string conStr = ConfigurationManager.ConnectionStrings[db].ToString();
+            conn = new SqlConnection(conStr);
+            SqlDataAdapter da = new SqlDataAdapter(query,conn);
+            SqlCommandBuilder cmdbd = new SqlCommandBuilder(da);
+            da.Update(dt);
             return result;
         }
         public static DataSet SelectSrewsize(int db,string spName,string ItemID)
@@ -145,10 +148,9 @@ namespace ScaleApp.Common
                 cmd.CommandType = CommandType.StoredProcedure;
                cmd.Parameters.AddWithValue("@ItemID", ItemID);
                 da.SelectCommand = cmd;
-              
                 da.Fill(ds, "tbScrewsize");
-                //cmd.Dispose();
-                //da.Dispose();
+                cmd.Dispose();
+                da.Dispose();
                 disconnect();
                 return ds;
             }

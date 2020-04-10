@@ -360,7 +360,7 @@
             // 
             // cmdSave
             // 
-            this.cmdSave.Image = global::ScaleApp.Properties.Resources.Save_32x32;
+          //  this.cmdSave.Image = global::ScaleApp.Properties.Resources.Save_32x32;
             this.cmdSave.Location = new System.Drawing.Point(16, 215);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(62, 69);

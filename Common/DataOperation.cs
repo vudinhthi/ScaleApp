@@ -95,7 +95,7 @@ namespace ScaleApp.Common
             using (SqlCommand cmd = new SqlCommand(spName, conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@id", SqlDbType.Int).Value =id;
+                cmd.Parameters.Add("@componentID", SqlDbType.Int).Value =id;
                 cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = name;
                 cmd.Parameters.Add("@ItemID", SqlDbType.NVarChar).Value = ItemID;
                 cmd.ExecuteNonQuery();
@@ -107,7 +107,6 @@ namespace ScaleApp.Common
         {
             try
             {
-                DataTable dt = new DataTable();
                 SqlDataAdapter da = new SqlDataAdapter();
                 connect(db);
                 SqlCommand cmd = new SqlCommand(spName, conn);
@@ -127,27 +126,40 @@ namespace ScaleApp.Common
             }
            
         }
-        public  static  int UpdateComponent(int db,ref DataTable dt,string query)
+        public  static  int UpdateTable(int db,ref DataTable dt,string query)
         {
             int result = 0;
             string conStr = ConfigurationManager.ConnectionStrings[db].ToString();
             conn = new SqlConnection(conStr);
             SqlDataAdapter da = new SqlDataAdapter(query,conn);
             SqlCommandBuilder cmdbd = new SqlCommandBuilder(da);
-            da.Update(dt);
+            result = da.Update(dt);
             return result;
         }
-        public static DataSet SelectSrewsize(int db,string spName,string ItemID)
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="db"></param>
+       /// <param name="spName"></param>
+       /// <param name="ItemID"></param>
+       /// <param name="condition">query theo so luong </param>
+       /// <returns></returns>
+        public static DataSet SelectSrewsize(int db,string spName,string ItemID,int ComponentID,int condition)
         {
             try
             {
-                DataTable dt = new DataTable();
                 SqlDataAdapter da = new SqlDataAdapter();
                 connect(db);
                 SqlCommand cmd = new SqlCommand(spName, conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-               cmd.Parameters.AddWithValue("@ItemID", ItemID);
+                cmd.Parameters.AddWithValue("@ItemID", ItemID);
+                cmd.Parameters.AddWithValue("@ComponentID", ComponentID);
+                cmd.Parameters.AddWithValue("@condition", condition);
                 da.SelectCommand = cmd;
+                if (ds.Tables["tbScrewsize"] != null)
+                {
+                    ds.Tables["tbScrewsize"].Clear();
+                }
                 da.Fill(ds, "tbScrewsize");
                 cmd.Dispose();
                 da.Dispose();

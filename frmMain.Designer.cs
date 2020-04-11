@@ -32,12 +32,13 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.userLoginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mixingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mixedOutStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recycledStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cookiesStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +61,8 @@
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userLoginToolStripMenuItem,
-            this.databaseToolStripMenuItem});
+            this.databaseToolStripMenuItem,
+            this.settingsToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(49, 20);
             this.toolStripMenuItem1.Text = "Login";
@@ -71,6 +73,13 @@
             this.userLoginToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.userLoginToolStripMenuItem.Text = "User";
             this.userLoginToolStripMenuItem.Click += new System.EventHandler(this.connectDatabaseToolStripMenuItem_Click);
+            // 
+            // databaseToolStripMenuItem
+            // 
+            this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
+            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.databaseToolStripMenuItem.Text = "Database";
+            this.databaseToolStripMenuItem.Click += new System.EventHandler(this.databaseToolStripMenuItem_Click);
             // 
             // mixingToolStripMenuItem
             // 
@@ -107,12 +116,12 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // databaseToolStripMenuItem
+            // settingsToolStripMenuItem
             // 
-            this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
-            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.databaseToolStripMenuItem.Text = "Database";
-            this.databaseToolStripMenuItem.Click += new System.EventHandler(this.databaseToolStripMenuItem_Click);
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -145,6 +154,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userLoginToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem databaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
     }
 }
 

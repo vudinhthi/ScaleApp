@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator3 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
-            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery3 = new DevExpress.DataAccess.Sql.StoredProcQuery();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery1 = new DevExpress.DataAccess.Sql.StoredProcQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMixing));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -354,6 +354,7 @@
             this.txtScaleWeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtScaleWeight.Location = new System.Drawing.Point(9, 349);
             this.txtScaleWeight.Name = "txtScaleWeight";
+            this.txtScaleWeight.ReadOnly = true;
             this.txtScaleWeight.Size = new System.Drawing.Size(312, 81);
             this.txtScaleWeight.TabIndex = 25;
             this.txtScaleWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -372,9 +373,9 @@
             this.qrMixLotID.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.tablePanel5.SetRow(this.qrMixLotID, 1);
             this.qrMixLotID.Size = new System.Drawing.Size(398, 169);
-            qrCodeGenerator3.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
-            qrCodeGenerator3.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
-            this.qrMixLotID.Symbology = qrCodeGenerator3;
+            qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
+            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
+            this.qrMixLotID.Symbology = qrCodeGenerator1;
             this.qrMixLotID.TabIndex = 32;
             // 
             // cmbLabelType
@@ -412,10 +413,10 @@
             // 
             this.sqlDataSource1.ConnectionName = "ScaleApp.Properties.Settings.ColorMixConnectionString";
             this.sqlDataSource1.Name = "sqlDataSource1";
-            storedProcQuery3.Name = "sp_getMixRaws";
-            storedProcQuery3.StoredProcName = "sp_getMixRaws";
+            storedProcQuery1.Name = "sp_getMixRaws";
+            storedProcQuery1.StoredProcName = "sp_getMixRaws";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            storedProcQuery3});
+            storedProcQuery1});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // gridView1

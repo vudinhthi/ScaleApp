@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator3 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMixedOut));
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -176,9 +176,9 @@
             this.qrCodeMixId.Name = "qrCodeMixId";
             this.qrCodeMixId.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.qrCodeMixId.Size = new System.Drawing.Size(309, 191);
-            qrCodeGenerator3.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
-            qrCodeGenerator3.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
-            this.qrCodeMixId.Symbology = qrCodeGenerator3;
+            qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
+            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
+            this.qrCodeMixId.Symbology = qrCodeGenerator1;
             this.qrCodeMixId.TabIndex = 8;
             // 
             // txtMixOutId
@@ -315,6 +315,7 @@
             this.txtScaleWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtScaleWeight.Properties.Mask.EditMask = "n";
             this.txtScaleWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtScaleWeight.Properties.ReadOnly = true;
             this.txtScaleWeight.Size = new System.Drawing.Size(244, 30);
             this.txtScaleWeight.TabIndex = 13;
             // 
@@ -342,17 +343,18 @@
             // 
             this.cmdPosted.Enabled = false;
             this.cmdPosted.Image = global::ScaleApp.Properties.Resources.Mark_32x32;
-            this.cmdPosted.Location = new System.Drawing.Point(84, 215);
+            this.cmdPosted.Location = new System.Drawing.Point(152, 215);
             this.cmdPosted.Name = "cmdPosted";
             this.cmdPosted.Size = new System.Drawing.Size(62, 69);
             this.cmdPosted.TabIndex = 7;
             this.cmdPosted.UseVisualStyleBackColor = true;
+            this.cmdPosted.Visible = false;
             this.cmdPosted.Click += new System.EventHandler(this.cmdPosted_Click);
             // 
             // cmdReset
             // 
             this.cmdReset.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
-            this.cmdReset.Location = new System.Drawing.Point(152, 215);
+            this.cmdReset.Location = new System.Drawing.Point(84, 215);
             this.cmdReset.Name = "cmdReset";
             this.cmdReset.Size = new System.Drawing.Size(62, 69);
             this.cmdReset.TabIndex = 6;

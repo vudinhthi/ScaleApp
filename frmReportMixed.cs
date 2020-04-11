@@ -47,8 +47,8 @@ namespace ScaleApp
             LoadDataToReport(LableTypeReport);
             this.Close();
             this.Dispose();
-        }        
-        
+        }
+
         private void SendToPrint()
         {
             var rpt = new rptMixing();
@@ -84,7 +84,7 @@ namespace ScaleApp
                 case "Mixed":
                     var rptMix = new rptMixing();
                     rptMix.DataSource = ds;
-                    //rptMix.CreateDocument();
+                    rptMix.CreateDocument();
                     ReportPrintTool printToolMix = new ReportPrintTool(rptMix);
                     printToolMix.PrintDialog();
                     //documentViewer1.DocumentSource = rptMix;

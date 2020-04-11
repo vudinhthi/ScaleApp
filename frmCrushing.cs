@@ -59,7 +59,7 @@ namespace ScaleApp
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-           txtNow.Text = DateTime.Now.ToString();
+           txtNow.Text = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
         }
 
         private void loadComboBoxOperator()
@@ -384,7 +384,7 @@ namespace ScaleApp
             {
                 if (CheckValidForm() == 0)
                 {
-                    XtraMessageBox.Show("Input data at Mix Lot ID and Weight from Scale!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    XtraMessageBox.Show("Chọn Mix Lot và nhập số cân !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
@@ -429,7 +429,7 @@ namespace ScaleApp
 
                 if (i != 0)
                 {
-                    XtraMessageBox.Show("Save Crushing Raw successful !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show("Lưu dữ liệu thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cmdSave.Enabled = false;
                     cmdPost.Enabled = false;
                     LoadGridControl1();
@@ -437,7 +437,7 @@ namespace ScaleApp
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -474,13 +474,13 @@ namespace ScaleApp
 
                 if (i != 0)
                 {
-                    XtraMessageBox.Show("Save Crushing Raw successful !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show("Lưu dữ liệu thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadGridControl1();
                 }
             }
             catch(Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -659,7 +659,7 @@ namespace ScaleApp
 
             if (txtCrushID.Text.IsNullOrEmpty())
             {
-                XtraMessageBox.Show("Select a Crush Lot to print !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                XtraMessageBox.Show("Chọn Crush Lot để in !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -941,6 +941,7 @@ namespace ScaleApp
                 gridView1.Columns["ProductCode"].VisibleIndex = -1;                
                 gridView1.Columns["CreateBy"].VisibleIndex = -1;
                 gridView1.Columns["MixRawId"].VisibleIndex = -1;
+                gridView1.Columns["Posted"].VisibleIndex = -1;
 
                 gridView1.Columns["CrushRawId"].VisibleIndex = 0;
                 gridView1.Columns["CreateTime"].VisibleIndex = 1;                
@@ -955,8 +956,7 @@ namespace ScaleApp
                 gridView1.Columns["LossTypeName"].VisibleIndex = 11;
                 gridView1.Columns["WeightRecycle"].VisibleIndex = 12;
                 gridView1.Columns["MachineName"].VisibleIndex = 13;                                
-                gridView1.Columns["Posted"].VisibleIndex = 14;
-
+                
                 gridView1.Columns["CrushRawId"].Width = 40;
                 gridView1.Columns["CreateTime"].Width = 120;
                 gridView1.Columns["StepName"].Width = 60;
@@ -972,7 +972,7 @@ namespace ScaleApp
                 gridView1.Columns["Posted"].Width = 40;
 
                 gridView1.Columns["CreateTime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-                gridView1.Columns["CreateTime"].DisplayFormat.FormatString = "MM/dd/yyyy hh:mm:ss";
+                gridView1.Columns["CreateTime"].DisplayFormat.FormatString = "MM/dd/yyyy HH:mm:ss";
 
                 gridView1.Columns["WeightRecycle"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
                 gridView1.Columns["WeightRecycle"].DisplayFormat.FormatString = "{0:n3}";
@@ -980,7 +980,7 @@ namespace ScaleApp
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -998,7 +998,7 @@ namespace ScaleApp
             lueMaterial.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MaterialCode"]);
             txtWeightRe.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightRecycle"]).ToString();
             qrCodeCrush.Text= gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["RecycledID"]).ToString();
-            txtCrushDate.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]).ToString();
+            txtCrushDate.Text = String.Format("{0:MM/dd/yyyy HH:mm:ss}", gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]));
             txtCrushID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CrushRawId"]).ToString();
             txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
 
@@ -1043,7 +1043,7 @@ namespace ScaleApp
         private void Timer2_Tick(object sender, EventArgs e)
         {
             CloseSerialPort();
-            txtScaleWeight.Text = "Off";
+            txtScaleWeight.Text = "0";
         }
 
         private void GetComPort()
@@ -1145,7 +1145,7 @@ namespace ScaleApp
             lueMaterial.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MaterialCode"]);
             txtWeightRe.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightRecycle"]).ToString();
             qrCodeCrush.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["RecycledID"]).ToString();
-            txtCrushDate.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]).ToString();
+            txtCrushDate.Text = String.Format("{0:MM/dd/yyyy HH:mm:ss}", gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]));
             txtCrushID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CrushRawId"]).ToString();
             txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
 

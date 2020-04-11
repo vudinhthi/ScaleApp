@@ -21,8 +21,7 @@ namespace ScaleApp
             DevExpress.UserSkins.BonusSkins.Register();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
-            //_serialPort = new SerialPort("COM2", BaudRate, Parity.None, 8, StopBits.One);
+            Application.Run(new frmMain());            
         }
     }
 }

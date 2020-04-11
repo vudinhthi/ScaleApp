@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator3 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
+            DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCrushing));
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -260,6 +260,7 @@
             this.txtScaleWeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtScaleWeight.Location = new System.Drawing.Point(12, 305);
             this.txtScaleWeight.Name = "txtScaleWeight";
+            this.txtScaleWeight.ReadOnly = true;
             this.txtScaleWeight.Size = new System.Drawing.Size(210, 81);
             this.txtScaleWeight.TabIndex = 27;
             this.txtScaleWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -428,7 +429,6 @@
             this.cmbLostType.Items.AddRange(new object[] {
             "",
             "Recycle",
-            "Defect",
             "Framapur",
             "Framaprene",
             "Mix Material/Contaminated"});
@@ -526,9 +526,9 @@
             this.qrCodeCrush.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
             this.tablePanel4.SetRow(this.qrCodeCrush, 1);
             this.qrCodeCrush.Size = new System.Drawing.Size(212, 106);
-            qrCodeGenerator3.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
-            qrCodeGenerator3.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
-            this.qrCodeCrush.Symbology = qrCodeGenerator3;
+            qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
+            qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version3;
+            this.qrCodeCrush.Symbology = qrCodeGenerator1;
             this.qrCodeCrush.TabIndex = 25;
             // 
             // txtPosted

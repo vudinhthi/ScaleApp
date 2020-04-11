@@ -25,7 +25,6 @@ namespace ScaleApp
             InitializeComponent();
            
         }
-       
         private void frmScrewsize_Load(object sender, EventArgs e)
         {
             //Load data from Screwsize table

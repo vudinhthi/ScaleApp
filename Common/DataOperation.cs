@@ -103,6 +103,21 @@ namespace ScaleApp.Common
             }
 
         }
+        public static void InsertScrewsize(int db, string spName, int id, int value, int ComponentID, string ItemID)
+        {
+            connect(db);
+            using (SqlCommand cmd = new SqlCommand(spName, conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@screwsizeID", SqlDbType.Int).Value = id;
+                cmd.Parameters.Add("@value", SqlDbType.Int).Value = value;
+                cmd.Parameters.Add("@componentID", SqlDbType.Int).Value = ComponentID;
+                cmd.Parameters.Add("@ItemID", SqlDbType.NVarChar).Value = ItemID;
+                cmd.ExecuteNonQuery();
+                disconnect();
+            }
+
+        }
         public static DataSet SelectComponent(int db,string spName,string itemID)
         {
             try
@@ -128,13 +143,22 @@ namespace ScaleApp.Common
         }
         public  static  int UpdateTable(int db,ref DataTable dt,string query)
         {
-            int result = 0;
-            string conStr = ConfigurationManager.ConnectionStrings[db].ToString();
-            conn = new SqlConnection(conStr);
-            SqlDataAdapter da = new SqlDataAdapter(query,conn);
-            SqlCommandBuilder cmdbd = new SqlCommandBuilder(da);
-            result = da.Update(dt);
-            return result;
+            try
+            {
+                int result = 0;
+                string conStr = ConfigurationManager.ConnectionStrings[db].ToString();
+                conn = new SqlConnection(conStr);
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                SqlCommandBuilder cmdbd = new SqlCommandBuilder(da);
+                result = da.Update(dt);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return -1;
+            }
+            
         }
        /// <summary>
        /// 
@@ -171,6 +195,37 @@ namespace ScaleApp.Common
                 MessageBox.Show(ex.Message);
                 return null;
             }
+        }
+        /// <summary>
+        /// select last index Screwsize
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="spName"></param>
+        /// <param name="itemID"></param>
+        /// <returns></returns>
+        public static int SelectLastIndex(int db, string spName)
+        {
+            try
+            {
+                int result = 0;
+                connect(db);
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter();
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                result = Convert.ToInt32(dt.Rows[0][0]);
+                cmd.Dispose();
+                disconnect();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return -1;
+            }
+
         }
         // thực thi câu lệnh truy vấn insert,delete,update
         public static void ExecuteNonQuery(int db, string sql)

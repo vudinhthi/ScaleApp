@@ -29,18 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmComponent));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.gctComponent = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.lkeItem = new DevExpress.XtraEditors.LookUpEdit();
-            this.spbCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.spbSave = new DevExpress.XtraEditors.SimpleButton();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -54,9 +48,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkeItem.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
@@ -68,8 +59,6 @@
             // 
             this.layoutControl1.Controls.Add(this.groupControl1);
             this.layoutControl1.Controls.Add(this.lkeItem);
-            this.layoutControl1.Controls.Add(this.spbCancel);
-            this.layoutControl1.Controls.Add(this.spbSave);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -86,7 +75,7 @@
             this.groupControl1.Controls.Add(this.gctComponent);
             this.groupControl1.Location = new System.Drawing.Point(24, 74);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1142, 673);
+            this.groupControl1.Size = new System.Drawing.Size(1142, 737);
             this.groupControl1.TabIndex = 8;
             this.groupControl1.Text = "Component";
             // 
@@ -105,7 +94,7 @@
             this.gctComponent.Location = new System.Drawing.Point(2, 23);
             this.gctComponent.MainView = this.gridView1;
             this.gctComponent.Name = "gctComponent";
-            this.gctComponent.Size = new System.Drawing.Size(1138, 648);
+            this.gctComponent.Size = new System.Drawing.Size(1138, 712);
             this.gctComponent.TabIndex = 7;
             this.gctComponent.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -131,74 +120,16 @@
             this.lkeItem.StyleController = this.layoutControl1;
             this.lkeItem.TabIndex = 6;
             // 
-            // spbCancel
-            // 
-            this.spbCancel.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.spbCancel.Appearance.Options.UseFont = true;
-            this.spbCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("spbCancel.ImageOptions.Image")));
-            this.spbCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.spbCancel.Location = new System.Drawing.Point(596, 775);
-            this.spbCancel.Name = "spbCancel";
-            this.spbCancel.Size = new System.Drawing.Size(570, 36);
-            this.spbCancel.StyleController = this.layoutControl1;
-            this.spbCancel.TabIndex = 5;
-            this.spbCancel.Text = "Cancel";
-            // 
-            // spbSave
-            // 
-            this.spbSave.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spbSave.Appearance.Options.UseFont = true;
-            this.spbSave.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.spbSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("spbSave.ImageOptions.Image")));
-            this.spbSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.spbSave.Location = new System.Drawing.Point(24, 775);
-            this.spbSave.Name = "spbSave";
-            this.spbSave.Size = new System.Drawing.Size(568, 36);
-            this.spbSave.StyleController = this.layoutControl1;
-            this.spbSave.TabIndex = 4;
-            this.spbSave.Text = "Save";
-            this.spbSave.ToolTip = "Click to save Component";
-            this.spbSave.Click += new System.EventHandler(this.spbSave_Click);
-            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlGroup1,
             this.layoutControlGroup2,
             this.layoutControlGroup3});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(1190, 835);
             this.Root.TextVisible = false;
-            // 
-            // layoutControlGroup1
-            // 
-            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
-            this.layoutControlItem5});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 751);
-            this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1170, 64);
-            this.layoutControlGroup1.TextVisible = false;
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.spbSave;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(572, 40);
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.spbCancel;
-            this.layoutControlItem5.Location = new System.Drawing.Point(572, 0);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(574, 40);
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem5.TextVisible = false;
             // 
             // layoutControlGroup2
             // 
@@ -206,7 +137,7 @@
             this.layoutControlItem3});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 50);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(1170, 701);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(1170, 765);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem3
@@ -214,7 +145,7 @@
             this.layoutControlItem3.Control = this.groupControl1;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(1146, 677);
+            this.layoutControlItem3.Size = new System.Drawing.Size(1146, 741);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -259,9 +190,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkeItem.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
@@ -274,12 +202,7 @@
         #endregion
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
-        private DevExpress.XtraEditors.SimpleButton spbSave;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraEditors.SimpleButton spbCancel;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraEditors.LookUpEdit lkeItem;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;

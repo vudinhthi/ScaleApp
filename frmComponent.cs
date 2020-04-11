@@ -29,15 +29,12 @@ namespace ScaleApp
         {
             InitializeComponent();
         }
-
         private void frmComponent_Load(object sender, EventArgs e)
         {
-
             gvComponent = gctComponent.MainView as GridView;
             gvComponent.OptionsBehavior.Editable = true;
             gvComponent.OptionsSelection.MultiSelect = false;
             gvComponent.OptionsSelection.MultiSelectMode = GridMultiSelectMode.RowSelect;
-            //gctComponent.DataSource = ds.Tables["tbComponent"];
             gctComponent.ForceInitialize();
             gvComponent.OptionsView.NewItemRowPosition = NewItemRowPosition.Bottom;
             gvComponent.OptionsBehavior.EditingMode = GridEditingMode.EditFormInplaceHideCurrentRow;
@@ -52,6 +49,7 @@ namespace ScaleApp
                 if (o.Menu != null)
                 {
                     GridView view = s as GridView;
+                  //  view.Appearance.FocusedRow.BackColor = Color.Cyan;
                     //DXMenuItem DeleteMenu = new DXMenuItem("Delete");
                     //DeleteMenu.ImageOptions.Image = ScaleApp.Properties.Resources.delete_32x321;
                     //DeleteItemClick = (se, ea) =>
@@ -76,7 +74,7 @@ namespace ScaleApp
                         //string ItemID = lkeItem.Text;
                         //Goi form Screwsize
 
-                        frmScrewsize frmScrewsize = new frmScrewsize() {  componentID =Convert.ToInt32(view.GetRowCellValue(index, "componentID")) , ItemID = lkeItem.Text };
+                        frmScrewsize frmScrewsize = new frmScrewsize() {componentID =Convert.ToInt32(view.GetRowCellValue(index, "componentID")) , ItemID = lkeItem.Text };
                         DialogResult result=frmScrewsize.ShowDialog();
                         if (result == DialogResult.OK)
                         {
@@ -92,7 +90,7 @@ namespace ScaleApp
                 GridView view = s as GridView;
                 GridColumn colComponentID = view.Columns["componentID"];
                 GridColumn colName = view.Columns["name"];
-                int rowcount = view.RowCount;
+                int rowcount = view.DataRowCount +1;
                 string componentID = view.GetRowCellValue(o.RowHandle, colComponentID).ToString();
                 if (string.IsNullOrWhiteSpace(componentID))
                 {
@@ -102,6 +100,7 @@ namespace ScaleApp
                 }
                 o.FocusField(colName); //focus field Name
             };
+            #region EditFormShowing
             //gvComponent.EditFormShowing += (s, o) =>
             //{
             //    GridView view = s as GridView;
@@ -130,24 +129,28 @@ namespace ScaleApp
             //        //  Debug.WriteLine(ds.Tables["tbComponent"].Rows[oj.RowHandle]["name"].ToString());
             //    };
             //};
+            #endregion
             gvComponent.EditFormHidden += (s, o) =>
           {
-              GridView view = s as GridView;
-              DataTable tbComponent = ds.Tables["tbComponent"];
-              DataTable tbScrewsize = ds.Tables["tbScrewsize"];
-              //Neu la hang moi thi add vao database
-              if (!view.IsNewItemRow(o.RowHandle))
+              if (o.Result ==EditFormResult.Update)
               {
-                  int result1 = DataOperation.UpdateTable(2, ref tbComponent, $"SELECT * from Component where ItemID = 1 order by componentID asc");
+                  GridView view = s as GridView;
+                  DataTable tbComponent = ds.Tables["tbComponent"];
+                  DataTable tbScrewsize = ds.Tables["tbScrewsize"];
+                  //Neu la hang moi thi add vao database
+                  if (!view.IsNewItemRow(o.RowHandle))
+                  {
+                      int result1 = DataOperation.UpdateTable(2, ref tbComponent, $"SELECT * from Component where ItemID = 1 order by componentID asc");
+                  }
+                  else
+                  {
+                      int id = Convert.ToInt32(o.BindableControls["componentID"].Text);
+                      string name = o.BindableControls["name"].Text;
+                      string itemID = lkeItem.Text;
+                      DataOperation.InsertComponent(2, "sp_createComponent", id, name, itemID);
+                  }
+                  gctComponent.RefreshDataSource();
               }
-              else
-              {
-                  int id = Convert.ToInt32(o.BindableControls["componentID"].Text);
-                  string name = o.BindableControls["name"].Text;
-                  string itemID = lkeItem.Text;
-                  DataOperation.InsertComponent(2, "sp_createComponent", id, name, itemID);
-              }
-              gctComponent.RefreshDataSource();
               // int result2 = DataOperation.UpdateTable(2, ref tbScrewsize, $"SELECT * from Screwsize where ItemID = 1 order by componentID asc");
 
 
@@ -163,24 +166,22 @@ namespace ScaleApp
             //};
 
         }
-
-
         private void spbSave_Click(object sender, EventArgs e)
         {
-            gvComponent = gctComponent.MainView as GridView;
-            //var currentrow = gvComponent.FocusedRowHandle;
-            //int id = Convert.ToInt32(gvComponent.GetFocusedRowCellValue("id").ToString());
-            //string name = gvComponent.GetFocusedRowCellValue("name").ToString();
-            //string ItemID = gvComponent.GetFocusedRowCellValue("ItemID").ToString();
-            DataTable tbComponent = ds.Tables["tbComponent"];
-            DataTable tbScrewsize = ds.Tables["tbScrewsize"];
+            //gvComponent = gctComponent.MainView as GridView;
+            ////var currentrow = gvComponent.FocusedRowHandle;
+            ////int id = Convert.ToInt32(gvComponent.GetFocusedRowCellValue("id").ToString());
+            ////string name = gvComponent.GetFocusedRowCellValue("name").ToString();
+            ////string ItemID = gvComponent.GetFocusedRowCellValue("ItemID").ToString();
+            //DataTable tbComponent = ds.Tables["tbComponent"];
+            //DataTable tbScrewsize = ds.Tables["tbScrewsize"];
 
-            int result1 = DataOperation.UpdateTable(2, ref tbComponent, $"SELECT * from Component where ItemID = 1 order by componentID asc");
-            int result2 = DataOperation.UpdateTable(2, ref tbScrewsize, $"SELECT * from Screwsize where ItemID = 1 order by componentID asc");
-            gctComponent.RefreshDataSource();
-            //GridControlLoad(false);
-            //gctComponent.DataSource = null;
-            //  gctComponent.DataSource = ds.Tables[""];
+            //int result1 = DataOperation.UpdateTable(2, ref tbComponent, $"SELECT * from Component where ItemID = 1 order by componentID asc");
+            //int result2 = DataOperation.UpdateTable(2, ref tbScrewsize, $"SELECT * from Screwsize where ItemID = 1 order by componentID asc");
+            //gctComponent.RefreshDataSource();
+            ////GridControlLoad(false);
+            ////gctComponent.DataSource = null;
+            ////  gctComponent.DataSource = ds.Tables[""];
         }
         private void GridControlLoad(bool isLoading)
         {
@@ -207,7 +208,7 @@ namespace ScaleApp
             DataTable dt = ds.Tables["tbComponent"];
             gctComponent.DataSource = dt;
             gvComponent.OptionsBehavior.AutoPopulateColumns = false;
-            //#region Them editbutton vao gvComponent
+              #region Them editbutton vao gvComponent
             //RepositoryItemButtonEdit repositoryItemButtonEdit = new RepositoryItemButtonEdit();
             //EditorButton add = new EditorButton();
             //EditorButton delete = new EditorButton();
@@ -230,7 +231,7 @@ namespace ScaleApp
             //    GridColumn column = gvComponent.Columns["Commands"];
             //    column.ColumnEdit = repositoryItemButtonEdit;
             //    column.ShowButtonMode = ShowButtonModeEnum.ShowForFocusedRow;
-            //    #endregion
+             #endregion
             //Ẩn cột ItemID
             gvComponent.Columns["ItemID"].VisibleIndex = -1;
             gvComponent.Columns["componentID"].Caption = "ComponentID";
@@ -255,11 +256,61 @@ namespace ScaleApp
             gridview.Columns["componentID"].VisibleIndex = -1;
             gridview.Columns["ItemID"].VisibleIndex = -1;
             gridview.Columns["screwsizeID"].AppearanceHeader.Font = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold);
+            gridview.Columns["screwsizeID"].Caption = "Screw size ID";
+            gridview.Columns["screwsizeID"].OptionsColumn.ReadOnly = true;
             gridview.Columns["value"].AppearanceHeader.Font = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold);
+            gridview.Columns["value"].Caption = "Value";
             gridview.Appearance.Row.Font = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold);
             gvComponent.Columns["componentID"].GroupIndex = 0;
             gvComponent.Columns["componentID"].SortIndex = 0;
-            gvComponent.Columns["componentID"].SortOrder = DevExpress.Data.ColumnSortOrder.Descending;
+            gvComponent.Columns["componentID"].SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
+            gvComponent.ExpandAllGroups();
+            gvComponent.ExpandGroupRow(0);
+            //Method of child view
+            gridview.EditFormPrepared += (s, o) =>
+            {
+                GridView view = s as GridView;
+                GridColumn colscrewsizeID = view.Columns["screwsizeID"];
+                GridColumn colValue = view.Columns["value"];
+                //Lay max screwsizeID 
+                //int rowcount = view.DataRowCount + 1;
+                //var nextindex =Convert.ToInt32(dt.Rows[dt.Rows.Count-1][0]);
+                int nextindex = DataOperation.SelectLastIndex(2, "sp_GetLastScrewsizeID") + 1;
+                string screwsizeID = view.GetRowCellValue(o.RowHandle, colscrewsizeID).ToString();
+                if (string.IsNullOrWhiteSpace(screwsizeID))
+                {
+                    view.SetRowCellValue(o.RowHandle, colscrewsizeID, nextindex);
+                    var IdEdit = o.BindableControls[colscrewsizeID];
+                    IdEdit.Text = nextindex.ToString();
+                }
+                o.FocusField(colValue); //focus field Name
+            };
+            gridview.EditFormHidden += (s, o) =>
+            {
+                if (o.Result == EditFormResult.Update)
+                {
+                    GridView view = s as GridView;
+                    //DataTable tbComponent = ds.Tables["tbComponent"];
+                    DataTable tbScrewsize = ds.Tables["tbScrewsize"];
+                    int componentID = Convert.ToInt32(gvComponent.GetRowCellValue(gvComponent.FocusedRowHandle,"componentID"));
+                    //Neu la hang moi thi add vao database
+                    if (!view.IsNewItemRow(o.RowHandle))
+                    {
+                        int result = DataOperation.UpdateTable(2, ref tbScrewsize, $"SELECT * from Screwsize where ItemID = {lkeItem.Text} and componentID = {componentID}  order by componentID asc");
+                        if (result == -1)
+                        {
+                            MessageBox.Show("Loi roi kia");
+                        }
+                    }
+                    else
+                    {
+                        int id = Convert.ToInt32(o.BindableControls["screwsizeID"].Text);
+                        int value = Convert.ToInt32(o.BindableControls["value"].Text);
+                        DataOperation.InsertScrewsize(2, "sp_createScrewsize", id, value, componentID, lkeItem.Text);
+                    }
+                    gctComponent.RefreshDataSource();
+                }
+            };
         }
     }
 }

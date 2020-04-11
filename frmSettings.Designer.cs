@@ -116,6 +116,7 @@
             0,
             0,
             0});
+            this.spinEdit1.Properties.Mask.EditMask = "n0";
             this.spinEdit1.Properties.MaxValue = new decimal(new int[] {
             20000,
             0,

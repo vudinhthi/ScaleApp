@@ -7,6 +7,7 @@ using DevExpress.XtraSplashScreen;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -36,6 +37,7 @@ namespace ScaleApp
         private void frmMixedOut_Load(object sender, EventArgs e)
         {
             timer2.Interval = ScaleApp.Properties.Settings.Default.TimeScale;
+            //timer2.Interval = int.Parse(ConfigurationManager.AppSettings.Get("TimeScale"));
             txtWeight.Text = "0";
             rdbRunner.Checked = true;
             cmdPosted.Enabled = false;

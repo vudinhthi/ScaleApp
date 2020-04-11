@@ -45,6 +45,7 @@
             // 
             this.ClientSize = new System.Drawing.Size(824, 540);
             this.Controls.Add(this.button1);
+            this.Location = new System.Drawing.Point(40, 40);
             this.Name = "frmCookies";
             this.Text = "FVN - Cookies";
             this.ResumeLayout(false);

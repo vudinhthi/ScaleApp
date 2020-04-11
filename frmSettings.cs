@@ -28,6 +28,7 @@ namespace ScaleApp
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
+            AddUpdateAppSettings("COMPort", cbeCOMPort.EditValue.ToString());
             AddUpdateAppSettings("TimeScale", spinEdit1.Value.ToString());
         }
 
@@ -48,9 +49,9 @@ namespace ScaleApp
                             {
                                 foreach (XmlNode cNode in xnode.ChildNodes)
                                 {
-                                    if (cNode.ChildNodes[0].Attributes[0].Value == key)
+                                    if (cNode.Attributes[0].Value == key)
                                     {
-                                        cNode.Attributes[1].Value = value;
+                                        cNode.ChildNodes[0].InnerXml = value;
                                     }
                                 }
                             }                            
@@ -58,6 +59,10 @@ namespace ScaleApp
                     }
                 }
                 xmlDoc.Save(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
+
+                ConfigurationManager.RefreshSection("appSettings");
+
+                XtraMessageBox.Show("Lưu " + key + " thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex) 
             {
@@ -65,8 +70,27 @@ namespace ScaleApp
             }         
         }
 
+        static void UpdateAppConfig(string key, string value)
+        {
+            System.Xml.XmlDocument xml = new System.Xml.XmlDocument();
+            xml.Load(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
+            System.Xml.XmlNode node;
+            node = xml.SelectSingleNode("configuration/applicationSettings/ScaleApp.Properties.Settings/setting[@name='key']");
+            node.ChildNodes[0].InnerText = value;
+            xml.Save(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
+        }
+
+        static void UpdateConfigSetting(string key, string value)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings[key].Value = value;
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+        }
+
         private void frmSettings_Load(object sender, EventArgs e)
         {
+            cbeCOMPort.EditValue = ScaleApp.Properties.Settings.Default.COMPort;
             spinEdit1.Value = ScaleApp.Properties.Settings.Default.TimeScale;
         }
     }

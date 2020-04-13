@@ -133,6 +133,7 @@
     <Compile Include="Common\DataOperation.cs" />
     <Compile Include="Common\GlobalVariable.cs" />
     <Compile Include="Common\mFunction.cs" />
+    <Compile Include="Common\XmlAccess.cs" />
     <Compile Include="frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,7 +155,7 @@
     <Compile Include="frmCookies.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCookies.Designer.cs">
+    <Compile Include="frmCookies.designer.cs">
       <DependentUpon>frmCookies.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCrushing.cs">
@@ -217,6 +218,8 @@
     <Compile Include="frmScrewsize.Designer.cs">
       <DependentUpon>frmScrewsize.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\ItemClass.cs" />
+    <Compile Include="Models\Reason.cs" />
     <Compile Include="Models\Operator.cs" />
     <Compile Include="Presenters\OperatorPresenter.cs" />
     <Compile Include="Program.cs" />

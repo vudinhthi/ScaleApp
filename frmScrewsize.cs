@@ -11,6 +11,8 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using ScaleApp.Common;
 using DevExpress.XtraGrid.Columns;
+using ScaleApp.Models;
+using System.Diagnostics;
 
 namespace ScaleApp
 {
@@ -27,6 +29,7 @@ namespace ScaleApp
         }
         private void frmScrewsize_Load(object sender, EventArgs e)
         {
+            
             //Load data from Screwsize table
             gvScrewsize = gct_Screwsize.MainView as GridView;
             gvScrewsize.OptionsBehavior.Editable = true;

@@ -128,6 +128,10 @@ namespace ScaleApp.Common
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ItemID", itemID);
                 da.SelectCommand = cmd;
+                if (ds.Tables["tbComponent"] != null)
+                {
+                    ds.Tables["tbComponent"].Clear();
+                }
                 da.Fill(ds, "tbComponent");
                 cmd.Dispose();
                 da.Dispose();

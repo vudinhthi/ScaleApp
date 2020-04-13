@@ -194,7 +194,6 @@ namespace ScaleApp
             {
                 ds.Tables["tbScrewsize"].Clear();
             }
-          
             ds = DataOperation.SelectComponent(2, "sp_GetComponent", "1");
             ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", "1",0,1);
             DataColumn keyColumn = ds.Tables["tbComponent"].Columns["componentID"];

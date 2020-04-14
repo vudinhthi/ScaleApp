@@ -837,14 +837,15 @@ namespace ScaleApp
                 gridView2.Columns["MixRawId"].Width = 40;
                 gridView2.Columns["CreateTime"].Width = 120;
                 gridView2.Columns["MixBacode"].Width = 220;
-                gridView2.Columns["ShiftName"].Width = 40;
+                gridView2.Columns["ShiftName"].Width = 30;
                 gridView2.Columns["OperatorName"].Width = 100;
                 gridView2.Columns["ProductName"].Width = 180;
-                gridView2.Columns["ProductCode"].Width = 180;
-                gridView2.Columns["WeightMaterial"].Width = 80;
-                gridView2.Columns["WeightRecycle"].Width = 80;
-                gridView2.Columns["TotalMaterial"].Width = 80;
-                gridView2.Columns["ReRatio"].Width = 80;
+                gridView2.Columns["ProductCode"].Width = 150;
+                gridView2.Columns["ColorCode"].Width = 60;
+                gridView2.Columns["WeightMaterial"].Width = 70;
+                gridView2.Columns["WeightRecycle"].Width = 70;
+                gridView2.Columns["TotalMaterial"].Width = 70;
+                gridView2.Columns["ReRatio"].Width = 70;
                 gridView2.Columns["MachineName"].Width = 80;
                 gridView2.Columns["Posted"].Width = 40;
 
@@ -853,7 +854,7 @@ namespace ScaleApp
                 gridView2.Columns["CreateTime"].DisplayFormat.FormatString = "MM/dd/yyyy HH:mm:ss";
 
                 gridView2.Columns["ReRatio"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                gridView2.Columns["ReRatio"].DisplayFormat.FormatString = "{0:p2}";
+                gridView2.Columns["ReRatio"].DisplayFormat.FormatString = "{0:p2}";                
 
                 gridView2.MoveFirst();
 
@@ -1312,6 +1313,9 @@ namespace ScaleApp
             }
 
             frmDate.Show();
+
+            //Test chuc nang xuat Excel tu gridView cua DevExpress
+            //ExportExcel("");
         }
 
         private bool ExportExcel(string filename)
@@ -1324,22 +1328,65 @@ namespace ScaleApp
                 dialog.Filter = @"Microsoft Excel|*.xlsx";
 
                 if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    foreach (DevExpress.XtraGrid.Columns.GridColumn col in gridView2.Columns)
-                    {
-                        col.Visible = true;
-                    }
+                {                    
 
                     gridView2.OptionsPrint.ShowPrintExportProgress = true;
                     gridView2.OptionsPrint.AllowCancelPrintExport = true;
+                    gridView2.OptionsPrint.AutoWidth = true;
+
+                    //Hien cac cot trong grid
+                    gridView2.Columns["MixRawId"].VisibleIndex = 0;
+                    gridView2.Columns["MixBacode"].VisibleIndex = 1;
+                    gridView2.Columns["RecycledID"].VisibleIndex = 2;
+                    gridView2.Columns["CreateTime"].VisibleIndex = 3;
+                    gridView2.Columns["ShiftName"].VisibleIndex = 4;
+                    gridView2.Columns["OperatorName"].VisibleIndex = 6;
+                    gridView2.Columns["ProductCode"].VisibleIndex = 6;
+                    gridView2.Columns["ProductName"].VisibleIndex = 7;
+                    gridView2.Columns["ColorCode"].VisibleIndex = 8;
+                    gridView2.Columns["ColorName"].VisibleIndex = 9;
+                    gridView2.Columns["StepName"].VisibleIndex = 10;
+                    gridView2.Columns["WeightMaterial"].VisibleIndex = 11;
+                    gridView2.Columns["WeightRecycle"].VisibleIndex = 12;
+                    gridView2.Columns["TotalMaterial"].VisibleIndex = 13;
+                    gridView2.Columns["ReRatio"].VisibleIndex = 14;
+                    gridView2.Columns["MachineName"].VisibleIndex = 15;
+                    gridView2.Columns["Reason"].VisibleIndex = 16;
 
                     XlsxExportOptions options = new XlsxExportOptions();
-                    options.TextExportMode = TextExportMode.Text;
+                    options.TextExportMode = TextExportMode.Value;
                     options.ExportMode = XlsxExportMode.SingleFilePageByPage;
                     options.SheetName = "Mixing";
 
                     ExportSettings.DefaultExportType = ExportType.Default;
                     gridView2.ExportToXlsx(dialog.FileName, options);
+
+                    //An cac cot trong grid
+                    gridView2.Columns["OperatorCode"].VisibleIndex = -1;
+                    gridView2.Columns["StepName"].VisibleIndex = -1;
+                    gridView2.Columns["ColorName"].VisibleIndex = -1;
+                    gridView2.Columns["StepCode"].VisibleIndex = -1;
+                    gridView2.Columns["CrushRawID"].VisibleIndex = -1;
+                    gridView2.Columns["Reason"].VisibleIndex = -1;
+                    gridView2.Columns["RecycledID"].VisibleIndex = -1;
+                    gridView2.Columns["MaterialCode"].VisibleIndex = -1;
+                    gridView2.Columns["MaterialName"].VisibleIndex = -1;
+                    gridView2.Columns["Posted"].VisibleIndex = -1;
+
+                    //Reorder Columns of MasterGridView
+                    gridView2.Columns["CreateTime"].VisibleIndex = 1;
+                    gridView2.Columns["ShiftName"].VisibleIndex = 2;
+                    gridView2.Columns["OperatorName"].VisibleIndex = 3;
+                    gridView2.Columns["MixBacode"].VisibleIndex = 4;
+                    gridView2.Columns["ProductName"].VisibleIndex = 5;
+                    gridView2.Columns["ProductCode"].VisibleIndex = 6;
+                    gridView2.Columns["ColorCode"].VisibleIndex = 7;
+                    gridView2.Columns["WeightMaterial"].VisibleIndex = 8;
+                    gridView2.Columns["WeightRecycle"].VisibleIndex = 9;
+                    gridView2.Columns["TotalMaterial"].VisibleIndex = 10;
+                    gridView2.Columns["ReRatio"].VisibleIndex = 11;
+                    gridView2.Columns["MachineName"].VisibleIndex = 12;                    
+
                     XtraMessageBox.Show("Successed!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information, DefaultBoolean.True);
 
                     if (File.Exists(dialog.FileName))
@@ -1349,7 +1396,7 @@ namespace ScaleApp
                             Process.Start(dialog.FileName);
                         }
                     }
-                    LoadGridControl1();
+                    //LoadGridControl1();
                 }
             }
             catch (Exception e)
@@ -1661,6 +1708,6 @@ namespace ScaleApp
         private void frmMixing_FormClosing(object sender, FormClosingEventArgs e)
         {
             CloseSerialPort();
-        }
+        }        
     }
 }

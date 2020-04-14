@@ -51,7 +51,6 @@ namespace ScaleApp
             set { fromDate = value; }
         }
 
-
         public frmDateRange()
         {
             InitializeComponent();
@@ -249,6 +248,6 @@ namespace ScaleApp
                 XtraMessageBox.Show("Error: " + e, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return false;
-        }
+        }        
     }
 }

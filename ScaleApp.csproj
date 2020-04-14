@@ -218,6 +218,7 @@
     <Compile Include="frmScrewsize.Designer.cs">
       <DependentUpon>frmScrewsize.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\CookiesClass.cs" />
     <Compile Include="Models\ItemClass.cs" />
     <Compile Include="Models\Reason.cs" />
     <Compile Include="Models\Operator.cs" />

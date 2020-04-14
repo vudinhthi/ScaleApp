@@ -14,6 +14,9 @@ using ScaleApp.Models;
 using ScaleApp.Common;
 using DevExpress.XtraLayout;
 using DevExpress.XtraGrid.Views.Grid;
+using System.Diagnostics;
+using DevExpress.Export;
+using DevExpress.XtraPrinting;
 
 namespace ScaleApp
 {
@@ -55,6 +58,8 @@ namespace ScaleApp
                 }
             }
             InitLookupEdit();
+            InitDataGridview();
+        
         }
 
       
@@ -87,7 +92,7 @@ namespace ScaleApp
             }
             ds = DataOperation.SelectComponent(2, "sp_GetComponent", lkeItem.EditValue.ToString());
             ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", lkeItem.EditValue.ToString(), 0, 1);
-           DataView dvScrewsize, dvComponent;
+         //  DataView dvScrewsize, dvComponent;
            // DataViewManager dvm = new DataViewManager(ds);
           //  dvComponent = dvm.CreateDataView(ds.Tables["tbComponent"]);
           //  dvScrewsize = dvm.CreateDataView(ds.Tables["tbScrewsize"]);
@@ -102,6 +107,7 @@ namespace ScaleApp
                 lkeComponent.Properties.Columns["ItemID"].Visible = false;
                 lkeComponent.Properties.Columns["componentID"].Caption = "ComponentID";
                 lkeComponent.Properties.Columns["name"].Caption = "Name";
+            lkeComponent.Properties.Columns["name"].Width = 200;
             //}
             //..
             //if (dvScrewsize != null)
@@ -113,7 +119,9 @@ namespace ScaleApp
                 lkeScrewsize.Properties.PopulateColumns();
                 lkeScrewsize.Properties.Columns["ItemID"].Visible = false;
                 lkeScrewsize.Properties.Columns["componentID"].Visible = false;
-                lkeScrewsize.Properties.Columns["screwsizeID"].Caption = "ScrewsizeID";
+                lkeScrewsize.Properties.Columns["screwsizeID"].Caption = "ScrewsizeID"; 
+                lkeScrewsize.Properties.Columns["screwsizeID"].Width = 40;
+
                 lkeScrewsize.Properties.Columns["value"].Caption = "Value";
             
          //   lkeScrewsize.Properties.Columns["screwsizeID"].
@@ -121,5 +129,93 @@ namespace ScaleApp
             //}
 
         }
+        private void InitDataGridview()
+        {
+            
+            if (ds.Tables["tbCookies"] != null)
+            {
+                ds.Tables["tbCookies"].Clear();
+            }
+         
+            ds = DataOperation.SelectCookies(2, "sp_GetCookies", lkeItem.EditValue.ToString());
+            if (ds!=null)
+            {
+                gctCookies.DataSource = ds.Tables["tbCookies"];
+                gvCookies.Columns["ItemID"].Visible = false;
+                gvCookies.OptionsBehavior.ReadOnly = true;
+                gvCookies.Columns["DateTime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                gvCookies.Columns["DateTime"].DisplayFormat.FormatString = "dd-MM-yyyy HH:mm:ss";
+
+            }
+           
+        
+        }
+        private void lkeReason_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            CookiesClass cookiesClass = new CookiesClass();
+            if (txtMachineNo.Text.IsNullOrEmptyOrWhileSpace())
+            {
+                txtMachineNo.Focus();
+                XtraMessageBox.Show("Vui lòng nhập MachineNo", "Cảnh báo");
+            }
+            else
+            {
+                cookiesClass.MachineNo =txtMachineNo.Text;
+            }
+            //cookiesClass.MachineNo = Convert.ToInt32(txtMachineNo.Text);
+            cookiesClass.Item = lkeItem.Text;
+            cookiesClass.Component = lkeComponent.Text;
+            cookiesClass.Screwsize = lkeScrewsize.Text;
+            cookiesClass.Shift = cbbShift.Text;
+            cookiesClass.PurgingMaterial = cbbPurgingMaterial.Text;
+            cookiesClass.PurgingInput = txtPurgingInput.Text;
+            cookiesClass.PurgingCookies = btnPurgingCookies.Text;
+            cookiesClass.TPUCookies = btnTPUCookies.Text;
+            cookiesClass.MixedCookies = btnMixedCookies.Text;
+            cookiesClass.Reason = lkeReason.Text;
+            cookiesClass.ItemID = "3";
+            DataOperation.InsertorUpdate(2, "sp_InsertOrUpdateCookies", cookiesClass);
+            InitDataGridview();
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                XlsxExportOptionsEx optionsEx = new XlsxExportOptionsEx();
+                optionsEx.AllowFixedColumnHeaderPanel = DevExpress.Utils.DefaultBoolean.True;
+                optionsEx.AllowConditionalFormatting = DevExpress.Utils.DefaultBoolean.True;
+                optionsEx.ApplyFormattingToEntireColumn = DevExpress.Utils.DefaultBoolean.True;  
+                optionsEx.SheetName = "Data";
+                gctCookies.ExportToXlsx(@"Report.xlsx", optionsEx);
+                Process.Start("Report.xlsx");
+            }
+            catch (Exception)
+            {
+                XtraMessageBox.Show("Bảng tính đang mở, vui lòng tắt bảng tính trước khi xuất Excel ", "Lỗi");
+            }
+
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            gctCookies.DataSource = null;
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            InitDataGridview();
+        }
+        
     }
 }

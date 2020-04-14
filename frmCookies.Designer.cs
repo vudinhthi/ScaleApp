@@ -100,8 +100,10 @@
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lblMixedCookies = new DevExpress.XtraLayout.SimpleLabelItem();
             this.simpleLabelItem6 = new DevExpress.XtraLayout.SimpleLabelItem();
-            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
+            this.simpleSeparator2 = new DevExpress.XtraLayout.SimpleSeparator();
+            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -116,8 +118,6 @@
             this.simpleLabelItem4 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
-            this.simpleSeparator2 = new DevExpress.XtraLayout.SimpleSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbbPurgingMaterial.Properties)).BeginInit();
@@ -152,8 +152,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMixedCookies)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
@@ -168,8 +170,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator2)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -213,7 +213,7 @@
             this.cbbPurgingMaterial.Properties.Items.AddRange(new object[] {
             "PP",
             "TPU Clear"});
-            this.cbbPurgingMaterial.Size = new System.Drawing.Size(526, 26);
+            this.cbbPurgingMaterial.Size = new System.Drawing.Size(533, 26);
             this.cbbPurgingMaterial.StyleController = this.layoutControl1;
             this.cbbPurgingMaterial.TabIndex = 49;
             // 
@@ -224,9 +224,9 @@
             this.btnSave.Appearance.Options.UseBackColor = true;
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(1210, 60);
+            this.btnSave.Location = new System.Drawing.Point(1217, 60);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(288, 36);
+            this.btnSave.Size = new System.Drawing.Size(281, 36);
             this.btnSave.StyleController = this.layoutControl1;
             this.btnSave.TabIndex = 46;
             this.btnSave.Text = "Save";
@@ -239,9 +239,9 @@
             this.btnExport.Appearance.Options.UseBackColor = true;
             this.btnExport.Appearance.Options.UseFont = true;
             this.btnExport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageOptions.Image")));
-            this.btnExport.Location = new System.Drawing.Point(1210, 100);
+            this.btnExport.Location = new System.Drawing.Point(1217, 100);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(288, 36);
+            this.btnExport.Size = new System.Drawing.Size(281, 36);
             this.btnExport.StyleController = this.layoutControl1;
             this.btnExport.TabIndex = 45;
             this.btnExport.Text = "Export";
@@ -267,7 +267,7 @@
             this.btnTPUCookies.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.btnTPUCookies.Size = new System.Drawing.Size(501, 44);
+            this.btnTPUCookies.Size = new System.Drawing.Size(508, 44);
             this.btnTPUCookies.StyleController = this.layoutControl1;
             this.btnTPUCookies.TabIndex = 44;
             // 
@@ -291,7 +291,7 @@
             this.btnMixedCookies.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.btnMixedCookies.Size = new System.Drawing.Size(501, 44);
+            this.btnMixedCookies.Size = new System.Drawing.Size(508, 44);
             this.btnMixedCookies.StyleController = this.layoutControl1;
             this.btnMixedCookies.TabIndex = 43;
             // 
@@ -313,7 +313,7 @@
             this.btnPurgingCookies.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, DevExpress.Utils.ToolTipAnchor.Default),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions6, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.btnPurgingCookies.Size = new System.Drawing.Size(501, 44);
+            this.btnPurgingCookies.Size = new System.Drawing.Size(508, 44);
             this.btnPurgingCookies.StyleController = this.layoutControl1;
             this.btnPurgingCookies.TabIndex = 42;
             // 
@@ -479,9 +479,9 @@
             this.btnRefresh.Appearance.Options.UseBackColor = true;
             this.btnRefresh.Appearance.Options.UseFont = true;
             this.btnRefresh.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.ImageOptions.Image")));
-            this.btnRefresh.Location = new System.Drawing.Point(1210, 140);
+            this.btnRefresh.Location = new System.Drawing.Point(1217, 140);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(288, 36);
+            this.btnRefresh.Size = new System.Drawing.Size(281, 36);
             this.btnRefresh.StyleController = this.layoutControl1;
             this.btnRefresh.TabIndex = 47;
             this.btnRefresh.Text = "Refresh";
@@ -494,9 +494,9 @@
             this.btnReset.Appearance.Options.UseBackColor = true;
             this.btnReset.Appearance.Options.UseFont = true;
             this.btnReset.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReset.ImageOptions.Image")));
-            this.btnReset.Location = new System.Drawing.Point(1210, 180);
+            this.btnReset.Location = new System.Drawing.Point(1217, 180);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(288, 36);
+            this.btnReset.Size = new System.Drawing.Size(281, 36);
             this.btnReset.StyleController = this.layoutControl1;
             this.btnReset.TabIndex = 48;
             this.btnReset.Text = "Reset";
@@ -510,7 +510,7 @@
             this.btnScale.Appearance.Options.UseFont = true;
             this.btnScale.Location = new System.Drawing.Point(1034, 80);
             this.btnScale.Name = "btnScale";
-            this.btnScale.Size = new System.Drawing.Size(160, 69);
+            this.btnScale.Size = new System.Drawing.Size(167, 69);
             this.btnScale.StyleController = this.layoutControl1;
             this.btnScale.TabIndex = 50;
             this.btnScale.Text = "Scale";
@@ -645,7 +645,7 @@
             this.layoutControlItem7});
             this.layoutControlGroup5.Location = new System.Drawing.Point(506, 0);
             this.layoutControlGroup5.Name = "layoutControlGroup5";
-            this.layoutControlGroup5.Size = new System.Drawing.Size(692, 322);
+            this.layoutControlGroup5.Size = new System.Drawing.Size(699, 322);
             this.layoutControlGroup5.Text = "emptySpaceItem1";
             this.layoutControlGroup5.TextVisible = false;
             // 
@@ -656,7 +656,7 @@
             this.simpleLabelItem5.AppearanceItemCaption.Options.UseFont = true;
             this.simpleLabelItem5.Location = new System.Drawing.Point(0, 31);
             this.simpleLabelItem5.Name = "simpleLabelItem5";
-            this.simpleLabelItem5.Size = new System.Drawing.Size(668, 24);
+            this.simpleLabelItem5.Size = new System.Drawing.Size(675, 24);
             this.simpleLabelItem5.Text = "Purging input:";
             this.simpleLabelItem5.TextSize = new System.Drawing.Size(135, 20);
             // 
@@ -671,7 +671,7 @@
             this.simpleLabelItem6});
             this.grcMeasureValue.Location = new System.Drawing.Point(0, 130);
             this.grcMeasureValue.Name = "grcMeasureValue";
-            this.grcMeasureValue.Size = new System.Drawing.Size(668, 168);
+            this.grcMeasureValue.Size = new System.Drawing.Size(675, 168);
             this.grcMeasureValue.TextVisible = false;
             // 
             // simpleLabelItem8
@@ -692,7 +692,7 @@
             this.layoutControlItem9.Control = this.btnPurgingCookies;
             this.layoutControlItem9.Location = new System.Drawing.Point(139, 0);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(505, 48);
+            this.layoutControlItem9.Size = new System.Drawing.Size(512, 48);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
@@ -701,7 +701,7 @@
             this.layoutControlItem10.Control = this.btnMixedCookies;
             this.layoutControlItem10.Location = new System.Drawing.Point(139, 96);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(505, 48);
+            this.layoutControlItem10.Size = new System.Drawing.Size(512, 48);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
@@ -712,7 +712,7 @@
             this.layoutControlItem11.Control = this.btnTPUCookies;
             this.layoutControlItem11.Location = new System.Drawing.Point(139, 48);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(505, 48);
+            this.layoutControlItem11.Size = new System.Drawing.Size(512, 48);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
@@ -738,17 +738,6 @@
             this.simpleLabelItem6.Text = "TPU cookies:";
             this.simpleLabelItem6.TextSize = new System.Drawing.Size(135, 20);
             // 
-            // layoutControlItem16
-            // 
-            this.layoutControlItem16.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.layoutControlItem16.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem16.Control = this.cbbPurgingMaterial;
-            this.layoutControlItem16.Location = new System.Drawing.Point(0, 1);
-            this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(668, 30);
-            this.layoutControlItem16.Text = "Purging Material:";
-            this.layoutControlItem16.TextSize = new System.Drawing.Size(135, 20);
-            // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
@@ -760,48 +749,73 @@
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
+            // simpleSeparator1
+            // 
+            this.simpleSeparator1.AllowHotTrack = false;
+            this.simpleSeparator1.Location = new System.Drawing.Point(0, 0);
+            this.simpleSeparator1.Name = "simpleSeparator1";
+            this.simpleSeparator1.Size = new System.Drawing.Size(675, 1);
+            // 
+            // simpleSeparator2
+            // 
+            this.simpleSeparator2.AllowHotTrack = false;
+            this.simpleSeparator2.Location = new System.Drawing.Point(0, 55);
+            this.simpleSeparator2.Name = "simpleSeparator2";
+            this.simpleSeparator2.Size = new System.Drawing.Size(675, 1);
+            // 
+            // layoutControlItem16
+            // 
+            this.layoutControlItem16.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.layoutControlItem16.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem16.Control = this.cbbPurgingMaterial;
+            this.layoutControlItem16.Location = new System.Drawing.Point(0, 1);
+            this.layoutControlItem16.Name = "layoutControlItem16";
+            this.layoutControlItem16.Size = new System.Drawing.Size(675, 30);
+            this.layoutControlItem16.Text = "Purging Material:";
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(135, 20);
+            // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnScale;
             this.layoutControlItem7.Location = new System.Drawing.Point(504, 56);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(164, 74);
+            this.layoutControlItem7.Size = new System.Drawing.Size(171, 74);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.btnExport;
-            this.layoutControlItem12.Location = new System.Drawing.Point(1198, 88);
+            this.layoutControlItem12.Location = new System.Drawing.Point(1205, 88);
             this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(292, 40);
+            this.layoutControlItem12.Size = new System.Drawing.Size(285, 40);
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
             // 
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.btnSave;
-            this.layoutControlItem13.Location = new System.Drawing.Point(1198, 48);
+            this.layoutControlItem13.Location = new System.Drawing.Point(1205, 48);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(292, 40);
+            this.layoutControlItem13.Size = new System.Drawing.Size(285, 40);
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.btnRefresh;
-            this.layoutControlItem14.Location = new System.Drawing.Point(1198, 128);
+            this.layoutControlItem14.Location = new System.Drawing.Point(1205, 128);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(292, 40);
+            this.layoutControlItem14.Size = new System.Drawing.Size(285, 40);
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 
             // layoutControlItem15
             // 
             this.layoutControlItem15.Control = this.btnReset;
-            this.layoutControlItem15.Location = new System.Drawing.Point(1198, 168);
+            this.layoutControlItem15.Location = new System.Drawing.Point(1205, 168);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(292, 154);
+            this.layoutControlItem15.Size = new System.Drawing.Size(285, 154);
             this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem15.TextVisible = false;
             // 
@@ -809,9 +823,9 @@
             // 
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.txtSysTime});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(1198, 0);
+            this.layoutControlGroup1.Location = new System.Drawing.Point(1205, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(292, 48);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(285, 48);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // txtSysTime
@@ -821,7 +835,7 @@
             this.txtSysTime.AppearanceItemCaption.Options.UseFont = true;
             this.txtSysTime.Location = new System.Drawing.Point(0, 0);
             this.txtSysTime.Name = "txtSysTime";
-            this.txtSysTime.Size = new System.Drawing.Size(268, 24);
+            this.txtSysTime.Size = new System.Drawing.Size(261, 24);
             this.txtSysTime.Text = "System Time:";
             this.txtSysTime.TextSize = new System.Drawing.Size(135, 20);
             // 
@@ -874,20 +888,6 @@
             this.simpleLabelItem4.Text = "Mixed cookies:";
             this.simpleLabelItem4.TextSize = new System.Drawing.Size(135, 20);
             // 
-            // simpleSeparator1
-            // 
-            this.simpleSeparator1.AllowHotTrack = false;
-            this.simpleSeparator1.Location = new System.Drawing.Point(0, 0);
-            this.simpleSeparator1.Name = "simpleSeparator1";
-            this.simpleSeparator1.Size = new System.Drawing.Size(668, 1);
-            // 
-            // simpleSeparator2
-            // 
-            this.simpleSeparator2.AllowHotTrack = false;
-            this.simpleSeparator2.Location = new System.Drawing.Point(0, 55);
-            this.simpleSeparator2.Name = "simpleSeparator2";
-            this.simpleSeparator2.Size = new System.Drawing.Size(668, 1);
-            // 
             // frmCookies
             // 
             this.ClientSize = new System.Drawing.Size(1510, 848);
@@ -929,8 +929,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMixedCookies)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
@@ -945,8 +947,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator2)).EndInit();
             this.ResumeLayout(false);
 
         }

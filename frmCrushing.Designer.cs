@@ -655,7 +655,7 @@
             // cmdSave
             // 
             this.tablePanel3.SetColumn(this.cmdSave, 0);
-            this.cmdSave.Image = global::ScaleApp.Properties.Resources.Save_32x32;
+            //this.cmdSave.Image = global::ScaleApp.Properties.Resources.Save_32x32;
             this.cmdSave.Location = new System.Drawing.Point(3, 3);
             this.cmdSave.Name = "cmdSave";
             this.tablePanel3.SetRow(this.cmdSave, 0);

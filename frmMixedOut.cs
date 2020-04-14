@@ -7,6 +7,7 @@ using DevExpress.XtraSplashScreen;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -35,8 +36,11 @@ namespace ScaleApp
 
         private void frmMixedOut_Load(object sender, EventArgs e)
         {
+            timer2.Interval = ScaleApp.Properties.Settings.Default.TimeScale;
+            //timer2.Interval = int.Parse(ConfigurationManager.AppSettings.Get("TimeScale"));
             txtWeight.Text = "0";
             rdbRunner.Checked = true;
+            cmdPosted.Enabled = false;
             Start_Timer();
             GetComPort();
             LoadComboBoxMixId();            
@@ -45,7 +49,7 @@ namespace ScaleApp
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            txtDateTime.Text = DateTime.Now.ToString();
+            txtDateTime.Text = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
         }
 
         private void Start_Timer()
@@ -58,11 +62,7 @@ namespace ScaleApp
 
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            Double _weightRunner;
-            Double _weightDefect;
-            Double _weightBlackDot;
-            Double _weightContaminated;
-            int i;
+
 
             SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
             SplashScreenManager.Default.SetWaitFormCaption("Updating data...");
@@ -72,86 +72,93 @@ namespace ScaleApp
             }
             SplashScreenManager.CloseForm();
 
-            if (CheckExistedMixOut(int.Parse(cmbMixId.EditValue.ToString())) == 0)
+            if (!String.IsNullOrEmpty(cmbMixId.EditValue.ToString()))
             {
                 CreateMixOut();
-            }
-            else
-            {                
-                //Get data of fields weight
-                String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
-                SqlConnection conn = new SqlConnection(connStr);
-                SqlDataAdapter SqlDa = new SqlDataAdapter();
-                SqlCommand sqlcmd = new SqlCommand("sp_getFullMixOut", conn);
+            }              
+        }
 
-                DataSet ds = new DataSet();
-                try
-                {
-                    sqlcmd.CommandType = CommandType.StoredProcedure;
-                    sqlcmd.Parameters.AddWithValue("@mixOutId", int.Parse(txtMixOutId.Text.ToString()));
-                    SqlDa.SelectCommand = sqlcmd;
-                    SqlDa.Fill(ds);
-                    i = ds.Tables[0].Rows.Count;
-                    if (i > 0)
-                    {
-                        _weightRunner = double.Parse(ds.Tables[0].Rows[0][1].ToString());
-                        _weightDefect = double.Parse(ds.Tables[0].Rows[0][2].ToString());
-                        _weightBlackDot = double.Parse(ds.Tables[0].Rows[0][3].ToString());
-                        _weightContaminated = double.Parse(ds.Tables[0].Rows[0][4].ToString());
+        //Ham nay dung khi 
+        //private void UpdateOneRow()
+        //{
+              //Double _weightRunner;
+              //Double _weightDefect;
+              //Double _weightBlackDot;
+              //Double _weightContaminated;
+              //int i;
+        //    //Get data of fields weight
+        //    String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
+        //    SqlConnection conn = new SqlConnection(connStr);
+        //    SqlDataAdapter SqlDa = new SqlDataAdapter();
+        //    SqlCommand sqlcmd = new SqlCommand("sp_getFullMixOut", conn);
 
-                        //Update Mixing Out Record by ID
-                        SqlCommand cmdUpdate = new SqlCommand("sp_UpdateMixingOut", conn);
-                        cmdUpdate.CommandType = CommandType.StoredProcedure;
+        //    DataSet ds = new DataSet();
+        //    try
+        //    {
+        //        sqlcmd.CommandType = CommandType.StoredProcedure;
+        //        sqlcmd.Parameters.AddWithValue("@mixOutId", int.Parse(txtMixOutId.Text.ToString()));
+        //        SqlDa.SelectCommand = sqlcmd;
+        //        SqlDa.Fill(ds);
+        //        i = ds.Tables[0].Rows.Count;
+        //        if (i > 0)
+        //        {
+        //            _weightRunner = double.Parse(ds.Tables[0].Rows[0][1].ToString());
+        //            _weightDefect = double.Parse(ds.Tables[0].Rows[0][2].ToString());
+        //            _weightBlackDot = double.Parse(ds.Tables[0].Rows[0][3].ToString());
+        //            _weightContaminated = double.Parse(ds.Tables[0].Rows[0][4].ToString());
 
-                        switch (GetRadioChecked())
-                        {
-                            case "rdbRunner":
-                                _weightRunner = double.Parse(tedRealWeight.Text.ToString());
-                                break;
-                            case "rdbDefect":
-                                _weightDefect = double.Parse(tedRealWeight.Text.ToString());
-                                break;
-                            case "rdbBlackDot":
-                                _weightBlackDot = double.Parse(tedRealWeight.Text.ToString());
-                                break;
-                            case "rdbContaminated":
-                                _weightContaminated = double.Parse(tedRealWeight.Text.ToString());
-                                break;
-                        }
+        //            //Update Mixing Out Record by ID
+        //            SqlCommand cmdUpdate = new SqlCommand("sp_UpdateMixingOut", conn);
+        //            cmdUpdate.CommandType = CommandType.StoredProcedure;
 
-                        cmdUpdate.Parameters.AddWithValue("@weightRunner", _weightRunner);
-                        cmdUpdate.Parameters.AddWithValue("@weightDefect", _weightDefect);
-                        cmdUpdate.Parameters.AddWithValue("@weightBlackDot", _weightBlackDot);
-                        cmdUpdate.Parameters.AddWithValue("@weightContaminated", _weightContaminated);
-                        cmdUpdate.Parameters.AddWithValue("@weightRecycle", 0);
-                        cmdUpdate.Parameters.AddWithValue("@weightCookie", 0);
+        //            switch (GetRadioChecked())
+        //            {
+        //                case "rdbRunner":
+        //                    _weightRunner = double.Parse(tedRealWeight.Text.ToString());
+        //                    break;
+        //                case "rdbDefect":
+        //                    _weightDefect = double.Parse(tedRealWeight.Text.ToString());
+        //                    break;
+        //                case "rdbBlackDot":
+        //                    _weightBlackDot = double.Parse(tedRealWeight.Text.ToString());
+        //                    break;
+        //                case "rdbContaminated":
+        //                    _weightContaminated = double.Parse(tedRealWeight.Text.ToString());
+        //                    break;
+        //            }
 
-                        cmdUpdate.Parameters.AddWithValue("@mixRawId", cmbMixId.EditValue);
-                        cmdUpdate.Parameters.AddWithValue("@Id", txtMixOutId.Text);
+        //            cmdUpdate.Parameters.AddWithValue("@weightRunner", _weightRunner);
+        //            cmdUpdate.Parameters.AddWithValue("@weightDefect", _weightDefect);
+        //            cmdUpdate.Parameters.AddWithValue("@weightBlackDot", _weightBlackDot);
+        //            cmdUpdate.Parameters.AddWithValue("@weightContaminated", _weightContaminated);
+        //            cmdUpdate.Parameters.AddWithValue("@weightRecycle", 0);
+        //            cmdUpdate.Parameters.AddWithValue("@weightCookie", 0);
 
-                        conn.Open();
+        //            cmdUpdate.Parameters.AddWithValue("@mixRawId", cmbMixId.EditValue);
+        //            cmdUpdate.Parameters.AddWithValue("@Id", txtMixOutId.Text);
 
-                        i = cmdUpdate.ExecuteNonQuery();
+        //            conn.Open();
 
-                        LoadGridControl();
+        //            i = cmdUpdate.ExecuteNonQuery();
 
-                        if (i != 0)
-                        {
-                            XtraMessageBox.Show("Save data successful !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LoadComboBoxMixId();
-                        }
-                        //End UpdateMixOut
-                    }
-                }
-                catch (Exception ex)
-                {
-                    XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                ScaleApp.Common.DataOperation.disconnect();
-                //End get datas weight  
-            }  
-        }        
-        
+        //            LoadGridControl();
+
+        //            if (i != 0)
+        //            {
+        //                XtraMessageBox.Show("Lưu dữ liệu thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //                LoadComboBoxMixId();
+        //            }
+        //            //End UpdateMixOut
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        XtraMessageBox.Show("Lỗi: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //    ScaleApp.Common.DataOperation.disconnect();
+        //    //End get datas weight 
+        //}
+
         private void CreateMixOut()
         {
             String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
@@ -205,7 +212,7 @@ namespace ScaleApp
 
             if (i != 0)
             {
-                XtraMessageBox.Show("Save data successful !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                XtraMessageBox.Show("Lưu dữ liệu thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadComboBoxMixId();
             }
         }
@@ -261,14 +268,14 @@ namespace ScaleApp
             conn.Open();
 
             int i = cmd.ExecuteNonQuery();
-
-            ScaleApp.Common.DataOperation.disconnect();
-
             LoadGridControl();
+
+            ScaleApp.Common.DataOperation.disconnect();            
 
             if (i != 0)
             {
-                MessageBox.Show(i + "Data Saved");
+                XtraMessageBox.Show("Lưu dữ liệu thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadComboBoxMixId();
             }
         }
 
@@ -335,7 +342,7 @@ namespace ScaleApp
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             ScaleApp.Common.DataOperation.disconnect();
         }
@@ -402,6 +409,7 @@ namespace ScaleApp
             cmbMixId.EditValue = null;
             txtWeight.Text = null;
             cmdSave.Enabled = true;
+            cmbMixId.Focus();
         }
 
         private void gridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -474,7 +482,7 @@ namespace ScaleApp
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -499,6 +507,7 @@ namespace ScaleApp
                 gridView2.Columns["MixRawId"].VisibleIndex = -1;
                 gridView2.Columns["WeightRecycle"].VisibleIndex = -1;
                 gridView2.Columns["WeightCookie"].VisibleIndex = -1;
+                gridView2.Columns["Posted"].VisibleIndex = -1;
 
                 gridView2.Columns["Id"].VisibleIndex = 0;
                 gridView2.Columns["CreateTime"].VisibleIndex = 1;
@@ -507,8 +516,7 @@ namespace ScaleApp
                 gridView2.Columns["WeightDefect"].VisibleIndex = 4;
                 gridView2.Columns["WeightBlackDot"].VisibleIndex = 5;
                 gridView2.Columns["WeighContamination"].VisibleIndex = 6;                
-                gridView2.Columns["Posted"].VisibleIndex = 9;
-
+                
                 gridView2.Columns["Id"].Width = 50;
                 gridView2.Columns["CreateTime"].Width = 120;
                 gridView2.Columns["MixBacode"].Width = 230;
@@ -521,13 +529,13 @@ namespace ScaleApp
                 gridView2.Columns["Posted"].Width = 50;
 
                 gridView2.Columns["CreateTime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-                gridView2.Columns["CreateTime"].DisplayFormat.FormatString = "MM/dd/yyyy hh:mm:ss";
+                gridView2.Columns["CreateTime"].DisplayFormat.FormatString = "MM/dd/yyyy HH:mm:ss";
 
                 gridView2.OptionsBehavior.Editable = false;
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             ScaleApp.Common.DataOperation.disconnect();
         }
@@ -540,7 +548,7 @@ namespace ScaleApp
             txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
             cmbMixId.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]);
 
-            SetcmdPost();
+            //SetcmdPost();
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
@@ -557,25 +565,9 @@ namespace ScaleApp
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
-            SqlConnection conn = new SqlConnection(connStr);
-
-            try
-            {
-                //SqlDataAdapter SqlDaMixRaw = new SqlDataAdapter("sp_getFullMixRaws", conn);
-                //SqlDaMixRaw.SelectCommand.CommandType = CommandType.StoredProcedure;
-                //SqlDaMixRaw.Fill(ds, "MixRaw");
-
-                SqlDataAdapter SqlDaCrush = new SqlDataAdapter("sp_getFullMixOuts", conn);
-                SqlDaCrush.SelectCommand.CommandType = CommandType.StoredProcedure;
-                SqlDaCrush.Fill(ds, "CrushRaw");
-                ExportDataSetToExcel(ds, "");
-            }
-            catch (Exception ex)
-            {
-                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            frmDateRange frmDate = new frmDateRange();
+            frmDate.ExportName = 3;
+            frmDate.Show();            
         }
 
         private bool ExportDataSetToExcel(DataSet ds, string filename)
@@ -619,7 +611,7 @@ namespace ScaleApp
                     excelWorkBook.Close();
                     excelApp.Quit();
 
-                    XtraMessageBox.Show("Successed!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information, DefaultBoolean.True);
+                    XtraMessageBox.Show("Xuất dữ liệu thành công!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information, DefaultBoolean.True);
 
                     if (File.Exists(dialog.FileName))
                     {
@@ -665,7 +657,7 @@ namespace ScaleApp
         }
 
         private void CloseSerialPort()
-        {
+        {            
             if (_serialPort != null && _serialPort.IsOpen)
                 _serialPort.Close();
             if (_serialPort != null)
@@ -707,10 +699,19 @@ namespace ScaleApp
 
         private void ActionScale()
         {
-            _serialPort = new SerialPort(cboComPort.Text, BaudRate, Parity.None, 8, StopBits.One);       //<-- Creates new SerialPort using the name selected in the combobox
-            _serialPort.DataReceived += SerialPortOnDataReceived;       //<-- this event happens everytime when new data is received by the ComPort
-            _serialPort.Open();     //<-- make the comport listen
-            txtScaleWeight.Text = "Scaling... " + _serialPort.PortName + "...\r\n";
+            try 
+            {
+                //_serialPort = new SerialPort(cboComPort.Text, BaudRate, Parity.None, 8, StopBits.One);       //<-- Creates new SerialPort using the name selected in the combobox
+                _serialPort = new SerialPort(ScaleApp.Properties.Settings.Default.COMPort, BaudRate, Parity.None, 8, StopBits.One);
+                _serialPort.DataReceived += SerialPortOnDataReceived;       //<-- this event happens everytime when new data is received by the ComPort
+                _serialPort.Open();     //<-- make the comport listen
+                txtScaleWeight.Text = "Scaling... " + _serialPort.PortName + "...\r\n";
+            }
+            catch (Exception ex) 
+            {
+                XtraMessageBox.Show(ex.Message + " - Cân đang đóng!" + Environment.NewLine + "Vui lòng tắt form và mở lại để tiếp tục nhập !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CloseSerialPort();
+            }
         }
 
         private void spbScale_Click(object sender, EventArgs e)
@@ -724,18 +725,18 @@ namespace ScaleApp
         private void Timer2_Tick(object sender, EventArgs e)
         {
             CloseSerialPort();
-            txtScaleWeight.Text = "Off";
+            txtScaleWeight.Text = "0";
         }        
 
         private void gridView2_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            GridView gridView = sender as GridView;
+            //GridView gridView = sender as GridView;
 
-            txtMixOutId.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Id"]).ToString();
-            txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
-            cmbMixId.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]);
+            //txtMixOutId.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Id"]).ToString();
+            //txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
+            //cmbMixId.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]);
 
-            SetcmdPost();
+            //SetcmdPost();
         }
 
         private void tedRealWeight_ButtonClick(object sender, ButtonPressedEventArgs e)
@@ -745,7 +746,7 @@ namespace ScaleApp
 
             if (Button.Kind == ButtonPredefines.OK)
             {
-                if (!String.IsNullOrEmpty(txtScaleWeight.Text))
+                if (!String.IsNullOrEmpty(txtScaleWeight.Text) && (txtScaleWeight.Text != "0"))
                 {
                     editorWeightRe.Text = (Double.Parse(txtScaleWeight.Text) - 2.1966).ToString();
 
@@ -760,6 +761,11 @@ namespace ScaleApp
             {
                 editorWeightRe.Text = "";
             }
+        }
+
+        private void frmMixedOut_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CloseSerialPort();
         }
     }
 }

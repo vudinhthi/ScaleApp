@@ -260,6 +260,7 @@
             this.txtScaleWeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtScaleWeight.Location = new System.Drawing.Point(12, 305);
             this.txtScaleWeight.Name = "txtScaleWeight";
+            this.txtScaleWeight.ReadOnly = true;
             this.txtScaleWeight.Size = new System.Drawing.Size(210, 81);
             this.txtScaleWeight.TabIndex = 27;
             this.txtScaleWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -428,7 +429,6 @@
             this.cmbLostType.Items.AddRange(new object[] {
             "",
             "Recycle",
-            "Defect",
             "Framapur",
             "Framaprene",
             "Mix Material/Contaminated"});
@@ -564,6 +564,7 @@
             this.lueMixId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lueMixId.Properties.NullText = "";
+            this.lueMixId.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.tablePanel5.SetRow(this.lueMixId, 0);
             this.lueMixId.Size = new System.Drawing.Size(643, 26);
             this.lueMixId.TabIndex = 50;
@@ -617,6 +618,7 @@
             // cmdPost
             // 
             this.tablePanel3.SetColumn(this.cmdPost, 1);
+            this.cmdPost.Enabled = false;
             this.cmdPost.Image = global::ScaleApp.Properties.Resources.Mark_32x32;
             this.cmdPost.Location = new System.Drawing.Point(72, 3);
             this.cmdPost.Name = "cmdPost";
@@ -826,7 +828,7 @@
             // 
             // timer2
             // 
-            this.timer2.Interval = 10000;
+            this.timer2.Interval = 5000;
             // 
             // tablePanel5
             // 
@@ -936,6 +938,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Crushing Station";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCrushing_FormClosing);
             this.Load += new System.EventHandler(this.frmCrushing_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCrushed)).EndInit();

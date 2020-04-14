@@ -772,8 +772,10 @@
             // 
             // frmCookies
             // 
+
             this.ClientSize = new System.Drawing.Size(1510, 848);
             this.Controls.Add(this.layoutControl1);
+
             this.Name = "frmCookies";
             this.Text = "FVN - Cookies";
             this.Load += new System.EventHandler(this.frmCookies_Load);

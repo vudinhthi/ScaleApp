@@ -15,21 +15,23 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>ftp://192.168.0.250/</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Unc</InstallFrom>
-    <UpdateEnabled>true</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Background</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>\\bin\Release\</InstallUrl>
+    <TargetCulture>en-US</TargetCulture>
     <ProductName>RecycledApp</ProductName>
     <PublisherName>FramasVietNam</PublisherName>
     <SuiteName>FramasGroup</SuiteName>
     <MinimumRequiredVersion>1.0.0.4</MinimumRequiredVersion>
-    <ApplicationRevision>8</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>AutoUpdate_RecycledApp.html</WebPage>
+    <ApplicationRevision>10</ApplicationRevision>
+    <ApplicationVersion>1.0.0.10</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -68,6 +70,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ScaleApp.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -109,6 +114,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Versioning, Version=5.6.0.2, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\NuGet.Versioning.5.6.0-preview.2.6489\lib\net472\NuGet.Versioning.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -212,6 +220,14 @@
     <Compile Include="frmReportMixed.Designer.cs">
       <DependentUpon>frmReportMixed.cs</DependentUpon>
     </Compile>
+
+    <Compile Include="frmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettings.Designer.cs">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </Compile>
+
     <Compile Include="frmScrewsize.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,6 +236,7 @@
     </Compile>
     <Compile Include="Models\ItemClass.cs" />
     <Compile Include="Models\Reason.cs" />
+
     <Compile Include="Models\Operator.cs" />
     <Compile Include="Presenters\OperatorPresenter.cs" />
     <Compile Include="Program.cs" />
@@ -318,12 +335,22 @@
     <EmbeddedResource Include="frmReportMixed.resx">
       <DependentUpon>frmReportMixed.cs</DependentUpon>
     </EmbeddedResource>
+
+    <EmbeddedResource Include="frmSettings.resx">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+
     <EmbeddedResource Include="frmScrewsize.resx">
       <DependentUpon>frmScrewsize.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -353,8 +380,9 @@
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="PostBuildScripts\AutoUpdateProjectsMinimumRequiredClickOnceVersion.ps1" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
@@ -478,4 +506,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>REM Update the ClickOnce MinimumRequiredVersion so that it auto-updates without prompting.
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "&amp; '$(ProjectDir)PostBuildScripts\AutoUpdateProjectsMinimumRequiredClickOnceVersion.ps1' -ProjectFilePaths '$(ProjectPath)'"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

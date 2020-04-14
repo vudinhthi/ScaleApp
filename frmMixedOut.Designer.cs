@@ -315,6 +315,7 @@
             this.txtScaleWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtScaleWeight.Properties.Mask.EditMask = "n";
             this.txtScaleWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtScaleWeight.Properties.ReadOnly = true;
             this.txtScaleWeight.Size = new System.Drawing.Size(244, 30);
             this.txtScaleWeight.TabIndex = 13;
             // 
@@ -340,18 +341,20 @@
             // 
             // cmdPosted
             // 
+            this.cmdPosted.Enabled = false;
             this.cmdPosted.Image = global::ScaleApp.Properties.Resources.Mark_32x32;
-            this.cmdPosted.Location = new System.Drawing.Point(84, 215);
+            this.cmdPosted.Location = new System.Drawing.Point(152, 215);
             this.cmdPosted.Name = "cmdPosted";
             this.cmdPosted.Size = new System.Drawing.Size(62, 69);
             this.cmdPosted.TabIndex = 7;
             this.cmdPosted.UseVisualStyleBackColor = true;
+            this.cmdPosted.Visible = false;
             this.cmdPosted.Click += new System.EventHandler(this.cmdPosted_Click);
             // 
             // cmdReset
             // 
             this.cmdReset.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
-            this.cmdReset.Location = new System.Drawing.Point(152, 215);
+            this.cmdReset.Location = new System.Drawing.Point(84, 215);
             this.cmdReset.Name = "cmdReset";
             this.cmdReset.Size = new System.Drawing.Size(62, 69);
             this.cmdReset.TabIndex = 6;
@@ -478,6 +481,7 @@
             this.Name = "frmMixedOut";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Incoming Crush Station";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMixedOut_FormClosing);
             this.Load += new System.EventHandler(this.frmMixedOut_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

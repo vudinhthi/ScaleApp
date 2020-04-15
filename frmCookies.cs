@@ -38,8 +38,7 @@ namespace ScaleApp
         private void frmCookies_Load(object sender, EventArgs e)
         {
            
-            lkeItem.EditValue = "1";
-            lkeItem.Text = "1";
+            
             //List<ItemClass> litem = new  List<ItemClass>();
             // lkeItem.Properties.DataSource = litem;
             // lkeItem.Properties.DisplayMember = "name";
@@ -81,35 +80,28 @@ namespace ScaleApp
             {
                 ds.Tables["tbScrewsize"].Clear();
             }
-            ds = DataOperation.SelectComponent(2, "sp_GetComponent", lkeItem.EditValue.ToString());
-            ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", lkeItem.EditValue.ToString(), 0, 1);
+            if (ds.Tables["tbItem"] != null)
+            {
+                ds.Tables["tbItem"].Clear();
+            }
+            ds = DataOperation.SelectItem(2, "sp_getProductsWinLine");
             ds = DataOperation.SelectReason(2, "sp_GetReason");
             //  DataView dvScrewsize, dvComponent;
             // DataViewManager dvm = new DataViewManager(ds);
             //  dvComponent = dvm.CreateDataView(ds.Tables["tbComponent"]);
             //  dvScrewsize = dvm.CreateDataView(ds.Tables["tbScrewsize"]);
+            //Item
+           lkeItem.Properties.DataSource = ds.Tables["tbItem"];
+           lkeItem.Properties.ValueMember = "c002";
+           lkeItem.Properties.DisplayMember = "c003";
+           lkeItem.EditValue = ds.Tables["tbItem"].Rows[0][0];
+            lkeItem.Properties.Columns.Add(new LookUpColumnInfo("c002", "Item Code", 200));
+            lkeItem.Properties.Columns.Add(new LookUpColumnInfo("c003", "Item Name", 500));
 
+            //lkeItem.Properties.PopulateColumns();
             //Component
-            lkeComponent.Properties.DataSource = ds.Tables["tbComponent"];
-            lkeComponent.Properties.ValueMember = "componentID";
-            lkeComponent.Properties.DisplayMember = "name";
-            lkeComponent.EditValue = ds.Tables["tbComponent"].Rows[0][0];
-            lkeComponent.Properties.PopulateColumns();
-            lkeComponent.Properties.Columns["ItemID"].Visible = false;
-            lkeComponent.Properties.Columns["componentID"].Caption = "ComponentID";
-            lkeComponent.Properties.Columns["name"].Caption = "Name";
-            lkeComponent.Properties.Columns["name"].Width = 200;
+            
             //Screwsize
-            lkeScrewsize.Properties.DataSource = ds.Tables["tbScrewsize"];
-            lkeScrewsize.Properties.ValueMember = "screwsizeID";
-            lkeScrewsize.Properties.DisplayMember = "value";
-            lkeScrewsize.EditValue = ds.Tables["tbScrewsize"].Rows[0][0];
-            lkeScrewsize.Properties.PopulateColumns();
-            lkeScrewsize.Properties.Columns["ItemID"].Visible = false;
-            lkeScrewsize.Properties.Columns["componentID"].Visible = false;
-            lkeScrewsize.Properties.Columns["screwsizeID"].Caption = "ScrewsizeID";
-            lkeScrewsize.Properties.Columns["screwsizeID"].Width = 30;
-            lkeScrewsize.Properties.Columns["value"].Caption = "Value";
             //Reason
             lkeReason.Properties.DataSource = ds.Tables["tbReason"];
             lkeReason.Properties.ValueMember = "ReasonID";
@@ -263,6 +255,48 @@ namespace ScaleApp
         private void frmCookies_FormClosing(object sender, FormClosingEventArgs e)
         {
             CloseSerialPort();
+        }
+
+        private void lkeItem_EditValueChanged(object sender, EventArgs e)
+        {
+            ds = DataOperation.SelectComponent(2, "sp_GetComponent", lkeItem.EditValue.ToString());
+            lkeComponent.Properties.DataSource = ds.Tables["tbComponent"];
+            if (ds.Tables["tbComponent"] != null && ds.Tables["tbComponent"].Rows.Count != 0)
+            {
+                lkeComponent.Properties.ValueMember = "componentID";
+                lkeComponent.Properties.DisplayMember = "name";
+                lkeComponent.EditValue = ds.Tables["tbComponent"].Rows[0][0];
+                lkeComponent.Properties.PopulateColumns();
+                lkeComponent.Properties.Columns["ItemID"].Visible = false;
+                lkeComponent.Properties.Columns["componentID"].Caption = "ComponentID";
+                lkeComponent.Properties.Columns["name"].Caption = "Name";
+                lkeComponent.Properties.Columns["name"].Width = 200;
+            }
+        
+        }
+
+        private void lkeScrewsize_EditValueChanged(object sender, EventArgs e)
+        {
+           
+            
+        }
+
+        private void lkeComponent_EditValueChanged(object sender, EventArgs e)
+        {
+            ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", lkeItem.EditValue.ToString(), Convert.ToInt32(lkeComponent.EditValue), 2);
+            lkeScrewsize.Properties.DataSource = ds.Tables["tbScrewsize"];
+            if (ds.Tables["tbScrewsize"] != null && ds.Tables["tbScrewsize"].Rows.Count != 0)
+            {
+                lkeScrewsize.Properties.ValueMember = "screwsizeID";
+                lkeScrewsize.Properties.DisplayMember = "value";
+                lkeScrewsize.EditValue = ds.Tables["tbScrewsize"].Rows[0][0];
+                lkeScrewsize.Properties.PopulateColumns();
+                lkeScrewsize.Properties.Columns["ItemID"].Visible = false;
+                lkeScrewsize.Properties.Columns["componentID"].Visible = false;
+                lkeScrewsize.Properties.Columns["screwsizeID"].Caption = "ScrewsizeID";
+                lkeScrewsize.Properties.Columns["screwsizeID"].Width = 30;
+                lkeScrewsize.Properties.Columns["value"].Caption = "Value";
+            }
         }
     }
 }

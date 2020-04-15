@@ -156,6 +156,31 @@ namespace ScaleApp.Common
             }
 
         }
+        public static DataSet SelectItem(int db, string spName)
+        {
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter();
+                connect(db);
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                if (ds.Tables["tbItem"] != null)
+                {
+                    ds.Tables["tbItem"].Clear();
+                }
+                da.Fill(ds, "tbItem");
+                cmd.Dispose();
+                da.Dispose();
+                disconnect();
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
         public static DataSet SelectComponent(int db,string spName,string itemID)
         {
             try

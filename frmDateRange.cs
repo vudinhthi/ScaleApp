@@ -51,7 +51,6 @@ namespace ScaleApp
             set { fromDate = value; }
         }
 
-
         public frmDateRange()
         {
             InitializeComponent();
@@ -61,7 +60,7 @@ namespace ScaleApp
         {
             if (dateFromdate.EditValue == null || dateTodate.EditValue == null)
             {
-                XtraMessageBox.Show("Select date range to export data !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                XtraMessageBox.Show("Chọn thời gian xuất dữ liệu...", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -73,7 +72,6 @@ namespace ScaleApp
                     case 1:
                         ExportMixing();
                         break;
-
                     case 2:
                         ExportCrushing();
                         break;
@@ -98,7 +96,7 @@ namespace ScaleApp
                 sqlcmdMixRaw.Parameters.AddWithValue("@fromDate", dateFromdate.EditValue);
                 sqlcmdMixRaw.Parameters.AddWithValue("@toDate", dateTodate.EditValue);
                 SqlDaMixRaw.SelectCommand = sqlcmdMixRaw;
-                SqlDaMixRaw.Fill(ds, "MixRaw");
+                SqlDaMixRaw.Fill(ds, "MixRaw List");
 
                 //SqlDataAdapter SqlDaCrush = new SqlDataAdapter();
                 //SqlCommand sqlcmdCrush = new SqlCommand("sp_getFullCrushRawsEx", conn);
@@ -113,9 +111,10 @@ namespace ScaleApp
                     SqlDataAdapter SqlDa = new SqlDataAdapter();
                     SqlCommand sqlcmd = new SqlCommand("sp_getMaterialsProduct_Scaled", conn);
                     sqlcmd.CommandType = CommandType.StoredProcedure;
-                    sqlcmd.Parameters.AddWithValue("@ProductId", productId);
+                    sqlcmd.Parameters.AddWithValue("@fromDate", dateFromdate.EditValue);
+                    sqlcmd.Parameters.AddWithValue("@toDate", dateTodate.EditValue);
                     SqlDa.SelectCommand = sqlcmd;
-                    SqlDa.Fill(ds, "MaterialProduct");
+                    SqlDa.Fill(ds, "Material Consumption");
                 }
                 ExportDataSetToExcel(ds, "");
                 ds.Clear();
@@ -125,7 +124,7 @@ namespace ScaleApp
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -143,14 +142,14 @@ namespace ScaleApp
                 sqlcmdMixRaw.Parameters.AddWithValue("@fromDate", dateFromdate.EditValue);
                 sqlcmdMixRaw.Parameters.AddWithValue("@toDate", dateTodate.EditValue);
                 SqlDaMixRaw.SelectCommand = sqlcmdMixRaw;
-                SqlDaMixRaw.Fill(ds, "CrushRaw");
+                SqlDaMixRaw.Fill(ds, "CrushRaw List");
 
                 ExportDataSetToExcel(ds, "");
                 ds.Clear();
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -162,14 +161,19 @@ namespace ScaleApp
 
             try
             {
-                SqlDataAdapter SqlDaCrush = new SqlDataAdapter("sp_getFullMixOutsEx", conn);
-                SqlDaCrush.SelectCommand.CommandType = CommandType.StoredProcedure;
-                SqlDaCrush.Fill(ds, "Incoming crush");
+                SqlDataAdapter SqlDaIncoming = new SqlDataAdapter();
+                SqlCommand sqlcmdIncoming = new SqlCommand("sp_getFullMixOutsEx", conn);
+                sqlcmdIncoming.CommandType = CommandType.StoredProcedure;
+                sqlcmdIncoming.Parameters.AddWithValue("@fromDate", dateFromdate.EditValue);
+                sqlcmdIncoming.Parameters.AddWithValue("@toDate", dateTodate.EditValue);
+                SqlDaIncoming.SelectCommand = sqlcmdIncoming;
+                SqlDaIncoming.Fill(ds, "Incoming crush");
                 ExportDataSetToExcel(ds, "");
+                ds.Clear();
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -244,6 +248,6 @@ namespace ScaleApp
                 XtraMessageBox.Show("Error: " + e, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return false;
-        }
+        }        
     }
 }

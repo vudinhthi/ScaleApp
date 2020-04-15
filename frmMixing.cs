@@ -190,7 +190,7 @@ namespace ScaleApp
 
                 if (i != 0)
                 {
-                    XtraMessageBox.Show("Save Mixing Raw successful !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show("Lưu dữ liệu thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     spbPost.Enabled = false;
                     spbSave.Enabled = false;
                     LoadGridControl1();                    
@@ -202,16 +202,16 @@ namespace ScaleApp
                 switch (sqlEx.Number)
                 {
                     case 2601:
-                        XtraMessageBox.Show("Data was existing !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        XtraMessageBox.Show("Dữ liệu đã tồn tại !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                     default:
-                        XtraMessageBox.Show("Error: " + sqlEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        XtraMessageBox.Show("Lỗi: " + sqlEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -246,13 +246,13 @@ namespace ScaleApp
 
                 if (i != 0)
                 {
-                    XtraMessageBox.Show("Save Mixing Raw successful !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show("Lưu dữ liệu thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadGridControl1();
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -268,7 +268,7 @@ namespace ScaleApp
             {
                 if (bteWeightRe.Text.IsNullOrEmpty() || (bteWeightRe.Text == "0"))
                 {
-                    XtraMessageBox.Show("Give me scale weight for Recycled Lot", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show("Chọn Recycled Lot...", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     bteWeightRe.Focus();
                     return 0;
                 }
@@ -278,7 +278,7 @@ namespace ScaleApp
                 if (txtReason.Text.IsNullOrEmpty())
                 {
                     bteWeightRe.ReadOnly = true;
-                    XtraMessageBox.Show("Give me the reason for the Recycled Lot null", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show("Nhập vào ô Reason khi không chọn Recycled Lot", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtReason.Focus();
                     return 0;
                 }
@@ -478,7 +478,7 @@ namespace ScaleApp
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             ScaleApp.Common.DataOperation.disconnect();
         }
@@ -510,7 +510,7 @@ namespace ScaleApp
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             ScaleApp.Common.DataOperation.disconnect();
         }
@@ -573,7 +573,7 @@ namespace ScaleApp
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             ScaleApp.Common.DataOperation.disconnect();
         }
@@ -612,7 +612,7 @@ namespace ScaleApp
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("Lỗi: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 ScaleApp.Common.DataOperation.disconnect();
             }
@@ -713,7 +713,7 @@ namespace ScaleApp
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             ScaleApp.Common.DataOperation.disconnect();
             return materialCode;
@@ -817,6 +817,7 @@ namespace ScaleApp
                 gridView2.Columns["RecycledID"].VisibleIndex = -1;
                 gridView2.Columns["MaterialCode"].VisibleIndex = -1;
                 gridView2.Columns["MaterialName"].VisibleIndex = -1;
+                gridView2.Columns["Posted"].VisibleIndex = -1;
 
                 //Reorder Columns of MasterGridView
                 gridView2.Columns["CreateTime"].VisibleIndex = 1;
@@ -831,29 +832,29 @@ namespace ScaleApp
                 gridView2.Columns["TotalMaterial"].VisibleIndex = 10;
                 gridView2.Columns["ReRatio"].VisibleIndex = 11;
                 gridView2.Columns["MachineName"].VisibleIndex = 12;
-                gridView2.Columns["Posted"].VisibleIndex = 13;
-
+                
                 //Set column's width of Master GridView
                 gridView2.Columns["MixRawId"].Width = 40;
                 gridView2.Columns["CreateTime"].Width = 120;
                 gridView2.Columns["MixBacode"].Width = 220;
-                gridView2.Columns["ShiftName"].Width = 40;
+                gridView2.Columns["ShiftName"].Width = 30;
                 gridView2.Columns["OperatorName"].Width = 100;
                 gridView2.Columns["ProductName"].Width = 180;
-                gridView2.Columns["ProductCode"].Width = 180;
-                gridView2.Columns["WeightMaterial"].Width = 80;
-                gridView2.Columns["WeightRecycle"].Width = 80;
-                gridView2.Columns["TotalMaterial"].Width = 80;
-                gridView2.Columns["ReRatio"].Width = 80;
+                gridView2.Columns["ProductCode"].Width = 150;
+                gridView2.Columns["ColorCode"].Width = 60;
+                gridView2.Columns["WeightMaterial"].Width = 70;
+                gridView2.Columns["WeightRecycle"].Width = 70;
+                gridView2.Columns["TotalMaterial"].Width = 70;
+                gridView2.Columns["ReRatio"].Width = 70;
                 gridView2.Columns["MachineName"].Width = 80;
                 gridView2.Columns["Posted"].Width = 40;
 
                 //Display format for column
                 gridView2.Columns["CreateTime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-                gridView2.Columns["CreateTime"].DisplayFormat.FormatString = "MM/dd/yyyy hh:mm:ss";
+                gridView2.Columns["CreateTime"].DisplayFormat.FormatString = "MM/dd/yyyy HH:mm:ss";
 
                 gridView2.Columns["ReRatio"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                gridView2.Columns["ReRatio"].DisplayFormat.FormatString = "{0:p2}";
+                gridView2.Columns["ReRatio"].DisplayFormat.FormatString = "{0:p2}";                
 
                 gridView2.MoveFirst();
 
@@ -913,7 +914,7 @@ namespace ScaleApp
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -988,7 +989,7 @@ namespace ScaleApp
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("Lỗi: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 ScaleApp.Common.DataOperation.disconnect();
             }
@@ -1058,7 +1059,7 @@ namespace ScaleApp
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            lblDateTime.Text = DateTime.Now.ToString();
+            lblDateTime.Text = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -1078,7 +1079,7 @@ namespace ScaleApp
 
             if (txtMixID.Text.IsNullOrEmpty())
             {
-                XtraMessageBox.Show("Select a Mix Lot to print !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                XtraMessageBox.Show("Chọn Mix Lot ID để in !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -1244,7 +1245,7 @@ namespace ScaleApp
                 GridView gridView = sender as GridView;
                 cmbShift.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ShiftName"]);
                 lueOperator.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["OperatorCode"]);
-                lueProduct.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);                
+                lueProduct.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);
                 tedColorCode.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ColorCode"]);
                 cmbStep.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["StepCode"]);
                 txtMachine.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MachineName"]).ToString();
@@ -1255,20 +1256,20 @@ namespace ScaleApp
                 txtReRatio.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ReRatio"]).ToString();
                 lueRecycled.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CrushRawID"]);
                 txtReason.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Reason"]).ToString();
-                txtMixDate.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]).ToString();
+                txtMixDate.Text = String.Format("{0:MM/dd/yyyy HH:mm:ss}", gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]));
                 txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
                 txtMixID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]).ToString();
 
                 txtReRatio.Properties.DisplayFormat.FormatType = FormatType.Numeric;
                 txtReRatio.Properties.DisplayFormat.FormatString = "p";
-                txtReRatio.Properties.Mask.UseMaskAsDisplayFormat = true;
+                txtReRatio.Properties.Mask.UseMaskAsDisplayFormat = true;                
 
                 LoadGridControl2(lueProduct.EditValue.ToString(), bteWeightRM.Text);
                 SetcmdPost();
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1312,6 +1313,9 @@ namespace ScaleApp
             }
 
             frmDate.Show();
+
+            //Test chuc nang xuat Excel tu gridView cua DevExpress
+            //ExportExcel("");
         }
 
         private bool ExportExcel(string filename)
@@ -1324,22 +1328,65 @@ namespace ScaleApp
                 dialog.Filter = @"Microsoft Excel|*.xlsx";
 
                 if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    foreach (DevExpress.XtraGrid.Columns.GridColumn col in gridView2.Columns)
-                    {
-                        col.Visible = true;
-                    }
+                {                    
 
                     gridView2.OptionsPrint.ShowPrintExportProgress = true;
                     gridView2.OptionsPrint.AllowCancelPrintExport = true;
+                    gridView2.OptionsPrint.AutoWidth = true;
+
+                    //Hien cac cot trong grid
+                    gridView2.Columns["MixRawId"].VisibleIndex = 0;
+                    gridView2.Columns["MixBacode"].VisibleIndex = 1;
+                    gridView2.Columns["RecycledID"].VisibleIndex = 2;
+                    gridView2.Columns["CreateTime"].VisibleIndex = 3;
+                    gridView2.Columns["ShiftName"].VisibleIndex = 4;
+                    gridView2.Columns["OperatorName"].VisibleIndex = 6;
+                    gridView2.Columns["ProductCode"].VisibleIndex = 6;
+                    gridView2.Columns["ProductName"].VisibleIndex = 7;
+                    gridView2.Columns["ColorCode"].VisibleIndex = 8;
+                    gridView2.Columns["ColorName"].VisibleIndex = 9;
+                    gridView2.Columns["StepName"].VisibleIndex = 10;
+                    gridView2.Columns["WeightMaterial"].VisibleIndex = 11;
+                    gridView2.Columns["WeightRecycle"].VisibleIndex = 12;
+                    gridView2.Columns["TotalMaterial"].VisibleIndex = 13;
+                    gridView2.Columns["ReRatio"].VisibleIndex = 14;
+                    gridView2.Columns["MachineName"].VisibleIndex = 15;
+                    gridView2.Columns["Reason"].VisibleIndex = 16;
 
                     XlsxExportOptions options = new XlsxExportOptions();
-                    options.TextExportMode = TextExportMode.Text;
+                    options.TextExportMode = TextExportMode.Value;
                     options.ExportMode = XlsxExportMode.SingleFilePageByPage;
                     options.SheetName = "Mixing";
 
                     ExportSettings.DefaultExportType = ExportType.Default;
                     gridView2.ExportToXlsx(dialog.FileName, options);
+
+                    //An cac cot trong grid
+                    gridView2.Columns["OperatorCode"].VisibleIndex = -1;
+                    gridView2.Columns["StepName"].VisibleIndex = -1;
+                    gridView2.Columns["ColorName"].VisibleIndex = -1;
+                    gridView2.Columns["StepCode"].VisibleIndex = -1;
+                    gridView2.Columns["CrushRawID"].VisibleIndex = -1;
+                    gridView2.Columns["Reason"].VisibleIndex = -1;
+                    gridView2.Columns["RecycledID"].VisibleIndex = -1;
+                    gridView2.Columns["MaterialCode"].VisibleIndex = -1;
+                    gridView2.Columns["MaterialName"].VisibleIndex = -1;
+                    gridView2.Columns["Posted"].VisibleIndex = -1;
+
+                    //Reorder Columns of MasterGridView
+                    gridView2.Columns["CreateTime"].VisibleIndex = 1;
+                    gridView2.Columns["ShiftName"].VisibleIndex = 2;
+                    gridView2.Columns["OperatorName"].VisibleIndex = 3;
+                    gridView2.Columns["MixBacode"].VisibleIndex = 4;
+                    gridView2.Columns["ProductName"].VisibleIndex = 5;
+                    gridView2.Columns["ProductCode"].VisibleIndex = 6;
+                    gridView2.Columns["ColorCode"].VisibleIndex = 7;
+                    gridView2.Columns["WeightMaterial"].VisibleIndex = 8;
+                    gridView2.Columns["WeightRecycle"].VisibleIndex = 9;
+                    gridView2.Columns["TotalMaterial"].VisibleIndex = 10;
+                    gridView2.Columns["ReRatio"].VisibleIndex = 11;
+                    gridView2.Columns["MachineName"].VisibleIndex = 12;                    
+
                     XtraMessageBox.Show("Successed!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information, DefaultBoolean.True);
 
                     if (File.Exists(dialog.FileName))
@@ -1349,7 +1396,7 @@ namespace ScaleApp
                             Process.Start(dialog.FileName);
                         }
                     }
-                    LoadGridControl1();
+                    //LoadGridControl1();
                 }
             }
             catch (Exception e)
@@ -1370,7 +1417,7 @@ namespace ScaleApp
                 editorWeightRM.Text = txtScaleWeight.Text;
                 if (lueProduct.EditValue == null)
                 {
-                    XtraMessageBox.Show("Select a product", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    XtraMessageBox.Show("Chọn Product", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
@@ -1385,7 +1432,7 @@ namespace ScaleApp
                 txtTotalMaterial.Text = null;
                 if (lueProduct.EditValue == null)
                 {
-                    XtraMessageBox.Show("Select a product", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    XtraMessageBox.Show("Chọn Product", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
@@ -1487,7 +1534,7 @@ namespace ScaleApp
         private void Timer2_Tick(object sender, EventArgs e)
         {
             CloseSerialPort();
-            txtScaleWeight.Text = "Off";
+            txtScaleWeight.Text = "0";
         }
 
         private void spbScale_Click(object sender, EventArgs e)
@@ -1539,7 +1586,7 @@ namespace ScaleApp
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1562,7 +1609,7 @@ namespace ScaleApp
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1621,7 +1668,7 @@ namespace ScaleApp
                 txtReRatio.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ReRatio"]).ToString();
                 lueRecycled.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CrushRawID"]);
                 txtReason.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Reason"]).ToString();
-                txtMixDate.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]).ToString();
+                txtMixDate.Text = String.Format("{0:MM/dd/yyyy HH:mm:ss}", gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]));
                 txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
                 txtMixID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]).ToString();
 
@@ -1634,7 +1681,7 @@ namespace ScaleApp
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Lỗi: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1661,6 +1708,6 @@ namespace ScaleApp
         private void frmMixing_FormClosing(object sender, FormClosingEventArgs e)
         {
             CloseSerialPort();
-        }
+        }        
     }
 }

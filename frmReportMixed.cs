@@ -14,6 +14,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraPrinting;
+using System.Drawing.Printing;
 
 namespace ScaleApp
 {    
@@ -21,6 +23,7 @@ namespace ScaleApp
     {
         private string  lableTypeReport;
         private int mixID;
+        private PrinterSettings prnSettings;
 
         public string LableTypeReport
         {
@@ -47,8 +50,8 @@ namespace ScaleApp
             LoadDataToReport(LableTypeReport);
             this.Close();
             this.Dispose();
-        }        
-        
+        }
+
         private void SendToPrint()
         {
             var rpt = new rptMixing();
@@ -84,7 +87,7 @@ namespace ScaleApp
                 case "Mixed":
                     var rptMix = new rptMixing();
                     rptMix.DataSource = ds;
-                    //rptMix.CreateDocument();
+                    rptMix.CreateDocument();
                     ReportPrintTool printToolMix = new ReportPrintTool(rptMix);
                     printToolMix.PrintDialog();
                     //documentViewer1.DocumentSource = rptMix;
@@ -121,6 +124,36 @@ namespace ScaleApp
                     printToolContaminated.PrintDialog();
                     //documentViewer1.DocumentSource = rptContaminated;
                     break;
+                case "All":
+                    rptMix = new rptMixing();
+                    rptMix.DataSource = ds;
+                    rptMix.CreateDocument();
+
+                    XtraReport[] reports = new XtraReport[] { new rptMixedOut(), new rptDefect(), new rptBlackDot(), new rptContaminated() };
+                    foreach (XtraReport report in reports)
+                    {
+                        report.DataSource = ds;
+                        report.CreateDocument();
+                    }
+
+                    printToolMix = new ReportPrintTool(rptMix);
+                    printToolMix.PrintingSystem.StartPrint += new PrintDocumentEventHandler(PrintingSystem_StartPrint);
+
+                    foreach (XtraReport report in reports)
+                    {
+                        ReportPrintTool pts = new ReportPrintTool(report);
+                        pts.PrintingSystem.StartPrint +=
+                            new PrintDocumentEventHandler(reportsStartPrintEventHandler);
+                    }
+
+                    printToolMix.PrintDialog();
+                    foreach (XtraReport report in reports)
+                    {
+                        ReportPrintTool pts = new ReportPrintTool(report);
+                        pts.Print();
+                    }
+
+                    break;
                 default:
                     rptMix = new rptMixing();
                     rptMix.DataSource = ds;
@@ -130,6 +163,21 @@ namespace ScaleApp
                     //documentViewer1.DocumentSource = rptMix;
                     break;
             }                                   
+        }
+
+        private void reportsStartPrintEventHandler(object sender, PrintDocumentEventArgs e)
+        {
+            prnSettings = e.PrintDocument.PrinterSettings;
+        }
+
+        private void PrintingSystem_StartPrint(object sender, PrintDocumentEventArgs e)
+        {
+            int pageCount = e.PrintDocument.PrinterSettings.ToPage;
+            e.PrintDocument.PrinterSettings = prnSettings;
+
+            // The following line is required if the number of pages for each report varies, 
+            // and you consistently need to print all pages.
+            e.PrintDocument.PrinterSettings.ToPage = pageCount;
         }
     }
 }

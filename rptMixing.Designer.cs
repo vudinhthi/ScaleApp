@@ -156,7 +156,7 @@
             this.xrPageInfo1.StylePriority.UseFont = false;
             this.xrPageInfo1.StylePriority.UseTextAlignment = false;
             this.xrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            this.xrPageInfo1.TextFormatString = "Printed: {0:h:mm tt MM/dd/yyyy}";
+            this.xrPageInfo1.TextFormatString = "Printed: {0:HH:mm MM/dd/yyyy}";
             // 
             // xrBarCode1
             // 
@@ -191,6 +191,7 @@
             this.lblDateTime.StylePriority.UseTextAlignment = false;
             this.lblDateTime.Text = "lblDateTime";
             this.lblDateTime.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lblDateTime.TextFormatString = "{0:MM/dd/yyyy HH:mm:ss}";
             // 
             // lblMixID
             // 

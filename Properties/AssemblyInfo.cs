@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ScaleApp")]
 [assembly: AssemblyDescription("Recycled Management Application")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Framas Vietnam")]
+[assembly: AssemblyCompany("framas Vietnam")]
 [assembly: AssemblyProduct("ScaleApp")]
-[assembly: AssemblyCopyright("Copyright © 2020 Framas Vietnam")]
+[assembly: AssemblyCopyright("Copyright © 2020 framas Vietnam")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

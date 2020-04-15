@@ -133,5 +133,14 @@ namespace ScaleApp
                 XtraMessageBox.Show("Kết nối cơ sở dữ liệu thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.IsMdiContainer = true;
+            frmSettings settings = new frmSettings();
+            settings.TopLevel = false;
+            settings.Parent = this;
+            settings.Show();
+        }
     }
 }

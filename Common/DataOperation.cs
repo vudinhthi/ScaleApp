@@ -7,26 +7,22 @@ using System.Runtime.CompilerServices;
 using System.Data;
 using System.Configuration;
 using System.Windows.Forms;
-
+using ScaleApp.Models;
 namespace ScaleApp.Common
 {
-    class DataOperation
+   public class DataOperation
     {
         static SqlConnection conn;
         static SqlCommand cmd = new SqlCommand();
-
+        static DataSet ds = new DataSet();
         // open connection
         public static void connect(int db)
         {
-
             string conStr = ConfigurationManager.ConnectionStrings[db].ToString();
-
             conn = new SqlConnection(conStr);
 
             if (conn.State == ConnectionState.Closed)
-
                 conn.Open();
-
         }
 
         public static int ConnectToDB()
@@ -73,6 +69,7 @@ namespace ScaleApp.Common
                 conn.Close();    //Đóng kết nối
                 conn.Dispose();  //Giải phóng tài nguyên
                 conn = null;
+
             }
         }
 
@@ -92,7 +89,148 @@ namespace ScaleApp.Common
             return dt;
 
         }
+        public static void InsertComponent(int db, string spName,int id, string name, string ItemID)
+        {
+            connect(db);
+            using (SqlCommand cmd = new SqlCommand(spName, conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@componentID", SqlDbType.Int).Value =id;
+                cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = name;
+                cmd.Parameters.Add("@ItemID", SqlDbType.NVarChar).Value = ItemID;
+                cmd.ExecuteNonQuery();
+                disconnect();
+            }
 
+        }
+        public static void InsertScrewsize(int db, string spName, int id, int value, int ComponentID, string ItemID)
+        {
+            connect(db);
+            using (SqlCommand cmd = new SqlCommand(spName, conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@screwsizeID", SqlDbType.Int).Value = id;
+                cmd.Parameters.Add("@value", SqlDbType.Int).Value = value;
+                cmd.Parameters.Add("@componentID", SqlDbType.Int).Value = ComponentID;
+                cmd.Parameters.Add("@ItemID", SqlDbType.NVarChar).Value = ItemID;
+                cmd.ExecuteNonQuery();
+                disconnect();
+            }
+
+        }
+        public static DataSet SelectComponent(int db,string spName,string itemID)
+        {
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter();
+                connect(db);
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ItemID", itemID);
+                da.SelectCommand = cmd;
+                if (ds.Tables["tbComponent"] != null)
+                {
+                    ds.Tables["tbComponent"].Clear();
+                }
+                da.Fill(ds, "tbComponent");
+                cmd.Dispose();
+                da.Dispose();
+                disconnect();
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+           
+        }
+        public  static  int UpdateTable(int db,ref DataTable dt,string query)
+        {
+            try
+            {
+                int result = 0;
+                string conStr = ConfigurationManager.ConnectionStrings[db].ToString();
+                conn = new SqlConnection(conStr);
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                SqlCommandBuilder cmdbd = new SqlCommandBuilder(da);
+                result = da.Update(dt);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return -1;
+            }
+            
+        }
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="db"></param>
+       /// <param name="spName"></param>
+       /// <param name="ItemID"></param>
+       /// <param name="condition">query theo so luong </param>
+       /// <returns></returns>
+        public static DataSet SelectSrewsize(int db,string spName,string ItemID,int ComponentID,int condition)
+        {
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter();
+                connect(db);
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ItemID", ItemID);
+                cmd.Parameters.AddWithValue("@ComponentID", ComponentID);
+                cmd.Parameters.AddWithValue("@condition", condition);
+                da.SelectCommand = cmd;
+                if (ds.Tables["tbScrewsize"] != null)
+                {
+                    ds.Tables["tbScrewsize"].Clear();
+                }
+                da.Fill(ds, "tbScrewsize");
+                cmd.Dispose();
+                da.Dispose();
+                disconnect();
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+        /// <summary>
+        /// select last index Screwsize
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="spName"></param>
+        /// <param name="itemID"></param>
+        /// <returns></returns>
+        public static int SelectLastIndex(int db, string spName)
+        {
+            try
+            {
+                int result = 0;
+                connect(db);
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter();
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                result = Convert.ToInt32(dt.Rows[0][0]);
+                cmd.Dispose();
+                disconnect();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return -1;
+            }
+
+        }
         // thực thi câu lệnh truy vấn insert,delete,update
         public static void ExecuteNonQuery(int db, string sql)
         {
@@ -114,13 +252,10 @@ namespace ScaleApp.Common
             cmd = new SqlCommand(sql, conn);
 
             SqlDataReader dr = cmd.ExecuteReader();
-
             disconnect();
-
             return dr;
-
-        }
-
+        }   
+      
         public static DataSet GetDataSet(int db, string procName, string[] paramName, string[] paramValue)
         {
 

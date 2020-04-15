@@ -86,7 +86,7 @@
             this.simpleButton2.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.simpleButton2.Appearance.Options.UseFont = true;
             this.simpleButton2.Appearance.Options.UseForeColor = true;
-            this.simpleButton2.ImageOptions.Image = global::ScaleApp.Properties.Resources.delete_32x32;
+          //  this.simpleButton2.ImageOptions.Image = global::ScaleApp.Properties.Resources.delete_32x32;
             this.simpleButton2.Location = new System.Drawing.Point(384, 245);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(128, 37);
@@ -100,7 +100,7 @@
             this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.Teal;
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.Appearance.Options.UseForeColor = true;
-            this.simpleButton1.ImageOptions.Image = global::ScaleApp.Properties.Resources.apply_32x32;
+        //    this.simpleButton1.ImageOptions.Image = global::ScaleApp.Properties.Resources.apply_32x32;
             this.simpleButton1.Location = new System.Drawing.Point(250, 245);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(128, 37);

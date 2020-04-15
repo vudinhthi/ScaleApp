@@ -119,6 +119,20 @@ namespace ScaleApp.Common
             }
 
         }
+        public static void InsertReason(int db, string spName, int id, string value)
+        {
+
+            connect(db);
+            using (SqlCommand cmd = new SqlCommand(spName, conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@ReasonID", SqlDbType.Int).Value = id;
+                cmd.Parameters.Add("@Cause", SqlDbType.NVarChar).Value = value;
+                cmd.ExecuteNonQuery();
+                disconnect();
+            }
+
+        }
         public static void InsertorUpdate(int db, string spName,CookiesClass obj )
         {
             connect(db);
@@ -208,6 +222,7 @@ namespace ScaleApp.Common
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 return -1;
             }
         }
@@ -244,7 +259,30 @@ namespace ScaleApp.Common
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }   
+        public static DataSet SelectReason(int db,string spName)
+        {
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter();
+                connect(db);
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                if (ds.Tables["tbReason"] != null)
+                {
+                    ds.Tables["tbReason"].Clear();
+                }
+                da.Fill(ds, "tbReason");
+                cmd.Dispose();
+                da.Dispose();
+                disconnect();
+                return ds;
+            }
+            catch (Exception ex)
+            {
                 return null;
             }
         }
@@ -274,7 +312,7 @@ namespace ScaleApp.Common
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
                 return -1;
             }
 

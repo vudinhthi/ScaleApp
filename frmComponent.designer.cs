@@ -101,9 +101,16 @@
             // 
             // gridView1
             // 
+            this.gridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.DarkKhaki;
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.Black;
+            this.gridView1.Appearance.HeaderPanel.Options.UseBackColor = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseForeColor = true;
             this.gridView1.GridControl = this.gctComponent;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsEditForm.EditFormColumnCount = 2;
+            this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             // 
             // lkeItem
             // 

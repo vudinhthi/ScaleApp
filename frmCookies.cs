@@ -17,6 +17,9 @@ using DevExpress.XtraGrid.Views.Grid;
 using System.Diagnostics;
 using DevExpress.Export;
 using DevExpress.XtraPrinting;
+using System.IO.Ports;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace ScaleApp
 {
@@ -24,7 +27,9 @@ namespace ScaleApp
     {
        
         DataSet ds = new DataSet();
-
+        private SerialPort _serialPort;
+        private const int BaudRate = 9600;
+        System.Timers.Timer tm = new System.Timers.Timer();
         public frmCookies()
         {
             InitializeComponent();
@@ -32,6 +37,7 @@ namespace ScaleApp
 
         private void frmCookies_Load(object sender, EventArgs e)
         {
+           
             lkeItem.EditValue = "1";
             lkeItem.Text = "1";
             //List<ItemClass> litem = new  List<ItemClass>();
@@ -63,21 +69,6 @@ namespace ScaleApp
         }
 
       
-
-        private void simpleButton5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupControl1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void txtPurgingCookies_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
         private void InitLookupEdit()
         {
             ds.Clear();
@@ -92,42 +83,41 @@ namespace ScaleApp
             }
             ds = DataOperation.SelectComponent(2, "sp_GetComponent", lkeItem.EditValue.ToString());
             ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", lkeItem.EditValue.ToString(), 0, 1);
-         //  DataView dvScrewsize, dvComponent;
-           // DataViewManager dvm = new DataViewManager(ds);
-          //  dvComponent = dvm.CreateDataView(ds.Tables["tbComponent"]);
-          //  dvScrewsize = dvm.CreateDataView(ds.Tables["tbScrewsize"]);
-            //if (dvComponent != null)
-            //{
-              
-                lkeComponent.Properties.DataSource = ds.Tables["tbComponent"];
-                lkeComponent.Properties.ValueMember = "componentID";
-                lkeComponent.Properties.DisplayMember = "name";
-                lkeComponent.EditValue = ds.Tables["tbComponent"].Rows[0][0];
-                lkeComponent.Properties.PopulateColumns();
-                lkeComponent.Properties.Columns["ItemID"].Visible = false;
-                lkeComponent.Properties.Columns["componentID"].Caption = "ComponentID";
-                lkeComponent.Properties.Columns["name"].Caption = "Name";
+            ds = DataOperation.SelectReason(2, "sp_GetReason");
+            //  DataView dvScrewsize, dvComponent;
+            // DataViewManager dvm = new DataViewManager(ds);
+            //  dvComponent = dvm.CreateDataView(ds.Tables["tbComponent"]);
+            //  dvScrewsize = dvm.CreateDataView(ds.Tables["tbScrewsize"]);
+
+            //Component
+            lkeComponent.Properties.DataSource = ds.Tables["tbComponent"];
+            lkeComponent.Properties.ValueMember = "componentID";
+            lkeComponent.Properties.DisplayMember = "name";
+            lkeComponent.EditValue = ds.Tables["tbComponent"].Rows[0][0];
+            lkeComponent.Properties.PopulateColumns();
+            lkeComponent.Properties.Columns["ItemID"].Visible = false;
+            lkeComponent.Properties.Columns["componentID"].Caption = "ComponentID";
+            lkeComponent.Properties.Columns["name"].Caption = "Name";
             lkeComponent.Properties.Columns["name"].Width = 200;
-            //}
-            //..
-            //if (dvScrewsize != null)
-            //{
-                lkeScrewsize.Properties.DataSource = ds.Tables["tbScrewsize"];
-                lkeScrewsize.Properties.ValueMember = "screwsizeID";
-                lkeScrewsize.Properties.DisplayMember = "value";
-                lkeScrewsize.EditValue = ds.Tables["tbScrewsize"].Rows[0][0];
-                lkeScrewsize.Properties.PopulateColumns();
-                lkeScrewsize.Properties.Columns["ItemID"].Visible = false;
-                lkeScrewsize.Properties.Columns["componentID"].Visible = false;
-                lkeScrewsize.Properties.Columns["screwsizeID"].Caption = "ScrewsizeID"; 
-                lkeScrewsize.Properties.Columns["screwsizeID"].Width = 40;
-
-                lkeScrewsize.Properties.Columns["value"].Caption = "Value";
-            
-         //   lkeScrewsize.Properties.Columns["screwsizeID"].
-
-            //}
-
+            //Screwsize
+            lkeScrewsize.Properties.DataSource = ds.Tables["tbScrewsize"];
+            lkeScrewsize.Properties.ValueMember = "screwsizeID";
+            lkeScrewsize.Properties.DisplayMember = "value";
+            lkeScrewsize.EditValue = ds.Tables["tbScrewsize"].Rows[0][0];
+            lkeScrewsize.Properties.PopulateColumns();
+            lkeScrewsize.Properties.Columns["ItemID"].Visible = false;
+            lkeScrewsize.Properties.Columns["componentID"].Visible = false;
+            lkeScrewsize.Properties.Columns["screwsizeID"].Caption = "ScrewsizeID";
+            lkeScrewsize.Properties.Columns["screwsizeID"].Width = 30;
+            lkeScrewsize.Properties.Columns["value"].Caption = "Value";
+            //Reason
+            lkeReason.Properties.DataSource = ds.Tables["tbReason"];
+            lkeReason.Properties.ValueMember = "ReasonID";
+            lkeReason.Properties.DisplayMember = "Cause";
+            lkeReason.EditValue = ds.Tables["tbReason"].Rows[0][0];
+            lkeReason.Properties.PopulateColumns();
+            lkeReason.Properties.Columns["ItemID"].Visible = false;
+            lkeReason.Properties.Columns["ReasonID"].Width = 60;
         }
         private void InitDataGridview()
         {
@@ -150,15 +140,7 @@ namespace ScaleApp
            
         
         }
-        private void lkeReason_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -218,6 +200,69 @@ namespace ScaleApp
         {
             InitDataGridview();
         }
-        
+
+        private void btnScale_Click(object sender, EventArgs e)
+        {
+            //CloseSerialPort();
+            btnScale.Enabled = false;
+            tm.Interval = 3000;
+            tm.Enabled = true;
+            tm.Elapsed += (s,o) =>
+            {
+                CloseSerialPort();
+                tm.Enabled = true;
+                btnScale.Invoke(new MethodInvoker(() => { btnScale.Enabled = true; }
+                ));  
+            };
+            ActionScale();
+        }
+        private void CloseSerialPort()
+        {
+            if (_serialPort != null && _serialPort.IsOpen)
+                _serialPort.Close();
+            if (_serialPort != null)
+                _serialPort.Dispose();
+        }
+        private void ActionScale()
+        {
+            _serialPort = new SerialPort("COM2", BaudRate, Parity.None, 8, StopBits.One);       //<-- Creates new SerialPort using the name selected in the combobox
+            _serialPort.DataReceived += SerialPortOnDataReceived;       //<-- this event happens everytime when new data is received by the ComPort
+            _serialPort.Open();     //<-- make the comport listen
+        }
+        private delegate void Closure();
+        private void SerialPortOnDataReceived(object sender, SerialDataReceivedEventArgs serialDataReceivedEventArgs)
+        {
+            if (InvokeRequired)     //<-- Makes sure the function is invoked to work properly in the UI-Thread
+                BeginInvoke(new Closure(() => {SerialPortOnDataReceived(sender, serialDataReceivedEventArgs); }));     //<-- Function invokes itself
+            else
+            {
+                int dataLength = _serialPort.BytesToRead;
+
+                byte[] data = new byte[dataLength];
+                int nbrDataRead = _serialPort.Read(data, 0, dataLength);
+                if (nbrDataRead == 0)
+                {
+                    return;
+                }
+                string str = Encoding.UTF8.GetString(data);
+
+                //Buffers values in a file
+                File.AppendAllText("buffer1", str);
+
+                //Read from buffer and write into "strnew" String
+                string strnew = File.ReadLines("buffer1").Last();
+
+                //Shows actual true value coming from scale
+                Regex digits = new Regex(@"^\D*?((-?(\d+(\.\d+)?))|(-?\.\d+)).*");
+                Match mx = digits.Match(strnew);
+                decimal strValue = mx.Success ? Convert.ToDecimal(mx.Groups[1].Value) : 0;
+                txtPurgingInput.Text = strValue.ToString();
+            }
+        }
+
+        private void frmCookies_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CloseSerialPort();
+        }
     }
 }

@@ -282,14 +282,14 @@ namespace ScaleApp
         private string GetRadioChecked()
         {
             string rdicheckName = "";
-            foreach (RadioButton rb in groupBox1.Controls)
-            {
-                if (rb.Checked)
-                {
-                    rdicheckName = rb.Name;
-                    //MessageBox.Show(rb.Name + "-" + txtWeight.Text.ToString());                    
-                }
-            }
+            //foreach (RadioButton rb in groupBox1item)
+            //{
+            //    if (rb.Checked)
+            //    {
+            //        rdicheckName = rb.Name;
+            //        //MessageBox.Show(rb.Name + "-" + txtWeight.Text.ToString());                    
+            //    }
+            //}
             return rdicheckName;
         }
 

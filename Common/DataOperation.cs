@@ -105,6 +105,7 @@ namespace ScaleApp.Common
         }
         public static void InsertScrewsize(int db, string spName, int id, int value, int ComponentID, string ItemID)
         {
+            
             connect(db);
             using (SqlCommand cmd = new SqlCommand(spName, conn))
             {
@@ -163,7 +164,6 @@ namespace ScaleApp.Common
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 return null;
             }
            
@@ -190,7 +190,6 @@ namespace ScaleApp.Common
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 return null;
             }
 
@@ -209,7 +208,6 @@ namespace ScaleApp.Common
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 return -1;
             }
         }

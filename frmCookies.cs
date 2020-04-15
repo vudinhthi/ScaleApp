@@ -171,21 +171,23 @@ namespace ScaleApp
             else
             {
                 cookiesClass.MachineNo =txtMachineNo.Text;
+                cookiesClass.Item = lkeItem.Text;
+                cookiesClass.Component = lkeComponent.Text;
+                cookiesClass.Screwsize = lkeScrewsize.Text;
+                cookiesClass.Shift = cbbShift.Text;
+                cookiesClass.PurgingMaterial = cbbPurgingMaterial.Text;
+                cookiesClass.PurgingInput = txtPurgingInput.Text;
+                cookiesClass.PurgingCookies = btnPurgingCookies.Text;
+                cookiesClass.TPUCookies = btnTPUCookies.Text;
+                cookiesClass.MixedCookies = btnMixedCookies.Text;
+                cookiesClass.Reason = lkeReason.Text;
+                cookiesClass.ItemID = "3";
+                DataOperation.InsertorUpdate(2, "sp_InsertOrUpdateCookies", cookiesClass);
+                InitDataGridview();
+                XtraMessageBox.Show("Lưu thành công!", "Thông báo");
             }
             //cookiesClass.MachineNo = Convert.ToInt32(txtMachineNo.Text);
-            cookiesClass.Item = lkeItem.Text;
-            cookiesClass.Component = lkeComponent.Text;
-            cookiesClass.Screwsize = lkeScrewsize.Text;
-            cookiesClass.Shift = cbbShift.Text;
-            cookiesClass.PurgingMaterial = cbbPurgingMaterial.Text;
-            cookiesClass.PurgingInput = txtPurgingInput.Text;
-            cookiesClass.PurgingCookies = btnPurgingCookies.Text;
-            cookiesClass.TPUCookies = btnTPUCookies.Text;
-            cookiesClass.MixedCookies = btnMixedCookies.Text;
-            cookiesClass.Reason = lkeReason.Text;
-            cookiesClass.ItemID = "3";
-            DataOperation.InsertorUpdate(2, "sp_InsertOrUpdateCookies", cookiesClass);
-            InitDataGridview();
+            
         }
 
         private void btnExport_Click(object sender, EventArgs e)

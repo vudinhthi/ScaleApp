@@ -81,11 +81,12 @@
             // 
             this.simpleButton2.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Enabled = false;
             this.simpleButton2.Location = new System.Drawing.Point(129, 217);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(75, 23);
             this.simpleButton2.TabIndex = 4;
-            this.simpleButton2.Text = "Check update";
+            this.simpleButton2.Text = "Update";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // frmAbout

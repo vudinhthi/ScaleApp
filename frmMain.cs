@@ -136,11 +136,7 @@ namespace ScaleApp
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.IsMdiContainer = true;
-            frmSettings settings = new frmSettings();
-            settings.TopLevel = false;
-            settings.Parent = this;
-            settings.Show();
+            
         }
     }
 }

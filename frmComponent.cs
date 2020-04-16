@@ -24,6 +24,8 @@ namespace ScaleApp
     {
         GridView gvComponent;
         DataSet ds = new DataSet();
+        //Cờ xác nhận load data vào LookupEdit Item
+        bool islkeLoaded = false;
         //   GridView gridviewScrewsize;
         public frmComponent()
         {
@@ -31,6 +33,7 @@ namespace ScaleApp
         }
         private void frmComponent_Load(object sender, EventArgs e)
         {
+            InitLookupEdit();
             gvComponent = gctComponent.MainView as GridView;
             gvComponent.OptionsBehavior.Editable = true;
             gvComponent.OptionsSelection.MultiSelect = false;
@@ -40,8 +43,8 @@ namespace ScaleApp
             gvComponent.OptionsBehavior.EditingMode = GridEditingMode.EditFormInplaceHideCurrentRow;
             //gvComponent.OptionsEditForm.ShowOnEnterKey = DevExpress.Utils.DefaultBoolean.True;
             //gvComponent.OptionsEditForm.ShowOnDoubleClick = DevExpress.Utils.DefaultBoolean.False;
-            bool isLoading = true;
-            GridControlLoad(isLoading);
+            
+            // GridControlLoad(isLoading);
             // TextEdit edit = null;
             gvComponent.PopupMenuShowing += (s, o) =>
             {
@@ -74,7 +77,7 @@ namespace ScaleApp
                         //string ItemID = lkeItem.Text;
                         //Goi form Screwsize
 
-                        frmScrewsize frmScrewsize = new frmScrewsize() {componentID =Convert.ToInt32(view.GetRowCellValue(index, "componentID")) , ItemID = lkeItem.Text };
+                        frmScrewsize frmScrewsize = new frmScrewsize() {componentID =Convert.ToInt32(view.GetRowCellValue(index, "componentID")) , ItemID = lkeItem.EditValue.ToString() };
                         DialogResult result=frmScrewsize.ShowDialog();
                         if (result == DialogResult.OK)
                         {
@@ -88,17 +91,29 @@ namespace ScaleApp
             gvComponent.EditFormPrepared += (s, o) =>
             {
                 GridView view = s as GridView;
-                GridColumn colComponentID = view.Columns["componentID"];
+                GridColumn colcomponentID = view.Columns["componentID"];
                 GridColumn colName = view.Columns["name"];
-                int rowcount = view.DataRowCount +1;
-                string componentID = view.GetRowCellValue(o.RowHandle, colComponentID).ToString();
-                if (string.IsNullOrWhiteSpace(componentID))
+                //Lay max screwsizeID 
+                //int rowcount = view.DataRowCount + 1;
+                //var nextindex =Convert.ToInt32(dt.Rows[dt.Rows.Count-1][0]);
+                int nextindex = DataOperation.SelectLastIndex(2, "sp_GetLastestComponentID") + 1;
+                if (gctComponent.DataSource != null)
                 {
-                    view.SetRowCellValue(o.RowHandle, colComponentID, rowcount);
-                    var IdEdit = o.BindableControls[colComponentID];
-                    IdEdit.Text = rowcount.ToString();
+                    string componentID = view.GetRowCellValue(o.RowHandle, colcomponentID).ToString();
+                    if (string.IsNullOrWhiteSpace(componentID))
+                    {
+                        if (nextindex == 0)
+                        {
+                            nextindex++;
+                        }
+                        view.SetRowCellValue(o.RowHandle, colcomponentID, nextindex);
+                        var IdEdit = o.BindableControls[colcomponentID];
+                        IdEdit.Text = nextindex.ToString();
+                    }
+                    o.FocusField(colName);
                 }
-                o.FocusField(colName); //focus field Name
+               
+                 //focus field Name
             };
             #region EditFormShowing
             //gvComponent.EditFormShowing += (s, o) =>
@@ -140,13 +155,13 @@ namespace ScaleApp
                   //Neu la hang moi thi add vao database
                   if (!view.IsNewItemRow(o.RowHandle))
                   {
-                      int result1 = DataOperation.UpdateTable(2, ref tbComponent, $"SELECT * from Component where ItemID = 1 order by componentID asc");
+                      int result1 = DataOperation.UpdateTable(2, ref tbComponent, $"SELECT * from Component where ItemID = '{lkeItem.EditValue.ToString()}' order by componentID asc");
                   }
                   else
                   {
                       int id = Convert.ToInt32(o.BindableControls["componentID"].Text);
                       string name = o.BindableControls["name"].Text;
-                      string itemID = lkeItem.Text;
+                      string itemID = lkeItem.EditValue.ToString();
                       DataOperation.InsertComponent(2, "sp_createComponent", id, name, itemID);
                   }
                   gctComponent.RefreshDataSource();
@@ -185,17 +200,17 @@ namespace ScaleApp
         }
         private void GridControlLoad(bool isLoading)
         {
-            ds.Clear();
-            if (ds.Tables["tbComponent"] != null)
-            {
-                ds.Tables["tbComponent"].Clear();
-            }
+            // ds.Clear();
             if (ds.Tables["tbScrewsize"] != null)
             {
                 ds.Tables["tbScrewsize"].Clear();
             }
-            ds = DataOperation.SelectComponent(2, "sp_GetComponent", "1");
-            ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", "1",0,1);
+            if (ds.Tables["tbComponent"] != null)
+            {
+                ds.Tables["tbComponent"].Clear();
+            }
+            ds = DataOperation.SelectComponent(2, "sp_GetComponent", lkeItem.EditValue.ToString());
+            ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", lkeItem.EditValue.ToString(), 0,1);
             DataColumn keyColumn = ds.Tables["tbComponent"].Columns["componentID"];
             DataColumn foreignKeyColumn = ds.Tables["tbScrewsize"].Columns["componentID"];
             if (isLoading)
@@ -278,6 +293,10 @@ namespace ScaleApp
                 string screwsizeID = view.GetRowCellValue(o.RowHandle, colscrewsizeID).ToString();
                 if (string.IsNullOrWhiteSpace(screwsizeID))
                 {
+                    if (nextindex == 0)
+                    {
+                        nextindex++;
+                    }
                     view.SetRowCellValue(o.RowHandle, colscrewsizeID, nextindex);
                     var IdEdit = o.BindableControls[colscrewsizeID];
                     IdEdit.Text = nextindex.ToString();
@@ -295,7 +314,7 @@ namespace ScaleApp
                     //Neu la hang moi thi add vao database
                     if (!view.IsNewItemRow(o.RowHandle))
                     {
-                        int result = DataOperation.UpdateTable(2, ref tbScrewsize, $"SELECT * from Screwsize where ItemID = {lkeItem.Text} and componentID = {componentID}  order by componentID asc");
+                        int result = DataOperation.UpdateTable(2, ref tbScrewsize, $"SELECT * from Screwsize where ItemID = '{lkeItem.EditValue.ToString()}' and componentID = {componentID}  order by componentID asc");
                         if (result == -1)
                         {
                             MessageBox.Show("Loi roi kia");
@@ -305,12 +324,45 @@ namespace ScaleApp
                     {
                         int id = Convert.ToInt32(o.BindableControls["screwsizeID"].Text);
                         int value = Convert.ToInt32(o.BindableControls["value"].Text);
-                        DataOperation.InsertScrewsize(2, "sp_createScrewsize", id, value, componentID, lkeItem.Text);
+                        DataOperation.InsertScrewsize(2, "sp_createScrewsize", id, value, componentID, lkeItem.EditValue.ToString());
                     }
                     gctComponent.RefreshDataSource();
                 }
             };
         }
+        private void InitLookupEdit()
+        {
+           // ds.Clear();
+            if (ds.Tables["tbItem"] != null)
+            {
+                ds.Tables["tbItem"].Clear();
+            }
+            ds = DataOperation.SelectItem(2, "sp_getProductsWinLine");
+            //Item
+            lkeItem.Properties.DataSource = ds.Tables["tbItem"];
+            lkeItem.Properties.ValueMember = "c002";
+            lkeItem.Properties.DisplayMember = "c003";
+            lkeItem.EditValue = ds.Tables["tbItem"].Rows[0][0];
+            lkeItem.Properties.Columns.Add(new LookUpColumnInfo("c002", "Item Code", 200));
+            lkeItem.Properties.Columns.Add(new LookUpColumnInfo("c003", "Item Name", 500));
+            islkeLoaded = true;
+         //   GridControlLoad(isLoading);
+            //lkeItem.Properties.PopulateColumns();
+            //Component
 
+            //Screwsize
+            //Reason
+        }
+        //Cờ xác nhận load Grid Control lần đầu tiên
+        bool isLoading = true;
+        private void lkeItem_EditValueChanged(object sender, EventArgs e)
+        {
+            if (islkeLoaded)
+            {
+                    GridControlLoad(isLoading);
+                    isLoading = false;
+            }
+           
+        }
     }
 }

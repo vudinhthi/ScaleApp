@@ -20,6 +20,8 @@ using DevExpress.XtraPrinting;
 using System.IO.Ports;
 using System.IO;
 using System.Text.RegularExpressions;
+using DevExpress.XtraSplashScreen;
+using System.Threading;
 
 namespace ScaleApp
 {
@@ -38,7 +40,6 @@ namespace ScaleApp
         private void frmCookies_Load(object sender, EventArgs e)
         {
            
-            
             //List<ItemClass> litem = new  List<ItemClass>();
             // lkeItem.Properties.DataSource = litem;
             // lkeItem.Properties.DisplayMember = "name";
@@ -66,12 +67,9 @@ namespace ScaleApp
             InitDataGridview();
         
         }
-
-      
         private void InitLookupEdit()
         {
             ds.Clear();
-            
             if (ds.Tables[""] != null)
             {
                 ds.Tables["tbComponent"].Clear();
@@ -123,28 +121,28 @@ namespace ScaleApp
             if (ds!=null)
             {
                 gctCookies.DataSource = ds.Tables["tbCookies"];
-                gvCookies.Columns["ItemID"].Visible = false;
                 gvCookies.OptionsBehavior.ReadOnly = true;
-                gvCookies.Columns["DateTime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-                gvCookies.Columns["DateTime"].DisplayFormat.FormatString = "dd-MM-yyyy HH:mm:ss";
+                gvCookies.Columns["PurgeDate"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                gvCookies.Columns["PurgeDate"].DisplayFormat.FormatString = "dd-MM-yyyy HH:mm:ss";
+          
+                gvCookies.Columns["ItemID"].Visible = false;
+                gvCookies.Columns["CookiesID"].Width = 40;
+                gvCookies.Columns["Shift"].Width = 30;
+                gvCookies.Columns["PurgeDate"].Width = 120;
+                gvCookies.Columns["MachineNo"].Width = 50;
+                gvCookies.Columns["Screwsize"].Width = 50;
+                gvCookies.Columns["Item"].Width = 300;
+                //gvCookies.Columns["Item"].BestFit();
 
             }
-           
-        
         }
-        
-
         private void btnSave_Click(object sender, EventArgs e)
         {
-            CookiesClass cookiesClass = new CookiesClass();
-            if (txtMachineNo.Text.IsNullOrEmptyOrWhileSpace())
+            if (dxValidationProvider1.Validate())
             {
-                txtMachineNo.Focus();
-                XtraMessageBox.Show("Vui lòng nhập MachineNo", "Cảnh báo");
-            }
-            else
-            {
-                cookiesClass.MachineNo =txtMachineNo.Text;
+                CookiesClass cookiesClass = new CookiesClass();
+
+                cookiesClass.MachineNo = txtMachineNo.Text;
                 cookiesClass.Item = lkeItem.Text;
                 cookiesClass.Component = lkeComponent.Text;
                 cookiesClass.Screwsize = lkeScrewsize.Text;
@@ -155,32 +153,44 @@ namespace ScaleApp
                 cookiesClass.TPUCookies = btnTPUCookies.Text;
                 cookiesClass.MixedCookies = btnMixedCookies.Text;
                 cookiesClass.Reason = lkeReason.Text;
-                cookiesClass.ItemID = "3";
+                cookiesClass.ItemID = lkeItem.EditValue.ToString();
                 DataOperation.InsertorUpdate(2, "sp_InsertOrUpdateCookies", cookiesClass);
                 InitDataGridview();
                 XtraMessageBox.Show("Lưu thành công!", "Thông báo");
             }
             //cookiesClass.MachineNo = Convert.ToInt32(txtMachineNo.Text);
-            
         }
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            try
+            var dialog = new SaveFileDialog();
+            dialog.Title = @"Export file to Excel";
+            dialog.Filter = @"Microsoft Excel|*.xlsx";
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                XlsxExportOptionsEx optionsEx = new XlsxExportOptionsEx();
-                optionsEx.AllowFixedColumnHeaderPanel = DevExpress.Utils.DefaultBoolean.True;
-                optionsEx.AllowConditionalFormatting = DevExpress.Utils.DefaultBoolean.True;
-                optionsEx.ApplyFormattingToEntireColumn = DevExpress.Utils.DefaultBoolean.True;  
-                optionsEx.SheetName = "Data";
-                gctCookies.ExportToXlsx(@"Report.xlsx", optionsEx);
-                Process.Start("Report.xlsx");
+                try
+                {
+                    //SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+                    //SplashScreenManager.Default.SetWaitFormCaption("Exporting...");
+                    //for (int i = 0; i < 100; i++)
+                    //{
+                    //    Thread.Sleep(10);
+                    //}
+                    XlsxExportOptionsEx optionsEx = new XlsxExportOptionsEx();
+                    // gvCookies.OptionsPrint.ShowPrintExportProgress = true;
+                    optionsEx.AllowFixedColumnHeaderPanel = DevExpress.Utils.DefaultBoolean.True;
+                    optionsEx.AllowConditionalFormatting = DevExpress.Utils.DefaultBoolean.True;
+                    optionsEx.ApplyFormattingToEntireColumn = DevExpress.Utils.DefaultBoolean.True;
+                    optionsEx.SheetName = "Data";
+                    gctCookies.ExportToXlsx(dialog.FileName, optionsEx);
+                    // SplashScreenManager.CloseForm();
+                    Process.Start("Report.xlsx");
+                }
+                catch (Exception)
+                {
+                    XtraMessageBox.Show("Bảng tính đang mở, vui lòng tắt bảng tính trước khi xuất Excel ", "Lỗi");
+                }
             }
-            catch (Exception)
-            {
-                XtraMessageBox.Show("Bảng tính đang mở, vui lòng tắt bảng tính trước khi xuất Excel ", "Lỗi");
-            }
-
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -256,7 +266,7 @@ namespace ScaleApp
         {
             CloseSerialPort();
         }
-
+        bool isLoaded = false;
         private void lkeItem_EditValueChanged(object sender, EventArgs e)
         {
             ds = DataOperation.SelectComponent(2, "sp_GetComponent", lkeItem.EditValue.ToString());
@@ -271,8 +281,16 @@ namespace ScaleApp
                 lkeComponent.Properties.Columns["componentID"].Caption = "ComponentID";
                 lkeComponent.Properties.Columns["name"].Caption = "Name";
                 lkeComponent.Properties.Columns["name"].Width = 200;
+                isLoaded = true;
             }
-        
+            else
+            {
+                lkeComponent.Properties.DataSource = null;
+                lkeComponent.ResetText();
+                lkeScrewsize.Properties.DataSource = null;
+                lkeScrewsize.Text = "";
+            }
+
         }
 
         private void lkeScrewsize_EditValueChanged(object sender, EventArgs e)
@@ -283,19 +301,22 @@ namespace ScaleApp
 
         private void lkeComponent_EditValueChanged(object sender, EventArgs e)
         {
-            ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", lkeItem.EditValue.ToString(), Convert.ToInt32(lkeComponent.EditValue), 2);
-            lkeScrewsize.Properties.DataSource = ds.Tables["tbScrewsize"];
-            if (ds.Tables["tbScrewsize"] != null && ds.Tables["tbScrewsize"].Rows.Count != 0)
+            if (isLoaded)
             {
-                lkeScrewsize.Properties.ValueMember = "screwsizeID";
-                lkeScrewsize.Properties.DisplayMember = "value";
-                lkeScrewsize.EditValue = ds.Tables["tbScrewsize"].Rows[0][0];
-                lkeScrewsize.Properties.PopulateColumns();
-                lkeScrewsize.Properties.Columns["ItemID"].Visible = false;
-                lkeScrewsize.Properties.Columns["componentID"].Visible = false;
-                lkeScrewsize.Properties.Columns["screwsizeID"].Caption = "ScrewsizeID";
-                lkeScrewsize.Properties.Columns["screwsizeID"].Width = 30;
-                lkeScrewsize.Properties.Columns["value"].Caption = "Value";
+                ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", lkeItem.EditValue.ToString(), Convert.ToInt32(lkeComponent.EditValue), 2);
+                lkeScrewsize.Properties.DataSource = ds.Tables["tbScrewsize"];
+                if (ds.Tables["tbScrewsize"] != null && ds.Tables["tbScrewsize"].Rows.Count != 0)
+                {
+                    lkeScrewsize.Properties.ValueMember = "screwsizeID";
+                    lkeScrewsize.Properties.DisplayMember = "value";
+                    lkeScrewsize.EditValue = ds.Tables["tbScrewsize"].Rows[0][0];
+                    lkeScrewsize.Properties.PopulateColumns();
+                    lkeScrewsize.Properties.Columns["ItemID"].Visible = false;
+                    lkeScrewsize.Properties.Columns["componentID"].Visible = false;
+                    lkeScrewsize.Properties.Columns["screwsizeID"].Caption = "ScrewsizeID";
+                    lkeScrewsize.Properties.Columns["screwsizeID"].Width = 30;
+                    lkeScrewsize.Properties.Columns["value"].Caption = "Value";
+                }
             }
         }
     }

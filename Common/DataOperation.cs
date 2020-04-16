@@ -131,7 +131,6 @@ namespace ScaleApp.Common
                 cmd.ExecuteNonQuery();
                 disconnect();
             }
-
         }
         public static void InsertorUpdate(int db, string spName,CookiesClass obj )
         {
@@ -139,7 +138,7 @@ namespace ScaleApp.Common
             using (SqlCommand cmd = new SqlCommand(spName, conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@MachineNo", SqlDbType.Int).Value = obj.MachineNo;
+                cmd.Parameters.Add("@MachineNo", SqlDbType.NVarChar).Value = obj.MachineNo;
                 cmd.Parameters.Add("@Shift", SqlDbType.NVarChar).Value = obj.Shift;
                 cmd.Parameters.Add("@Item", SqlDbType.NVarChar).Value = obj.Item;
                 cmd.Parameters.Add("@Component", SqlDbType.NVarChar).Value = obj.Component;

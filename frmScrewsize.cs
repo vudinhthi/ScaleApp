@@ -29,7 +29,6 @@ namespace ScaleApp
         }
         private void frmScrewsize_Load(object sender, EventArgs e)
         {
-            
             //Load data from Screwsize table
             gvScrewsize = gct_Screwsize.MainView as GridView;
             gvScrewsize.OptionsBehavior.Editable = true;
@@ -56,6 +55,10 @@ namespace ScaleApp
                 string screwsizeID = view.GetRowCellValue(o.RowHandle, colscrewsizeID).ToString();
                 if (string.IsNullOrWhiteSpace(screwsizeID))
                 {
+                    if (nextindex == 0)
+                    {
+                        nextindex++;
+                    }
                     view.SetRowCellValue(o.RowHandle, colscrewsizeID, nextindex);
                     var IdEdit = o.BindableControls[colscrewsizeID];
                     IdEdit.Text = nextindex.ToString();

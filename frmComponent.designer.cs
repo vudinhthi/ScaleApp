@@ -73,9 +73,9 @@
             this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
             this.groupControl1.Controls.Add(this.gctComponent);
-            this.groupControl1.Location = new System.Drawing.Point(24, 74);
+            this.groupControl1.Location = new System.Drawing.Point(24, 78);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1142, 737);
+            this.groupControl1.Size = new System.Drawing.Size(1142, 733);
             this.groupControl1.TabIndex = 8;
             this.groupControl1.Text = "Component";
             // 
@@ -94,7 +94,7 @@
             this.gctComponent.Location = new System.Drawing.Point(2, 23);
             this.gctComponent.MainView = this.gridView1;
             this.gctComponent.Name = "gctComponent";
-            this.gctComponent.Size = new System.Drawing.Size(1138, 712);
+            this.gctComponent.Size = new System.Drawing.Size(1138, 708);
             this.gctComponent.TabIndex = 7;
             this.gctComponent.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -116,16 +116,23 @@
             // 
             this.lkeItem.Location = new System.Drawing.Point(56, 24);
             this.lkeItem.Name = "lkeItem";
-            this.lkeItem.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lkeItem.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lkeItem.Properties.Appearance.Options.UseFont = true;
+            this.lkeItem.Properties.AppearanceDropDown.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.lkeItem.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.lkeItem.Properties.AppearanceDropDown.Options.UseBackColor = true;
+            this.lkeItem.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.lkeItem.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lkeItem.Properties.AppearanceDropDownHeader.Options.UseFont = true;
             this.lkeItem.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lkeItem.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name2", "Name2")});
-            this.lkeItem.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.lkeItem.Size = new System.Drawing.Size(1110, 22);
+            this.lkeItem.Properties.DropDownRows = 10;
+            this.lkeItem.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.lkeItem.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
+            this.lkeItem.Size = new System.Drawing.Size(1110, 26);
             this.lkeItem.StyleController = this.layoutControl1;
             this.lkeItem.TabIndex = 6;
+            this.lkeItem.EditValueChanged += new System.EventHandler(this.lkeItem_EditValueChanged);
             // 
             // Root
             // 
@@ -142,9 +149,9 @@
             // 
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem3});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 50);
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 54);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(1170, 765);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(1170, 761);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem3
@@ -152,7 +159,7 @@
             this.layoutControlItem3.Control = this.groupControl1;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(1146, 741);
+            this.layoutControlItem3.Size = new System.Drawing.Size(1146, 737);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -162,7 +169,7 @@
             this.layoutControlItem6});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(1170, 50);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(1170, 54);
             this.layoutControlGroup3.TextVisible = false;
             // 
             // layoutControlItem6
@@ -172,7 +179,7 @@
             this.layoutControlItem6.Control = this.lkeItem;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(1146, 26);
+            this.layoutControlItem6.Size = new System.Drawing.Size(1146, 30);
             this.layoutControlItem6.Text = "Item";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(29, 16);
             // 

@@ -60,36 +60,34 @@
             this.txtDateTime = new System.Windows.Forms.TextBox();
             this.txtPosted = new System.Windows.Forms.TextBox();
             this.txtMixOutId = new System.Windows.Forms.TextBox();
-            this.cmdPosted = new System.Windows.Forms.Button();
-            this.cmdReset = new System.Windows.Forms.Button();
-            this.cmdSave = new System.Windows.Forms.Button();
             this.tedRealWeight = new DevExpress.XtraEditors.ButtonEdit();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.cmbMixIditem = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtScaleWeightitem = new DevExpress.XtraLayout.LayoutControlItem();
-            this.spbScaleitem = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cboComPortitem = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridControl1item = new DevExpress.XtraLayout.LayoutControlItem();
-            this.simpleButton2item = new DevExpress.XtraLayout.LayoutControlItem();
-            this.simpleButton1item = new DevExpress.XtraLayout.LayoutControlItem();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.gridView1item = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtDateTimeitem = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtPosteditem = new DevExpress.XtraLayout.LayoutControlItem();
             this.txtMixOutIditem = new DevExpress.XtraLayout.LayoutControlItem();
-            this.qrCodeMixIditem = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cmdPosteditem = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cmdResetitem = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cmdSaveitem = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtPosteditem = new DevExpress.XtraLayout.LayoutControlItem();
             this.txtWeightitem = new DevExpress.XtraLayout.LayoutControlItem();
+            this.cboComPortitem = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.gridControl1item = new DevExpress.XtraLayout.LayoutControlItem();
             this.groupBox1item = new DevExpress.XtraLayout.LayoutControlGroup();
             this.rdbContaminateditem = new DevExpress.XtraLayout.LayoutControlItem();
             this.rdbBlackDotitem = new DevExpress.XtraLayout.LayoutControlItem();
             this.rdbDefectitem = new DevExpress.XtraLayout.LayoutControlItem();
             this.rdbRunneritem = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.simpleButton1item = new DevExpress.XtraLayout.LayoutControlItem();
+            this.simpleButton2item = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.cmbMixIditem = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtScaleWeightitem = new DevExpress.XtraLayout.LayoutControlItem();
+            this.spbScaleitem = new DevExpress.XtraLayout.LayoutControlItem();
             this.tedRealWeightitem = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.txtDateTimeitem = new DevExpress.XtraLayout.LayoutControlItem();
+            this.qrCodeMixIditem = new DevExpress.XtraLayout.LayoutControlItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.layoutConverter1 = new DevExpress.XtraLayout.Converter.LayoutConverter(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.frmMixedOutlayoutControl1ConvertedLayout)).BeginInit();
             this.frmMixedOutlayoutControl1ConvertedLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMixId.Properties)).BeginInit();
@@ -98,37 +96,39 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tedRealWeight.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbMixIditem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtScaleWeightitem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spbScaleitem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboComPortitem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1item)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleButton2item)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleButton1item)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1item)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDateTimeitem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPosteditem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMixOutIditem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qrCodeMixIditem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdPosteditem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdResetitem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdSaveitem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPosteditem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightitem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboComPortitem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1item)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox1item)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbContaminateditem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbBlackDotitem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbDefectitem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbRunneritem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleButton1item)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleButton2item)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbMixIditem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtScaleWeightitem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spbScaleitem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tedRealWeightitem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDateTimeitem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qrCodeMixIditem)).BeginInit();
             this.SuspendLayout();
             // 
             // rdbContaminated
             // 
-            this.rdbContaminated.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbContaminated.Location = new System.Drawing.Point(589, 45);
+            this.rdbContaminated.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbContaminated.ForeColor = System.Drawing.Color.Teal;
+            this.rdbContaminated.Location = new System.Drawing.Point(626, 45);
             this.rdbContaminated.Name = "rdbContaminated";
-            this.rdbContaminated.Size = new System.Drawing.Size(276, 25);
+            this.rdbContaminated.Size = new System.Drawing.Size(197, 25);
             this.rdbContaminated.TabIndex = 3;
             this.rdbContaminated.TabStop = true;
             this.rdbContaminated.Text = "Contaminated";
@@ -136,10 +136,11 @@
             // 
             // rdbBlackDot
             // 
-            this.rdbBlackDot.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbBlackDot.Location = new System.Drawing.Point(371, 45);
+            this.rdbBlackDot.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbBlackDot.ForeColor = System.Drawing.Color.Teal;
+            this.rdbBlackDot.Location = new System.Drawing.Point(426, 45);
             this.rdbBlackDot.Name = "rdbBlackDot";
-            this.rdbBlackDot.Size = new System.Drawing.Size(214, 25);
+            this.rdbBlackDot.Size = new System.Drawing.Size(196, 25);
             this.rdbBlackDot.TabIndex = 2;
             this.rdbBlackDot.TabStop = true;
             this.rdbBlackDot.Text = "Black Dot";
@@ -147,10 +148,11 @@
             // 
             // rdbDefect
             // 
-            this.rdbDefect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbDefect.Location = new System.Drawing.Point(201, 45);
+            this.rdbDefect.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbDefect.ForeColor = System.Drawing.Color.Teal;
+            this.rdbDefect.Location = new System.Drawing.Point(225, 45);
             this.rdbDefect.Name = "rdbDefect";
-            this.rdbDefect.Size = new System.Drawing.Size(166, 25);
+            this.rdbDefect.Size = new System.Drawing.Size(197, 25);
             this.rdbDefect.TabIndex = 1;
             this.rdbDefect.TabStop = true;
             this.rdbDefect.Text = "Defect";
@@ -158,10 +160,11 @@
             // 
             // rdbRunner
             // 
-            this.rdbRunner.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbRunner.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbRunner.ForeColor = System.Drawing.Color.Teal;
             this.rdbRunner.Location = new System.Drawing.Point(24, 45);
             this.rdbRunner.Name = "rdbRunner";
-            this.rdbRunner.Size = new System.Drawing.Size(173, 25);
+            this.rdbRunner.Size = new System.Drawing.Size(197, 25);
             this.rdbRunner.TabIndex = 0;
             this.rdbRunner.TabStop = true;
             this.rdbRunner.Text = "Runner";
@@ -182,10 +185,11 @@
             this.qrCodeMixId.AutoModule = true;
             this.qrCodeMixId.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.qrCodeMixId.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.qrCodeMixId.Location = new System.Drawing.Point(881, 61);
+            this.qrCodeMixId.Location = new System.Drawing.Point(851, 48);
             this.qrCodeMixId.Name = "qrCodeMixId";
             this.qrCodeMixId.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
-            this.qrCodeMixId.Size = new System.Drawing.Size(279, 183);
+            this.qrCodeMixId.ShowText = false;
+            this.qrCodeMixId.Size = new System.Drawing.Size(179, 183);
             this.qrCodeMixId.StyleController = this.frmMixedOutlayoutControl1ConvertedLayout;
             qrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.Byte;
             qrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version1;
@@ -206,65 +210,68 @@
             this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.txtPosted);
             this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.txtMixOutId);
             this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.qrCodeMixId);
-            this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.cmdPosted);
-            this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.cmdReset);
-            this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.cmdSave);
             this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.txtWeight);
             this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.rdbContaminated);
             this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.rdbBlackDot);
             this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.rdbDefect);
             this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.rdbRunner);
             this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.tedRealWeight);
+            this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.simpleButton3);
             this.frmMixedOutlayoutControl1ConvertedLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.frmMixedOutlayoutControl1ConvertedLayout.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.gridView1item,
             this.txtMixOutIditem,
             this.txtPosteditem,
-            this.txtWeightitem});
+            this.txtWeightitem,
+            this.cboComPortitem});
             this.frmMixedOutlayoutControl1ConvertedLayout.Location = new System.Drawing.Point(0, 0);
             this.frmMixedOutlayoutControl1ConvertedLayout.Name = "frmMixedOutlayoutControl1ConvertedLayout";
             this.frmMixedOutlayoutControl1ConvertedLayout.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1227, 432, 650, 400);
             this.frmMixedOutlayoutControl1ConvertedLayout.Root = this.layoutControlGroup1;
-            this.frmMixedOutlayoutControl1ConvertedLayout.Size = new System.Drawing.Size(1172, 693);
+            this.frmMixedOutlayoutControl1ConvertedLayout.Size = new System.Drawing.Size(1054, 732);
             this.frmMixedOutlayoutControl1ConvertedLayout.TabIndex = 21;
             // 
             // cmbMixId
             // 
-            this.cmbMixId.Location = new System.Drawing.Point(82, 86);
+            this.cmbMixId.Location = new System.Drawing.Point(94, 98);
             this.cmbMixId.Name = "cmbMixId";
-            this.cmbMixId.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMixId.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMixId.Properties.Appearance.Options.UseFont = true;
+            this.cmbMixId.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMixId.Properties.AppearanceDropDown.Options.UseFont = true;
             this.cmbMixId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbMixId.Properties.NullText = "";
             this.cmbMixId.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            this.cmbMixId.Size = new System.Drawing.Size(488, 22);
+            this.cmbMixId.Size = new System.Drawing.Size(729, 40);
             this.cmbMixId.StyleController = this.frmMixedOutlayoutControl1ConvertedLayout;
             this.cmbMixId.TabIndex = 19;
             // 
             // txtScaleWeight
             // 
-            this.txtScaleWeight.Location = new System.Drawing.Point(82, 112);
+            this.txtScaleWeight.Location = new System.Drawing.Point(94, 142);
             this.txtScaleWeight.Name = "txtScaleWeight";
-            this.txtScaleWeight.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtScaleWeight.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtScaleWeight.Properties.Appearance.Options.UseFont = true;
             this.txtScaleWeight.Properties.Appearance.Options.UseTextOptions = true;
             this.txtScaleWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtScaleWeight.Properties.Mask.EditMask = "n";
             this.txtScaleWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtScaleWeight.Properties.ReadOnly = true;
-            this.txtScaleWeight.Size = new System.Drawing.Size(488, 30);
+            this.txtScaleWeight.Size = new System.Drawing.Size(194, 40);
             this.txtScaleWeight.StyleController = this.frmMixedOutlayoutControl1ConvertedLayout;
             this.txtScaleWeight.TabIndex = 13;
             // 
             // spbScale
             // 
-            this.spbScale.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spbScale.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spbScale.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.spbScale.Appearance.Options.UseFont = true;
+            this.spbScale.Appearance.Options.UseForeColor = true;
             this.spbScale.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("spbScale.ImageOptions.Image")));
-            this.spbScale.Location = new System.Drawing.Point(574, 86);
+            this.spbScale.Location = new System.Drawing.Point(559, 142);
             this.spbScale.Name = "spbScale";
-            this.spbScale.Size = new System.Drawing.Size(303, 36);
+            this.spbScale.Size = new System.Drawing.Size(264, 40);
             this.spbScale.StyleController = this.frmMixedOutlayoutControl1ConvertedLayout;
             this.spbScale.TabIndex = 18;
             this.spbScale.Text = "Scale";
@@ -274,10 +281,11 @@
             // 
             this.cboComPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboComPort.FormattingEnabled = true;
-            this.cboComPort.Location = new System.Drawing.Point(881, 36);
+            this.cboComPort.Location = new System.Drawing.Point(851, 48);
             this.cboComPort.Name = "cboComPort";
-            this.cboComPort.Size = new System.Drawing.Size(279, 24);
+            this.cboComPort.Size = new System.Drawing.Size(179, 24);
             this.cboComPort.TabIndex = 17;
+            this.cboComPort.Visible = false;
             // 
             // gridControl1
             // 
@@ -286,10 +294,11 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(12, 248);
+            this.gridControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridControl1.Location = new System.Drawing.Point(12, 262);
             this.gridControl1.MainView = this.gridView2;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1148, 433);
+            this.gridControl1.Size = new System.Drawing.Size(1030, 458);
             this.gridControl1.TabIndex = 16;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -297,6 +306,10 @@
             // 
             // gridView2
             // 
+            this.gridView2.Appearance.HeaderPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView2.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView2.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView2.Appearance.Row.Options.UseFont = true;
             this.gridView2.GridControl = this.gridControl1;
             this.gridView2.Name = "gridView2";
             this.gridView2.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView2_RowClick);
@@ -304,10 +317,14 @@
             // 
             // simpleButton2
             // 
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton2.Appearance.ForeColor = System.Drawing.Color.Green;
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Appearance.Options.UseForeColor = true;
             this.simpleButton2.ImageOptions.Image = global::ScaleApp.Properties.Resources.refresh_32x321;
-            this.simpleButton2.Location = new System.Drawing.Point(463, 180);
+            this.simpleButton2.Location = new System.Drawing.Point(559, 210);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(107, 36);
+            this.simpleButton2.Size = new System.Drawing.Size(264, 36);
             this.simpleButton2.StyleController = this.frmMixedOutlayoutControl1ConvertedLayout;
             this.simpleButton2.TabIndex = 15;
             this.simpleButton2.Text = "Refresh";
@@ -315,10 +332,14 @@
             // 
             // simpleButton1
             // 
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.Green;
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Appearance.Options.UseForeColor = true;
             this.simpleButton1.ImageOptions.Image = global::ScaleApp.Properties.Resources.exporttoxlsx_32x32;
-            this.simpleButton1.Location = new System.Drawing.Point(347, 180);
+            this.simpleButton1.Location = new System.Drawing.Point(292, 210);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(112, 36);
+            this.simpleButton1.Size = new System.Drawing.Size(263, 36);
             this.simpleButton1.StyleController = this.frmMixedOutlayoutControl1ConvertedLayout;
             this.simpleButton1.TabIndex = 14;
             this.simpleButton1.Text = "Export";
@@ -420,11 +441,11 @@
             // 
             // txtDateTime
             // 
-            this.txtDateTime.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDateTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtDateTime.Location = new System.Drawing.Point(881, 12);
+            this.txtDateTime.Location = new System.Drawing.Point(851, 24);
             this.txtDateTime.Name = "txtDateTime";
-            this.txtDateTime.Size = new System.Drawing.Size(279, 20);
+            this.txtDateTime.Size = new System.Drawing.Size(179, 20);
             this.txtDateTime.TabIndex = 11;
             this.txtDateTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -444,43 +465,11 @@
             this.txtMixOutId.TabIndex = 9;
             this.txtMixOutId.Visible = false;
             // 
-            // cmdPosted
-            // 
-            this.cmdPosted.Enabled = false;
-            this.cmdPosted.Image = global::ScaleApp.Properties.Resources.Mark_32x32;
-            this.cmdPosted.Location = new System.Drawing.Point(197, 180);
-            this.cmdPosted.Name = "cmdPosted";
-            this.cmdPosted.Size = new System.Drawing.Size(146, 64);
-            this.cmdPosted.TabIndex = 7;
-            this.cmdPosted.UseVisualStyleBackColor = true;
-            this.cmdPosted.Visible = false;
-            this.cmdPosted.Click += new System.EventHandler(this.cmdPosted_Click);
-            // 
-            // cmdReset
-            // 
-            this.cmdReset.Image = global::ScaleApp.Properties.Resources.Cancel_32x32;
-            this.cmdReset.Location = new System.Drawing.Point(109, 180);
-            this.cmdReset.Name = "cmdReset";
-            this.cmdReset.Size = new System.Drawing.Size(84, 64);
-            this.cmdReset.TabIndex = 6;
-            this.cmdReset.UseVisualStyleBackColor = true;
-            this.cmdReset.Click += new System.EventHandler(this.cmdReset_Click);
-            // 
-            // cmdSave
-            // 
-            this.cmdSave.Location = new System.Drawing.Point(12, 180);
-            this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(93, 64);
-            this.cmdSave.TabIndex = 5;
-            this.cmdSave.Text = "Save";
-            this.cmdSave.UseVisualStyleBackColor = true;
-            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
-            // 
             // tedRealWeight
             // 
-            this.tedRealWeight.Location = new System.Drawing.Point(12, 146);
+            this.tedRealWeight.Location = new System.Drawing.Point(292, 142);
             this.tedRealWeight.Name = "tedRealWeight";
-            this.tedRealWeight.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tedRealWeight.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tedRealWeight.Properties.Appearance.Options.UseFont = true;
             this.tedRealWeight.Properties.Appearance.Options.UseTextOptions = true;
             this.tedRealWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -490,102 +479,25 @@
             this.tedRealWeight.Properties.Mask.EditMask = "n3";
             this.tedRealWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.tedRealWeight.Properties.ReadOnly = true;
-            this.tedRealWeight.Size = new System.Drawing.Size(558, 30);
+            this.tedRealWeight.Size = new System.Drawing.Size(263, 40);
             this.tedRealWeight.StyleController = this.frmMixedOutlayoutControl1ConvertedLayout;
             this.tedRealWeight.TabIndex = 20;
             this.tedRealWeight.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.tedRealWeight_ButtonClick);
             // 
-            // layoutControlGroup1
+            // simpleButton3
             // 
-            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup1.GroupBordersVisible = false;
-            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.spbScaleitem,
-            this.cboComPortitem,
-            this.gridControl1item,
-            this.txtDateTimeitem,
-            this.qrCodeMixIditem,
-            this.groupBox1item,
-            this.cmbMixIditem,
-            this.txtScaleWeightitem,
-            this.tedRealWeightitem,
-            this.cmdSaveitem,
-            this.cmdResetitem,
-            this.cmdPosteditem,
-            this.simpleButton1item,
-            this.simpleButton2item});
-            this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1172, 693);
-            this.layoutControlGroup1.TextVisible = false;
-            // 
-            // cmbMixIditem
-            // 
-            this.cmbMixIditem.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbMixIditem.AppearanceItemCaption.Options.UseFont = true;
-            this.cmbMixIditem.Control = this.cmbMixId;
-            this.cmbMixIditem.Location = new System.Drawing.Point(0, 74);
-            this.cmbMixIditem.Name = "cmbMixIditem";
-            this.cmbMixIditem.Size = new System.Drawing.Size(562, 26);
-            this.cmbMixIditem.Text = "Mix Lot ID";
-            this.cmbMixIditem.TextLocation = DevExpress.Utils.Locations.Left;
-            this.cmbMixIditem.TextSize = new System.Drawing.Size(67, 16);
-            // 
-            // txtScaleWeightitem
-            // 
-            this.txtScaleWeightitem.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtScaleWeightitem.AppearanceItemCaption.Options.UseFont = true;
-            this.txtScaleWeightitem.Control = this.txtScaleWeight;
-            this.txtScaleWeightitem.Location = new System.Drawing.Point(0, 100);
-            this.txtScaleWeightitem.Name = "txtScaleWeightitem";
-            this.txtScaleWeightitem.Size = new System.Drawing.Size(562, 34);
-            this.txtScaleWeightitem.Text = "Weight";
-            this.txtScaleWeightitem.TextLocation = DevExpress.Utils.Locations.Left;
-            this.txtScaleWeightitem.TextSize = new System.Drawing.Size(67, 16);
-            // 
-            // spbScaleitem
-            // 
-            this.spbScaleitem.Control = this.spbScale;
-            this.spbScaleitem.Location = new System.Drawing.Point(562, 74);
-            this.spbScaleitem.Name = "spbScaleitem";
-            this.spbScaleitem.Size = new System.Drawing.Size(307, 162);
-            this.spbScaleitem.TextSize = new System.Drawing.Size(0, 0);
-            this.spbScaleitem.TextVisible = false;
-            // 
-            // cboComPortitem
-            // 
-            this.cboComPortitem.Control = this.cboComPort;
-            this.cboComPortitem.Location = new System.Drawing.Point(869, 24);
-            this.cboComPortitem.Name = "cboComPortitem";
-            this.cboComPortitem.Size = new System.Drawing.Size(283, 25);
-            this.cboComPortitem.TextSize = new System.Drawing.Size(0, 0);
-            this.cboComPortitem.TextVisible = false;
-            // 
-            // gridControl1item
-            // 
-            this.gridControl1item.Control = this.gridControl1;
-            this.gridControl1item.Location = new System.Drawing.Point(0, 236);
-            this.gridControl1item.Name = "gridControl1item";
-            this.gridControl1item.Size = new System.Drawing.Size(1152, 437);
-            this.gridControl1item.TextSize = new System.Drawing.Size(0, 0);
-            this.gridControl1item.TextVisible = false;
-            // 
-            // simpleButton2item
-            // 
-            this.simpleButton2item.Control = this.simpleButton2;
-            this.simpleButton2item.Location = new System.Drawing.Point(451, 168);
-            this.simpleButton2item.Name = "simpleButton2item";
-            this.simpleButton2item.Size = new System.Drawing.Size(111, 68);
-            this.simpleButton2item.TextSize = new System.Drawing.Size(0, 0);
-            this.simpleButton2item.TextVisible = false;
-            // 
-            // simpleButton1item
-            // 
-            this.simpleButton1item.Control = this.simpleButton1;
-            this.simpleButton1item.Location = new System.Drawing.Point(335, 168);
-            this.simpleButton1item.Name = "simpleButton1item";
-            this.simpleButton1item.Size = new System.Drawing.Size(116, 68);
-            this.simpleButton1item.TextSize = new System.Drawing.Size(0, 0);
-            this.simpleButton1item.TextVisible = false;
+            this.simpleButton3.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton3.Appearance.ForeColor = System.Drawing.Color.Green;
+            this.simpleButton3.Appearance.Options.UseFont = true;
+            this.simpleButton3.Appearance.Options.UseForeColor = true;
+            this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
+            this.simpleButton3.Location = new System.Drawing.Point(24, 210);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(264, 36);
+            this.simpleButton3.StyleController = this.frmMixedOutlayoutControl1ConvertedLayout;
+            this.simpleButton3.TabIndex = 21;
+            this.simpleButton3.Text = "Save";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
             // gridView1item
             // 
@@ -596,27 +508,6 @@
             this.gridView1item.TextSize = new System.Drawing.Size(0, 0);
             this.gridView1item.TextVisible = false;
             // 
-            // txtDateTimeitem
-            // 
-            this.txtDateTimeitem.Control = this.txtDateTime;
-            this.txtDateTimeitem.Location = new System.Drawing.Point(869, 0);
-            this.txtDateTimeitem.MaxSize = new System.Drawing.Size(0, 24);
-            this.txtDateTimeitem.MinSize = new System.Drawing.Size(24, 24);
-            this.txtDateTimeitem.Name = "txtDateTimeitem";
-            this.txtDateTimeitem.Size = new System.Drawing.Size(283, 24);
-            this.txtDateTimeitem.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.txtDateTimeitem.TextSize = new System.Drawing.Size(0, 0);
-            this.txtDateTimeitem.TextVisible = false;
-            // 
-            // txtPosteditem
-            // 
-            this.txtPosteditem.Control = this.txtPosted;
-            this.txtPosteditem.Location = new System.Drawing.Point(615, 69);
-            this.txtPosteditem.Name = "txtPosteditem";
-            this.txtPosteditem.Size = new System.Drawing.Size(537, 167);
-            this.txtPosteditem.TextSize = new System.Drawing.Size(0, 0);
-            this.txtPosteditem.TextVisible = false;
-            // 
             // txtMixOutIditem
             // 
             this.txtMixOutIditem.Control = this.txtMixOutId;
@@ -626,44 +517,14 @@
             this.txtMixOutIditem.TextSize = new System.Drawing.Size(0, 0);
             this.txtMixOutIditem.TextVisible = false;
             // 
-            // qrCodeMixIditem
+            // txtPosteditem
             // 
-            this.qrCodeMixIditem.Control = this.qrCodeMixId;
-            this.qrCodeMixIditem.Location = new System.Drawing.Point(869, 49);
-            this.qrCodeMixIditem.MaxSize = new System.Drawing.Size(0, 187);
-            this.qrCodeMixIditem.MinSize = new System.Drawing.Size(54, 187);
-            this.qrCodeMixIditem.Name = "qrCodeMixIditem";
-            this.qrCodeMixIditem.Size = new System.Drawing.Size(283, 187);
-            this.qrCodeMixIditem.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.qrCodeMixIditem.TextSize = new System.Drawing.Size(0, 0);
-            this.qrCodeMixIditem.TextVisible = false;
-            // 
-            // cmdPosteditem
-            // 
-            this.cmdPosteditem.Control = this.cmdPosted;
-            this.cmdPosteditem.Location = new System.Drawing.Point(185, 168);
-            this.cmdPosteditem.Name = "cmdPosteditem";
-            this.cmdPosteditem.Size = new System.Drawing.Size(150, 68);
-            this.cmdPosteditem.TextSize = new System.Drawing.Size(0, 0);
-            this.cmdPosteditem.TextVisible = false;
-            // 
-            // cmdResetitem
-            // 
-            this.cmdResetitem.Control = this.cmdReset;
-            this.cmdResetitem.Location = new System.Drawing.Point(97, 168);
-            this.cmdResetitem.Name = "cmdResetitem";
-            this.cmdResetitem.Size = new System.Drawing.Size(88, 68);
-            this.cmdResetitem.TextSize = new System.Drawing.Size(0, 0);
-            this.cmdResetitem.TextVisible = false;
-            // 
-            // cmdSaveitem
-            // 
-            this.cmdSaveitem.Control = this.cmdSave;
-            this.cmdSaveitem.Location = new System.Drawing.Point(0, 168);
-            this.cmdSaveitem.Name = "cmdSaveitem";
-            this.cmdSaveitem.Size = new System.Drawing.Size(97, 68);
-            this.cmdSaveitem.TextSize = new System.Drawing.Size(0, 0);
-            this.cmdSaveitem.TextVisible = false;
+            this.txtPosteditem.Control = this.txtPosted;
+            this.txtPosteditem.Location = new System.Drawing.Point(615, 69);
+            this.txtPosteditem.Name = "txtPosteditem";
+            this.txtPosteditem.Size = new System.Drawing.Size(537, 167);
+            this.txtPosteditem.TextSize = new System.Drawing.Size(0, 0);
+            this.txtPosteditem.TextVisible = false;
             // 
             // txtWeightitem
             // 
@@ -677,9 +538,41 @@
             this.txtWeightitem.TextSize = new System.Drawing.Size(0, 0);
             this.txtWeightitem.TextVisible = false;
             // 
+            // cboComPortitem
+            // 
+            this.cboComPortitem.Control = this.cboComPort;
+            this.cboComPortitem.Location = new System.Drawing.Point(0, 24);
+            this.cboComPortitem.Name = "cboComPortitem";
+            this.cboComPortitem.Size = new System.Drawing.Size(183, 25);
+            this.cboComPortitem.TextSize = new System.Drawing.Size(0, 0);
+            this.cboComPortitem.TextVisible = false;
+            // 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.gridControl1item,
+            this.groupBox1item,
+            this.layoutControlGroup2,
+            this.layoutControlGroup3,
+            this.layoutControlGroup4});
+            this.layoutControlGroup1.Name = "Root";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1054, 732);
+            this.layoutControlGroup1.TextVisible = false;
+            // 
+            // gridControl1item
+            // 
+            this.gridControl1item.Control = this.gridControl1;
+            this.gridControl1item.Location = new System.Drawing.Point(0, 250);
+            this.gridControl1item.Name = "gridControl1item";
+            this.gridControl1item.Size = new System.Drawing.Size(1034, 462);
+            this.gridControl1item.TextSize = new System.Drawing.Size(0, 0);
+            this.gridControl1item.TextVisible = false;
+            // 
             // groupBox1item
             // 
-            this.groupBox1item.AppearanceGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1item.AppearanceGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1item.AppearanceGroup.Options.UseFont = true;
             this.groupBox1item.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.rdbContaminateditem,
@@ -688,33 +581,33 @@
             this.rdbRunneritem});
             this.groupBox1item.Location = new System.Drawing.Point(0, 0);
             this.groupBox1item.Name = "groupBox1item";
-            this.groupBox1item.Size = new System.Drawing.Size(869, 74);
+            this.groupBox1item.Size = new System.Drawing.Size(827, 74);
             this.groupBox1item.Text = "Loss type";
             // 
             // rdbContaminateditem
             // 
             this.rdbContaminateditem.Control = this.rdbContaminated;
-            this.rdbContaminateditem.Location = new System.Drawing.Point(565, 0);
+            this.rdbContaminateditem.Location = new System.Drawing.Point(602, 0);
             this.rdbContaminateditem.Name = "rdbContaminateditem";
-            this.rdbContaminateditem.Size = new System.Drawing.Size(280, 29);
+            this.rdbContaminateditem.Size = new System.Drawing.Size(201, 29);
             this.rdbContaminateditem.TextSize = new System.Drawing.Size(0, 0);
             this.rdbContaminateditem.TextVisible = false;
             // 
             // rdbBlackDotitem
             // 
             this.rdbBlackDotitem.Control = this.rdbBlackDot;
-            this.rdbBlackDotitem.Location = new System.Drawing.Point(347, 0);
+            this.rdbBlackDotitem.Location = new System.Drawing.Point(402, 0);
             this.rdbBlackDotitem.Name = "rdbBlackDotitem";
-            this.rdbBlackDotitem.Size = new System.Drawing.Size(218, 29);
+            this.rdbBlackDotitem.Size = new System.Drawing.Size(200, 29);
             this.rdbBlackDotitem.TextSize = new System.Drawing.Size(0, 0);
             this.rdbBlackDotitem.TextVisible = false;
             // 
             // rdbDefectitem
             // 
             this.rdbDefectitem.Control = this.rdbDefect;
-            this.rdbDefectitem.Location = new System.Drawing.Point(177, 0);
+            this.rdbDefectitem.Location = new System.Drawing.Point(201, 0);
             this.rdbDefectitem.Name = "rdbDefectitem";
-            this.rdbDefectitem.Size = new System.Drawing.Size(170, 29);
+            this.rdbDefectitem.Size = new System.Drawing.Size(201, 29);
             this.rdbDefectitem.TextSize = new System.Drawing.Size(0, 0);
             this.rdbDefectitem.TextVisible = false;
             // 
@@ -723,18 +616,148 @@
             this.rdbRunneritem.Control = this.rdbRunner;
             this.rdbRunneritem.Location = new System.Drawing.Point(0, 0);
             this.rdbRunneritem.Name = "rdbRunneritem";
-            this.rdbRunneritem.Size = new System.Drawing.Size(177, 29);
+            this.rdbRunneritem.Size = new System.Drawing.Size(201, 29);
             this.rdbRunneritem.TextSize = new System.Drawing.Size(0, 0);
             this.rdbRunneritem.TextVisible = false;
+            // 
+            // layoutControlGroup2
+            // 
+            this.layoutControlGroup2.GroupStyle = DevExpress.Utils.GroupStyle.Light;
+            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem1,
+            this.simpleButton1item,
+            this.simpleButton2item});
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 186);
+            this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.Size = new System.Drawing.Size(827, 64);
+            this.layoutControlGroup2.TextVisible = false;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.simpleButton3;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.MinSize = new System.Drawing.Size(86, 40);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(268, 40);
+            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
+            // simpleButton1item
+            // 
+            this.simpleButton1item.Control = this.simpleButton1;
+            this.simpleButton1item.Location = new System.Drawing.Point(268, 0);
+            this.simpleButton1item.MinSize = new System.Drawing.Size(98, 40);
+            this.simpleButton1item.Name = "simpleButton1item";
+            this.simpleButton1item.Size = new System.Drawing.Size(267, 40);
+            this.simpleButton1item.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.simpleButton1item.TextSize = new System.Drawing.Size(0, 0);
+            this.simpleButton1item.TextVisible = false;
+            // 
+            // simpleButton2item
+            // 
+            this.simpleButton2item.Control = this.simpleButton2;
+            this.simpleButton2item.Location = new System.Drawing.Point(535, 0);
+            this.simpleButton2item.MinSize = new System.Drawing.Size(110, 40);
+            this.simpleButton2item.Name = "simpleButton2item";
+            this.simpleButton2item.Size = new System.Drawing.Size(268, 40);
+            this.simpleButton2item.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.simpleButton2item.TextSize = new System.Drawing.Size(0, 0);
+            this.simpleButton2item.TextVisible = false;
+            // 
+            // layoutControlGroup3
+            // 
+            this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.cmbMixIditem,
+            this.txtScaleWeightitem,
+            this.spbScaleitem,
+            this.tedRealWeightitem});
+            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 74);
+            this.layoutControlGroup3.Name = "layoutControlGroup3";
+            this.layoutControlGroup3.Size = new System.Drawing.Size(827, 112);
+            this.layoutControlGroup3.TextVisible = false;
+            // 
+            // cmbMixIditem
+            // 
+            this.cmbMixIditem.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMixIditem.AppearanceItemCaption.ForeColor = System.Drawing.Color.Teal;
+            this.cmbMixIditem.AppearanceItemCaption.Options.UseFont = true;
+            this.cmbMixIditem.AppearanceItemCaption.Options.UseForeColor = true;
+            this.cmbMixIditem.Control = this.cmbMixId;
+            this.cmbMixIditem.Location = new System.Drawing.Point(0, 0);
+            this.cmbMixIditem.Name = "cmbMixIditem";
+            this.cmbMixIditem.Size = new System.Drawing.Size(803, 44);
+            this.cmbMixIditem.Text = "Mix Lot ID";
+            this.cmbMixIditem.TextLocation = DevExpress.Utils.Locations.Left;
+            this.cmbMixIditem.TextSize = new System.Drawing.Size(67, 16);
+            // 
+            // txtScaleWeightitem
+            // 
+            this.txtScaleWeightitem.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtScaleWeightitem.AppearanceItemCaption.ForeColor = System.Drawing.Color.Teal;
+            this.txtScaleWeightitem.AppearanceItemCaption.Options.UseFont = true;
+            this.txtScaleWeightitem.AppearanceItemCaption.Options.UseForeColor = true;
+            this.txtScaleWeightitem.Control = this.txtScaleWeight;
+            this.txtScaleWeightitem.Location = new System.Drawing.Point(0, 44);
+            this.txtScaleWeightitem.Name = "txtScaleWeightitem";
+            this.txtScaleWeightitem.Size = new System.Drawing.Size(268, 44);
+            this.txtScaleWeightitem.Text = "Weight";
+            this.txtScaleWeightitem.TextLocation = DevExpress.Utils.Locations.Left;
+            this.txtScaleWeightitem.TextSize = new System.Drawing.Size(67, 16);
+            // 
+            // spbScaleitem
+            // 
+            this.spbScaleitem.Control = this.spbScale;
+            this.spbScaleitem.Location = new System.Drawing.Point(535, 44);
+            this.spbScaleitem.MinSize = new System.Drawing.Size(81, 40);
+            this.spbScaleitem.Name = "spbScaleitem";
+            this.spbScaleitem.Size = new System.Drawing.Size(268, 44);
+            this.spbScaleitem.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.spbScaleitem.TextSize = new System.Drawing.Size(0, 0);
+            this.spbScaleitem.TextVisible = false;
             // 
             // tedRealWeightitem
             // 
             this.tedRealWeightitem.Control = this.tedRealWeight;
-            this.tedRealWeightitem.Location = new System.Drawing.Point(0, 134);
+            this.tedRealWeightitem.Location = new System.Drawing.Point(268, 44);
             this.tedRealWeightitem.Name = "tedRealWeightitem";
-            this.tedRealWeightitem.Size = new System.Drawing.Size(562, 34);
+            this.tedRealWeightitem.Size = new System.Drawing.Size(267, 44);
             this.tedRealWeightitem.TextSize = new System.Drawing.Size(0, 0);
             this.tedRealWeightitem.TextVisible = false;
+            // 
+            // layoutControlGroup4
+            // 
+            this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.txtDateTimeitem,
+            this.qrCodeMixIditem});
+            this.layoutControlGroup4.Location = new System.Drawing.Point(827, 0);
+            this.layoutControlGroup4.Name = "layoutControlGroup4";
+            this.layoutControlGroup4.Size = new System.Drawing.Size(207, 250);
+            this.layoutControlGroup4.TextVisible = false;
+            // 
+            // txtDateTimeitem
+            // 
+            this.txtDateTimeitem.Control = this.txtDateTime;
+            this.txtDateTimeitem.Location = new System.Drawing.Point(0, 0);
+            this.txtDateTimeitem.MaxSize = new System.Drawing.Size(0, 24);
+            this.txtDateTimeitem.MinSize = new System.Drawing.Size(24, 24);
+            this.txtDateTimeitem.Name = "txtDateTimeitem";
+            this.txtDateTimeitem.Size = new System.Drawing.Size(183, 24);
+            this.txtDateTimeitem.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.txtDateTimeitem.TextSize = new System.Drawing.Size(0, 0);
+            this.txtDateTimeitem.TextVisible = false;
+            // 
+            // qrCodeMixIditem
+            // 
+            this.qrCodeMixIditem.Control = this.qrCodeMixId;
+            this.qrCodeMixIditem.Location = new System.Drawing.Point(0, 24);
+            this.qrCodeMixIditem.MaxSize = new System.Drawing.Size(0, 187);
+            this.qrCodeMixIditem.MinSize = new System.Drawing.Size(54, 187);
+            this.qrCodeMixIditem.Name = "qrCodeMixIditem";
+            this.qrCodeMixIditem.Size = new System.Drawing.Size(183, 202);
+            this.qrCodeMixIditem.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.qrCodeMixIditem.TextSize = new System.Drawing.Size(0, 0);
+            this.qrCodeMixIditem.TextVisible = false;
             // 
             // timer1
             // 
@@ -748,7 +771,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1172, 693);
+            this.ClientSize = new System.Drawing.Size(1054, 732);
             this.Controls.Add(this.frmMixedOutlayoutControl1ConvertedLayout);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -766,29 +789,30 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tedRealWeight.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbMixIditem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtScaleWeightitem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spbScaleitem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboComPortitem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1item)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleButton2item)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleButton1item)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1item)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDateTimeitem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPosteditem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMixOutIditem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qrCodeMixIditem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdPosteditem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdResetitem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdSaveitem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPosteditem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightitem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboComPortitem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1item)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBox1item)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbContaminateditem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbBlackDotitem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbDefectitem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbRunneritem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleButton1item)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleButton2item)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbMixIditem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtScaleWeightitem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spbScaleitem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tedRealWeightitem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDateTimeitem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qrCodeMixIditem)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -799,9 +823,6 @@
         private System.Windows.Forms.RadioButton rdbDefect;
         private System.Windows.Forms.RadioButton rdbRunner;
         private System.Windows.Forms.TextBox txtWeight;
-        private System.Windows.Forms.Button cmdSave;
-        private System.Windows.Forms.Button cmdReset;
-        private System.Windows.Forms.Button cmdPosted;
         private DevExpress.XtraEditors.BarCodeControl qrCodeMixId;
         private System.Windows.Forms.TextBox txtMixOutId;
         private System.Windows.Forms.TextBox txtPosted;
@@ -842,9 +863,6 @@
         private DevExpress.XtraLayout.LayoutControlItem txtPosteditem;
         private DevExpress.XtraLayout.LayoutControlItem txtMixOutIditem;
         private DevExpress.XtraLayout.LayoutControlItem qrCodeMixIditem;
-        private DevExpress.XtraLayout.LayoutControlItem cmdPosteditem;
-        private DevExpress.XtraLayout.LayoutControlItem cmdResetitem;
-        private DevExpress.XtraLayout.LayoutControlItem cmdSaveitem;
         private DevExpress.XtraLayout.LayoutControlItem txtWeightitem;
         private DevExpress.XtraLayout.LayoutControlGroup groupBox1item;
         private DevExpress.XtraLayout.LayoutControlItem rdbContaminateditem;
@@ -852,6 +870,10 @@
         private DevExpress.XtraLayout.LayoutControlItem rdbDefectitem;
         private DevExpress.XtraLayout.LayoutControlItem rdbRunneritem;
         private DevExpress.XtraLayout.LayoutControlItem tedRealWeightitem;
-        private DevExpress.XtraLayout.Converter.LayoutConverter layoutConverter1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup4;
     }
 }

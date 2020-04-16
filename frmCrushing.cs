@@ -45,7 +45,7 @@ namespace ScaleApp
             loadComboBoxStep();
             LoadLookUpMixId();
             //LoadLookUpProduct();
-            cmdPost.Enabled = false;
+            //cmdPost.Enabled = false;
             LoadGridControl1();
         }
 
@@ -431,7 +431,7 @@ namespace ScaleApp
                 {
                     XtraMessageBox.Show("Lưu dữ liệu thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cmdSave.Enabled = false;
-                    cmdPost.Enabled = false;
+                    //cmdPost.Enabled = false;
                     LoadGridControl1();
                 }
             }
@@ -529,7 +529,7 @@ namespace ScaleApp
                 
                 qrCodeCrush.Text = ds.Tables[0].Rows[0][18].ToString(); //Get Crush Lot ID
                 
-                txtCrushDate.Text = ds.Tables[0].Rows[0][17].ToString(); //Get Crush Lot Date
+                //txtCrushDate.Text = ds.Tables[0].Rows[0][17].ToString(); //Get Crush Lot Date
             }
             catch (Exception ex)
             {
@@ -551,7 +551,7 @@ namespace ScaleApp
             lueMaterial.EditValue = null;
             lueMixId.EditValue = null;            
             txtWeightRe.Text = null;
-            txtCrushDate.Text = null;
+            //txtCrushDate.Text = null;
             txtCrushID.Text = null;
             txtPosted.Text = "0";
             lueMixId.Focus();
@@ -599,12 +599,12 @@ namespace ScaleApp
         {
             if (txtPosted.Text.ToString() == "0")
             {
-                cmdPost.Enabled = true;
+                //cmdPost.Enabled = true;
                 cmdSave.Enabled = true;
             }
             else
             {
-                cmdPost.Enabled = false;
+                //cmdPost.Enabled = false;
                 cmdSave.Enabled = false;
             }
         }
@@ -631,7 +631,7 @@ namespace ScaleApp
                     XtraMessageBox.Show("Crush Raw Lot posted !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadGridControl1();
                     cmdSave.Enabled = false;
-                    cmdPost.Enabled = false;
+                    //cmdPost.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -935,7 +935,7 @@ namespace ScaleApp
                 gridControl1.DataSource = ds.Tables["CrushRaw"];
                 gridControl1.ForceInitialize();
 
-                gridView1.OptionsView.ColumnAutoWidth = false;
+                gridView1.OptionsView.ColumnAutoWidth = true;
 
                 gridView1.Columns["OperatorCode"].VisibleIndex = -1;
                 gridView1.Columns["ProductCode"].VisibleIndex = -1;                
@@ -949,27 +949,23 @@ namespace ScaleApp
                 gridView1.Columns["MixBacode"].VisibleIndex = 3;
                 gridView1.Columns["ShiftName"].VisibleIndex = 4;
                 gridView1.Columns["OperatorName"].VisibleIndex = 5;
-                //gridView1.Columns["ProductName"].VisibleIndex = 6;                
                 gridView1.Columns["ColorCode"].VisibleIndex = 8;
-                //gridView1.Columns["ColorName"].VisibleIndex = 9;
                 gridView1.Columns["StepName"].VisibleIndex = 10;
                 gridView1.Columns["LossTypeName"].VisibleIndex = 11;
                 gridView1.Columns["WeightRecycle"].VisibleIndex = 12;
                 gridView1.Columns["MachineName"].VisibleIndex = 13;                                
                 
-                gridView1.Columns["CrushRawId"].Width = 40;
+                gridView1.Columns["CrushRawId"].Width = 50;
                 gridView1.Columns["CreateTime"].Width = 120;
-                gridView1.Columns["StepName"].Width = 60;
-                gridView1.Columns["OperatorName"].Width = 100;
-                //gridView1.Columns["ProductName"].Width = 180;                
-                gridView1.Columns["ColorCode"].Width = 80;
-                //gridView1.Columns["ColorName"].Width = 170;
-                gridView1.Columns["WeightRecycle"].Width = 80;
-                gridView1.Columns["LossTypeName"].Width = 60;
+                gridView1.Columns["RecycledID"].Width = 250;
                 gridView1.Columns["MixBacode"].Width = 250;
-                gridView1.Columns["MachineName"].Width = 80;
-                gridView1.Columns["RecycledID"].Width = 250;                
-                gridView1.Columns["Posted"].Width = 40;
+                //gridView1.Columns["StepName"].Width = 60;
+                //gridView1.Columns["OperatorName"].Width = 100;
+                //gridView1.Columns["ColorCode"].Width = 80;
+                //gridView1.Columns["WeightRecycle"].Width = 80;
+                //gridView1.Columns["LossTypeName"].Width = 60;                
+                //gridView1.Columns["MachineName"].Width = 80;                               
+                //gridView1.Columns["Posted"].Width = 40;
 
                 gridView1.Columns["CreateTime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
                 gridView1.Columns["CreateTime"].DisplayFormat.FormatString = "MM/dd/yyyy HH:mm:ss";
@@ -998,7 +994,7 @@ namespace ScaleApp
             lueMaterial.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MaterialCode"]);
             txtWeightRe.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightRecycle"]).ToString();
             qrCodeCrush.Text= gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["RecycledID"]).ToString();
-            txtCrushDate.Text = String.Format("{0:MM/dd/yyyy HH:mm:ss}", gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]));
+            //txtCrushDate.Text = String.Format("{0:MM/dd/yyyy HH:mm:ss}", gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]));
             txtCrushID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CrushRawId"]).ToString();
             txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
 
@@ -1059,11 +1055,11 @@ namespace ScaleApp
             }
 
             string[] portNames = SerialPort.GetPortNames();     //<-- Reads all available comPorts
-            foreach (var portName in portNames)
-            {
-                cboComPort.Items.Add(portName);                  //<-- Adds Ports to combobox
-            }
-            cboComPort.SelectedIndex = 0;                        //<-- Selects first entry (convenience purposes)
+            //foreach (var portName in portNames)
+            //{
+            //    cboComPort.Items.Add(portName);                  //<-- Adds Ports to combobox
+            //}
+            //cboComPort.SelectedIndex = 0;                        //<-- Selects first entry (convenience purposes)
 
             //< --This block ensures that no exceptions happen
             if (_serialPort != null && _serialPort.IsOpen)
@@ -1145,7 +1141,7 @@ namespace ScaleApp
             lueMaterial.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MaterialCode"]);
             txtWeightRe.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightRecycle"]).ToString();
             qrCodeCrush.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["RecycledID"]).ToString();
-            txtCrushDate.Text = String.Format("{0:MM/dd/yyyy HH:mm:ss}", gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]));
+            //txtCrushDate.Text = String.Format("{0:MM/dd/yyyy HH:mm:ss}", gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]));
             txtCrushID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CrushRawId"]).ToString();
             txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
 

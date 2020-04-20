@@ -62,19 +62,19 @@ namespace ScaleApp
 
         private void cmdSave_Click(object sender, EventArgs e)
         {
-
-
-            SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
-            SplashScreenManager.Default.SetWaitFormCaption("Updating data...");
-            for (int j = 0; j < 100; j++)
-            {
-                Thread.Sleep(10);
-            }
-            SplashScreenManager.CloseForm();
+            //SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+            //SplashScreenManager.Default.SetWaitFormCaption("Updating data...");
+            //for (int j = 0; j < 100; j++)
+            //{
+            //    Thread.Sleep(10);
+            //}
+            //SplashScreenManager.CloseForm();
 
             if (!String.IsNullOrEmpty(cmbMixId.EditValue.ToString()))
             {
-                CreateMixOut();
+                //CreateMixOut();
+                string checkName = GetRadioChecked();
+                MessageBox.Show(checkName);
             }              
         }
 

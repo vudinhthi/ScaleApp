@@ -648,7 +648,7 @@
             // 
             // cmbLabelType
             // 
-            this.cmbLabelType.EditValue = "All";
+            this.cmbLabelType.EditValue = "Production Set";
             this.cmbLabelType.Location = new System.Drawing.Point(1173, 286);
             this.cmbLabelType.Name = "cmbLabelType";
             this.cmbLabelType.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -660,7 +660,7 @@
             this.cmbLabelType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbLabelType.Properties.Items.AddRange(new object[] {
-            "All",
+            "Production Set",
             "Mixed",
             "Runner",
             "Defect",

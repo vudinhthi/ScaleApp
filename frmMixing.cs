@@ -498,7 +498,7 @@ namespace ScaleApp
                 }
 
                 lueProduct.Properties.DataSource = ds.Tables[0];
-                lueProduct.Properties.DisplayMember = "c003";
+                lueProduct.Properties.DisplayMember = "c002";
                 lueProduct.Properties.ValueMember = "c002";
                 lueProduct.Properties.KeyMember = "c002";
 
@@ -1175,7 +1175,7 @@ namespace ScaleApp
             }
             else
             {
-                txtProductName.Text = lueProduct.Text;
+                txtProductName.Text = lueProduct.GetColumnValue("c003").ToString();
                 strBomCode = GetStrBomCode(lueProduct.EditValue.ToString());
 
                 tedColorCode.Text = lueProduct.GetColumnValue("ColorCode").ToString();
@@ -1690,10 +1690,12 @@ namespace ScaleApp
             if (cmbLabelType.SelectedItem == null)
             {
                 report.LableTypeReport = "Mixed";
+                report.LabelTypeIndex = 0;
             }
             else
             {
                 report.LableTypeReport = cmbLabelType.SelectedItem.ToString();
+                report.LabelTypeIndex = cmbLabelType.SelectedIndex;
             }
 
             if (txtMixID.Text.IsNullOrEmpty())

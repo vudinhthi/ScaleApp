@@ -23,6 +23,8 @@ namespace ScaleApp
     {
         private string  lableTypeReport;
         private int mixID;
+        private int labelTypeIndex;
+
         private PrinterSettings prnSettings;
 
         public string LableTypeReport
@@ -37,6 +39,12 @@ namespace ScaleApp
             set {this.mixID = value; }
         }
 
+        public int LabelTypeIndex 
+        { 
+            get { return this.labelTypeIndex; } 
+            set { this.labelTypeIndex = value; } 
+        }
+
         public frmReportMixed()
         {
             InitializeComponent();
@@ -47,7 +55,7 @@ namespace ScaleApp
         {
             //labelReport = LableTypeReport;
             //SendToPrint();            
-            LoadDataToReport(LableTypeReport);
+            LoadDataToReport(labelTypeIndex);
             this.Close();
             this.Dispose();
         }
@@ -61,7 +69,7 @@ namespace ScaleApp
             //printTool.Print("Canon B&W");
         }
 
-        private void LoadDataToReport(string typeReport)
+        private void LoadDataToReport(int labelIndex)
         {
             DataSet ds = new DataSet();
             String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
@@ -82,9 +90,9 @@ namespace ScaleApp
             }
             ScaleApp.Common.DataOperation.disconnect();
 
-            switch (typeReport)
+            switch (labelIndex)
             {
-                case "Mixed":
+                case 1:
                     var rptMix = new rptMixing();
                     rptMix.DataSource = ds;
                     rptMix.CreateDocument();
@@ -92,7 +100,7 @@ namespace ScaleApp
                     printToolMix.PrintDialog();
                     //documentViewer1.DocumentSource = rptMix;
                     break;
-                case "Runner":
+                case 2:
                     var rptRunner = new rptMixedOut();
                     rptRunner.DataSource = ds;
                     rptRunner.CreateDocument();
@@ -100,7 +108,7 @@ namespace ScaleApp
                     printToolRunner.PrintDialog();
                     //documentViewer1.DocumentSource = rptRunner;
                     break;
-                case "Defect":
+                case 3:
                     var rptDefect = new rptDefect();
                     rptDefect.DataSource = ds;
                     rptDefect.CreateDocument();
@@ -108,7 +116,7 @@ namespace ScaleApp
                     printToolDefect.PrintDialog();
                     //documentViewer1.DocumentSource = rptDefect;
                     break;
-                case "BlackDot":
+                case 4:
                     var rptBlackDot = new rptBlackDot();
                     rptBlackDot.DataSource = ds;
                     rptBlackDot.CreateDocument();
@@ -116,7 +124,7 @@ namespace ScaleApp
                     printToolBlackDot.PrintDialog();
                     //documentViewer1.DocumentSource = rptBlackDot;
                     break;
-                case "Contaminated":
+                case 5:
                     var rptContaminated = new rptContaminated();
                     rptContaminated.DataSource = ds;
                     rptContaminated.CreateDocument();
@@ -124,19 +132,19 @@ namespace ScaleApp
                     printToolContaminated.PrintDialog();
                     //documentViewer1.DocumentSource = rptContaminated;
                     break;
-                case "All":
-                    rptMix = new rptMixing();
-                    rptMix.DataSource = ds;
-                    rptMix.CreateDocument();
+                case 0:
+                    rptRunner = new rptMixedOut();
+                    rptRunner.DataSource = ds;
+                    rptRunner.CreateDocument();
 
-                    XtraReport[] reports = new XtraReport[] { new rptMixedOut(), new rptDefect(), new rptBlackDot(), new rptContaminated() };
+                    XtraReport[] reports = new XtraReport[] { new rptDefect(), new rptBlackDot(), new rptContaminated() };
                     foreach (XtraReport report in reports)
                     {
                         report.DataSource = ds;
                         report.CreateDocument();
                     }
 
-                    printToolMix = new ReportPrintTool(rptMix);
+                    printToolMix = new ReportPrintTool(rptRunner);
                     printToolMix.PrintingSystem.StartPrint += new PrintDocumentEventHandler(PrintingSystem_StartPrint);
 
                     foreach (XtraReport report in reports)

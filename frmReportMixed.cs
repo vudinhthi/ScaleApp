@@ -92,7 +92,7 @@ namespace ScaleApp
 
             switch (labelIndex)
             {
-                case 1:
+                case 0:
                     var rptMix = new rptMixing();
                     rptMix.DataSource = ds;
                     rptMix.CreateDocument();
@@ -100,7 +100,7 @@ namespace ScaleApp
                     printToolMix.PrintDialog();
                     //documentViewer1.DocumentSource = rptMix;
                     break;
-                case 2:
+                case 1:
                     var rptRunner = new rptMixedOut();
                     rptRunner.DataSource = ds;
                     rptRunner.CreateDocument();
@@ -108,7 +108,7 @@ namespace ScaleApp
                     printToolRunner.PrintDialog();
                     //documentViewer1.DocumentSource = rptRunner;
                     break;
-                case 3:
+                case 2:
                     var rptDefect = new rptDefect();
                     rptDefect.DataSource = ds;
                     rptDefect.CreateDocument();
@@ -116,7 +116,7 @@ namespace ScaleApp
                     printToolDefect.PrintDialog();
                     //documentViewer1.DocumentSource = rptDefect;
                     break;
-                case 4:
+                case 3:
                     var rptBlackDot = new rptBlackDot();
                     rptBlackDot.DataSource = ds;
                     rptBlackDot.CreateDocument();
@@ -124,7 +124,7 @@ namespace ScaleApp
                     printToolBlackDot.PrintDialog();
                     //documentViewer1.DocumentSource = rptBlackDot;
                     break;
-                case 5:
+                case 4:
                     var rptContaminated = new rptContaminated();
                     rptContaminated.DataSource = ds;
                     rptContaminated.CreateDocument();
@@ -132,7 +132,7 @@ namespace ScaleApp
                     printToolContaminated.PrintDialog();
                     //documentViewer1.DocumentSource = rptContaminated;
                     break;
-                case 0:
+                case 5:
                     rptRunner = new rptMixedOut();
                     rptRunner.DataSource = ds;
                     rptRunner.CreateDocument();

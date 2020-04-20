@@ -212,8 +212,7 @@ namespace ScaleApp
 
             if (i != 0)
             {
-                XtraMessageBox.Show("Lưu dữ liệu thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadComboBoxMixId();
+                XtraMessageBox.Show("Lưu dữ liệu thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);                
             }
         }
 

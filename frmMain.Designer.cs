@@ -32,12 +32,12 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.userLoginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mixingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mixedOutStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recycledStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cookiesStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +61,7 @@
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userLoginToolStripMenuItem,
             this.databaseToolStripMenuItem});
+            this.toolStripMenuItem1.Enabled = false;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(49, 20);
             this.toolStripMenuItem1.Text = "Login";
@@ -72,15 +73,24 @@
             this.userLoginToolStripMenuItem.Text = "User";
             this.userLoginToolStripMenuItem.Click += new System.EventHandler(this.connectDatabaseToolStripMenuItem_Click);
             // 
+            // databaseToolStripMenuItem
+            // 
+            this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
+            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.databaseToolStripMenuItem.Text = "Database";
+            this.databaseToolStripMenuItem.Click += new System.EventHandler(this.databaseToolStripMenuItem_Click);
+            // 
             // mixingToolStripMenuItem
             // 
+            this.mixingToolStripMenuItem.Enabled = false;
             this.mixingToolStripMenuItem.Name = "mixingToolStripMenuItem";
-            this.mixingToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
+            this.mixingToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
             this.mixingToolStripMenuItem.Text = "Mixing Station";
             this.mixingToolStripMenuItem.Click += new System.EventHandler(this.mixingToolStripMenuItem_Click);
             // 
             // mixedOutStationToolStripMenuItem
             // 
+            this.mixedOutStationToolStripMenuItem.Enabled = false;
             this.mixedOutStationToolStripMenuItem.Name = "mixedOutStationToolStripMenuItem";
             this.mixedOutStationToolStripMenuItem.Size = new System.Drawing.Size(144, 20);
             this.mixedOutStationToolStripMenuItem.Text = "Incoming Crush Station";
@@ -88,6 +98,7 @@
             // 
             // recycledStationToolStripMenuItem
             // 
+            this.recycledStationToolStripMenuItem.Enabled = false;
             this.recycledStationToolStripMenuItem.Name = "recycledStationToolStripMenuItem";
             this.recycledStationToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.recycledStationToolStripMenuItem.Text = "Crush Station";
@@ -106,13 +117,6 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // databaseToolStripMenuItem
-            // 
-            this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
-            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.databaseToolStripMenuItem.Text = "Database";
-            this.databaseToolStripMenuItem.Click += new System.EventHandler(this.databaseToolStripMenuItem_Click);
             // 
             // frmMain
             // 

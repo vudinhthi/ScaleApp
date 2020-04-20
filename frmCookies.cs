@@ -94,13 +94,9 @@ namespace ScaleApp
            lkeItem.Properties.DataSource = ds.Tables["tbItem"];
            lkeItem.Properties.ValueMember = "c002";
            lkeItem.Properties.DisplayMember = "c003";
-           lkeItem.EditValue = ds.Tables["tbItem"].Rows[0][0];
+            lkeItem.EditValue = ds.Tables["tbItem"].Rows[0][0];
             lkeItem.Properties.Columns.Add(new LookUpColumnInfo("c002", "Item Code", 200));
             lkeItem.Properties.Columns.Add(new LookUpColumnInfo("c003", "Item Name", 500));
-
-            //lkeItem.Properties.PopulateColumns();
-            //Component
-            
             //Screwsize
             //Reason
             lkeReason.Properties.DataSource = ds.Tables["tbReason"];
@@ -110,6 +106,9 @@ namespace ScaleApp
             lkeReason.Properties.PopulateColumns();
             lkeReason.Properties.Columns["ItemID"].Visible = false;
             lkeReason.Properties.Columns["ReasonID"].Width = 60;
+            
+            //Component
+
         }
         private void InitDataGridview()
         {
@@ -165,7 +164,7 @@ namespace ScaleApp
 
                 cookiesClass.MachineNo = txtMachineNo.Text;
                 cookiesClass.Item = lkeItem.Text;
-                cookiesClass.Component = lkeComponent.Text;
+                cookiesClass.Component = txtComponent.Text;
                 cookiesClass.Screwsize = txtScrewsize.Text;
                 cookiesClass.Shift = cbbShift.Text;
                 cookiesClass.PurgingMaterial = cbbPurgingMaterial.Text;
@@ -291,39 +290,40 @@ namespace ScaleApp
         bool isLoaded = false;
         private void lkeItem_EditValueChanged(object sender, EventArgs e)
         {
-            ds = DataOperation.SelectComponent(2, "sp_GetComponent", lkeItem.EditValue.ToString());
-            lkeComponent.Properties.DataSource = ds.Tables["tbComponent"];
-            if (ds.Tables["tbComponent"] != null && ds.Tables["tbComponent"].Rows.Count != 0)
-            {
-                lkeComponent.Properties.ValueMember = "componentID";
-                lkeComponent.Properties.DisplayMember = "name";
-                lkeComponent.EditValue = ds.Tables["tbComponent"].Rows[0][0];
-                lkeComponent.Properties.PopulateColumns();
-                lkeComponent.Properties.Columns["ItemID"].Visible = false;
-                lkeComponent.Properties.Columns["componentID"].Caption = "ComponentID";
-                lkeComponent.Properties.Columns["name"].Caption = "Name";
-                lkeComponent.Properties.Columns["name"].Width = 200;
-                isLoaded = true;
-            }
-            else
-            {
-                lkeComponent.Properties.DataSource = null;
-                lkeComponent.ResetText();
-            }
-
+            txtComponent.Text = GetComponent(lkeItem.EditValue.ToString());
         }
 
-        private void lkeScrewsize_EditValueChanged(object sender, EventArgs e)
+       private string GetComponent(string ItemID)
         {
-           
-            
+            string key = ItemID.Substring(0,1);
+            string result = "";
+            switch (key)
+            {
+                case "S":
+                    result = "Studs";
+                    break;
+                case "0":
+                    result = "Base";
+                    break;
+                case "B":
+                    result = "Base";
+                    break;
+                case "I":
+                    result = "Inlay";
+                    break;
+                case "C":
+                    result = "Cleat";
+                    break;
+                default:
+                    break;
+            }
+            return result;
         }
-
-        //private void lkeComponent_EditValueChanged(object sender, EventArgs e)
+        //private void txtComponent_EditValueChanged(object sender, EventArgs e)
         //{
         //    if (isLoaded)
         //    {
-        //        ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", lkeItem.EditValue.ToString(), Convert.ToInt32(lkeComponent.EditValue), 2);
+        //        ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", lkeItem.EditValue.ToString(), Convert.ToInt32(txtComponent.EditValue), 2);
         //        lkeScrewsize.Properties.DataSource = ds.Tables["tbScrewsize"];
         //        if (ds.Tables["tbScrewsize"] != null && ds.Tables["tbScrewsize"].Rows.Count != 0)
         //        {

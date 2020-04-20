@@ -74,9 +74,9 @@ namespace ScaleApp
             }
             else
             {
-                mixingToolStripMenuItem.Enabled = true;
-                mixedOutStationToolStripMenuItem.Enabled = true;
-                recycledStationToolStripMenuItem.Enabled = true;
+               // mixingToolStripMenuItem.Enabled = true;
+             //   mixedOutStationToolStripMenuItem.Enabled = true;
+               // recycledStationToolStripMenuItem.Enabled = true;
                 cookiesStationToolStripMenuItem.Enabled = true;
                 XtraMessageBox.Show("Kết nối cơ sở dữ liệu thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -126,9 +126,9 @@ namespace ScaleApp
             }
             else
             {
-                mixingToolStripMenuItem.Enabled = true;
-                mixedOutStationToolStripMenuItem.Enabled = true;
-                recycledStationToolStripMenuItem.Enabled = true;
+             //   mixingToolStripMenuItem.Enabled = true;
+              //  mixedOutStationToolStripMenuItem.Enabled = true;
+              //  recycledStationToolStripMenuItem.Enabled = true;
                 cookiesStationToolStripMenuItem.Enabled = true;
                 XtraMessageBox.Show("Kết nối cơ sở dữ liệu thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

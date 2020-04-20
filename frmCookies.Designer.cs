@@ -61,10 +61,9 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtPurgingInput = new DevExpress.XtraEditors.TextEdit();
             this.cbbPurgingMaterial = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -74,7 +73,6 @@
             this.btnMixedCookies = new DevExpress.XtraEditors.ButtonEdit();
             this.btnPurgingCookies = new DevExpress.XtraEditors.ButtonEdit();
             this.lkeReason = new DevExpress.XtraEditors.LookUpEdit();
-            this.lkeComponent = new DevExpress.XtraEditors.LookUpEdit();
             this.lkeItem = new DevExpress.XtraEditors.LookUpEdit();
             this.txtScaleValue = new DevExpress.XtraEditors.TextEdit();
             this.gctCookies = new DevExpress.XtraGrid.GridControl();
@@ -99,11 +97,12 @@
             this.simpleLabelItem8 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.simpleLabelItem1 = new DevExpress.XtraLayout.SimpleLabelItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.simpleLabelItem6 = new DevExpress.XtraLayout.SimpleLabelItem();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.simpleLabelItem1 = new DevExpress.XtraLayout.SimpleLabelItem();
+            this.simpleLabelItem7 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
             this.simpleSeparator2 = new DevExpress.XtraLayout.SimpleSeparator();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -122,7 +121,7 @@
             this.simpleLabelItem4 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.simpleLabelItem7 = new DevExpress.XtraLayout.SimpleLabelItem();
+            this.txtComponent = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPurgingInput.Properties)).BeginInit();
@@ -131,7 +130,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnMixedCookies.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPurgingCookies.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkeReason.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkeComponent.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkeItem.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtScaleValue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gctCookies)).BeginInit();
@@ -154,11 +152,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
@@ -177,7 +176,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtComponent.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -190,7 +189,6 @@
             this.layoutControl1.Controls.Add(this.btnMixedCookies);
             this.layoutControl1.Controls.Add(this.btnPurgingCookies);
             this.layoutControl1.Controls.Add(this.lkeReason);
-            this.layoutControl1.Controls.Add(this.lkeComponent);
             this.layoutControl1.Controls.Add(this.lkeItem);
             this.layoutControl1.Controls.Add(this.txtScaleValue);
             this.layoutControl1.Controls.Add(this.gctCookies);
@@ -199,6 +197,7 @@
             this.layoutControl1.Controls.Add(this.btnRefresh);
             this.layoutControl1.Controls.Add(this.btnScale);
             this.layoutControl1.Controls.Add(this.txtScrewsize);
+            this.layoutControl1.Controls.Add(this.txtComponent);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
@@ -379,33 +378,6 @@
             this.lkeReason.StyleController = this.layoutControl1;
             this.lkeReason.TabIndex = 39;
             // 
-            // lkeComponent
-            // 
-            this.lkeComponent.Location = new System.Drawing.Point(174, 114);
-            this.lkeComponent.Name = "lkeComponent";
-            this.lkeComponent.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.lkeComponent.Properties.Appearance.Options.UseFont = true;
-            this.lkeComponent.Properties.AppearanceDropDown.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.lkeComponent.Properties.AppearanceDropDown.BackColor2 = System.Drawing.Color.LightGoldenrodYellow;
-            this.lkeComponent.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lkeComponent.Properties.AppearanceDropDown.Options.UseBackColor = true;
-            this.lkeComponent.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.lkeComponent.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.lkeComponent.Properties.AppearanceDropDownHeader.ForeColor = System.Drawing.Color.Black;
-            this.lkeComponent.Properties.AppearanceDropDownHeader.Options.UseFont = true;
-            this.lkeComponent.Properties.AppearanceDropDownHeader.Options.UseForeColor = true;
-            this.lkeComponent.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lkeComponent.Properties.NullText = "";
-            this.lkeComponent.Size = new System.Drawing.Size(307, 22);
-            this.lkeComponent.StyleController = this.layoutControl1;
-            this.lkeComponent.TabIndex = 37;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Vui lòng chọn Component!";
-            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning;
-            conditionValidationRule2.Value1 = "";
-            this.dxValidationProvider1.SetValidationRule(this.lkeComponent, conditionValidationRule2);
-            // 
             // lkeItem
             // 
             this.lkeItem.EditValue = "";
@@ -502,12 +474,12 @@
             this.txtMachineNo.Size = new System.Drawing.Size(307, 22);
             this.txtMachineNo.StyleController = this.layoutControl1;
             this.txtMachineNo.TabIndex = 4;
-            conditionValidationRule3.CaseSensitive = true;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "Vui lòng nhập Machine No!";
-            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning;
-            conditionValidationRule3.Value1 = "";
-            this.dxValidationProvider1.SetValidationRule(this.txtMachineNo, conditionValidationRule3);
+            conditionValidationRule2.CaseSensitive = true;
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Vui lòng nhập Machine No!";
+            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning;
+            conditionValidationRule2.Value1 = "";
+            this.dxValidationProvider1.SetValidationRule(this.txtMachineNo, conditionValidationRule2);
             // 
             // cbbShift
             // 
@@ -570,11 +542,10 @@
             this.txtScrewsize.Size = new System.Drawing.Size(307, 22);
             this.txtScrewsize.StyleController = this.layoutControl1;
             this.txtScrewsize.TabIndex = 38;
-            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule4.ErrorText = "Vui lòng nhập Screw size";
-            conditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning;
-            this.dxValidationProvider1.SetValidationRule(this.txtScrewsize, conditionValidationRule4);
-            this.txtScrewsize.EditValueChanged += new System.EventHandler(this.lkeScrewsize_EditValueChanged);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Vui lòng nhập Screw size";
+            conditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning;
+            this.dxValidationProvider1.SetValidationRule(this.txtScrewsize, conditionValidationRule3);
             // 
             // Root
             // 
@@ -653,7 +624,7 @@
             // 
             this.layoutControlItem3.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.layoutControlItem3.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem3.Control = this.lkeComponent;
+            this.layoutControlItem3.Control = this.txtComponent;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 78);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(449, 26);
@@ -758,6 +729,39 @@
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.btnScale;
+            this.layoutControlItem7.Location = new System.Drawing.Point(388, 24);
+            this.layoutControlItem7.MinSize = new System.Drawing.Size(98, 47);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(186, 48);
+            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.TextVisible = false;
+            // 
+            // simpleLabelItem1
+            // 
+            this.simpleLabelItem1.AllowHotTrack = false;
+            this.simpleLabelItem1.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.simpleLabelItem1.AppearanceItemCaption.Options.UseFont = true;
+            this.simpleLabelItem1.Location = new System.Drawing.Point(0, 0);
+            this.simpleLabelItem1.Name = "simpleLabelItem1";
+            this.simpleLabelItem1.Size = new System.Drawing.Size(574, 24);
+            this.simpleLabelItem1.Text = "Weight:";
+            this.simpleLabelItem1.TextSize = new System.Drawing.Size(135, 20);
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
+            this.layoutControlItem8.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem8.Control = this.txtScaleValue;
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(388, 48);
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem8.TextVisible = false;
+            // 
             // layoutControlItem11
             // 
             this.layoutControlItem11.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold);
@@ -780,38 +784,16 @@
             this.simpleLabelItem6.Text = "TPU cookies:";
             this.simpleLabelItem6.TextSize = new System.Drawing.Size(135, 20);
             // 
-            // layoutControlItem7
+            // simpleLabelItem7
             // 
-            this.layoutControlItem7.Control = this.btnScale;
-            this.layoutControlItem7.Location = new System.Drawing.Point(388, 24);
-            this.layoutControlItem7.MinSize = new System.Drawing.Size(98, 47);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(186, 48);
-            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem7.TextVisible = false;
-            // 
-            // layoutControlItem8
-            // 
-            this.layoutControlItem8.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
-            this.layoutControlItem8.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem8.Control = this.txtScaleValue;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 24);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(388, 48);
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem8.TextVisible = false;
-            // 
-            // simpleLabelItem1
-            // 
-            this.simpleLabelItem1.AllowHotTrack = false;
-            this.simpleLabelItem1.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.simpleLabelItem1.AppearanceItemCaption.Options.UseFont = true;
-            this.simpleLabelItem1.Location = new System.Drawing.Point(0, 0);
-            this.simpleLabelItem1.Name = "simpleLabelItem1";
-            this.simpleLabelItem1.Size = new System.Drawing.Size(574, 24);
-            this.simpleLabelItem1.Text = "Weight:";
-            this.simpleLabelItem1.TextSize = new System.Drawing.Size(135, 20);
+            this.simpleLabelItem7.AllowHotTrack = false;
+            this.simpleLabelItem7.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.simpleLabelItem7.AppearanceItemCaption.Options.UseFont = true;
+            this.simpleLabelItem7.Location = new System.Drawing.Point(0, 168);
+            this.simpleLabelItem7.Name = "simpleLabelItem7";
+            this.simpleLabelItem7.Size = new System.Drawing.Size(165, 48);
+            this.simpleLabelItem7.Text = "Mixed cookies:";
+            this.simpleLabelItem7.TextSize = new System.Drawing.Size(135, 20);
             // 
             // simpleSeparator1
             // 
@@ -966,16 +948,15 @@
             this.dxValidationProvider1.ValidateHiddenControls = false;
             this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Manual;
             // 
-            // simpleLabelItem7
+            // txtComponent
             // 
-            this.simpleLabelItem7.AllowHotTrack = false;
-            this.simpleLabelItem7.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.simpleLabelItem7.AppearanceItemCaption.Options.UseFont = true;
-            this.simpleLabelItem7.Location = new System.Drawing.Point(0, 168);
-            this.simpleLabelItem7.Name = "simpleLabelItem7";
-            this.simpleLabelItem7.Size = new System.Drawing.Size(165, 48);
-            this.simpleLabelItem7.Text = "Mixed cookies:";
-            this.simpleLabelItem7.TextSize = new System.Drawing.Size(135, 20);
+            this.txtComponent.Location = new System.Drawing.Point(174, 114);
+            this.txtComponent.Name = "txtComponent";
+            this.txtComponent.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.txtComponent.Properties.Appearance.Options.UseFont = true;
+            this.txtComponent.Size = new System.Drawing.Size(307, 22);
+            this.txtComponent.StyleController = this.layoutControl1;
+            this.txtComponent.TabIndex = 37;
             // 
             // frmCookies
             // 
@@ -983,6 +964,7 @@
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmCookies";
             this.Text = "FVN - Cookies";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCookies_FormClosing);
             this.Load += new System.EventHandler(this.frmCookies_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
@@ -993,7 +975,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnMixedCookies.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPurgingCookies.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkeReason.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkeComponent.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkeItem.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtScaleValue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gctCookies)).EndInit();
@@ -1016,11 +997,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
@@ -1039,7 +1021,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtComponent.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1063,7 +1045,6 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraEditors.LookUpEdit lkeReason;
-        private DevExpress.XtraEditors.LookUpEdit lkeComponent;
         private DevExpress.XtraEditors.LookUpEdit lkeItem;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
@@ -1104,5 +1085,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
         private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItem1;
         private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItem7;
+        private DevExpress.XtraEditors.TextEdit txtComponent;
     }
 }

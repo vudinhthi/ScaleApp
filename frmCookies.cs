@@ -22,6 +22,8 @@ using System.IO;
 using System.Text.RegularExpressions;
 using DevExpress.XtraSplashScreen;
 using System.Threading;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
 
 namespace ScaleApp
 {
@@ -52,7 +54,7 @@ namespace ScaleApp
                     {
                         ButtonEdit btnEdit = controlItem.Control as ButtonEdit;
                         btnEdit.Properties.Buttons[0].Click += (s, o) => {
-                            btnEdit.Text = txtPurgingInput.Text;
+                            btnEdit.Text = txtScaleValue.Text;
                         };
                         btnEdit.Properties.Buttons[1].Click += (s, o) => {
                             btnEdit.Text = "";
@@ -132,6 +134,25 @@ namespace ScaleApp
                 gvCookies.Columns["MachineNo"].Width = 50;
                 gvCookies.Columns["Screwsize"].Width = 50;
                 gvCookies.Columns["Item"].Width = 300;
+                //GridColumn columnTotal = new GridColumn();
+                //columnTotal.Caption = "Total";
+                //columnTotal.FieldName = "Total";
+                //columnTotal.OptionsColumn.AllowEdit = false;
+                //columnTotal.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
+                foreach (GridColumn column in gvCookies.Columns)
+                {
+                    GridSummaryItem item = column.SummaryItem;
+                    if (item != null)
+                        column.Summary.Remove(item);
+                }
+                GridColumnSummaryItem PurgingInputSummary = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PurgingInput", "{0:n3}");
+                gvCookies.Columns["PurgingInput"].Summary.Add(PurgingInputSummary);
+                GridColumnSummaryItem PurgingCookiesSummary = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PurgingCookies", "{0:n3}");
+                gvCookies.Columns["PurgingCookies"].Summary.Add(PurgingCookiesSummary);
+                GridColumnSummaryItem TPUCookiesSummary = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TPUCookies", "{0:n3}");
+                gvCookies.Columns["TPUCookies"].Summary.Add(TPUCookiesSummary);
+                GridColumnSummaryItem MixedCookiesSummary = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MixedCookies", "{0:n3}");
+                gvCookies.Columns["MixedCookies"].Summary.Add(MixedCookiesSummary);
                 //gvCookies.Columns["Item"].BestFit();
 
             }
@@ -145,7 +166,7 @@ namespace ScaleApp
                 cookiesClass.MachineNo = txtMachineNo.Text;
                 cookiesClass.Item = lkeItem.Text;
                 cookiesClass.Component = lkeComponent.Text;
-                cookiesClass.Screwsize = lkeScrewsize.Text;
+                cookiesClass.Screwsize = txtScrewsize.Text;
                 cookiesClass.Shift = cbbShift.Text;
                 cookiesClass.PurgingMaterial = cbbPurgingMaterial.Text;
                 cookiesClass.PurgingInput = txtPurgingInput.Text;
@@ -178,13 +199,14 @@ namespace ScaleApp
                     //}
                     XlsxExportOptionsEx optionsEx = new XlsxExportOptionsEx();
                     // gvCookies.OptionsPrint.ShowPrintExportProgress = true;
-                    optionsEx.AllowFixedColumnHeaderPanel = DevExpress.Utils.DefaultBoolean.True;
-                    optionsEx.AllowConditionalFormatting = DevExpress.Utils.DefaultBoolean.True;
-                    optionsEx.ApplyFormattingToEntireColumn = DevExpress.Utils.DefaultBoolean.True;
+                    //optionsEx.AllowFixedColumnHeaderPanel = DevExpress.Utils.DefaultBoolean.True;
+                   // optionsEx.AllowConditionalFormatting = DevExpress.Utils.DefaultBoolean.True;
+                    //optionsEx.ApplyFormattingToEntireColumn = DevExpress.Utils.DefaultBoolean.True;
+                    //optionsEx.ExportType =ExportType.WYSIWYG;
                     optionsEx.SheetName = "Data";
                     gctCookies.ExportToXlsx(dialog.FileName, optionsEx);
                     // SplashScreenManager.CloseForm();
-                    Process.Start("Report.xlsx");
+                    Process.Start(dialog.FileName);
                 }
                 catch (Exception)
                 {
@@ -258,7 +280,7 @@ namespace ScaleApp
                 Regex digits = new Regex(@"^\D*?((-?(\d+(\.\d+)?))|(-?\.\d+)).*");
                 Match mx = digits.Match(strnew);
                 decimal strValue = mx.Success ? Convert.ToDecimal(mx.Groups[1].Value) : 0;
-                txtPurgingInput.Text = strValue.ToString();
+                txtScaleValue.Text = strValue.ToString();
             }
         }
 
@@ -287,8 +309,6 @@ namespace ScaleApp
             {
                 lkeComponent.Properties.DataSource = null;
                 lkeComponent.ResetText();
-                lkeScrewsize.Properties.DataSource = null;
-                lkeScrewsize.Text = "";
             }
 
         }
@@ -299,25 +319,25 @@ namespace ScaleApp
             
         }
 
-        private void lkeComponent_EditValueChanged(object sender, EventArgs e)
-        {
-            if (isLoaded)
-            {
-                ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", lkeItem.EditValue.ToString(), Convert.ToInt32(lkeComponent.EditValue), 2);
-                lkeScrewsize.Properties.DataSource = ds.Tables["tbScrewsize"];
-                if (ds.Tables["tbScrewsize"] != null && ds.Tables["tbScrewsize"].Rows.Count != 0)
-                {
-                    lkeScrewsize.Properties.ValueMember = "screwsizeID";
-                    lkeScrewsize.Properties.DisplayMember = "value";
-                    lkeScrewsize.EditValue = ds.Tables["tbScrewsize"].Rows[0][0];
-                    lkeScrewsize.Properties.PopulateColumns();
-                    lkeScrewsize.Properties.Columns["ItemID"].Visible = false;
-                    lkeScrewsize.Properties.Columns["componentID"].Visible = false;
-                    lkeScrewsize.Properties.Columns["screwsizeID"].Caption = "ScrewsizeID";
-                    lkeScrewsize.Properties.Columns["screwsizeID"].Width = 30;
-                    lkeScrewsize.Properties.Columns["value"].Caption = "Value";
-                }
-            }
-        }
+        //private void lkeComponent_EditValueChanged(object sender, EventArgs e)
+        //{
+        //    if (isLoaded)
+        //    {
+        //        ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", lkeItem.EditValue.ToString(), Convert.ToInt32(lkeComponent.EditValue), 2);
+        //        lkeScrewsize.Properties.DataSource = ds.Tables["tbScrewsize"];
+        //        if (ds.Tables["tbScrewsize"] != null && ds.Tables["tbScrewsize"].Rows.Count != 0)
+        //        {
+        //            lkeScrewsize.Properties.ValueMember = "screwsizeID";
+        //            lkeScrewsize.Properties.DisplayMember = "value";
+        //            lkeScrewsize.EditValue = ds.Tables["tbScrewsize"].Rows[0][0];
+        //            lkeScrewsize.Properties.PopulateColumns();
+        //            lkeScrewsize.Properties.Columns["ItemID"].Visible = false;
+        //            lkeScrewsize.Properties.Columns["componentID"].Visible = false;
+        //            lkeScrewsize.Properties.Columns["screwsizeID"].Caption = "ScrewsizeID";
+        //            lkeScrewsize.Properties.Columns["screwsizeID"].Width = 30;
+        //            lkeScrewsize.Properties.Columns["value"].Caption = "Value";
+        //        }
+        //    }
+        //}
     }
 }

@@ -67,7 +67,7 @@
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridViewMaterialBom = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.cmbLabelType = new System.Windows.Forms.ComboBox();
+            this.cmbLabelType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.tedColorCode = new DevExpress.XtraEditors.TextEdit();
             this.tedColor = new DevExpress.XtraEditors.TextEdit();
             this.bteWeightRM = new DevExpress.XtraEditors.ButtonEdit();
@@ -184,6 +184,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewMaterialBom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbLabelType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tedColorCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tedColor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bteWeightRM.Properties)).BeginInit();
@@ -647,19 +648,27 @@
             // 
             // cmbLabelType
             // 
-            this.cmbLabelType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLabelType.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbLabelType.FormattingEnabled = true;
-            this.cmbLabelType.Items.AddRange(new object[] {
+            this.cmbLabelType.EditValue = "All";
+            this.cmbLabelType.Location = new System.Drawing.Point(1173, 286);
+            this.cmbLabelType.Name = "cmbLabelType";
+            this.cmbLabelType.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbLabelType.Properties.Appearance.Options.UseFont = true;
+            this.cmbLabelType.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbLabelType.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cmbLabelType.Properties.AppearanceItemSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbLabelType.Properties.AppearanceItemSelected.Options.UseFont = true;
+            this.cmbLabelType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbLabelType.Properties.Items.AddRange(new object[] {
+            "All",
             "Mixed",
             "Runner",
             "Defect",
             "BlackDot",
-            "Contaminated",
-            "All"});
-            this.cmbLabelType.Location = new System.Drawing.Point(1173, 286);
-            this.cmbLabelType.Name = "cmbLabelType";
-            this.cmbLabelType.Size = new System.Drawing.Size(147, 37);
+            "Contaminated"});
+            this.cmbLabelType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cmbLabelType.Size = new System.Drawing.Size(147, 22);
+            this.cmbLabelType.StyleController = this.frmMixinglayoutControl1ConvertedLayout;
             this.cmbLabelType.TabIndex = 0;
             // 
             // tedColorCode
@@ -1414,7 +1423,7 @@
             // 
             this.layoutControlItem14.Control = this.cmbLabelType;
             this.layoutControlItem14.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem14.MinSize = new System.Drawing.Size(24, 25);
+            this.layoutControlItem14.MinSize = new System.Drawing.Size(54, 26);
             this.layoutControlItem14.Name = "layoutControlItem14";
             this.layoutControlItem14.Size = new System.Drawing.Size(151, 40);
             this.layoutControlItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
@@ -1832,6 +1841,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewMaterialBom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbLabelType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tedColorCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tedColor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bteWeightRM.Properties)).EndInit();
@@ -1931,7 +1941,7 @@
         private System.Windows.Forms.TextBox txtWeightRecycled;
         private System.Windows.Forms.TextBox txtScaleWeight;
         private DevExpress.XtraEditors.BarCodeControl qrMixLotID;
-        private System.Windows.Forms.ComboBox cmbLabelType;
+        private DevExpress.XtraEditors.ComboBoxEdit cmbLabelType;
         private System.Windows.Forms.ComboBox cmbProduct;
         private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
         private System.Windows.Forms.DataGridView gridView1;

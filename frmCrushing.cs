@@ -39,7 +39,7 @@ namespace ScaleApp
         private void frmCrushing_Load(object sender, EventArgs e)
         {
             timer2.Interval = ScaleApp.Properties.Settings.Default.TimeScale;
-            Start_Timer();
+            //Start_Timer();
             GetComPort();
             loadComboBoxOperator();
             loadComboBoxStep();
@@ -59,7 +59,7 @@ namespace ScaleApp
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-           txtNow.Text = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+           //txtNow.Text = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
         }
 
         private void loadComboBoxOperator()
@@ -284,7 +284,7 @@ namespace ScaleApp
             String qrCodeText = "";
             String qrCodeMfunction = ScaleApp.Common.mFunction.GenerateTextQRCode("RE", DateTime.Today);            
             
-            qrCodeText = qrCodeMfunction + "|" + lueProduct.EditValue + "|" + getLastCrushRawId().ToString();            
+            qrCodeText = qrCodeMfunction + "|" + lueProduct.EditValue + "|" + getLastCrushRawId().ToString();
             qrCodeCrush.Text = qrCodeText;
         }
 
@@ -955,10 +955,10 @@ namespace ScaleApp
                 gridView1.Columns["WeightRecycle"].VisibleIndex = 12;
                 gridView1.Columns["MachineName"].VisibleIndex = 13;                                
                 
-                gridView1.Columns["CrushRawId"].Width = 50;
-                gridView1.Columns["CreateTime"].Width = 120;
-                gridView1.Columns["RecycledID"].Width = 250;
-                gridView1.Columns["MixBacode"].Width = 250;
+                gridView1.Columns["CrushRawId"].Width = 70;
+                gridView1.Columns["CreateTime"].Width = 130;
+                gridView1.Columns["RecycledID"].Width = 280;
+                gridView1.Columns["MixBacode"].Width = 280;
                 //gridView1.Columns["StepName"].Width = 60;
                 //gridView1.Columns["OperatorName"].Width = 100;
                 //gridView1.Columns["ColorCode"].Width = 80;

@@ -24,7 +24,7 @@ namespace ScaleApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new frmCrushing());            
+            Application.Run(new frmMain());            
 
         }
     }

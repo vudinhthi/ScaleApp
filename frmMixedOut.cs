@@ -283,9 +283,9 @@ namespace ScaleApp
         {            
             string rdicheckName = "";
 
-            for (int i = 0; i < groupBox1item.Items.Count; i++)
+            for (int i = 0; i < layoutControlGroup3.Items.Count; i++)
             {
-                LayoutControlItem item = groupBox1item[i] as LayoutControlItem;
+                LayoutControlItem item = layoutControlGroup3[i] as LayoutControlItem;
                 RadioButton rb = item.Control as RadioButton;
                 if (rb.Checked)
                 {

@@ -568,8 +568,8 @@ namespace ScaleApp
                 lueRecycled.Properties.DisplayMember = "RecycledID";
                 lueRecycled.Properties.ValueMember = "CrushRawId";
 
-                lueRecycled.Properties.Columns.Add(new LookUpColumnInfo("CrushRawId", "CrushRawId", 60));
-                lueRecycled.Properties.Columns.Add(new LookUpColumnInfo("RecycledID", "RecycledID", 120));
+                lueRecycled.Properties.Columns.Add(new LookUpColumnInfo("CrushRawId", "CrushRawId", 40));
+                lueRecycled.Properties.Columns.Add(new LookUpColumnInfo("RecycledID", "RecycledID", 180));
             }
             catch (Exception ex)
             {
@@ -805,7 +805,7 @@ namespace ScaleApp
                 gridControl1.ForceInitialize();
 
                 //Set the columns of master GridView's columns to AutoResize 
-                gridView2.OptionsView.ColumnAutoWidth = false;
+                gridView2.OptionsView.ColumnAutoWidth = true;
 
                 //Hide unsual columns of master GridView
                 gridView2.Columns["OperatorCode"].VisibleIndex = -1;
@@ -835,19 +835,19 @@ namespace ScaleApp
                 
                 //Set column's width of Master GridView
                 gridView2.Columns["MixRawId"].Width = 40;
-                gridView2.Columns["CreateTime"].Width = 120;
+                gridView2.Columns["CreateTime"].Width = 130;
                 gridView2.Columns["MixBacode"].Width = 220;
                 gridView2.Columns["ShiftName"].Width = 30;
-                gridView2.Columns["OperatorName"].Width = 100;
-                gridView2.Columns["ProductName"].Width = 180;
-                gridView2.Columns["ProductCode"].Width = 150;
+                gridView2.Columns["OperatorName"].Width = 120;
+                gridView2.Columns["ProductName"].Width = 430;
+                gridView2.Columns["ProductCode"].Width = 170;
                 gridView2.Columns["ColorCode"].Width = 60;
-                gridView2.Columns["WeightMaterial"].Width = 70;
-                gridView2.Columns["WeightRecycle"].Width = 70;
-                gridView2.Columns["TotalMaterial"].Width = 70;
-                gridView2.Columns["ReRatio"].Width = 70;
-                gridView2.Columns["MachineName"].Width = 80;
-                gridView2.Columns["Posted"].Width = 40;
+                //gridView2.Columns["WeightMaterial"].Width = 70;
+                //gridView2.Columns["WeightRecycle"].Width = 70;
+                //gridView2.Columns["TotalMaterial"].Width = 70;
+                gridView2.Columns["ReRatio"].Width = 50;
+                gridView2.Columns["MachineName"].Width = 50;
+                //gridView2.Columns["Posted"].Width = 40;
 
                 //Display format for column
                 gridView2.Columns["CreateTime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -945,9 +945,7 @@ namespace ScaleApp
                     SqlDa.Fill(ds, "MaterialProduct");
 
                     gridControl2.DataSource = ds.Tables["MaterialProduct"];
-                    gridControl2.ForceInitialize();
-
-                    gridViewMaterialBom.OptionsView.ColumnAutoWidth = false;
+                    gridControl2.ForceInitialize();                    
 
                     gridViewMaterialBom.Columns["ID"].VisibleIndex = -1;
                     gridViewMaterialBom.Columns["productcode"].VisibleIndex = -1;
@@ -957,7 +955,7 @@ namespace ScaleApp
                     gridViewMaterialBom.Columns["Quantity"].VisibleIndex = 3;
 
                     gridViewMaterialBom.Columns["materialcode"].Width = 80;
-                    gridViewMaterialBom.Columns["materialname"].Width = 170;
+                    gridViewMaterialBom.Columns["materialname"].Width = 150;
                     gridViewMaterialBom.Columns["Quantity"].Width = 60;
 
                     gridViewMaterialBom.Columns["Quantity"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -966,7 +964,7 @@ namespace ScaleApp
                     // Calculated Total column: 
                     GridColumn columnTotal = new GridColumn();
                     columnTotal.Caption = "Total";
-                    columnTotal.FieldName = "Total";
+                    columnTotal.FieldName = "Total";                    
                     columnTotal.OptionsColumn.AllowEdit = false;
                     columnTotal.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
                     columnTotal.UnboundExpression = weightRM + "*[Quantity]";
@@ -978,6 +976,7 @@ namespace ScaleApp
                     columnTotal.DisplayFormat.FormatString = "{0:n3}";
 
                     gridViewMaterialBom.OptionsBehavior.Editable = false;
+                    gridViewMaterialBom.OptionsView.ColumnAutoWidth = true;
 
                     GridColumnSummaryItem item1 = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", "{0:n3}");
                     gridViewMaterialBom.Columns["Total"].Summary.Add(item1);
@@ -1064,36 +1063,8 @@ namespace ScaleApp
 
         private void button5_Click(object sender, EventArgs e)
         {
-            //string labelType = cmbLabelType.SelectedItem.ToString();
-
-            frmReportMixed report = new frmReportMixed();
-
-            if (cmbLabelType.SelectedItem == null)
-            {
-                report.LableTypeReport = "Mixed";
-            }
-            else
-            {
-                report.LableTypeReport = cmbLabelType.SelectedItem.ToString();
-            }
-
-            if (txtMixID.Text.IsNullOrEmpty())
-            {
-                XtraMessageBox.Show("Chọn Mix Lot ID để in !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
-                SplashScreenManager.Default.SetWaitFormCaption("Getting new data...");
-                for (int i = 0; i < 100; i++)
-                {
-                    Thread.Sleep(10);
-                }
-                SplashScreenManager.CloseForm();
-
-                report.MixID = int.Parse(txtMixID.Text.ToString());
-                report.Show();
-            }
+            
+            
         }
 
         private void gridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -1708,6 +1679,40 @@ namespace ScaleApp
         private void frmMixing_FormClosing(object sender, FormClosingEventArgs e)
         {
             CloseSerialPort();
-        }        
+        }
+
+        private void spbPrint_Click(object sender, EventArgs e)
+        {
+            //string labelType = cmbLabelType.SelectedItem.ToString();
+
+            frmReportMixed report = new frmReportMixed();
+
+            if (cmbLabelType.SelectedItem == null)
+            {
+                report.LableTypeReport = "Mixed";
+            }
+            else
+            {
+                report.LableTypeReport = cmbLabelType.SelectedItem.ToString();
+            }
+
+            if (txtMixID.Text.IsNullOrEmpty())
+            {
+                XtraMessageBox.Show("Chọn Mix Lot ID để in !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+                SplashScreenManager.Default.SetWaitFormCaption("Getting new data...");
+                for (int i = 0; i < 100; i++)
+                {
+                    Thread.Sleep(10);
+                }
+                SplashScreenManager.CloseForm();
+
+                report.MixID = int.Parse(txtMixID.Text.ToString());
+                report.Show();
+            }
+        }
     }
 }

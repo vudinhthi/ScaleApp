@@ -405,7 +405,7 @@
             this.simpleButton2.ImageOptions.Image = global::ScaleApp.Properties.Resources.refresh_32x32;
             this.simpleButton2.Location = new System.Drawing.Point(1215, 197);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(164, 36);
+            this.simpleButton2.Size = new System.Drawing.Size(164, 40);
             this.simpleButton2.StyleController = this.frmCrushinglayoutControl1ConvertedLayout;
             this.simpleButton2.TabIndex = 55;
             this.simpleButton2.Text = "Refesh";
@@ -927,8 +927,10 @@
             // 
             this.layoutControlItem9.Control = this.simpleButton2;
             this.layoutControlItem9.Location = new System.Drawing.Point(672, 0);
+            this.layoutControlItem9.MinSize = new System.Drawing.Size(95, 40);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Size = new System.Drawing.Size(168, 44);
+            this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 

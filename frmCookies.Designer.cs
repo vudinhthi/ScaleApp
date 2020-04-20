@@ -831,7 +831,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Timer timer1;
+        //private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraEditors.TextEdit txtMachineNo;
         private DevExpress.XtraLayout.LayoutControlGroup Root;

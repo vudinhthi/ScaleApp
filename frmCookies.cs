@@ -87,7 +87,7 @@ namespace ScaleApp
             }
             ds = DataOperation.SelectComponent(2, "sp_GetComponent", lkeItem.EditValue.ToString());
             ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", lkeItem.EditValue.ToString(), 0, 1);
-           DataView dvScrewsize, dvComponent;
+           //DataView dvScrewsize, dvComponent;
            // DataViewManager dvm = new DataViewManager(ds);
           //  dvComponent = dvm.CreateDataView(ds.Tables["tbComponent"]);
           //  dvScrewsize = dvm.CreateDataView(ds.Tables["tbScrewsize"]);

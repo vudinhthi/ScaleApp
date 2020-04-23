@@ -650,6 +650,7 @@
             // 
             this.cmbLabelType.EditValue = "Mixed";
             this.cmbLabelType.Location = new System.Drawing.Point(1173, 286);
+            this.cmbLabelType.MaximumSize = new System.Drawing.Size(147, 36);
             this.cmbLabelType.Name = "cmbLabelType";
             this.cmbLabelType.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbLabelType.Properties.Appearance.Options.UseFont = true;

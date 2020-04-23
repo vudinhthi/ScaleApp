@@ -71,7 +71,7 @@ namespace ScaleApp
             {
                 cboComPort.Items.Add(portName);                  //<-- Adds Ports to combobox                
             }
-            cboComPort.SelectedIndex = 0;                        //<-- Selects first entry (convenience purposes)
+            //cboComPort.SelectedIndex = 0;                        //<-- Selects first entry (convenience purposes)
 
             //<-- This block ensures that no exceptions happen
             if (_serialPort != null && _serialPort.IsOpen)
@@ -854,7 +854,9 @@ namespace ScaleApp
                 gridView2.Columns["CreateTime"].DisplayFormat.FormatString = "MM/dd/yyyy HH:mm:ss";
 
                 gridView2.Columns["ReRatio"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                gridView2.Columns["ReRatio"].DisplayFormat.FormatString = "{0:p2}";                
+                gridView2.Columns["ReRatio"].DisplayFormat.FormatString = "{0:p2}";
+
+                //gridView2.IsAsyncInProgress = true;
 
                 gridView2.MoveFirst();
 
@@ -1420,7 +1422,13 @@ namespace ScaleApp
 
             if (Button.Kind == ButtonPredefines.OK)
             {
-                editorWeightRe.Text = txtScaleWeight.Text;
+                if (!String.IsNullOrEmpty(txtScaleWeight.Text) && (txtScaleWeight.Text != "Off"))
+                {
+                    editorWeightRe.Text = (float.Parse(txtScaleWeight.Text) - 1.14).ToString();
+                    editorWeightRe.ToolTipIconType = ToolTipIconType.Information;
+                    editorWeightRe.ToolTip = txtScaleWeight.Text + "-1.14";
+                }                    
+
                 txtTotal.Text = GetTotalWeight().ToString();
                 txtReRatio.Text = (Double.Parse(bteWeightRe.Text.ToString()) / Double.Parse(txtTotal.Text.ToString())).ToString();
                 txtReRatio.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;

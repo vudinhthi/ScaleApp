@@ -496,6 +496,11 @@ namespace ScaleApp
                 gridView2.Columns["WeightRecycle"].VisibleIndex = -1;
                 gridView2.Columns["WeightCookie"].VisibleIndex = -1;
                 gridView2.Columns["Posted"].VisibleIndex = -1;
+                gridView2.Columns["ItemID"].VisibleIndex = -1;
+                gridView2.Columns["ItemName"].VisibleIndex = -1;
+                gridView2.Columns["MachineName"].VisibleIndex = -1;
+                gridView2.Columns["StepName"].VisibleIndex = -1;
+                gridView2.Columns["ShiftName"].VisibleIndex = -1;
 
                 gridView2.Columns["Id"].VisibleIndex = 0;
                 gridView2.Columns["CreateTime"].VisibleIndex = 1;
@@ -503,11 +508,22 @@ namespace ScaleApp
                 gridView2.Columns["WeightRunner"].VisibleIndex = 3;
                 gridView2.Columns["WeightDefect"].VisibleIndex = 4;
                 gridView2.Columns["WeightBlackDot"].VisibleIndex = 5;
-                gridView2.Columns["WeighContamination"].VisibleIndex = 6;                
-                
+                gridView2.Columns["WeighContamination"].VisibleIndex = 6;
+
+                //gridView2.Columns["ItemID"].VisibleIndex = 3;
+                //gridView2.Columns["ItemName"].VisibleIndex = 4;
+                //gridView2.Columns["MachineName"].VisibleIndex = 5;
+                //gridView2.Columns["StepName"].VisibleIndex = 6;
+                //gridView2.Columns["ShiftName"].VisibleIndex = 7;
+                //gridView2.Columns["WeightRunner"].VisibleIndex = 8;
+                //gridView2.Columns["WeightDefect"].VisibleIndex = 9;
+                //gridView2.Columns["WeightBlackDot"].VisibleIndex = 10;
+                //gridView2.Columns["WeighContamination"].VisibleIndex = 11;
+
                 gridView2.Columns["Id"].Width = 50;
                 gridView2.Columns["CreateTime"].Width = 150;
                 gridView2.Columns["MixBacode"].Width = 280;
+
                 //gridView2.Columns["WeightRunner"].Width = 100;
                 //gridView2.Columns["WeightDefect"].Width = 100;
                 //gridView2.Columns["WeightBlackDot"].Width = 100;
@@ -552,6 +568,7 @@ namespace ScaleApp
             LoadGridControl();
         }
 
+        //Action for button Export Excel
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             frmDateRange frmDate = new frmDateRange();

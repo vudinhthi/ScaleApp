@@ -1,6 +1,9 @@
-﻿using DevExpress.Utils;
+﻿using DevExpress.Export;
+using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraSplashScreen;
@@ -850,15 +853,17 @@ namespace ScaleApp
             {
                 Thread.Sleep(10);
             }
-            SplashScreenManager.CloseForm();
+            SplashScreenManager.CloseForm();            
             LoadGridControl1();
         }
 
+        //Action for Export to Excel
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            frmDateRange frmDate = new frmDateRange();
-            frmDate.ExportName = 2;
-            frmDate.Show();
+            ExportExcel("");
+            //frmDateRange frmDate = new frmDateRange();
+            //frmDate.ExportName = 2;
+            //frmDate.Show();
         }
 
         private bool ExportDataSetToExcel(DataSet ds, string filename)
@@ -920,6 +925,67 @@ namespace ScaleApp
             return false;
         }
 
+        private bool ExportExcel(string filename)
+        {
+            try
+            {
+                var dialog = new SaveFileDialog();
+                dialog.Title = @"Export file to Excel";
+                dialog.FileName = filename;
+                dialog.Filter = @"Microsoft Excel|*.xlsx";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    gridView1.OptionsPrint.ShowPrintExportProgress = true;
+                    gridView1.OptionsPrint.AllowCancelPrintExport = true;
+                    gridView1.OptionsPrint.AutoWidth = true;
+
+                    //Hien cac cot trong grid
+                    gridView1.Columns["CrushRawId"].VisibleIndex = 0;
+                    gridView1.Columns["CreateTime"].VisibleIndex = 1;
+                    gridView1.Columns["RecycledID"].VisibleIndex = 2;
+                    gridView1.Columns["MixBacode"].VisibleIndex = 3;
+                    gridView1.Columns["ShiftName"].VisibleIndex = 4;
+                    gridView1.Columns["OperatorName"].VisibleIndex = 5;
+                    gridView1.Columns["ProductCode"].VisibleIndex = 6;
+                    gridView1.Columns["ProductName"].VisibleIndex = 7;
+                    gridView1.Columns["ColorCode"].VisibleIndex = 8;
+                    gridView1.Columns["ColorName"].VisibleIndex = 9;
+                    gridView1.Columns["StepName"].VisibleIndex = 10;
+                    gridView1.Columns["LossTypeName"].VisibleIndex = 11;
+                    gridView1.Columns["WeightRecycle"].VisibleIndex = 12;
+                    gridView1.Columns["MachineName"].VisibleIndex = 13;
+
+                    XlsxExportOptions options = new XlsxExportOptions();
+                    options.TextExportMode = TextExportMode.Value;
+                    options.ExportMode = XlsxExportMode.SingleFilePageByPage;
+                    options.SheetName = "Incoming Crush";
+
+                    ExportSettings.DefaultExportType = ExportType.Default;
+                    gridView1.ExportToXlsx(dialog.FileName, options);
+
+                    //An cac cot trong grid
+                    gridView1.Columns["ProductCode"].VisibleIndex = -1;
+                    gridView1.Columns["ColorName"].VisibleIndex = -1;
+
+                    XtraMessageBox.Show("Xuất dữ liệu thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information, DefaultBoolean.True);
+
+                    if (File.Exists(dialog.FileName))
+                    {
+                        if (XtraMessageBox.Show("Do you want open file? ", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                        {
+                            Process.Start(dialog.FileName);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show("Error: " + e, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return false;
+        }
+
         private void LoadGridControl1()
         {
             DataSet ds = new DataSet();
@@ -930,10 +996,17 @@ namespace ScaleApp
             {
                 SqlDataAdapter SqlDaCrush = new SqlDataAdapter("sp_getFullCrushRaws", conn);
                 SqlDaCrush.SelectCommand.CommandType = CommandType.StoredProcedure;
-                SqlDaCrush.Fill(ds, "CrushRaw");
+                SqlDaCrush.Fill(ds, "CrushRaw");                
 
                 gridControl1.DataSource = ds.Tables["CrushRaw"];
                 gridControl1.ForceInitialize();
+
+                foreach (GridColumn column in gridView1.Columns)
+                {
+                    GridSummaryItem item = column.SummaryItem;
+                    if (item != null)
+                        column.Summary.Remove(item);
+                }
 
                 gridView1.OptionsView.ColumnAutoWidth = true;
 
@@ -941,6 +1014,7 @@ namespace ScaleApp
                 gridView1.Columns["ProductCode"].VisibleIndex = -1;                
                 gridView1.Columns["CreateBy"].VisibleIndex = -1;
                 gridView1.Columns["MixRawId"].VisibleIndex = -1;
+                gridView1.Columns["ColorName"].VisibleIndex = -1;
                 gridView1.Columns["Posted"].VisibleIndex = -1;
 
                 gridView1.Columns["CrushRawId"].VisibleIndex = 0;
@@ -948,24 +1022,26 @@ namespace ScaleApp
                 gridView1.Columns["RecycledID"].VisibleIndex = 2;
                 gridView1.Columns["MixBacode"].VisibleIndex = 3;
                 gridView1.Columns["ShiftName"].VisibleIndex = 4;
-                gridView1.Columns["OperatorName"].VisibleIndex = 5;
+                gridView1.Columns["OperatorName"].VisibleIndex = 5;                
+                gridView1.Columns["ProductName"].VisibleIndex = 7;
                 gridView1.Columns["ColorCode"].VisibleIndex = 8;
                 gridView1.Columns["StepName"].VisibleIndex = 10;
                 gridView1.Columns["LossTypeName"].VisibleIndex = 11;
                 gridView1.Columns["WeightRecycle"].VisibleIndex = 12;
-                gridView1.Columns["MachineName"].VisibleIndex = 13;                                
+                gridView1.Columns["MachineName"].VisibleIndex = 13;
                 
-                gridView1.Columns["CrushRawId"].Width = 70;
+                gridView1.Columns["CrushRawId"].Width = 60;
                 gridView1.Columns["CreateTime"].Width = 130;
                 gridView1.Columns["RecycledID"].Width = 280;
                 gridView1.Columns["MixBacode"].Width = 280;
-                //gridView1.Columns["StepName"].Width = 60;
-                //gridView1.Columns["OperatorName"].Width = 100;
-                //gridView1.Columns["ColorCode"].Width = 80;
-                //gridView1.Columns["WeightRecycle"].Width = 80;
-                //gridView1.Columns["LossTypeName"].Width = 60;                
-                //gridView1.Columns["MachineName"].Width = 80;                               
-                //gridView1.Columns["Posted"].Width = 40;
+                gridView1.Columns["ShiftName"].Width = 60;
+                gridView1.Columns["ProductName"].Width = 320;
+                gridView1.Columns["ColorCode"].Width = 80;
+                gridView1.Columns["StepName"].Width = 70;
+                gridView1.Columns["MachineName"].Width = 100;
+
+                GridColumnSummaryItem totalWeightRecycled = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WeightRecycle", "{0:n3}");
+                gridView1.Columns["WeightRecycle"].Summary.Add(totalWeightRecycled);
 
                 gridView1.Columns["CreateTime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
                 gridView1.Columns["CreateTime"].DisplayFormat.FormatString = "MM/dd/yyyy HH:mm:ss";

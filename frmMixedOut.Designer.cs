@@ -77,7 +77,6 @@
             this.simpleButton1item = new DevExpress.XtraLayout.LayoutControlItem();
             this.simpleButton2item = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.cmbMixIditem = new DevExpress.XtraLayout.LayoutControlItem();
             this.rdbRunneritem = new DevExpress.XtraLayout.LayoutControlItem();
             this.rdbDefectitem = new DevExpress.XtraLayout.LayoutControlItem();
             this.rdbBlackDotitem = new DevExpress.XtraLayout.LayoutControlItem();
@@ -86,9 +85,10 @@
             this.spbScaleitem = new DevExpress.XtraLayout.LayoutControlItem();
             this.tedRealWeightitem = new DevExpress.XtraLayout.LayoutControlItem();
             this.txtScaleWeightitem = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.cmbMixIditem = new DevExpress.XtraLayout.LayoutControlItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
             ((System.ComponentModel.ISupportInitialize)(this.frmMixedOutlayoutControl1ConvertedLayout)).BeginInit();
             this.frmMixedOutlayoutControl1ConvertedLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMixId.Properties)).BeginInit();
@@ -112,7 +112,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleButton1item)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleButton2item)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbMixIditem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbRunneritem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbDefectitem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbBlackDotitem)).BeginInit();
@@ -122,6 +121,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tedRealWeightitem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtScaleWeightitem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbMixIditem)).BeginInit();
             this.SuspendLayout();
             // 
             // rdbContaminated
@@ -313,12 +313,15 @@
             // 
             // gridView2
             // 
+            this.gridView2.Appearance.FooterPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView2.Appearance.FooterPanel.Options.UseFont = true;
             this.gridView2.Appearance.HeaderPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView2.Appearance.HeaderPanel.Options.UseFont = true;
             this.gridView2.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView2.Appearance.Row.Options.UseFont = true;
             this.gridView2.GridControl = this.gridControl1;
             this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsView.ShowFooter = true;
             this.gridView2.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView2_RowClick);
             this.gridView2.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView2_FocusedRowChanged);
             // 
@@ -672,20 +675,6 @@
             this.layoutControlGroup3.Size = new System.Drawing.Size(1393, 74);
             this.layoutControlGroup3.Text = "Mixed Information";
             // 
-            // cmbMixIditem
-            // 
-            this.cmbMixIditem.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbMixIditem.AppearanceItemCaption.ForeColor = System.Drawing.Color.Teal;
-            this.cmbMixIditem.AppearanceItemCaption.Options.UseFont = true;
-            this.cmbMixIditem.AppearanceItemCaption.Options.UseForeColor = true;
-            this.cmbMixIditem.Control = this.cmbMixId;
-            this.cmbMixIditem.Location = new System.Drawing.Point(0, 0);
-            this.cmbMixIditem.Name = "cmbMixIditem";
-            this.cmbMixIditem.Size = new System.Drawing.Size(1369, 26);
-            this.cmbMixIditem.Text = "Mix Lot ID";
-            this.cmbMixIditem.TextLocation = DevExpress.Utils.Locations.Left;
-            this.cmbMixIditem.TextSize = new System.Drawing.Size(67, 16);
-            // 
             // rdbRunneritem
             // 
             this.rdbRunneritem.Control = this.rdbRunner;
@@ -770,14 +759,6 @@
             this.txtScaleWeightitem.TextSize = new System.Drawing.Size(0, 0);
             this.txtScaleWeightitem.TextVisible = false;
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // timer2
-            // 
-            this.timer2.Interval = 5000;
-            // 
             // layoutControlGroup6
             // 
             this.layoutControlGroup6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -786,6 +767,28 @@
             this.layoutControlGroup6.Name = "layoutControlGroup6";
             this.layoutControlGroup6.Size = new System.Drawing.Size(1393, 50);
             this.layoutControlGroup6.TextVisible = false;
+            // 
+            // cmbMixIditem
+            // 
+            this.cmbMixIditem.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMixIditem.AppearanceItemCaption.ForeColor = System.Drawing.Color.Teal;
+            this.cmbMixIditem.AppearanceItemCaption.Options.UseFont = true;
+            this.cmbMixIditem.AppearanceItemCaption.Options.UseForeColor = true;
+            this.cmbMixIditem.Control = this.cmbMixId;
+            this.cmbMixIditem.Location = new System.Drawing.Point(0, 0);
+            this.cmbMixIditem.Name = "cmbMixIditem";
+            this.cmbMixIditem.Size = new System.Drawing.Size(1369, 26);
+            this.cmbMixIditem.Text = "Mix Lot ID";
+            this.cmbMixIditem.TextLocation = DevExpress.Utils.Locations.Left;
+            this.cmbMixIditem.TextSize = new System.Drawing.Size(67, 16);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 5000;
             // 
             // frmMixedOut
             // 
@@ -824,7 +827,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleButton1item)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleButton2item)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbMixIditem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbRunneritem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbDefectitem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbBlackDotitem)).EndInit();
@@ -834,6 +836,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tedRealWeightitem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtScaleWeightitem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbMixIditem)).EndInit();
             this.ResumeLayout(false);
 
         }

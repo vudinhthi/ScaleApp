@@ -1,6 +1,9 @@
-﻿using DevExpress.Utils;
+﻿using DevExpress.Export;
+using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraLayout;
 using DevExpress.XtraPrinting;
@@ -490,6 +493,13 @@ namespace ScaleApp
                 gridControl1.DataSource = ds.Tables["IncomingCrush"];
                 gridControl1.ForceInitialize();
 
+                foreach (GridColumn column in gridView2.Columns)
+                {
+                    GridSummaryItem item = column.SummaryItem;
+                    if (item != null)
+                        column.Summary.Remove(item);
+                }
+
                 gridView2.OptionsView.ColumnAutoWidth = true;
 
                 gridView2.Columns["MixRawId"].VisibleIndex = -1;
@@ -509,6 +519,8 @@ namespace ScaleApp
                 gridView2.Columns["WeightDefect"].VisibleIndex = 4;
                 gridView2.Columns["WeightBlackDot"].VisibleIndex = 5;
                 gridView2.Columns["WeighContamination"].VisibleIndex = 6;
+
+                gridView2.Columns["MixBacode"].Caption = "Mix Lot Id";
 
                 //gridView2.Columns["ItemID"].VisibleIndex = 3;
                 //gridView2.Columns["ItemName"].VisibleIndex = 4;
@@ -532,8 +544,26 @@ namespace ScaleApp
                 //gridView2.Columns["WeightCookie"].Width = 100;
                 //gridView2.Columns["Posted"].Width = 50;
 
+                GridColumnSummaryItem totalWeightRunner = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WeightRunner", "{0:n3}");
+                gridView2.Columns["WeightRunner"].Summary.Add(totalWeightRunner);
+                GridColumnSummaryItem totalWeightDefect = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WeightDefect", "{0:n3}");
+                gridView2.Columns["WeightDefect"].Summary.Add(totalWeightDefect);
+                GridColumnSummaryItem totalWeightBlackDot = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WeightBlackDot", "{0:n3}");
+                gridView2.Columns["WeightBlackDot"].Summary.Add(totalWeightBlackDot);
+                GridColumnSummaryItem totalWeighContamination = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WeighContamination", "{0:n3}");
+                gridView2.Columns["WeighContamination"].Summary.Add(totalWeighContamination);
+
                 gridView2.Columns["CreateTime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
                 gridView2.Columns["CreateTime"].DisplayFormat.FormatString = "MM/dd/yyyy HH:mm:ss";
+
+                gridView2.Columns["WeightRunner"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                gridView2.Columns["WeightRunner"].DisplayFormat.FormatString = "{0:n3}";
+                gridView2.Columns["WeightDefect"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                gridView2.Columns["WeightDefect"].DisplayFormat.FormatString = "{0:n3}";
+                gridView2.Columns["WeightBlackDot"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                gridView2.Columns["WeightBlackDot"].DisplayFormat.FormatString = "{0:n3}";
+                gridView2.Columns["WeighContamination"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                gridView2.Columns["WeighContamination"].DisplayFormat.FormatString = "{0:n3}";
 
                 gridView2.OptionsBehavior.Editable = false;
             }
@@ -564,16 +594,81 @@ namespace ScaleApp
                 Thread.Sleep(10);
             }
             SplashScreenManager.CloseForm();
-            LoadComboBoxMixId();
-            LoadGridControl();
+            //LoadComboBoxMixId();
+            //LoadGridControl();
+            gridControl1.RefreshDataSource();            
         }
 
         //Action for button Export Excel
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            frmDateRange frmDate = new frmDateRange();
-            frmDate.ExportName = 3;
-            frmDate.Show();            
+            //frmDateRange frmDate = new frmDateRange();
+            //frmDate.ExportName = 3;
+            //frmDate.Show();            
+
+            ExportExcel("");
+        }
+
+        private bool ExportExcel(string filename)
+        {
+            try
+            {
+                var dialog = new SaveFileDialog();
+                dialog.Title = @"Export file to Excel";
+                dialog.FileName = filename;
+                dialog.Filter = @"Microsoft Excel|*.xlsx";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    gridView2.OptionsPrint.ShowPrintExportProgress = true;
+                    gridView2.OptionsPrint.AllowCancelPrintExport = true;
+                    gridView2.OptionsPrint.AutoWidth = true;
+
+                    //Hien cac cot trong grid
+                    gridView2.Columns["Id"].VisibleIndex = 0;
+                    gridView2.Columns["CreateTime"].VisibleIndex = 1;
+                    gridView2.Columns["MixBacode"].VisibleIndex = 2;
+                    gridView2.Columns["ItemID"].VisibleIndex = 3;
+                    gridView2.Columns["ItemName"].VisibleIndex = 4;
+                    gridView2.Columns["MachineName"].VisibleIndex = 5;
+                    gridView2.Columns["StepName"].VisibleIndex = 6;
+                    gridView2.Columns["ShiftName"].VisibleIndex = 7;
+                    gridView2.Columns["WeightRunner"].VisibleIndex = 8;
+                    gridView2.Columns["WeightDefect"].VisibleIndex = 9;
+                    gridView2.Columns["WeightBlackDot"].VisibleIndex = 10;
+                    gridView2.Columns["WeighContamination"].VisibleIndex = 11;
+
+                    XlsxExportOptions options = new XlsxExportOptions();
+                    options.TextExportMode = TextExportMode.Value;
+                    options.ExportMode = XlsxExportMode.SingleFilePageByPage;
+                    options.SheetName = "Incoming Crush";
+
+                    ExportSettings.DefaultExportType = ExportType.Default;
+                    gridView2.ExportToXlsx(dialog.FileName, options);
+
+                    //An cac cot trong grid
+                    gridView2.Columns["ItemID"].VisibleIndex = -1;
+                    gridView2.Columns["ItemName"].VisibleIndex = -1;
+                    gridView2.Columns["MachineName"].VisibleIndex = -1;
+                    gridView2.Columns["StepName"].VisibleIndex = -1;
+                    gridView2.Columns["ShiftName"].VisibleIndex = -1;                    
+
+                    XtraMessageBox.Show("Xuất dữ liệu thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information, DefaultBoolean.True);
+
+                    if (File.Exists(dialog.FileName))
+                    {
+                        if (XtraMessageBox.Show("Do you want open file? ", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                        {
+                            Process.Start(dialog.FileName);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                XtraMessageBox.Show("Error: " + e, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+            }
+            return false;
         }
 
         private bool ExportDataSetToExcel(DataSet ds, string filename)

@@ -804,6 +804,13 @@ namespace ScaleApp
                 gridControl1.DataSource = ds.Tables["MixRaw"];
                 gridControl1.ForceInitialize();
 
+                foreach (GridColumn column in gridView2.Columns)
+                {
+                    GridSummaryItem item = column.SummaryItem;
+                    if (item != null)
+                        column.Summary.Remove(item);
+                }
+
                 //Set the columns of master GridView's columns to AutoResize 
                 gridView2.OptionsView.ColumnAutoWidth = true;
 
@@ -820,6 +827,7 @@ namespace ScaleApp
                 gridView2.Columns["Posted"].VisibleIndex = -1;
 
                 //Reorder Columns of MasterGridView
+                gridView2.Columns["MixRawId"].VisibleIndex = 0;
                 gridView2.Columns["CreateTime"].VisibleIndex = 1;
                 gridView2.Columns["ShiftName"].VisibleIndex = 2;
                 gridView2.Columns["OperatorName"].VisibleIndex = 3;
@@ -832,22 +840,32 @@ namespace ScaleApp
                 gridView2.Columns["TotalMaterial"].VisibleIndex = 10;
                 gridView2.Columns["ReRatio"].VisibleIndex = 11;
                 gridView2.Columns["MachineName"].VisibleIndex = 12;
-                
+
+                //Set columns caption
+                gridView2.Columns["MixRawId"].Caption = "Id";
+                gridView2.Columns["MixBacode"].Caption = "Mix Lot Id";
+                gridView2.Columns["ShiftName"].Caption = "Shift";
+                gridView2.Columns["MachineName"].Caption = "Machine";
+
                 //Set column's width of Master GridView
                 gridView2.Columns["MixRawId"].Width = 40;
                 gridView2.Columns["CreateTime"].Width = 130;
                 gridView2.Columns["MixBacode"].Width = 220;
-                gridView2.Columns["ShiftName"].Width = 30;
+                gridView2.Columns["ShiftName"].Width = 50;
                 gridView2.Columns["OperatorName"].Width = 120;
                 gridView2.Columns["ProductName"].Width = 430;
                 gridView2.Columns["ProductCode"].Width = 170;
-                gridView2.Columns["ColorCode"].Width = 60;
-                //gridView2.Columns["WeightMaterial"].Width = 70;
-                //gridView2.Columns["WeightRecycle"].Width = 70;
-                //gridView2.Columns["TotalMaterial"].Width = 70;
-                gridView2.Columns["ReRatio"].Width = 50;
+                gridView2.Columns["ColorCode"].Width = 60;                
+                gridView2.Columns["ReRatio"].Width = 60;
                 gridView2.Columns["MachineName"].Width = 50;
-                //gridView2.Columns["Posted"].Width = 40;
+
+                //Create total of 3 columns
+                GridColumnSummaryItem totalWeightMaterial = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WeightMaterial", "{0:n2}");
+                gridView2.Columns["WeightMaterial"].Summary.Add(totalWeightMaterial);
+                GridColumnSummaryItem totalWeightRecycled = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WeightRecycle", "{0:n2}");
+                gridView2.Columns["WeightRecycle"].Summary.Add(totalWeightRecycled);
+                GridColumnSummaryItem totalWeightTotal = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalMaterial", "{0:n2}");
+                gridView2.Columns["TotalMaterial"].Summary.Add(totalWeightTotal);
 
                 //Display format for column
                 gridView2.Columns["CreateTime"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -855,8 +873,6 @@ namespace ScaleApp
 
                 gridView2.Columns["ReRatio"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
                 gridView2.Columns["ReRatio"].DisplayFormat.FormatString = "{0:p2}";
-
-                //gridView2.IsAsyncInProgress = true;
 
                 gridView2.MoveFirst();
 
@@ -1267,28 +1283,32 @@ namespace ScaleApp
                 Thread.Sleep(10);
             }
             SplashScreenManager.CloseForm();
-            LoadGridControl1();
+            gridControl1.RefreshDataSource();
+            //LoadGridControl1();
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            frmDateRange frmDate = new frmDateRange();
+            //frmDateRange frmDate = new frmDateRange();
 
-            frmDate.ExportName = 1;
+            //frmDate.ExportName = 1;
 
-            if (!lueProduct.EditValue.IsNullOrEmpty())
-            {
-                frmDate.ProductId = lueProduct.EditValue.ToString();
-            }
-            else
-            {
-                frmDate.ProductId = null;
-            }
+            //if (!lueProduct.EditValue.IsNullOrEmpty())
+            //{
+            //    frmDate.ProductId = lueProduct.EditValue.ToString();
+            //}
+            //else
+            //{
+            //    frmDate.ProductId = null;
+            //}
 
-            frmDate.Show();
+            //frmDate.Show();
 
             //Test chuc nang xuat Excel tu gridView cua DevExpress
             //ExportExcel("");
+
+            MessageBox.Show(gridView2.ActiveFilterString);
+
         }
 
         private bool ExportExcel(string filename)
@@ -1344,21 +1364,7 @@ namespace ScaleApp
                     gridView2.Columns["RecycledID"].VisibleIndex = -1;
                     gridView2.Columns["MaterialCode"].VisibleIndex = -1;
                     gridView2.Columns["MaterialName"].VisibleIndex = -1;
-                    gridView2.Columns["Posted"].VisibleIndex = -1;
-
-                    //Reorder Columns of MasterGridView
-                    gridView2.Columns["CreateTime"].VisibleIndex = 1;
-                    gridView2.Columns["ShiftName"].VisibleIndex = 2;
-                    gridView2.Columns["OperatorName"].VisibleIndex = 3;
-                    gridView2.Columns["MixBacode"].VisibleIndex = 4;
-                    gridView2.Columns["ProductName"].VisibleIndex = 5;
-                    gridView2.Columns["ProductCode"].VisibleIndex = 6;
-                    gridView2.Columns["ColorCode"].VisibleIndex = 7;
-                    gridView2.Columns["WeightMaterial"].VisibleIndex = 8;
-                    gridView2.Columns["WeightRecycle"].VisibleIndex = 9;
-                    gridView2.Columns["TotalMaterial"].VisibleIndex = 10;
-                    gridView2.Columns["ReRatio"].VisibleIndex = 11;
-                    gridView2.Columns["MachineName"].VisibleIndex = 12;                    
+                    gridView2.Columns["Posted"].VisibleIndex = -1;                                       
 
                     XtraMessageBox.Show("Successed!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information, DefaultBoolean.True);
 
@@ -1398,11 +1404,20 @@ namespace ScaleApp
                     LoadGridControl2(sBomCode, editorWeightRM.Text);
                 }
                 txtTotal.Text = GetTotalWeight().ToString();
+                txtReRatio.Text = (Double.Parse(bteWeightRe.Text.ToString()) / Double.Parse(txtTotal.Text.ToString())).ToString();
+                txtReRatio.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+                txtReRatio.Properties.Mask.EditMask = "p";
+                txtReRatio.Properties.Mask.UseMaskAsDisplayFormat = true;
             }
             else if (Button.Kind == ButtonPredefines.Delete)
             {
                 editorWeightRM.Text = null;
                 txtTotalMaterial.Text = null;
+                txtTotal.Text = GetTotalWeight().ToString();
+                txtReRatio.Text = (Double.Parse(bteWeightRe.Text.ToString()) / Double.Parse(txtTotal.Text.ToString())).ToString();
+                txtReRatio.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+                txtReRatio.Properties.Mask.EditMask = "p";
+                txtReRatio.Properties.Mask.UseMaskAsDisplayFormat = true;
                 if (lueProduct.EditValue == null)
                 {
                     XtraMessageBox.Show("Chọn Product", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);

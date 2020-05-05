@@ -105,6 +105,7 @@ namespace ScaleApp.Common
         }
         public static void InsertScrewsize(int db, string spName, int id, int value, int ComponentID, string ItemID)
         {
+            
             connect(db);
             using (SqlCommand cmd = new SqlCommand(spName, conn))
             {
@@ -115,6 +116,67 @@ namespace ScaleApp.Common
                 cmd.Parameters.Add("@ItemID", SqlDbType.NVarChar).Value = ItemID;
                 cmd.ExecuteNonQuery();
                 disconnect();
+            }
+
+        }
+        public static void InsertReason(int db, string spName, int id, string value)
+        {
+
+            connect(db);
+            using (SqlCommand cmd = new SqlCommand(spName, conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@ReasonID", SqlDbType.Int).Value = id;
+                cmd.Parameters.Add("@Cause", SqlDbType.NVarChar).Value = value;
+                cmd.ExecuteNonQuery();
+                disconnect();
+            }
+        }
+        public static void InsertorUpdate(int db, string spName,CookiesClass obj )
+        {
+            connect(db);
+            using (SqlCommand cmd = new SqlCommand(spName, conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@MachineNo", SqlDbType.NVarChar).Value = obj.MachineNo;
+                cmd.Parameters.Add("@Shift", SqlDbType.NVarChar).Value = obj.Shift;
+                cmd.Parameters.Add("@Item", SqlDbType.NVarChar).Value = obj.Item;
+                cmd.Parameters.Add("@Component", SqlDbType.NVarChar).Value = obj.Component;
+                cmd.Parameters.Add("@Screwsize", SqlDbType.NVarChar).Value = obj.Screwsize;
+                cmd.Parameters.Add("@PurgingMaterial", SqlDbType.NVarChar).Value = obj.PurgingMaterial;
+                cmd.Parameters.Add("@PurgingInput", SqlDbType.NVarChar).Value = obj.PurgingInput;
+                cmd.Parameters.Add("@PurgingCookies", SqlDbType.NVarChar).Value = obj.PurgingCookies;
+                cmd.Parameters.Add("@TPUCookies", SqlDbType.NVarChar).Value = obj.TPUCookies;
+                cmd.Parameters.Add("@MixedCookies", SqlDbType.NVarChar).Value = obj.MixedCookies;
+                cmd.Parameters.Add("@Reason", SqlDbType.NVarChar).Value = obj.Reason;
+                cmd.Parameters.Add("@ItemID", SqlDbType.NVarChar).Value = obj.ItemID;
+                var a= cmd.ExecuteNonQuery();
+                disconnect();
+            }
+
+        }
+        public static DataSet SelectItem(int db, string spName)
+        {
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter();
+                connect(db);
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                if (ds.Tables["tbItem"] != null)
+                {
+                    ds.Tables["tbItem"].Clear();
+                }
+                da.Fill(ds, "tbItem");
+                cmd.Dispose();
+                da.Dispose();
+                disconnect();
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
 
         }
@@ -140,10 +202,35 @@ namespace ScaleApp.Common
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 return null;
             }
            
+        }
+        public static DataSet SelectCookies(int db, string spName, string itemID)
+        {
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter();
+                connect(db);
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ItemID", itemID);
+                da.SelectCommand = cmd;
+                if (ds.Tables["tbCookies"] != null)
+                {
+                    ds.Tables["tbCookies"].Clear();
+                }
+                da.Fill(ds, "tbCookies");
+                cmd.Dispose();
+                da.Dispose();
+                disconnect();
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
         }
         public  static  int UpdateTable(int db,ref DataTable dt,string query)
         {
@@ -162,16 +249,16 @@ namespace ScaleApp.Common
                 MessageBox.Show(ex.Message);
                 return -1;
             }
-            
         }
-       /// <summary>
-       /// 
-       /// </summary>
-       /// <param name="db"></param>
-       /// <param name="spName"></param>
-       /// <param name="ItemID"></param>
-       /// <param name="condition">query theo so luong </param>
-       /// <returns></returns>
+       
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="spName"></param>
+        /// <param name="ItemID"></param>
+        /// <param name="condition">query theo so luong </param>
+        /// <returns></returns>
         public static DataSet SelectSrewsize(int db,string spName,string ItemID,int ComponentID,int condition)
         {
             try
@@ -196,7 +283,30 @@ namespace ScaleApp.Common
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }   
+        public static DataSet SelectReason(int db,string spName)
+        {
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter();
+                connect(db);
+                SqlCommand cmd = new SqlCommand(spName, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                if (ds.Tables["tbReason"] != null)
+                {
+                    ds.Tables["tbReason"].Clear();
+                }
+                da.Fill(ds, "tbReason");
+                cmd.Dispose();
+                da.Dispose();
+                disconnect();
+                return ds;
+            }
+            catch (Exception ex)
+            {
                 return null;
             }
         }
@@ -226,7 +336,7 @@ namespace ScaleApp.Common
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
                 return -1;
             }
 

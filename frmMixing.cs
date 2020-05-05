@@ -109,10 +109,8 @@ namespace ScaleApp
 
                 //Buffers values in a file
                 File.AppendAllText("buffer1", str);
-
                 //Read from buffer and write into "strnew" String
                 string strnew = File.ReadLines("buffer1").Last();
-
                 //Shows actual true value coming from scale
                 txtScaleWeight.Text = strnew;
                 Regex digits = new Regex(@"^\D*?((-?(\d+(\.\d+)?))|(-?\.\d+)).*");

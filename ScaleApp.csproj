@@ -198,6 +198,12 @@
     <Compile Include="frmOperator.Designer.cs">
       <DependentUpon>frmOperator.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReason.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReason.Designer.cs">
+      <DependentUpon>frmReason.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReportCrush.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,6 +222,7 @@
     <Compile Include="frmScrewsize.Designer.cs">
       <DependentUpon>frmScrewsize.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\CookiesClass.cs" />
     <Compile Include="Models\ItemClass.cs" />
     <Compile Include="Models\Reason.cs" />
     <Compile Include="Models\Operator.cs" />
@@ -309,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmOperator.resx">
       <DependentUpon>frmOperator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReason.resx">
+      <DependentUpon>frmReason.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReportCrush.resx">
       <DependentUpon>frmReportCrush.cs</DependentUpon>

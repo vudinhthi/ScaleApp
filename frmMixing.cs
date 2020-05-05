@@ -264,6 +264,12 @@ namespace ScaleApp
                 return 0;
             }
 
+            if (gridViewMaterialBom.RowCount < 1)
+            {
+                XtraMessageBox.Show("Item này chưa có thông tin về material. Vui lòng kiểm tra lại...", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return 0;
+            }
+
             if (!lueRecycled.EditValue.IsNullOrEmpty())
             {
                 if (bteWeightRe.Text.IsNullOrEmpty() || (bteWeightRe.Text == "0"))

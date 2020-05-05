@@ -281,7 +281,42 @@ namespace ScaleApp
                 decimal strValue = mx.Success ? Convert.ToDecimal(mx.Groups[1].Value) : 0;
                 txtScaleValue.Text = strValue.ToString();
             }
+
         }
+
+            ds = DataOperation.SelectComponent(2, "sp_GetComponent", lkeItem.EditValue.ToString());
+            ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", lkeItem.EditValue.ToString(), 0, 1);
+           //DataView dvScrewsize, dvComponent;
+           // DataViewManager dvm = new DataViewManager(ds);
+          //  dvComponent = dvm.CreateDataView(ds.Tables["tbComponent"]);
+          //  dvScrewsize = dvm.CreateDataView(ds.Tables["tbScrewsize"]);
+            //if (dvComponent != null)
+            //{
+              
+                lkeComponent.Properties.DataSource = ds.Tables["tbComponent"];
+                lkeComponent.Properties.ValueMember = "componentID";
+                lkeComponent.Properties.DisplayMember = "name";
+                lkeComponent.EditValue = ds.Tables["tbComponent"].Rows[0][0];
+                lkeComponent.Properties.PopulateColumns();
+                lkeComponent.Properties.Columns["ItemID"].Visible = false;
+                lkeComponent.Properties.Columns["componentID"].Caption = "ComponentID";
+                lkeComponent.Properties.Columns["name"].Caption = "Name";
+            //}
+            //..
+            //if (dvScrewsize != null)
+            //{
+                lkeScrewsize.Properties.DataSource = ds.Tables["tbScrewsize"];
+                lkeScrewsize.Properties.ValueMember = "screwsizeID";
+                lkeScrewsize.Properties.DisplayMember = "value";
+                lkeScrewsize.EditValue = ds.Tables["tbScrewsize"].Rows[0][0];
+                lkeScrewsize.Properties.PopulateColumns();
+                lkeScrewsize.Properties.Columns["ItemID"].Visible = false;
+                lkeScrewsize.Properties.Columns["componentID"].Visible = false;
+                lkeScrewsize.Properties.Columns["screwsizeID"].Caption = "ScrewsizeID";
+                lkeScrewsize.Properties.Columns["value"].Caption = "Value";
+            
+         //   lkeScrewsize.Properties.Columns["screwsizeID"].
+
 
         private void frmCookies_FormClosing(object sender, FormClosingEventArgs e)
         {

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScaleApp", "ScaleApp.csproj", "{2981BF70-38CF-4F52-B9CD-4F6A16A97B9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "..\UnitTestProject1\UnitTestProject1.csproj", "{C31D98FF-4E10-4154-B8C0-4DC3392DB633}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "..\Setup_ScaleApp_v1.1\Setup_V1.1\Setup\Setup.vdproj", "{6945BFEE-3603-4B7B-99FF-021217008EDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,8 @@ Global
 		{2981BF70-38CF-4F52-B9CD-4F6A16A97B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2981BF70-38CF-4F52-B9CD-4F6A16A97B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2981BF70-38CF-4F52-B9CD-4F6A16A97B9E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C31D98FF-4E10-4154-B8C0-4DC3392DB633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C31D98FF-4E10-4154-B8C0-4DC3392DB633}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C31D98FF-4E10-4154-B8C0-4DC3392DB633}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C31D98FF-4E10-4154-B8C0-4DC3392DB633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6945BFEE-3603-4B7B-99FF-021217008EDF}.Debug|Any CPU.ActiveCfg = Debug
+		{6945BFEE-3603-4B7B-99FF-021217008EDF}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,6 +14,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraPrinting;
+using System.Drawing.Printing;
 
 namespace ScaleApp
 {    
@@ -21,6 +23,9 @@ namespace ScaleApp
     {
         private string  lableTypeReport;
         private int mixID;
+        private int labelTypeIndex;
+
+        private PrinterSettings prnSettings;
 
         public string LableTypeReport
         {
@@ -34,6 +39,12 @@ namespace ScaleApp
             set {this.mixID = value; }
         }
 
+        public int LabelTypeIndex 
+        { 
+            get { return this.labelTypeIndex; } 
+            set { this.labelTypeIndex = value; } 
+        }
+
         public frmReportMixed()
         {
             InitializeComponent();
@@ -44,11 +55,11 @@ namespace ScaleApp
         {
             //labelReport = LableTypeReport;
             //SendToPrint();            
-            LoadDataToReport(LableTypeReport);
+            LoadDataToReport(labelTypeIndex);
             this.Close();
             this.Dispose();
-        }        
-        
+        }
+
         private void SendToPrint()
         {
             var rpt = new rptMixing();
@@ -58,7 +69,7 @@ namespace ScaleApp
             //printTool.Print("Canon B&W");
         }
 
-        private void LoadDataToReport(string typeReport)
+        private void LoadDataToReport(int labelIndex)
         {
             DataSet ds = new DataSet();
             String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
@@ -79,17 +90,17 @@ namespace ScaleApp
             }
             ScaleApp.Common.DataOperation.disconnect();
 
-            switch (typeReport)
+            switch (labelIndex)
             {
-                case "Mixed":
+                case 0:
                     var rptMix = new rptMixing();
                     rptMix.DataSource = ds;
-                    //rptMix.CreateDocument();
+                    rptMix.CreateDocument();
                     ReportPrintTool printToolMix = new ReportPrintTool(rptMix);
                     printToolMix.PrintDialog();
                     //documentViewer1.DocumentSource = rptMix;
                     break;
-                case "Runner":
+                case 1:
                     var rptRunner = new rptMixedOut();
                     rptRunner.DataSource = ds;
                     rptRunner.CreateDocument();
@@ -97,7 +108,7 @@ namespace ScaleApp
                     printToolRunner.PrintDialog();
                     //documentViewer1.DocumentSource = rptRunner;
                     break;
-                case "Defect":
+                case 2:
                     var rptDefect = new rptDefect();
                     rptDefect.DataSource = ds;
                     rptDefect.CreateDocument();
@@ -105,7 +116,7 @@ namespace ScaleApp
                     printToolDefect.PrintDialog();
                     //documentViewer1.DocumentSource = rptDefect;
                     break;
-                case "BlackDot":
+                case 3:
                     var rptBlackDot = new rptBlackDot();
                     rptBlackDot.DataSource = ds;
                     rptBlackDot.CreateDocument();
@@ -113,13 +124,43 @@ namespace ScaleApp
                     printToolBlackDot.PrintDialog();
                     //documentViewer1.DocumentSource = rptBlackDot;
                     break;
-                case "Contaminated":
+                case 4:
                     var rptContaminated = new rptContaminated();
                     rptContaminated.DataSource = ds;
                     rptContaminated.CreateDocument();
                     ReportPrintTool printToolContaminated = new ReportPrintTool(rptContaminated);
                     printToolContaminated.PrintDialog();
                     //documentViewer1.DocumentSource = rptContaminated;
+                    break;
+                case 5:
+                    rptRunner = new rptMixedOut();
+                    rptRunner.DataSource = ds;
+                    rptRunner.CreateDocument();
+
+                    XtraReport[] reports = new XtraReport[] { new rptDefect(), new rptBlackDot(), new rptContaminated() };
+                    foreach (XtraReport report in reports)
+                    {
+                        report.DataSource = ds;
+                        report.CreateDocument();
+                    }
+
+                    printToolMix = new ReportPrintTool(rptRunner);
+                    printToolMix.PrintingSystem.StartPrint += new PrintDocumentEventHandler(PrintingSystem_StartPrint);
+
+                    foreach (XtraReport report in reports)
+                    {
+                        ReportPrintTool pts = new ReportPrintTool(report);
+                        pts.PrintingSystem.StartPrint +=
+                            new PrintDocumentEventHandler(reportsStartPrintEventHandler);
+                    }
+
+                    printToolMix.PrintDialog();
+                    foreach (XtraReport report in reports)
+                    {
+                        ReportPrintTool pts = new ReportPrintTool(report);
+                        pts.Print();
+                    }
+
                     break;
                 default:
                     rptMix = new rptMixing();
@@ -130,6 +171,21 @@ namespace ScaleApp
                     //documentViewer1.DocumentSource = rptMix;
                     break;
             }                                   
+        }
+
+        private void reportsStartPrintEventHandler(object sender, PrintDocumentEventArgs e)
+        {
+            prnSettings = e.PrintDocument.PrinterSettings;
+        }
+
+        private void PrintingSystem_StartPrint(object sender, PrintDocumentEventArgs e)
+        {
+            int pageCount = e.PrintDocument.PrinterSettings.ToPage;
+            e.PrintDocument.PrinterSettings = prnSettings;
+
+            // The following line is required if the number of pages for each report varies, 
+            // and you consistently need to print all pages.
+            e.PrintDocument.PrinterSettings.ToPage = pageCount;
         }
     }
 }

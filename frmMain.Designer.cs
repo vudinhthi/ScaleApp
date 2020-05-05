@@ -33,6 +33,9 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.userLoginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+
             this.mixingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mixedOutStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recycledStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,7 +63,12 @@
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userLoginToolStripMenuItem,
+
             this.databaseToolStripMenuItem});
+
+            this.databaseToolStripMenuItem,
+            this.settingsToolStripMenuItem});
+
             this.toolStripMenuItem1.Enabled = false;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(49, 20);
@@ -80,6 +88,16 @@
             this.databaseToolStripMenuItem.Text = "Database";
             this.databaseToolStripMenuItem.Click += new System.EventHandler(this.databaseToolStripMenuItem_Click);
             // 
+
+
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+
             // mixingToolStripMenuItem
             // 
             this.mixingToolStripMenuItem.Enabled = false;
@@ -106,6 +124,7 @@
             // 
             // cookiesStationToolStripMenuItem
             // 
+            this.cookiesStationToolStripMenuItem.Enabled = false;
             this.cookiesStationToolStripMenuItem.Name = "cookiesStationToolStripMenuItem";
             this.cookiesStationToolStripMenuItem.Size = new System.Drawing.Size(101, 20);
             this.cookiesStationToolStripMenuItem.Text = "Cookies Station";
@@ -149,6 +168,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userLoginToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem databaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
     }
 }
 

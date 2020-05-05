@@ -960,8 +960,10 @@
             // 
             // frmCookies
             // 
+
             this.ClientSize = new System.Drawing.Size(1510, 848);
             this.Controls.Add(this.layoutControl1);
+
             this.Name = "frmCookies";
             this.Text = "FVN - Cookies";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -1027,7 +1029,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Timer timer1;
+        //private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraEditors.TextEdit txtMachineNo;
         private DevExpress.XtraLayout.LayoutControlGroup Root;

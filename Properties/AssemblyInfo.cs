@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ScaleApp")]
 [assembly: AssemblyDescription("Recycled Management Application")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Framas Vietnam")]
+[assembly: AssemblyCompany("framas Vietnam")]
 [assembly: AssemblyProduct("ScaleApp")]
-[assembly: AssemblyCopyright("Copyright © 2020 Framas Vietnam")]
+[assembly: AssemblyCopyright("Copyright © 2020 framas Vietnam")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,4 +33,4 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.4")]
-[assembly: AssemblyFileVersion("1.0.0.5")]
+[assembly: AssemblyFileVersion("1.0.0.8")]

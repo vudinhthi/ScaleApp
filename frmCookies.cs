@@ -60,15 +60,13 @@ namespace ScaleApp
                             btnEdit.Text = "";
                         };
                     }
-
-
-
                 }
             }
             InitLookupEdit();
             InitDataGridview();
         
         }
+        
         private void InitLookupEdit()
         {
             ds.Clear();
@@ -84,8 +82,8 @@ namespace ScaleApp
             {
                 ds.Tables["tbItem"].Clear();
             }
-            ds = DataOperation.SelectItem(2, "sp_getProductsWinLine");
-            ds = DataOperation.SelectReason(2, "sp_GetReason");
+            ds = DataOperation.SelectItem(1, "sp_getProductsWinLine");
+            ds = DataOperation.SelectReason(1, "sp_GetReason");
             //  DataView dvScrewsize, dvComponent;
             // DataViewManager dvm = new DataViewManager(ds);
             //  dvComponent = dvm.CreateDataView(ds.Tables["tbComponent"]);
@@ -110,9 +108,9 @@ namespace ScaleApp
             //Component
 
         }
+
         private void InitDataGridview()
         {
-            
             if (ds.Tables["tbCookies"] != null)
             {
                 ds.Tables["tbCookies"].Clear();
@@ -156,6 +154,7 @@ namespace ScaleApp
 
             }
         }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (dxValidationProvider1.Validate())
@@ -239,6 +238,7 @@ namespace ScaleApp
             };
             ActionScale();
         }
+
         private void CloseSerialPort()
         {
             if (_serialPort != null && _serialPort.IsOpen)
@@ -246,13 +246,16 @@ namespace ScaleApp
             if (_serialPort != null)
                 _serialPort.Dispose();
         }
+
         private void ActionScale()
         {
             _serialPort = new SerialPort("COM2", BaudRate, Parity.None, 8, StopBits.One);       //<-- Creates new SerialPort using the name selected in the combobox
             _serialPort.DataReceived += SerialPortOnDataReceived;       //<-- this event happens everytime when new data is received by the ComPort
             _serialPort.Open();     //<-- make the comport listen
         }
+
         private delegate void Closure();
+
         private void SerialPortOnDataReceived(object sender, SerialDataReceivedEventArgs serialDataReceivedEventArgs)
         {
             if (InvokeRequired)     //<-- Makes sure the function is invoked to work properly in the UI-Thread
@@ -284,45 +287,47 @@ namespace ScaleApp
 
         }
 
-            ds = DataOperation.SelectComponent(2, "sp_GetComponent", lkeItem.EditValue.ToString());
-            ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", lkeItem.EditValue.ToString(), 0, 1);
-           //DataView dvScrewsize, dvComponent;
-           // DataViewManager dvm = new DataViewManager(ds);
-          //  dvComponent = dvm.CreateDataView(ds.Tables["tbComponent"]);
-          //  dvScrewsize = dvm.CreateDataView(ds.Tables["tbScrewsize"]);
-            //if (dvComponent != null)
-            //{
+         //   ds = DataOperation.SelectComponent(2, "sp_GetComponent", lkeItem.EditValue.ToString());
+         //   ds = DataOperation.SelectSrewsize(2, "sp_GetScrewsize", lkeItem.EditValue.ToString(), 0, 1);
+         //  //DataView dvScrewsize, dvComponent;
+         //  // DataViewManager dvm = new DataViewManager(ds);
+         // //  dvComponent = dvm.CreateDataView(ds.Tables["tbComponent"]);
+         // //  dvScrewsize = dvm.CreateDataView(ds.Tables["tbScrewsize"]);
+         //   //if (dvComponent != null)
+         //   //{
               
-                lkeComponent.Properties.DataSource = ds.Tables["tbComponent"];
-                lkeComponent.Properties.ValueMember = "componentID";
-                lkeComponent.Properties.DisplayMember = "name";
-                lkeComponent.EditValue = ds.Tables["tbComponent"].Rows[0][0];
-                lkeComponent.Properties.PopulateColumns();
-                lkeComponent.Properties.Columns["ItemID"].Visible = false;
-                lkeComponent.Properties.Columns["componentID"].Caption = "ComponentID";
-                lkeComponent.Properties.Columns["name"].Caption = "Name";
-            //}
-            //..
-            //if (dvScrewsize != null)
-            //{
-                lkeScrewsize.Properties.DataSource = ds.Tables["tbScrewsize"];
-                lkeScrewsize.Properties.ValueMember = "screwsizeID";
-                lkeScrewsize.Properties.DisplayMember = "value";
-                lkeScrewsize.EditValue = ds.Tables["tbScrewsize"].Rows[0][0];
-                lkeScrewsize.Properties.PopulateColumns();
-                lkeScrewsize.Properties.Columns["ItemID"].Visible = false;
-                lkeScrewsize.Properties.Columns["componentID"].Visible = false;
-                lkeScrewsize.Properties.Columns["screwsizeID"].Caption = "ScrewsizeID";
-                lkeScrewsize.Properties.Columns["value"].Caption = "Value";
+         //       lkeComponent.Properties.DataSource = ds.Tables["tbComponent"];
+         //       lkeComponent.Properties.ValueMember = "componentID";
+         //       lkeComponent.Properties.DisplayMember = "name";
+         //       lkeComponent.EditValue = ds.Tables["tbComponent"].Rows[0][0];
+         //       lkeComponent.Properties.PopulateColumns();
+         //       lkeComponent.Properties.Columns["ItemID"].Visible = false;
+         //       lkeComponent.Properties.Columns["componentID"].Caption = "ComponentID";
+         //       lkeComponent.Properties.Columns["name"].Caption = "Name";
+         //   //}
+         //   //..
+         //   //if (dvScrewsize != null)
+         //   //{
+         //       lkeScrewsize.Properties.DataSource = ds.Tables["tbScrewsize"];
+         //       lkeScrewsize.Properties.ValueMember = "screwsizeID";
+         //       lkeScrewsize.Properties.DisplayMember = "value";
+         //       lkeScrewsize.EditValue = ds.Tables["tbScrewsize"].Rows[0][0];
+         //       lkeScrewsize.Properties.PopulateColumns();
+         //       lkeScrewsize.Properties.Columns["ItemID"].Visible = false;
+         //       lkeScrewsize.Properties.Columns["componentID"].Visible = false;
+         //       lkeScrewsize.Properties.Columns["screwsizeID"].Caption = "ScrewsizeID";
+         //       lkeScrewsize.Properties.Columns["value"].Caption = "Value";
             
-         //   lkeScrewsize.Properties.Columns["screwsizeID"].
+         ////   lkeScrewsize.Properties.Columns["screwsizeID"].
 
 
         private void frmCookies_FormClosing(object sender, FormClosingEventArgs e)
         {
             CloseSerialPort();
         }
+       
         bool isLoaded = false;
+
         private void lkeItem_EditValueChanged(object sender, EventArgs e)
         {
             txtComponent.Text = GetComponent(lkeItem.EditValue.ToString());
@@ -354,6 +359,7 @@ namespace ScaleApp
             }
             return result;
         }
+        
         //private void txtComponent_EditValueChanged(object sender, EventArgs e)
         //{
         //    if (isLoaded)

@@ -1293,25 +1293,25 @@ namespace ScaleApp
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            //frmDateRange frmDate = new frmDateRange();
+            frmDateRange frmDate = new frmDateRange();
 
-            //frmDate.ExportName = 1;
+            frmDate.ExportName = 1;
 
-            //if (!lueProduct.EditValue.IsNullOrEmpty())
-            //{
-            //    frmDate.ProductId = lueProduct.EditValue.ToString();
-            //}
-            //else
-            //{
-            //    frmDate.ProductId = null;
-            //}
+            if (!lueProduct.EditValue.IsNullOrEmpty())
+            {
+                frmDate.ProductId = lueProduct.EditValue.ToString();
+            }
+            else
+            {
+                frmDate.ProductId = null;
+            }
 
-            //frmDate.Show();
+            frmDate.Show();
 
             //Test chuc nang xuat Excel tu gridView cua DevExpress
             //ExportExcel("");
 
-            MessageBox.Show(gridView2.ActiveFilterString);
+            //MessageBox.Show(gridView2.ActiveFilterString);
 
         }
 

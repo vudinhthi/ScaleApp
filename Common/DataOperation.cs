@@ -27,7 +27,7 @@ namespace ScaleApp.Common
 
         public static int ConnectToDB()
         {
-            string conStr = "Data Source=server210;Initial Catalog=ColorMix;Persist Security Info=false;User ID=sa;Password=Fdw24$110";
+            string conStr = "Data Source=server210;Initial Catalog=colormixtest;Persist Security Info=false;User ID=cltest;Password=CLtest1";
             using (SqlConnection connection = new SqlConnection(conStr))
             {
                 try
@@ -50,12 +50,12 @@ namespace ScaleApp.Common
             //Get data from database ColorMix
             if (db == 1)
             {
-                connection = "Data Source=server210;Initial Catalog=ColorMix;Persist Security Info=false;User ID=colourmixing;Password=M1x1ng@C0lou4";
+                connection = "Data Source=server210;Initial Catalog=colormixtest;Persist Security Info=false;User ID=cltest;Password=CLtest1";
             }
             //Get data from database Winline
             else if (db == 2)
             {
-                connection = "Data Source=server210;Initial Catalog=ColorMix;Persist Security Info=false;User ID=sa;Password=Fdw24$110";
+                connection = "Data Source=server210;Initial Catalog=colormix;Persist Security Info=false;User ID=colourmixing;Password=M1x1ng@C0lou4";
             }
             return connection;
         }

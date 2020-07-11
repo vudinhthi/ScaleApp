@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCrushing));
             this.spbScale = new DevExpress.XtraEditors.SimpleButton();
             this.frmCrushinglayoutControl1ConvertedLayout = new DevExpress.XtraLayout.LayoutControl();
+            this.lueReType = new DevExpress.XtraEditors.LookUpEdit();
             this.txtMachineMix = new DevExpress.XtraEditors.TextEdit();
             this.cmbStep = new System.Windows.Forms.ComboBox();
             this.txtMachine = new DevExpress.XtraEditors.TextEdit();
@@ -85,6 +86,7 @@
             this.cmbColoritem = new DevExpress.XtraLayout.LayoutControlItem();
             this.cmbMaterialitem = new DevExpress.XtraLayout.LayoutControlItem();
             this.txtWeightCrusheditem = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -99,11 +101,11 @@
             this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.gridControl1item = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup7 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -117,6 +119,7 @@
             this.layoutConverter1 = new DevExpress.XtraLayout.Converter.LayoutConverter(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.frmCrushinglayoutControl1ConvertedLayout)).BeginInit();
             this.frmCrushinglayoutControl1ConvertedLayout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueReType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMachineMix.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tedColorCode.Properties)).BeginInit();
@@ -139,6 +142,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbColoritem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMaterialitem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightCrusheditem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -153,11 +157,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1item)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
@@ -175,7 +179,7 @@
             this.spbScale.Appearance.Options.UseFont = true;
             this.spbScale.Appearance.Options.UseForeColor = true;
             this.spbScale.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("spbScale.ImageOptions.Image")));
-            this.spbScale.Location = new System.Drawing.Point(354, 197);
+            this.spbScale.Location = new System.Drawing.Point(354, 198);
             this.spbScale.Name = "spbScale";
             this.spbScale.Size = new System.Drawing.Size(161, 40);
             this.spbScale.StyleController = this.frmCrushinglayoutControl1ConvertedLayout;
@@ -185,6 +189,7 @@
             // 
             // frmCrushinglayoutControl1ConvertedLayout
             // 
+            this.frmCrushinglayoutControl1ConvertedLayout.Controls.Add(this.lueReType);
             this.frmCrushinglayoutControl1ConvertedLayout.Controls.Add(this.txtMachineMix);
             this.frmCrushinglayoutControl1ConvertedLayout.Controls.Add(this.cmbStep);
             this.frmCrushinglayoutControl1ConvertedLayout.Controls.Add(this.txtMachine);
@@ -225,7 +230,8 @@
             this.cmbProductitem,
             this.cmbColoritem,
             this.cmbMaterialitem,
-            this.txtWeightCrusheditem});
+            this.txtWeightCrusheditem,
+            this.layoutControlItem11});
             this.frmCrushinglayoutControl1ConvertedLayout.Location = new System.Drawing.Point(0, 0);
             this.frmCrushinglayoutControl1ConvertedLayout.Name = "frmCrushinglayoutControl1ConvertedLayout";
             this.frmCrushinglayoutControl1ConvertedLayout.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(808, 542, 650, 400);
@@ -233,9 +239,26 @@
             this.frmCrushinglayoutControl1ConvertedLayout.Size = new System.Drawing.Size(1403, 803);
             this.frmCrushinglayoutControl1ConvertedLayout.TabIndex = 68;
             // 
+            // lueReType
+            // 
+            this.lueReType.Location = new System.Drawing.Point(1046, 71);
+            this.lueReType.Name = "lueReType";
+            this.lueReType.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueReType.Properties.Appearance.Options.UseFont = true;
+            this.lueReType.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueReType.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.lueReType.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueReType.Properties.AppearanceDropDownHeader.Options.UseFont = true;
+            this.lueReType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueReType.Properties.NullText = "Select a Recycle type...";
+            this.lueReType.Size = new System.Drawing.Size(333, 22);
+            this.lueReType.StyleController = this.frmCrushinglayoutControl1ConvertedLayout;
+            this.lueReType.TabIndex = 68;
+            // 
             // txtMachineMix
             // 
-            this.txtMachineMix.Location = new System.Drawing.Point(126, 147);
+            this.txtMachineMix.Location = new System.Drawing.Point(126, 148);
             this.txtMachineMix.Name = "txtMachineMix";
             this.txtMachineMix.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMachineMix.Properties.Appearance.Options.UseFont = true;
@@ -250,14 +273,14 @@
             this.cmbStep.Enabled = false;
             this.cmbStep.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStep.FormattingEnabled = true;
-            this.cmbStep.Location = new System.Drawing.Point(700, 148);
+            this.cmbStep.Location = new System.Drawing.Point(700, 149);
             this.cmbStep.Name = "cmbStep";
             this.cmbStep.Size = new System.Drawing.Size(216, 24);
             this.cmbStep.TabIndex = 38;
             // 
             // txtMachine
             // 
-            this.txtMachine.Location = new System.Drawing.Point(1046, 147);
+            this.txtMachine.Location = new System.Drawing.Point(1046, 148);
             this.txtMachine.Name = "txtMachine";
             this.txtMachine.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMachine.Properties.Appearance.Options.UseFont = true;
@@ -274,7 +297,7 @@
             "X",
             "Y",
             "Z"});
-            this.cmbShift.Location = new System.Drawing.Point(1046, 122);
+            this.cmbShift.Location = new System.Drawing.Point(1046, 123);
             this.cmbShift.Name = "cmbShift";
             this.cmbShift.Size = new System.Drawing.Size(333, 24);
             this.cmbShift.TabIndex = 36;
@@ -286,7 +309,7 @@
             this.tedColor.Multiline = true;
             this.tedColor.Name = "tedColor";
             this.tedColor.ReadOnly = true;
-            this.tedColor.Size = new System.Drawing.Size(216, 47);
+            this.tedColor.Size = new System.Drawing.Size(216, 48);
             this.tedColor.TabIndex = 66;
             // 
             // tedColorCode
@@ -307,7 +330,7 @@
             this.tedProductName.Multiline = true;
             this.tedProductName.Name = "tedProductName";
             this.tedProductName.ReadOnly = true;
-            this.tedProductName.Size = new System.Drawing.Size(468, 46);
+            this.tedProductName.Size = new System.Drawing.Size(468, 47);
             this.tedProductName.TabIndex = 65;
             // 
             // lueProduct
@@ -330,7 +353,7 @@
             // 
             // cmbOperator
             // 
-            this.cmbOperator.Location = new System.Drawing.Point(1046, 96);
+            this.cmbOperator.Location = new System.Drawing.Point(1046, 97);
             this.cmbOperator.Name = "cmbOperator";
             this.cmbOperator.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbOperator.Properties.Appearance.Options.UseFont = true;
@@ -373,7 +396,7 @@
             this.cmdSave.Appearance.Options.UseFont = true;
             this.cmdSave.Appearance.Options.UseForeColor = true;
             this.cmdSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("cmdSave.ImageOptions.Image")));
-            this.cmdSave.Location = new System.Drawing.Point(543, 197);
+            this.cmdSave.Location = new System.Drawing.Point(543, 198);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(164, 40);
             this.cmdSave.StyleController = this.frmCrushinglayoutControl1ConvertedLayout;
@@ -403,7 +426,7 @@
             this.simpleButton2.Appearance.Options.UseFont = true;
             this.simpleButton2.Appearance.Options.UseForeColor = true;
             this.simpleButton2.ImageOptions.Image = global::ScaleApp.Properties.Resources.refresh_32x32;
-            this.simpleButton2.Location = new System.Drawing.Point(1215, 197);
+            this.simpleButton2.Location = new System.Drawing.Point(1215, 198);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(164, 40);
             this.simpleButton2.StyleController = this.frmCrushinglayoutControl1ConvertedLayout;
@@ -413,7 +436,7 @@
             // 
             // txtWeightRe
             // 
-            this.txtWeightRe.Location = new System.Drawing.Point(189, 197);
+            this.txtWeightRe.Location = new System.Drawing.Point(189, 198);
             this.txtWeightRe.Name = "txtWeightRe";
             this.txtWeightRe.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtWeightRe.Properties.Appearance.Options.UseFont = true;
@@ -436,7 +459,7 @@
             // 
             // txtScaleWeight
             // 
-            this.txtScaleWeight.Location = new System.Drawing.Point(24, 197);
+            this.txtScaleWeight.Location = new System.Drawing.Point(24, 198);
             this.txtScaleWeight.Name = "txtScaleWeight";
             this.txtScaleWeight.Properties.Appearance.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtScaleWeight.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -457,7 +480,7 @@
             this.cmdPrint.Appearance.Options.UseFont = true;
             this.cmdPrint.Appearance.Options.UseForeColor = true;
             this.cmdPrint.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("cmdPrint.ImageOptions.Image")));
-            this.cmdPrint.Location = new System.Drawing.Point(879, 197);
+            this.cmdPrint.Location = new System.Drawing.Point(879, 198);
             this.cmdPrint.Name = "cmdPrint";
             this.cmdPrint.Size = new System.Drawing.Size(164, 40);
             this.cmdPrint.StyleController = this.frmCrushinglayoutControl1ConvertedLayout;
@@ -472,7 +495,7 @@
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.Appearance.Options.UseForeColor = true;
             this.simpleButton1.ImageOptions.Image = global::ScaleApp.Properties.Resources.exporttoxls_32x32;
-            this.simpleButton1.Location = new System.Drawing.Point(1047, 197);
+            this.simpleButton1.Location = new System.Drawing.Point(1047, 198);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(164, 40);
             this.simpleButton1.StyleController = this.frmCrushinglayoutControl1ConvertedLayout;
@@ -487,7 +510,7 @@
             this.cmdReset.Appearance.Options.UseFont = true;
             this.cmdReset.Appearance.Options.UseForeColor = true;
             this.cmdReset.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("cmdReset.ImageOptions.Image")));
-            this.cmdReset.Location = new System.Drawing.Point(711, 197);
+            this.cmdReset.Location = new System.Drawing.Point(711, 198);
             this.cmdReset.Name = "cmdReset";
             this.cmdReset.Size = new System.Drawing.Size(164, 40);
             this.cmdReset.StyleController = this.frmCrushinglayoutControl1ConvertedLayout;
@@ -502,10 +525,10 @@
             this.gridControl1.EmbeddedNavigator.Buttons.Edit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControl1.Location = new System.Drawing.Point(24, 265);
+            this.gridControl1.Location = new System.Drawing.Point(24, 266);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1355, 514);
+            this.gridControl1.Size = new System.Drawing.Size(1355, 513);
             this.gridControl1.TabIndex = 56;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -531,7 +554,6 @@
             this.gridView1.OptionsView.RowAutoHeight = true;
             this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
-            this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
             // 
             // lueMaterial
             // 
@@ -820,6 +842,19 @@
             this.txtWeightCrusheditem.Size = new System.Drawing.Size(948, 24);
             this.txtWeightCrusheditem.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // layoutControlItem11
+            // 
+            this.layoutControlItem11.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem11.AppearanceItemCaption.ForeColor = System.Drawing.Color.Green;
+            this.layoutControlItem11.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem11.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem11.Control = this.cmbLostType;
+            this.layoutControlItem11.Location = new System.Drawing.Point(0, 26);
+            this.layoutControlItem11.Name = "layoutControlItem11";
+            this.layoutControlItem11.Size = new System.Drawing.Size(439, 25);
+            this.layoutControlItem11.Text = "Lost type";
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(99, 16);
+            // 
             // layoutControlGroup5
             // 
             this.layoutControlGroup5.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -840,7 +875,7 @@
             this.layoutControlItem2,
             this.layoutControlItem10,
             this.layoutControlItem3});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 173);
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 174);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(519, 68);
             this.layoutControlGroup2.TextVisible = false;
@@ -882,7 +917,7 @@
             this.layoutControlItem7,
             this.layoutControlItem8,
             this.layoutControlItem9});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(519, 173);
+            this.layoutControlGroup1.Location = new System.Drawing.Point(519, 174);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(864, 68);
             this.layoutControlGroup1.TextVisible = false;
@@ -946,9 +981,9 @@
             // 
             this.layoutControlGroup6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.gridControl1item});
-            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 241);
+            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 242);
             this.layoutControlGroup6.Name = "layoutControlGroup6";
-            this.layoutControlGroup6.Size = new System.Drawing.Size(1383, 542);
+            this.layoutControlGroup6.Size = new System.Drawing.Size(1383, 541);
             this.layoutControlGroup6.TextVisible = false;
             // 
             // gridControl1item
@@ -957,7 +992,7 @@
             this.gridControl1item.Location = new System.Drawing.Point(0, 0);
             this.gridControl1item.MinSize = new System.Drawing.Size(104, 24);
             this.gridControl1item.Name = "gridControl1item";
-            this.gridControl1item.Size = new System.Drawing.Size(1359, 518);
+            this.gridControl1item.Size = new System.Drawing.Size(1359, 517);
             this.gridControl1item.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.gridControl1item.TextSize = new System.Drawing.Size(0, 0);
             this.gridControl1item.TextVisible = false;
@@ -969,28 +1004,15 @@
             this.layoutControlGroup3.AppearanceGroup.Options.UseFont = true;
             this.layoutControlGroup3.AppearanceGroup.Options.UseForeColor = true;
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem11,
             this.layoutControlItem12,
             this.layoutControlItem13,
             this.layoutControlItem14,
-            this.layoutControlItem4});
+            this.layoutControlItem4,
+            this.layoutControlItem1});
             this.layoutControlGroup3.Location = new System.Drawing.Point(920, 0);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(463, 173);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(463, 174);
             this.layoutControlGroup3.Text = "Crushing Information";
-            // 
-            // layoutControlItem11
-            // 
-            this.layoutControlItem11.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.layoutControlItem11.AppearanceItemCaption.ForeColor = System.Drawing.Color.Green;
-            this.layoutControlItem11.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem11.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItem11.Control = this.cmbLostType;
-            this.layoutControlItem11.Location = new System.Drawing.Point(0, 26);
-            this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(439, 25);
-            this.layoutControlItem11.Text = "Lost type";
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(99, 16);
             // 
             // layoutControlItem12
             // 
@@ -999,7 +1021,7 @@
             this.layoutControlItem12.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem12.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem12.Control = this.cmbOperator;
-            this.layoutControlItem12.Location = new System.Drawing.Point(0, 51);
+            this.layoutControlItem12.Location = new System.Drawing.Point(0, 52);
             this.layoutControlItem12.Name = "layoutControlItem12";
             this.layoutControlItem12.Size = new System.Drawing.Size(439, 26);
             this.layoutControlItem12.Text = "Operator";
@@ -1012,7 +1034,7 @@
             this.layoutControlItem13.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem13.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem13.Control = this.cmbShift;
-            this.layoutControlItem13.Location = new System.Drawing.Point(0, 77);
+            this.layoutControlItem13.Location = new System.Drawing.Point(0, 78);
             this.layoutControlItem13.Name = "layoutControlItem13";
             this.layoutControlItem13.Size = new System.Drawing.Size(439, 25);
             this.layoutControlItem13.Text = "Shift";
@@ -1025,7 +1047,7 @@
             this.layoutControlItem14.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem14.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem14.Control = this.txtMachine;
-            this.layoutControlItem14.Location = new System.Drawing.Point(0, 102);
+            this.layoutControlItem14.Location = new System.Drawing.Point(0, 103);
             this.layoutControlItem14.Name = "layoutControlItem14";
             this.layoutControlItem14.Size = new System.Drawing.Size(439, 26);
             this.layoutControlItem14.Text = "Machine crush";
@@ -1043,6 +1065,19 @@
             this.layoutControlItem4.Size = new System.Drawing.Size(439, 26);
             this.layoutControlItem4.Text = "Recycled Lot";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(99, 16);
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem1.AppearanceItemCaption.ForeColor = System.Drawing.Color.Green;
+            this.layoutControlItem1.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem1.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem1.Control = this.lueReType;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 26);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(439, 26);
+            this.layoutControlItem1.Text = "Loss type";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(99, 16);
             // 
             // layoutControlGroup7
             // 
@@ -1064,7 +1099,7 @@
             this.layoutControlItem21});
             this.layoutControlGroup7.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup7.Name = "layoutControlGroup7";
-            this.layoutControlGroup7.Size = new System.Drawing.Size(920, 173);
+            this.layoutControlGroup7.Size = new System.Drawing.Size(920, 174);
             this.layoutControlGroup7.Text = "Mixed Information";
             // 
             // layoutControlItem15
@@ -1099,7 +1134,7 @@
             this.layoutControlItem18.Control = this.tedProductName;
             this.layoutControlItem18.Location = new System.Drawing.Point(0, 52);
             this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(574, 50);
+            this.layoutControlItem18.Size = new System.Drawing.Size(574, 51);
             this.layoutControlItem18.Text = "Product name";
             this.layoutControlItem18.TextSize = new System.Drawing.Size(99, 16);
             // 
@@ -1108,14 +1143,14 @@
             this.layoutControlItem19.Control = this.tedColor;
             this.layoutControlItem19.Location = new System.Drawing.Point(574, 52);
             this.layoutControlItem19.Name = "layoutControlItem19";
-            this.layoutControlItem19.Size = new System.Drawing.Size(322, 51);
+            this.layoutControlItem19.Size = new System.Drawing.Size(322, 52);
             this.layoutControlItem19.Text = "Color name";
             this.layoutControlItem19.TextSize = new System.Drawing.Size(99, 16);
             // 
             // layoutControlItem20
             // 
             this.layoutControlItem20.Control = this.txtMachineMix;
-            this.layoutControlItem20.Location = new System.Drawing.Point(0, 102);
+            this.layoutControlItem20.Location = new System.Drawing.Point(0, 103);
             this.layoutControlItem20.Name = "layoutControlItem20";
             this.layoutControlItem20.Size = new System.Drawing.Size(574, 26);
             this.layoutControlItem20.Text = "Machine Mix";
@@ -1124,7 +1159,7 @@
             // layoutControlItem21
             // 
             this.layoutControlItem21.Control = this.cmbStep;
-            this.layoutControlItem21.Location = new System.Drawing.Point(574, 103);
+            this.layoutControlItem21.Location = new System.Drawing.Point(574, 104);
             this.layoutControlItem21.Name = "layoutControlItem21";
             this.layoutControlItem21.Size = new System.Drawing.Size(322, 25);
             this.layoutControlItem21.Text = "Step";
@@ -1154,6 +1189,7 @@
             this.Load += new System.EventHandler(this.frmCrushing_Load);
             ((System.ComponentModel.ISupportInitialize)(this.frmCrushinglayoutControl1ConvertedLayout)).EndInit();
             this.frmCrushinglayoutControl1ConvertedLayout.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lueReType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMachineMix.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tedColorCode.Properties)).EndInit();
@@ -1176,6 +1212,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbColoritem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMaterialitem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeightCrusheditem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -1190,11 +1227,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1item)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
@@ -1293,5 +1330,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem21;
         private DevExpress.XtraEditors.TextEdit qrCodeCrush;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraEditors.LookUpEdit lueReType;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
     }
 }

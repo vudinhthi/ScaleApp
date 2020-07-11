@@ -62,10 +62,7 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.userLoginToolStripMenuItem,
-
-            this.databaseToolStripMenuItem});
-
+            this.userLoginToolStripMenuItem,           
             this.databaseToolStripMenuItem,
             this.settingsToolStripMenuItem});
 

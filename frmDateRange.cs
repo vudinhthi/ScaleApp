@@ -195,7 +195,7 @@ namespace ScaleApp
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
-                    SplashScreenManager.Default.SetWaitFormCaption("Exproting data to Excel...");
+                    SplashScreenManager.Default.SetWaitFormCaption("Exporting data to Excel...");
                     for (int i = 0; i < 100; i++)
                     {
                         Thread.Sleep(20);

@@ -1,5 +1,6 @@
 ﻿using DevExpress.Export;
 using DevExpress.Utils;
+using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
@@ -46,6 +47,7 @@ namespace ScaleApp
             GetComPort();
             loadComboBoxOperator();
             loadComboBoxStep();
+            LoadLookUpReType();
             LoadLookUpMixId();
             //LoadLookUpProduct();
             //cmdPost.Enabled = false;
@@ -419,7 +421,9 @@ namespace ScaleApp
                 cmd.Parameters.AddWithValue("@colorName", tedColor.Text);
                 cmd.Parameters.AddWithValue("@stepId", cmbStep.SelectedValue);
                 cmd.Parameters.AddWithValue("@weightRecycle", txtWeightRe.Text);
-                cmd.Parameters.AddWithValue("@lostType", cmbLostType.SelectedItem);
+                //cmd.Parameters.AddWithValue("@lostType", cmbLostType.SelectedItem);
+                cmd.Parameters.AddWithValue("@lostTypeId", lueReType.GetColumnValue("Id"));
+                cmd.Parameters.AddWithValue("@lostType", lueReType.GetColumnValue("LossTypeName"));
                 cmd.Parameters.AddWithValue("@mixRawId", lueMixId.EditValue);
                 cmd.Parameters.AddWithValue("@machineID", txtMachine.Text);
                 cmd.Parameters.AddWithValue("@qrCode", qrCodeCrush.Text);
@@ -544,7 +548,8 @@ namespace ScaleApp
         private void resetForm()
         {
             cmbShift.SelectedItem = null;
-            cmbLostType.SelectedItem = null;
+            //cmbLostType.SelectedItem = null;
+            lueReType.EditValue = null;
             cmbOperator.EditValue = null;
             txtMachine.Text = null;
             cmbStep.SelectedValue = "None";            
@@ -669,6 +674,36 @@ namespace ScaleApp
                 reportCrush.MixID = int.Parse(txtCrushID.Text.ToString());
                 reportCrush.Show();
             }
+        }
+
+        private void LoadLookUpReType()
+        {
+            DataSet ds = new DataSet();
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(2);
+            SqlConnection conn = new SqlConnection(connStr);
+
+            try
+            {
+                using (SqlDataAdapter SqlDa = new SqlDataAdapter("sp_getReTypes", conn))
+                {
+                    SqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    SqlDa.Fill(ds);
+                }
+
+                lueReType.Properties.DataSource = ds.Tables[0];
+                lueReType.Properties.DisplayMember = "LossTypeName";
+                lueReType.Properties.ValueMember = "Id";
+
+                lueReType.Properties.Columns.Add(new LookUpColumnInfo("Id", "Id", 20));
+                lueReType.Properties.Columns.Add(new LookUpColumnInfo("LossTypeName", "LossTypeName", 120));
+
+                lueReType.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Error: " + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            ScaleApp.Common.DataOperation.disconnect();
         }
 
         private void LoadLookUpMaterial()
@@ -1060,7 +1095,8 @@ namespace ScaleApp
         {
             GridView gridView = sender as GridView;
             cmbShift.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ShiftName"]);
-            cmbLostType.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["LossTypeName"]);
+            //cmbLostType.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["LossTypeName"]);
+            lueReType.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["LossTypeName"]).ToString();
             cmbOperator.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["OperatorCode"]);
             txtMachine.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MachineName"]).ToString();
             cmbStep.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["StepName"]);
@@ -1205,30 +1241,33 @@ namespace ScaleApp
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            GridView gridView = sender as GridView;
-            cmbShift.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ShiftName"]);
-            cmbLostType.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["LossTypeName"]);
-            cmbOperator.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["OperatorCode"]);
-            txtMachine.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MachineName"]).ToString();
-            cmbStep.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["StepName"]);
-            lueProduct.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);
-            tedColorCode.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ColorCode"]).ToString();
-            lueMixId.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]);
-            lueMaterial.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MaterialCode"]);
-            txtWeightRe.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightRecycle"]).ToString();
-            qrCodeCrush.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["RecycledID"]).ToString();
-            //txtCrushDate.Text = String.Format("{0:MM/dd/yyyy HH:mm:ss}", gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]));
-            txtCrushID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CrushRawId"]).ToString();
-            txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
+            //GridView gridView = sender as GridView;
+            //cmbShift.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ShiftName"]);
+            ////Dung cho combobox cu
+            ////cmbLostType.SelectedItem = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["LossTypeName"]);
+            ////lueReType.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["LossTypeName"]).ToString();
+            //cmbOperator.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["OperatorCode"]);
+            //txtMachine.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MachineName"]).ToString();
+            //cmbStep.SelectedValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["StepName"]);
+            //lueProduct.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ProductCode"]);
+            //tedColorCode.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ColorCode"]).ToString();
+            //lueMixId.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]);
+            //lueMaterial.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MaterialCode"]);
+            //txtWeightRe.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["WeightRecycle"]).ToString();
+            //qrCodeCrush.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["RecycledID"]).ToString();
+            ////txtCrushDate.Text = String.Format("{0:MM/dd/yyyy HH:mm:ss}", gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CreateTime"]));
+            //txtCrushID.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["CrushRawId"]).ToString();
+            //txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
 
-            txtWeightRe.Properties.Mask.UseMaskAsDisplayFormat = true;
+            //txtWeightRe.Properties.Mask.UseMaskAsDisplayFormat = true;
 
-            SetcmdPost();
+            //SetcmdPost();
         }
 
         private void frmCrushing_FormClosing(object sender, FormClosingEventArgs e)
         {
             CloseSerialPort();
         }
+        
     }
 }

@@ -204,7 +204,8 @@ namespace ScaleApp
                     cmd.Parameters.AddWithValue("@weightCookie", 0);
                     break;
             }           
-            cmd.Parameters.AddWithValue("@mixRawId", cmbMixId.EditValue);            
+            cmd.Parameters.AddWithValue("@mixRawId", cmbMixId.EditValue);
+            cmd.Parameters.AddWithValue("@shift", cbeShift.EditValue);
 
             conn.Open();
 
@@ -265,6 +266,7 @@ namespace ScaleApp
                     break;
             }
             cmd.Parameters.AddWithValue("@mixRawId", cmbMixId.EditValue);
+            cmd.Parameters.AddWithValue("@shift", cbeShift.EditValue);
             cmd.Parameters.AddWithValue("@Id", txtMixOutId.Text);
 
             conn.Open();
@@ -509,16 +511,16 @@ namespace ScaleApp
                 gridView2.Columns["ItemID"].VisibleIndex = -1;
                 gridView2.Columns["ItemName"].VisibleIndex = -1;
                 gridView2.Columns["MachineName"].VisibleIndex = -1;
-                gridView2.Columns["StepName"].VisibleIndex = -1;
-                gridView2.Columns["ShiftName"].VisibleIndex = -1;
+                gridView2.Columns["StepName"].VisibleIndex = -1;                
 
                 gridView2.Columns["Id"].VisibleIndex = 0;
                 gridView2.Columns["CreateTime"].VisibleIndex = 1;
-                gridView2.Columns["MixBacode"].VisibleIndex = 2;
-                gridView2.Columns["WeightRunner"].VisibleIndex = 3;
-                gridView2.Columns["WeightDefect"].VisibleIndex = 4;
-                gridView2.Columns["WeightBlackDot"].VisibleIndex = 5;
-                gridView2.Columns["WeighContamination"].VisibleIndex = 6;
+                gridView2.Columns["Shift"].VisibleIndex = 2;
+                gridView2.Columns["MixBacode"].VisibleIndex = 3;
+                gridView2.Columns["WeightRunner"].VisibleIndex = 4;
+                gridView2.Columns["WeightDefect"].VisibleIndex = 5;
+                gridView2.Columns["WeightBlackDot"].VisibleIndex = 6;
+                gridView2.Columns["WeighContamination"].VisibleIndex = 7;
 
                 gridView2.Columns["MixBacode"].Caption = "Mix Lot Id";
 
@@ -533,6 +535,7 @@ namespace ScaleApp
                 //gridView2.Columns["WeighContamination"].VisibleIndex = 11;
 
                 gridView2.Columns["Id"].Width = 50;
+                gridView2.Columns["Shift"].Width = 50;
                 gridView2.Columns["CreateTime"].Width = 150;
                 gridView2.Columns["MixBacode"].Width = 280;
 
@@ -581,6 +584,7 @@ namespace ScaleApp
             txtMixOutId.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Id"]).ToString(); 
             txtPosted.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Posted"]).ToString();
             cmbMixId.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]);
+            cbeShift.EditValue = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["Shift"]);
             qrCodeMixId.Text = gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["MixRawId"]).ToString();
             //SetcmdPost();
         }

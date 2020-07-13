@@ -33,9 +33,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.userLoginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-
             this.mixingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mixedOutStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recycledStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,11 +60,9 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.userLoginToolStripMenuItem,           
+            this.userLoginToolStripMenuItem,
             this.databaseToolStripMenuItem,
             this.settingsToolStripMenuItem});
-
-            this.toolStripMenuItem1.Enabled = false;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(49, 20);
             this.toolStripMenuItem1.Text = "Login";
@@ -76,7 +72,7 @@
             this.userLoginToolStripMenuItem.Name = "userLoginToolStripMenuItem";
             this.userLoginToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.userLoginToolStripMenuItem.Text = "User";
-            this.userLoginToolStripMenuItem.Click += new System.EventHandler(this.connectDatabaseToolStripMenuItem_Click);
+            this.userLoginToolStripMenuItem.Click += new System.EventHandler(this.userLoginToolStripMenuItem_Click);
             // 
             // databaseToolStripMenuItem
             // 
@@ -85,27 +81,21 @@
             this.databaseToolStripMenuItem.Text = "Database";
             this.databaseToolStripMenuItem.Click += new System.EventHandler(this.databaseToolStripMenuItem_Click);
             // 
-
-
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
-
             // mixingToolStripMenuItem
             // 
-            this.mixingToolStripMenuItem.Enabled = false;
             this.mixingToolStripMenuItem.Name = "mixingToolStripMenuItem";
-            this.mixingToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.mixingToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.mixingToolStripMenuItem.Text = "Mixing Station";
             this.mixingToolStripMenuItem.Click += new System.EventHandler(this.mixingToolStripMenuItem_Click);
             // 
             // mixedOutStationToolStripMenuItem
             // 
-            this.mixedOutStationToolStripMenuItem.Enabled = false;
             this.mixedOutStationToolStripMenuItem.Name = "mixedOutStationToolStripMenuItem";
             this.mixedOutStationToolStripMenuItem.Size = new System.Drawing.Size(144, 20);
             this.mixedOutStationToolStripMenuItem.Text = "Incoming Crush Station";
@@ -113,7 +103,6 @@
             // 
             // recycledStationToolStripMenuItem
             // 
-            this.recycledStationToolStripMenuItem.Enabled = false;
             this.recycledStationToolStripMenuItem.Name = "recycledStationToolStripMenuItem";
             this.recycledStationToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.recycledStationToolStripMenuItem.Text = "Crush Station";
@@ -121,7 +110,6 @@
             // 
             // cookiesStationToolStripMenuItem
             // 
-            this.cookiesStationToolStripMenuItem.Enabled = false;
             this.cookiesStationToolStripMenuItem.Name = "cookiesStationToolStripMenuItem";
             this.cookiesStationToolStripMenuItem.Size = new System.Drawing.Size(101, 20);
             this.cookiesStationToolStripMenuItem.Text = "Cookies Station";

@@ -679,7 +679,7 @@ namespace ScaleApp
         private void LoadLookUpReType()
         {
             DataSet ds = new DataSet();
-            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(2);
+            String connStr = ScaleApp.Common.DataOperation.GetConnectionString(1);
             SqlConnection conn = new SqlConnection(connStr);
 
             try
@@ -1049,8 +1049,10 @@ namespace ScaleApp
                 gridView1.Columns["ProductCode"].VisibleIndex = -1;                
                 gridView1.Columns["CreateBy"].VisibleIndex = -1;
                 gridView1.Columns["MixRawId"].VisibleIndex = -1;
+                gridView1.Columns["LossTypeId"].VisibleIndex = -1;
                 gridView1.Columns["ColorName"].VisibleIndex = -1;
                 gridView1.Columns["Posted"].VisibleIndex = -1;
+
 
                 gridView1.Columns["CrushRawId"].VisibleIndex = 0;
                 gridView1.Columns["CreateTime"].VisibleIndex = 1;                

@@ -38,6 +38,7 @@
             this.txtWeight = new System.Windows.Forms.TextBox();
             this.qrCodeMixId = new DevExpress.XtraEditors.BarCodeControl();
             this.frmMixedOutlayoutControl1ConvertedLayout = new DevExpress.XtraLayout.LayoutControl();
+            this.cbeShift = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cmbMixId = new DevExpress.XtraEditors.LookUpEdit();
             this.txtScaleWeight = new DevExpress.XtraEditors.TextEdit();
             this.spbScale = new DevExpress.XtraEditors.SimpleButton();
@@ -87,10 +88,12 @@
             this.txtScaleWeightitem = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.cmbMixIditem = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.frmMixedOutlayoutControl1ConvertedLayout)).BeginInit();
             this.frmMixedOutlayoutControl1ConvertedLayout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeShift.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMixId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtScaleWeight.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -122,6 +125,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtScaleWeightitem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMixIditem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             this.SuspendLayout();
             // 
             // rdbContaminated
@@ -202,6 +206,7 @@
             // 
             // frmMixedOutlayoutControl1ConvertedLayout
             // 
+            this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.cbeShift);
             this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.cmbMixId);
             this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.txtScaleWeight);
             this.frmMixedOutlayoutControl1ConvertedLayout.Controls.Add(this.spbScale);
@@ -236,6 +241,27 @@
             this.frmMixedOutlayoutControl1ConvertedLayout.Size = new System.Drawing.Size(1413, 732);
             this.frmMixedOutlayoutControl1ConvertedLayout.TabIndex = 21;
             // 
+            // cbeShift
+            // 
+            this.cbeShift.Location = new System.Drawing.Point(1121, 98);
+            this.cbeShift.Name = "cbeShift";
+            this.cbeShift.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbeShift.Properties.Appearance.ForeColor = System.Drawing.Color.Green;
+            this.cbeShift.Properties.Appearance.Options.UseFont = true;
+            this.cbeShift.Properties.Appearance.Options.UseForeColor = true;
+            this.cbeShift.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbeShift.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cbeShift.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbeShift.Properties.Items.AddRange(new object[] {
+            "X",
+            "Y",
+            "Z"});
+            this.cbeShift.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbeShift.Size = new System.Drawing.Size(268, 22);
+            this.cbeShift.StyleController = this.frmMixedOutlayoutControl1ConvertedLayout;
+            this.cbeShift.TabIndex = 22;
+            // 
             // cmbMixId
             // 
             this.cmbMixId.Location = new System.Drawing.Point(94, 98);
@@ -250,7 +276,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbMixId.Properties.NullText = "";
             this.cmbMixId.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            this.cmbMixId.Size = new System.Drawing.Size(1295, 22);
+            this.cmbMixId.Size = new System.Drawing.Size(953, 22);
             this.cmbMixId.StyleController = this.frmMixedOutlayoutControl1ConvertedLayout;
             this.cmbMixId.TabIndex = 19;
             // 
@@ -762,7 +788,8 @@
             // layoutControlGroup6
             // 
             this.layoutControlGroup6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.cmbMixIditem});
+            this.cmbMixIditem,
+            this.layoutControlItem2});
             this.layoutControlGroup6.Location = new System.Drawing.Point(0, 74);
             this.layoutControlGroup6.Name = "layoutControlGroup6";
             this.layoutControlGroup6.Size = new System.Drawing.Size(1393, 50);
@@ -777,10 +804,21 @@
             this.cmbMixIditem.Control = this.cmbMixId;
             this.cmbMixIditem.Location = new System.Drawing.Point(0, 0);
             this.cmbMixIditem.Name = "cmbMixIditem";
-            this.cmbMixIditem.Size = new System.Drawing.Size(1369, 26);
+            this.cmbMixIditem.Size = new System.Drawing.Size(1027, 26);
             this.cmbMixIditem.Text = "Mix Lot ID";
             this.cmbMixIditem.TextLocation = DevExpress.Utils.Locations.Left;
             this.cmbMixIditem.TextSize = new System.Drawing.Size(67, 16);
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem2.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem2.Control = this.cbeShift;
+            this.layoutControlItem2.Location = new System.Drawing.Point(1027, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(342, 26);
+            this.layoutControlItem2.Text = "Shift";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(67, 16);
             // 
             // timer1
             // 
@@ -806,6 +844,7 @@
             this.Load += new System.EventHandler(this.frmMixedOut_Load);
             ((System.ComponentModel.ISupportInitialize)(this.frmMixedOutlayoutControl1ConvertedLayout)).EndInit();
             this.frmMixedOutlayoutControl1ConvertedLayout.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cbeShift.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMixId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtScaleWeight.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -837,6 +876,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtScaleWeightitem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMixIditem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -900,5 +940,7 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup4;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup5;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup6;
+        private DevExpress.XtraEditors.ComboBoxEdit cbeShift;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
     }
 }

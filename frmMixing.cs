@@ -40,9 +40,7 @@ namespace ScaleApp
         }
 
         private void frmMixing_Load(object sender, EventArgs e)
-        {
-            spbPrint.Enabled = false;
-            spbSave.Enabled = false;
+        {            
             txtTotal.Text = "0";
             timer2.Interval = ScaleApp.Properties.Settings.Default.TimeScale;
             Start_Timer();

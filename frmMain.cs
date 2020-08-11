@@ -73,6 +73,7 @@ namespace ScaleApp
             mixedOutStationToolStripMenuItem.Enabled = false;
             recycledStationToolStripMenuItem.Enabled = false;
             cookiesStationToolStripMenuItem.Enabled = false;
+            toolStripMenuItem1.Enabled = false;
 
             if (ScaleApp.Common.DataOperation.ConnectToDB() == 0)
             {                
@@ -81,13 +82,18 @@ namespace ScaleApp
             else
             {                
                 XtraMessageBox.Show("Kết nối cơ sở dữ liệu thành công !", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                string URoles = GetUserRoles(MachineName1);
+                cookiesStationToolStripMenuItem.Enabled = true;
+                mixingToolStripMenuItem.Enabled = true;
+                mixedOutStationToolStripMenuItem.Enabled = true;
+                recycledStationToolStripMenuItem.Enabled = true;
 
-                string[] uRolesArray = URoles.Split(',');
-                foreach (var roles in uRolesArray)
-                {
-                    SetMenuByRoles(roles.Trim());
-                }
+                //string URoles = GetUserRoles(MachineName1);
+
+                //string[] uRolesArray = URoles.Split(',');
+                //foreach (var roles in uRolesArray)
+                //{
+                //    SetMenuByRoles(roles.Trim());
+                //}
             }
         }   
 

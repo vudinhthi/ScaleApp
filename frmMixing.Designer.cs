@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraPrinting.BarCode.QRCodeGenerator qrCodeGenerator1 = new DevExpress.XtraPrinting.BarCode.QRCodeGenerator();
-
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMixing));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -543,9 +542,6 @@
             // 
             // bteWeightRe
             // 
-
-            
-
             this.bteWeightRe.Location = new System.Drawing.Point(712, 156);
             this.bteWeightRe.Name = "bteWeightRe";
             this.bteWeightRe.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -562,7 +558,6 @@
             this.bteWeightRe.StyleController = this.frmMixinglayoutControl1ConvertedLayout;
             this.bteWeightRe.TabIndex = 1;
             this.bteWeightRe.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.bteWeightRe_ButtonClick);
-
             // 
             // cboComPort
             // 
@@ -796,7 +791,6 @@
             this.lueProduct.Properties.NullText = "";
             this.lueProduct.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.lueProduct.Properties.PopupFormMinSize = new System.Drawing.Size(580, 0);
-            this.lueProduct.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
             this.lueProduct.Size = new System.Drawing.Size(450, 22);
             this.lueProduct.StyleController = this.frmMixinglayoutControl1ConvertedLayout;
             this.lueProduct.TabIndex = 0;
